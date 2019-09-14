@@ -1,0 +1,29 @@
+{
+  "name": "minecraft-box-launcher",
+  "version": "0.0.1",
+  "description": "Open source Minecraft Java Edition launcher build with ElectronJS",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ts-watch": "tsc --watch",
+    "build:ts-build": "tsc"
+  },
+  "keywords": [
+    "minecraft",
+    "launcher"
+  ],
+  "author": "lukechu10",
+  "license": " GPL-3.0-or-later",
+  "devDependencies": {
+    "electron": "^6.0.9",
+    "pug-cli": "^1.0.0-alpha6"
+  },
+  "repository": {
+    "url": "https://github.com/lukechu10/Minecraft-Box-Launcher",
+    "type": "git"
+  },
+  "dependencies": {
+    "ts-minecraft": "^5.2.10",
+    "typescript": "^3.6.3"
+  }
+}
