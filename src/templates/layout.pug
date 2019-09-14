@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        // css
+        // semantic-ui
+        link(rel="stylesheet", href="../css/global.css")
+        link(rel="stylesheet", href="../css/semantic.min.css")
+        block css
+        // js
+        script(src="../js/jquery.min.js")
+        script(src='../js/semantic.min.js')
+        block js
+    body
+        navbar.ui.menu.fixed.inverted
+            .item Minecraft Box
+            a.item(href="./index.html") Instances
+            a.item(href="./news.html") News
+        .ui.container(style="padding-top: 40px;")
+            block content

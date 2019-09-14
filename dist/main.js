@@ -5,9 +5,12 @@ var mainWindow;
 function createWindow() {
     mainWindow = new electron_1.BrowserWindow({
         width: 800,
-        height: 600
+        height: 600,
+        title: "Minecraft Box"
     });
-    mainWindow.loadFile('index.html');
+    mainWindow.setMenu(null);
+    mainWindow.loadFile('./views/index.html');
+    mainWindow.webContents.openDevTools();
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
@@ -21,3 +24,4 @@ electron_1.app.on('activate', function () {
     if (mainWindow === null)
         createWindow();
 });
+//# sourceMappingURL=main.js.map

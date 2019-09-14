@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ts-watch": "tsc --watch",
-    "build:ts-build": "tsc"
+    "build:ts-build": "tsc",
+    "build:pug-watch": "pug ./src/templates --watch --out ./dist/views",
+    "build:pug-build": "pug ./src/templates --out ./dist/views"
   },
   "keywords": [
     "minecraft",

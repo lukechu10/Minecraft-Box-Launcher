@@ -20,6 +20,22 @@
             ],
             "group": "build",
             "isBackground": true
+        },
+        {
+            "type": "npm",
+            "script": "build:pug-watch",
+            "problemMatcher": [
+            ],
+            "group": "build",
+            "isBackground": true
+        },
+        {
+            "type": "npm",
+            "script": "build:pug-build",
+            "problemMatcher": [
+            ],
+            "group": "build",
+            "isBackground": true
         }
     ]
 }
