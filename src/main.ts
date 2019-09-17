@@ -11,7 +11,10 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
-        title: "Minecraft Box"
+        title: "Minecraft Box",
+        webPreferences: {
+            nodeIntegration: true
+        }
     });
 
     mainWindow.setMenu(null);

@@ -5,18 +5,9 @@
     "tasks": [
         {
             "type": "npm",
-            "script": "build:ts-watch",
+            "script": "build:ts-main",
             "problemMatcher": [
                 "$tsc-watch"
-            ],
-            "group": "build",
-            "isBackground": true
-        },
-        {
-            "type": "npm",
-            "script": "build:ts-build",
-            "problemMatcher": [
-                "$tsc"
             ],
             "group": "build",
             "isBackground": true

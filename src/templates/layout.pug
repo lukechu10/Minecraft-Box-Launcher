@@ -10,7 +10,10 @@ html(lang="en")
         link(rel="stylesheet", href="../css/semantic.min.css")
         block css
         // js
-        script(src="../js/jquery.min.js")
+        script(link-js-library).
+            window.jQuery = window.$ = require('jquery');
+            // load modules
+            window.minecraft = require('../ts/index')
         script(src='../js/semantic.min.js')
         block js
     body

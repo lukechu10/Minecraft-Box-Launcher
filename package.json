@@ -5,8 +5,7 @@
   "main": "dist/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:ts-watch": "tsc --watch",
-    "build:ts-build": "tsc",
+    "build:ts-main": "tsc -p tsconfig.json --watch",
     "build:pug-watch": "pug ./src/templates --watch --out ./dist/views",
     "build:pug-build": "pug ./src/templates --out ./dist/views"
   },
@@ -25,7 +24,13 @@
     "type": "git"
   },
   "dependencies": {
-    "ts-minecraft": "^5.2.10",
+    "@types/bytebuffer": "^5.0.40",
+    "@types/fast-html-parser": "^1.0.0",
+    "@types/got": "^9.6.7",
+    "@types/yauzl": "^2.9.1",
+    "@xmcl/minecraft-launcher-core": "^0.1.20",
+    "electron-store": "^5.0.0",
+    "jquery": "^3.4.1",
     "typescript": "^3.6.3"
   }
 }

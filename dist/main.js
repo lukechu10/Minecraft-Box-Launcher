@@ -6,7 +6,10 @@ function createWindow() {
     mainWindow = new electron_1.BrowserWindow({
         width: 800,
         height: 600,
-        title: "Minecraft Box"
+        title: "Minecraft Box",
+        webPreferences: {
+            nodeIntegration: true
+        }
     });
     mainWindow.setMenu(null);
     mainWindow.loadFile('./views/index.html');
