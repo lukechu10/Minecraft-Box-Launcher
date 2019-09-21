@@ -17,7 +17,7 @@
 	"author": "lukechu10",
 	"license": " GPL-3.0-or-later",
 	"devDependencies": {
-		"electron": "^6.0.9",
+		"electron": "^6.0.10",
 		"pug-cli": "^1.0.0-alpha6"
 	},
 	"repository": {

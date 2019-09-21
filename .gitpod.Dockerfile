@@ -1,5 +1,8 @@
 FROM gitpod/workspace-full-vnc
 
+WORKDIR /workspace/Minecraft-Box-Launcher
+USER root
+
 # Install Electron dependencies.
 RUN sudo apt-get update \
 	&& sudo apt-get install -y \
@@ -7,3 +10,7 @@ RUN sudo apt-get update \
 	libgtk-3-dev \
 	libnss3-dev \
 	&& sudo rm -rf /var/lib/apt/lists/*
+
+RUN npm install
+
+USER root

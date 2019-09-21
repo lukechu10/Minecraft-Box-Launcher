@@ -314,8 +314,8 @@
         "signature": "765fc34423b93c2ab763670d8d11d99e5f47387c13c161d6f1640dd6d91b7d1c"
       },
       "../node_modules/electron/electron.d.ts": {
-        "version": "747beb491bd4b113ff740c15071573019529914cc472b021b9e8441ac2c8ac21",
-        "signature": "747beb491bd4b113ff740c15071573019529914cc472b021b9e8441ac2c8ac21"
+        "version": "4022e5090d4f29530a39684caf0b77fbd6ef612957f2848afbcc459dfbab6f7f",
+        "signature": "4022e5090d4f29530a39684caf0b77fbd6ef612957f2848afbcc459dfbab6f7f"
       },
       "../src/main.ts": {
         "version": "ff1c03ea3f8e83db665d9aca0d6ec0cc681db6319ccd478300220ac62f7375e5",
@@ -2192,6 +2192,7 @@
       "../../../home/gitpod/.nvm/versions/node/v10.15.3/lib/node_modules/typescript/lib/lib.es2019.symbol.d.ts",
       "../../../home/gitpod/.nvm/versions/node/v10.15.3/lib/node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "../../../home/gitpod/.nvm/versions/node/v10.15.3/lib/node_modules/typescript/lib/lib.esnext.bigint.d.ts",
+      "../node_modules/electron/electron.d.ts",
       "../node_modules/@types/node/globals.d.ts",
       "../node_modules/@types/node/assert.d.ts",
       "../node_modules/@types/node/async_hooks.d.ts",
@@ -2236,7 +2237,6 @@
       "../node_modules/@types/node/ts3.2/util.d.ts",
       "../node_modules/@types/node/ts3.2/globals.d.ts",
       "../node_modules/@types/node/ts3.2/index.d.ts",
-      "../node_modules/electron/electron.d.ts",
       "../src/main.ts",
       "../node_modules/type-fest/source/basic.d.ts",
       "../node_modules/type-fest/source/except.d.ts",
