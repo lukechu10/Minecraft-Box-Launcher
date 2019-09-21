@@ -11,6 +11,7 @@ RUN sudo apt-get update \
 	libnss3-dev \
 	&& sudo rm -rf /var/lib/apt/lists/*
 
+USER gitpod
 RUN npm install
 
 USER root
