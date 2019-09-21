@@ -8,7 +8,8 @@ function createWindow() {
         height: 600,
         title: "Minecraft Box",
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            sandbox: false
         }
     });
     mainWindow.setMenu(null);
