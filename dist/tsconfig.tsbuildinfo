@@ -321,6 +321,10 @@
         "version": "12e3d75c1565f764833e956ac078400527a47132a7a23647f33e9902723fee8d",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
+      "../src/ts/authentication.ts": {
+        "version": "8e9dda80caff95befa36a7ca61de2a377bf3dd454231b207b22b8f9d06bbba85",
+        "signature": "535d34d6a7c2bc65a303a13ade2f44b7f50710274e1ab75cf8096660c0461ebd"
+      },
       "../node_modules/type-fest/source/basic.d.ts": {
         "version": "fda9e5c2afd0920ead6baed40f164229ec8f93188b5c8df196594a54bb8fb5e3",
         "signature": "fda9e5c2afd0920ead6baed40f164229ec8f93188b5c8df196594a54bb8fb5e3"
@@ -380,185 +384,8 @@
         "version": "4f36659c3ba432449ecb053d66082de4409b69038a0c6930b2d258ce2e2efdd2",
         "signature": "4f36659c3ba432449ecb053d66082de4409b69038a0c6930b2d258ce2e2efdd2"
       },
-      "../node_modules/@xmcl/common/game.ts": {
-        "version": "892d79c09bcb958141c37e6453d21d3f92be33b6950bbc70926a38bd0c7a6324"
-      },
-      "../node_modules/@xmcl/common/platform.ts": {
-        "version": "fba00c5d81b94cc5a8aa9742822803246c5fdb86b8acadf109553d86fc3e39d5"
-      },
-      "../node_modules/@xmcl/common/version.ts": {
-        "version": "6b91912cd649732236055df3dc5fac931ac4bb23179a39c16761193d86084a3f"
-      },
-      "../node_modules/@xmcl/common/gamesetting.ts": {
-        "version": "b971e1d2d8b186f243b2ed7410fef026b0737d76d72b23e861b81d6aeb32f9b5"
-      },
-      "../node_modules/@xmcl/common/user.ts": {
-        "version": "49f66082d9e855c174551b8f9cff4bfe2c5c385bf01edac729b772f5c65af64e"
-      },
-      "../node_modules/@xmcl/common/mojang.ts": {
-        "version": "584078a604539dc04fb9d0205da8317f37936511f302ea62c16b54a7563848a8"
-      },
-      "../node_modules/@types/long/index.d.ts": {
-        "version": "99c9b6d28e44d05b34760e1311ec35b47e5b5a0b1ad9ce8b8eb0d6cdfb7c7e61",
-        "signature": "99c9b6d28e44d05b34760e1311ec35b47e5b5a0b1ad9ce8b8eb0d6cdfb7c7e61"
-      },
-      "../node_modules/@xmcl/common/world.ts": {
-        "version": "0f774d0c286d7ee4895ac9d007a7f8e6b4ab1e7842b7bbef5db819c5803411fd"
-      },
-      "../node_modules/@xmcl/common/server.ts": {
-        "version": "85ec724b54a53718dfc2d13a2fc829884c4ec9a1a0f0ddb6e387c753e5c6a383"
-      },
-      "../node_modules/@xmcl/common/index.d.ts": {
-        "version": "6b561c331cb76a926f39513acbde765837f453a73e8f60a0083e44ceaad2528d",
-        "signature": "6b561c331cb76a926f39513acbde765837f453a73e8f60a0083e44ceaad2528d"
-      },
-      "../node_modules/@xmcl/auth/index.d.ts": {
-        "version": "680aab2ce475620246ac3dbc969cce8d24556781c9e6df2ae15d6c9e32260258",
-        "signature": "680aab2ce475620246ac3dbc969cce8d24556781c9e6df2ae15d6c9e32260258"
-      },
-      "../node_modules/@xmcl/text-component/index.d.ts": {
-        "version": "c11b78daf45d5109262c2c4cb60b7de5a2e1c18ddccba849494ab5a3818de6ec",
-        "signature": "c11b78daf45d5109262c2c4cb60b7de5a2e1c18ddccba849494ab5a3818de6ec"
-      },
-      "../node_modules/typescript-optional/dist/types.d.ts": {
-        "version": "4608689bd605866b984ca900fc3e114144e2b365e1eece108808a1bc761d1d20",
-        "signature": "4608689bd605866b984ca900fc3e114144e2b365e1eece108808a1bc761d1d20"
-      },
-      "../node_modules/typescript-optional/dist/optional.d.ts": {
-        "version": "8685c710d3abe9bd062ca34a6e2b1c2a1c7160751b9ba69bb38b1afc5fe225c6",
-        "signature": "8685c710d3abe9bd062ca34a6e2b1c2a1c7160751b9ba69bb38b1afc5fe225c6"
-      },
-      "../node_modules/typescript-optional/dist/index.d.ts": {
-        "version": "47b95405f499ed3baecd64fc7f0de2964ff7f12fad54b2a6d090ae268d6c2e39",
-        "signature": "47b95405f499ed3baecd64fc7f0de2964ff7f12fad54b2a6d090ae268d6c2e39"
-      },
-      "../node_modules/@xmcl/nbt/index.d.ts": {
-        "version": "b5a657ffcce726cbbfdeb6bb42e6dd3b437d4cd1bb7dfe6e6a2601512d2940a0",
-        "signature": "b5a657ffcce726cbbfdeb6bb42e6dd3b437d4cd1bb7dfe6e6a2601512d2940a0"
-      },
-      "../node_modules/@types/bytebuffer/index.d.ts": {
-        "version": "9a271183da07858e3ccfaab9ce7dbe1e6dd9e670a9dc79df7550152f6726e29f",
-        "signature": "9a271183da07858e3ccfaab9ce7dbe1e6dd9e670a9dc79df7550152f6726e29f"
-      },
-      "../node_modules/@xmcl/client/net/coders.ts": {
-        "version": "6d5f56326c5a251bf4076d74590d2e79729da9d54bf818c7548ec7abb745316e"
-      },
-      "../node_modules/@xmcl/client/net/client.ts": {
-        "version": "5d246a690af45078e2d022f5d0fc99630c3850ea91b73aed7a0ac01b13be2fab"
-      },
-      "../node_modules/@xmcl/client/net/packet.ts": {
-        "version": "77bb119ff6d8d73f9862e50fe25244c49940806f49ded244f7d18a4f7b495122"
-      },
-      "../node_modules/@xmcl/client/index.ts": {
-        "version": "00d7d0f31857b417c9d1bb01f2f2e4528594c7e6dabc9ed6d860bdc2daf8b39e"
-      },
-      "../node_modules/@xmcl/client/net/protocols/default.ts": {
-        "version": "d30aa077c1571e6c2b7873450e831397816e540e0ac316080ea2281347139a86"
-      },
-      "../node_modules/@xmcl/client/net/status-client.ts": {
-        "version": "e7b3c3af45d88f464a16b824dec657835f0a08151eac22a392c362632ea0eaf1"
-      },
-      "../node_modules/@xmcl/client/index.d.ts": {
-        "version": "604d03c64d918ec1680e6e33e3c9d9f04f7e184e358c5d6fb6258e844110dc06",
-        "signature": "604d03c64d918ec1680e6e33e3c9d9f04f7e184e358c5d6fb6258e844110dc06"
-      },
-      "../node_modules/@xmcl/task/index.d.ts": {
-        "version": "d3cf893349b83f117bbc3dd0ba3feb740b28c10ddeab94dbb85c01c250eba032",
-        "signature": "d3cf893349b83f117bbc3dd0ba3feb740b28c10ddeab94dbb85c01c250eba032"
-      },
-      "../node_modules/@types/tough-cookie/index.d.ts": {
-        "version": "8437256e19bbeda3c9e062d18971002545c486b1f40e3cfa10199c89808264b7",
-        "signature": "8437256e19bbeda3c9e062d18971002545c486b1f40e3cfa10199c89808264b7"
-      },
-      "../node_modules/@types/got/index.d.ts": {
-        "version": "2c3e5979ded186404132e725b5a9bfe4ca5c06e9cc1b6b9aa84775db3f965ab6",
-        "signature": "2c3e5979ded186404132e725b5a9bfe4ca5c06e9cc1b6b9aa84775db3f965ab6"
-      },
-      "../node_modules/@xmcl/net/index.d.ts": {
-        "version": "9d944e021de8bfd3e54432fb470361f8663308939c5c418ddb47633cab8cd00b",
-        "signature": "9d944e021de8bfd3e54432fb470361f8663308939c5c418ddb47633cab8cd00b"
-      },
-      "../node_modules/@xmcl/util/fs.ts": {
-        "version": "2f90c309f2c74e80dc35ac5ad28f31ac13da7cd1b2095fd20940c647f5289301"
-      },
-      "../node_modules/@xmcl/util/folder.ts": {
-        "version": "02f4287d2acd66e3355d0b0f817515e04cabf189f3cee45c17738a553f0d8167"
-      },
-      "../node_modules/@xmcl/util/index.d.ts": {
-        "version": "8dd745b2d8d3286a8682f936b7e8fd1a055c43d8da9ac7705541c7795d4116dd",
-        "signature": "8dd745b2d8d3286a8682f936b7e8fd1a055c43d8da9ac7705541c7795d4116dd"
-      },
-      "../node_modules/@xmcl/fabric/index.d.ts": {
-        "version": "2f867dd823a73bdd1e336c8369660b5edae1eea1cb8fd373f0fff13201096140",
-        "signature": "2f867dd823a73bdd1e336c8369660b5edae1eea1cb8fd373f0fff13201096140"
-      },
-      "../node_modules/@xmcl/unzip/index.d.ts": {
-        "version": "8d321ec02e0541faf3b21bcbeaa8b691833022538b59a999501364dba986ea1f",
-        "signature": "8d321ec02e0541faf3b21bcbeaa8b691833022538b59a999501364dba986ea1f"
-      },
-      "../node_modules/@xmcl/forge/index.d.ts": {
-        "version": "5c1bec12a6d432c84ce1073a23bebdc87480bad3146a38da67f14f8614d834a1",
-        "signature": "5c1bec12a6d432c84ce1073a23bebdc87480bad3146a38da67f14f8614d834a1"
-      },
-      "../node_modules/@xmcl/version/index.d.ts": {
-        "version": "5952db5edddc4e68265b61bb7e3cb54a721e01ac5e8434c9c8e39fd318f3d412",
-        "signature": "5952db5edddc4e68265b61bb7e3cb54a721e01ac5e8434c9c8e39fd318f3d412"
-      },
-      "../node_modules/@xmcl/installer/index.d.ts": {
-        "version": "112ab8682fba713a8bc209d0f3b31c9b12c75387101517cca434d0ec40a7e455",
-        "signature": "112ab8682fba713a8bc209d0f3b31c9b12c75387101517cca434d0ec40a7e455"
-      },
-      "../node_modules/@types/fast-html-parser/index.d.ts": {
-        "version": "31835748fb81c8862ba5350c151bb6b2bb4e30fdba4ae1f9a04c7d7011a7d64f",
-        "signature": "31835748fb81c8862ba5350c151bb6b2bb4e30fdba4ae1f9a04c7d7011a7d64f"
-      },
-      "../node_modules/@xmcl/forge-installer/index.ts": {
-        "version": "2f27886097ef922c3b18cf9c298241639fe7dc718e17a76fe0626697aafadf66"
-      },
-      "../node_modules/@xmcl/forge-installer/forgeweb.ts": {
-        "version": "7a37b3a841f2a1313bef21b5e3de578caea0ec6c619a30f14178a82a28cbc814"
-      },
-      "../node_modules/@xmcl/forge-installer/index.d.ts": {
-        "version": "4e4d3d114a27a17d4b72aa93311cc92e87b2773feaad0770c3e131af737ae858",
-        "signature": "4e4d3d114a27a17d4b72aa93311cc92e87b2773feaad0770c3e131af737ae858"
-      },
-      "../node_modules/@xmcl/gamesetting/index.d.ts": {
-        "version": "8cdaf319e54cf0427e012bcced90dc574c966a464bea6931460227594aa70b45",
-        "signature": "8cdaf319e54cf0427e012bcced90dc574c966a464bea6931460227594aa70b45"
-      },
-      "../node_modules/@xmcl/language/index.d.ts": {
-        "version": "42bc2d8026d148ce25012de3948023d66e00c7e4e585e94a7267c748375a52d8",
-        "signature": "42bc2d8026d148ce25012de3948023d66e00c7e4e585e94a7267c748375a52d8"
-      },
-      "../node_modules/@xmcl/launch/index.d.ts": {
-        "version": "c979cdbb08617d3d76d61a76dff713f974d813a8463ba2ef1df5c30e37f60367",
-        "signature": "c979cdbb08617d3d76d61a76dff713f974d813a8463ba2ef1df5c30e37f60367"
-      },
-      "../node_modules/@xmcl/liteloader/index.d.ts": {
-        "version": "95549f1ac5de0e40be4560b66516be79b685af9f5db76eea12de99c2f621fde9",
-        "signature": "95549f1ac5de0e40be4560b66516be79b685af9f5db76eea12de99c2f621fde9"
-      },
-      "../node_modules/@xmcl/mojang/index.d.ts": {
-        "version": "3f43ad8d0793434f386ad137f07936941d96b29758ebd66abea8271b28292a1b",
-        "signature": "3f43ad8d0793434f386ad137f07936941d96b29758ebd66abea8271b28292a1b"
-      },
-      "../node_modules/@xmcl/profile-service/index.d.ts": {
-        "version": "f324d9fbc3269f9e81a7a52ed4a9c711690079449b2331e98a1e9ad4ab951c4a",
-        "signature": "f324d9fbc3269f9e81a7a52ed4a9c711690079449b2331e98a1e9ad4ab951c4a"
-      },
-      "../node_modules/@xmcl/resourcepack/index.d.ts": {
-        "version": "17b476fc6be02da0117101789dd23657afadd469fe4039529e269320fb85ac8b",
-        "signature": "17b476fc6be02da0117101789dd23657afadd469fe4039529e269320fb85ac8b"
-      },
-      "../node_modules/@xmcl/world/index.d.ts": {
-        "version": "1b87dcba42cad7fd46e73935d4dcf05782c4860877dbfbe18414ee8b9cdd6d92",
-        "signature": "1b87dcba42cad7fd46e73935d4dcf05782c4860877dbfbe18414ee8b9cdd6d92"
-      },
-      "../node_modules/@xmcl/minecraft-launcher-core/index.ts": {
-        "version": "68c0cf3099c3ecee8dc00842283a4e9c8054c1ffed65e9215ad5bbe051af451d"
-      },
       "../src/ts/index.ts": {
-        "version": "34c2e7524759003c230e50fa5791f2cad3d1fcfee9337bd78214316299e9e66d",
+        "version": "71587ae8bde7aca3a057bdd3213d4274671109e32192d385eba5049b4afa18f3",
         "signature": "14d239a11ef7eb1c1394f80c1360cfe9f617cbb11734795f8e1c3952cf64dd0e"
       },
       "../node_modules/@types/babel-types/index.d.ts": {
@@ -568,6 +395,26 @@
       "../node_modules/@types/babylon/index.d.ts": {
         "version": "e7ef01fb3213b1be13321648ac2612d60e9e2742e28fc2fcf68d27fb965a8d5c",
         "signature": "e7ef01fb3213b1be13321648ac2612d60e9e2742e28fc2fcf68d27fb965a8d5c"
+      },
+      "../node_modules/@types/long/index.d.ts": {
+        "version": "99c9b6d28e44d05b34760e1311ec35b47e5b5a0b1ad9ce8b8eb0d6cdfb7c7e61",
+        "signature": "99c9b6d28e44d05b34760e1311ec35b47e5b5a0b1ad9ce8b8eb0d6cdfb7c7e61"
+      },
+      "../node_modules/@types/bytebuffer/index.d.ts": {
+        "version": "9a271183da07858e3ccfaab9ce7dbe1e6dd9e670a9dc79df7550152f6726e29f",
+        "signature": "9a271183da07858e3ccfaab9ce7dbe1e6dd9e670a9dc79df7550152f6726e29f"
+      },
+      "../node_modules/@types/fast-html-parser/index.d.ts": {
+        "version": "31835748fb81c8862ba5350c151bb6b2bb4e30fdba4ae1f9a04c7d7011a7d64f",
+        "signature": "31835748fb81c8862ba5350c151bb6b2bb4e30fdba4ae1f9a04c7d7011a7d64f"
+      },
+      "../node_modules/@types/tough-cookie/index.d.ts": {
+        "version": "8437256e19bbeda3c9e062d18971002545c486b1f40e3cfa10199c89808264b7",
+        "signature": "8437256e19bbeda3c9e062d18971002545c486b1f40e3cfa10199c89808264b7"
+      },
+      "../node_modules/@types/got/index.d.ts": {
+        "version": "2c3e5979ded186404132e725b5a9bfe4ca5c06e9cc1b6b9aa84775db3f965ab6",
+        "signature": "2c3e5979ded186404132e725b5a9bfe4ca5c06e9cc1b6b9aa84775db3f965ab6"
       },
       "../node_modules/@types/yauzl/index.d.ts": {
         "version": "3845d3b64286c12c60d39fc90ac1cc5e47cbc951530658d2567d578b2faa1f26",
@@ -1010,6 +857,10 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../src/ts/authentication.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../node_modules/type-fest/source/basic.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
@@ -1092,85 +943,21 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../node_modules/@xmcl/common/game.ts": [
+      "../src/ts/index.ts": [
+        "../node_modules/electron-store/index.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../node_modules/@xmcl/common/platform.ts": [
+      "../node_modules/@types/babel-types/index.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../node_modules/@xmcl/common/version.ts": [
-        "../node_modules/@xmcl/common/platform.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/common/gamesetting.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/common/user.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/common/mojang.ts": [
+      "../node_modules/@types/babylon/index.d.ts": [
+        "../node_modules/@types/babel-types/index.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "../node_modules/@types/long/index.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/common/world.ts": [
-        "../node_modules/@types/long/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/common/server.ts": [
-        "../node_modules/@xmcl/common/game.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/common/index.d.ts": [
-        "../node_modules/@xmcl/common/game.ts",
-        "../node_modules/@xmcl/common/version.ts",
-        "../node_modules/@xmcl/common/gamesetting.ts",
-        "../node_modules/@xmcl/common/user.ts",
-        "../node_modules/@xmcl/common/mojang.ts",
-        "../node_modules/@xmcl/common/world.ts",
-        "../node_modules/@xmcl/common/server.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/auth/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/text-component/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/typescript-optional/dist/types.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/typescript-optional/dist/optional.d.ts": [
-        "../node_modules/typescript-optional/dist/types.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/typescript-optional/dist/index.d.ts": [
-        "../node_modules/typescript-optional/dist/optional.d.ts",
-        "../node_modules/typescript-optional/dist/types.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/nbt/index.d.ts": [
-        "../node_modules/@types/long/index.d.ts",
-        "../node_modules/typescript-optional/dist/index.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -1180,70 +967,7 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../node_modules/@xmcl/client/net/coders.ts": [
-        "../node_modules/@xmcl/nbt/index.d.ts",
-        "../node_modules/@types/bytebuffer/index.d.ts",
-        "../node_modules/@types/long/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/client/net/client.ts": [
-        "../node_modules/@types/bytebuffer/index.d.ts",
-        "../node_modules/@types/node/events.d.ts",
-        "../node_modules/@types/node/net.d.ts",
-        "../node_modules/@types/node/stream.d.ts",
-        "../node_modules/@types/node/zlib.d.ts",
-        "../node_modules/@xmcl/client/net/coders.ts",
-        "../node_modules/@xmcl/client/net/packet.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/client/net/packet.ts": [
-        "../node_modules/@xmcl/client/net/client.ts",
-        "../node_modules/@xmcl/client/net/coders.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/client/index.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@xmcl/nbt/index.d.ts",
-        "../node_modules/@xmcl/text-component/index.d.ts",
-        "../node_modules/@xmcl/client/net/status-client.ts",
-        "../node_modules/@xmcl/client/net/coders.ts",
-        "../node_modules/@xmcl/client/net/packet.ts",
-        "../node_modules/@xmcl/client/net/client.ts",
-        "../node_modules/@xmcl/common/server.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/client/net/protocols/default.ts": [
-        "../node_modules/@types/long/index.d.ts",
-        "../node_modules/@xmcl/client/index.ts",
-        "../node_modules/@xmcl/client/net/coders.ts",
-        "../node_modules/@xmcl/client/net/packet.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/client/net/status-client.ts": [
-        "../node_modules/@xmcl/client/net/client.ts",
-        "../node_modules/@xmcl/client/net/packet.ts",
-        "../node_modules/@xmcl/client/net/protocols/default.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/client/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@xmcl/text-component/index.d.ts",
-        "../node_modules/@xmcl/client/net/coders.ts",
-        "../node_modules/@xmcl/client/net/packet.ts",
-        "../node_modules/@xmcl/client/net/status-client.ts",
-        "../node_modules/@xmcl/client/net/client.ts",
-        "../node_modules/@xmcl/common/server.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/task/index.d.ts": [
+      "../node_modules/@types/fast-html-parser/index.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -1258,195 +982,6 @@
         "../node_modules/@types/node/stream.d.ts",
         "../node_modules/@types/tough-cookie/index.d.ts",
         "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/net/index.d.ts": [
-        "../node_modules/@xmcl/task/index.d.ts",
-        "../node_modules/@types/got/index.d.ts",
-        "../node_modules/@types/node/stream.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/util/fs.ts": [
-        "../node_modules/@types/node/crypto.d.ts",
-        "../node_modules/@types/node/fs.d.ts",
-        "../node_modules/@types/node/path.d.ts",
-        "../node_modules/@types/node/stream.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/util/folder.ts": [
-        "../node_modules/@types/node/path.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/util/index.d.ts": [
-        "../node_modules/@xmcl/util/fs.ts",
-        "../node_modules/@xmcl/util/folder.ts",
-        "../node_modules/@types/node/child_process.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/fabric/index.d.ts": [
-        "../node_modules/@xmcl/net/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/unzip/index.d.ts": [
-        "../node_modules/@types/node/stream.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/forge/index.d.ts": [
-        "../node_modules/@xmcl/unzip/index.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/version/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@xmcl/task/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@xmcl/common/version.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/installer/index.d.ts": [
-        "../node_modules/@xmcl/net/index.d.ts",
-        "../node_modules/@xmcl/task/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@xmcl/version/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@types/fast-html-parser/index.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/forge-installer/index.ts": [
-        "../node_modules/@xmcl/installer/index.d.ts",
-        "../node_modules/@xmcl/net/index.d.ts",
-        "../node_modules/@xmcl/task/index.d.ts",
-        "../node_modules/@xmcl/unzip/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@xmcl/version/index.d.ts",
-        "../node_modules/@types/node/path.d.ts",
-        "../node_modules/@types/node/stream.d.ts",
-        "../node_modules/@xmcl/forge-installer/forgeweb.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/forge-installer/forgeweb.ts": [
-        "../node_modules/@xmcl/net/index.d.ts",
-        "../node_modules/@types/fast-html-parser/index.d.ts",
-        "../node_modules/@xmcl/forge-installer/index.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/forge-installer/index.d.ts": [
-        "../node_modules/@xmcl/installer/index.d.ts",
-        "../node_modules/@xmcl/task/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@xmcl/version/index.d.ts",
-        "../node_modules/@xmcl/forge-installer/forgeweb.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/gamesetting/index.d.ts": [
-        "../node_modules/@xmcl/common/gamesetting.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/language/index.d.ts": [
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/launch/index.d.ts": [
-        "../node_modules/@xmcl/auth/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@xmcl/version/index.d.ts",
-        "../node_modules/@types/node/child_process.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/liteloader/index.d.ts": [
-        "../node_modules/@xmcl/net/index.d.ts",
-        "../node_modules/@xmcl/task/index.d.ts",
-        "../node_modules/@xmcl/unzip/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/mojang/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@types/got/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/profile-service/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/resourcepack/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/world/index.d.ts": [
-        "../node_modules/@xmcl/common/world.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/minecraft-launcher-core/index.ts": [
-        "../node_modules/@xmcl/auth/index.d.ts",
-        "../node_modules/@xmcl/client/index.d.ts",
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@xmcl/fabric/index.d.ts",
-        "../node_modules/@xmcl/forge/index.d.ts",
-        "../node_modules/@xmcl/forge-installer/index.d.ts",
-        "../node_modules/@xmcl/gamesetting/index.d.ts",
-        "../node_modules/@xmcl/installer/index.d.ts",
-        "../node_modules/@xmcl/language/index.d.ts",
-        "../node_modules/@xmcl/launch/index.d.ts",
-        "../node_modules/@xmcl/liteloader/index.d.ts",
-        "../node_modules/@xmcl/mojang/index.d.ts",
-        "../node_modules/@xmcl/nbt/index.d.ts",
-        "../node_modules/@xmcl/profile-service/index.d.ts",
-        "../node_modules/@xmcl/resourcepack/index.d.ts",
-        "../node_modules/@xmcl/task/index.d.ts",
-        "../node_modules/@xmcl/text-component/index.d.ts",
-        "../node_modules/@xmcl/net/index.d.ts",
-        "../node_modules/@types/got/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@xmcl/version/index.d.ts",
-        "../node_modules/@xmcl/world/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../src/ts/index.ts": [
-        "../node_modules/electron-store/index.d.ts",
-        "../node_modules/@xmcl/minecraft-launcher-core/index.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@types/babel-types/index.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@types/babylon/index.d.ts": [
-        "../node_modules/@types/babel-types/index.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -1943,50 +1478,16 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../node_modules/@types/babel-types/index.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/babylon/index.d.ts": [
+        "../node_modules/@types/babel-types/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../node_modules/@types/long/index.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/common/index.d.ts": [
-        "../node_modules/@xmcl/common/game.ts",
-        "../node_modules/@xmcl/common/version.ts",
-        "../node_modules/@xmcl/common/gamesetting.ts",
-        "../node_modules/@xmcl/common/user.ts",
-        "../node_modules/@xmcl/common/mojang.ts",
-        "../node_modules/@xmcl/common/world.ts",
-        "../node_modules/@xmcl/common/server.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/auth/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/text-component/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/typescript-optional/dist/types.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/typescript-optional/dist/optional.d.ts": [
-        "../node_modules/typescript-optional/dist/types.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/typescript-optional/dist/index.d.ts": [
-        "../node_modules/typescript-optional/dist/optional.d.ts",
-        "../node_modules/typescript-optional/dist/types.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/nbt/index.d.ts": [
-        "../node_modules/@types/long/index.d.ts",
-        "../node_modules/typescript-optional/dist/index.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -1996,19 +1497,7 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../node_modules/@xmcl/client/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@xmcl/text-component/index.d.ts",
-        "../node_modules/@xmcl/client/net/coders.ts",
-        "../node_modules/@xmcl/client/net/packet.ts",
-        "../node_modules/@xmcl/client/net/status-client.ts",
-        "../node_modules/@xmcl/client/net/client.ts",
-        "../node_modules/@xmcl/common/server.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/task/index.d.ts": [
+      "../node_modules/@types/fast-html-parser/index.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -2023,130 +1512,6 @@
         "../node_modules/@types/node/stream.d.ts",
         "../node_modules/@types/tough-cookie/index.d.ts",
         "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/net/index.d.ts": [
-        "../node_modules/@xmcl/task/index.d.ts",
-        "../node_modules/@types/got/index.d.ts",
-        "../node_modules/@types/node/stream.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/util/index.d.ts": [
-        "../node_modules/@xmcl/util/fs.ts",
-        "../node_modules/@xmcl/util/folder.ts",
-        "../node_modules/@types/node/child_process.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/fabric/index.d.ts": [
-        "../node_modules/@xmcl/net/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/unzip/index.d.ts": [
-        "../node_modules/@types/node/stream.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/forge/index.d.ts": [
-        "../node_modules/@xmcl/unzip/index.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/version/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@xmcl/task/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@xmcl/common/version.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/installer/index.d.ts": [
-        "../node_modules/@xmcl/net/index.d.ts",
-        "../node_modules/@xmcl/task/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@xmcl/version/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@types/fast-html-parser/index.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/forge-installer/index.d.ts": [
-        "../node_modules/@xmcl/installer/index.d.ts",
-        "../node_modules/@xmcl/task/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@xmcl/version/index.d.ts",
-        "../node_modules/@xmcl/forge-installer/forgeweb.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/gamesetting/index.d.ts": [
-        "../node_modules/@xmcl/common/gamesetting.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/language/index.d.ts": [
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/launch/index.d.ts": [
-        "../node_modules/@xmcl/auth/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@xmcl/version/index.d.ts",
-        "../node_modules/@types/node/child_process.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/liteloader/index.d.ts": [
-        "../node_modules/@xmcl/net/index.d.ts",
-        "../node_modules/@xmcl/task/index.d.ts",
-        "../node_modules/@xmcl/unzip/index.d.ts",
-        "../node_modules/@xmcl/util/index.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/mojang/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@types/got/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/profile-service/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/resourcepack/index.d.ts": [
-        "../node_modules/@xmcl/common/index.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@xmcl/world/index.d.ts": [
-        "../node_modules/@xmcl/common/world.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@types/babel-types/index.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@types/babylon/index.d.ts": [
-        "../node_modules/@types/babel-types/index.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -2254,59 +1619,40 @@
       "../node_modules/json-schema-typed/src/index.ts",
       "../node_modules/conf/index.d.ts",
       "../node_modules/electron-store/index.d.ts",
-      "../node_modules/@xmcl/common/game.ts",
-      "../node_modules/@xmcl/common/platform.ts",
-      "../node_modules/@xmcl/common/version.ts",
-      "../node_modules/@xmcl/common/gamesetting.ts",
-      "../node_modules/@xmcl/common/user.ts",
-      "../node_modules/@xmcl/common/mojang.ts",
-      "../node_modules/@types/long/index.d.ts",
-      "../node_modules/@xmcl/common/world.ts",
-      "../node_modules/@xmcl/common/server.ts",
-      "../node_modules/@xmcl/common/index.d.ts",
-      "../node_modules/@xmcl/auth/index.d.ts",
-      "../node_modules/@xmcl/text-component/index.d.ts",
-      "../node_modules/typescript-optional/dist/types.d.ts",
-      "../node_modules/typescript-optional/dist/optional.d.ts",
-      "../node_modules/typescript-optional/dist/index.d.ts",
-      "../node_modules/@xmcl/nbt/index.d.ts",
-      "../node_modules/@types/bytebuffer/index.d.ts",
-      "../node_modules/@xmcl/client/net/coders.ts",
-      "../node_modules/@xmcl/client/net/client.ts",
-      "../node_modules/@xmcl/client/net/packet.ts",
-      "../node_modules/@xmcl/client/index.ts",
-      "../node_modules/@xmcl/client/net/protocols/default.ts",
-      "../node_modules/@xmcl/client/net/status-client.ts",
-      "../node_modules/@xmcl/client/index.d.ts",
-      "../node_modules/@xmcl/task/index.d.ts",
-      "../node_modules/@types/tough-cookie/index.d.ts",
-      "../node_modules/@types/got/index.d.ts",
-      "../node_modules/@xmcl/net/index.d.ts",
-      "../node_modules/@xmcl/util/fs.ts",
-      "../node_modules/@xmcl/util/folder.ts",
-      "../node_modules/@xmcl/util/index.d.ts",
-      "../node_modules/@xmcl/fabric/index.d.ts",
-      "../node_modules/@xmcl/unzip/index.d.ts",
-      "../node_modules/@xmcl/forge/index.d.ts",
-      "../node_modules/@xmcl/version/index.d.ts",
-      "../node_modules/@xmcl/installer/index.d.ts",
-      "../node_modules/@types/fast-html-parser/index.d.ts",
-      "../node_modules/@xmcl/forge-installer/index.ts",
-      "../node_modules/@xmcl/forge-installer/forgeweb.ts",
-      "../node_modules/@xmcl/forge-installer/index.d.ts",
-      "../node_modules/@xmcl/gamesetting/index.d.ts",
-      "../node_modules/@xmcl/language/index.d.ts",
-      "../node_modules/@xmcl/launch/index.d.ts",
-      "../node_modules/@xmcl/liteloader/index.d.ts",
-      "../node_modules/@xmcl/mojang/index.d.ts",
-      "../node_modules/@xmcl/profile-service/index.d.ts",
-      "../node_modules/@xmcl/resourcepack/index.d.ts",
-      "../node_modules/@xmcl/world/index.d.ts",
-      "../node_modules/@xmcl/minecraft-launcher-core/index.ts",
-      "../src/ts/index.ts",
       "../node_modules/@types/babel-types/index.d.ts",
       "../node_modules/@types/babylon/index.d.ts",
-      "../node_modules/@types/yauzl/index.d.ts"
+      "../node_modules/@types/long/index.d.ts",
+      "../node_modules/@types/bytebuffer/index.d.ts",
+      "../node_modules/@types/fast-html-parser/index.d.ts",
+      "../node_modules/@types/tough-cookie/index.d.ts",
+      "../node_modules/@types/got/index.d.ts",
+      "../node_modules/@types/yauzl/index.d.ts",
+      [
+        "../src/ts/authentication.ts",
+        [
+          {
+            "file": "../src/ts/authentication.ts",
+            "start": 21,
+            "length": 31,
+            "messageText": "Cannot find module '@xmcl/minecraft-launcher-core'.",
+            "category": 1,
+            "code": 2307
+          }
+        ]
+      ],
+      [
+        "../src/ts/index.ts",
+        [
+          {
+            "file": "../src/ts/index.ts",
+            "start": 78,
+            "length": 31,
+            "messageText": "Cannot find module '@xmcl/minecraft-launcher-core'.",
+            "category": 1,
+            "code": 2307
+          }
+        ]
+      ]
     ]
   },
   "version": "3.6.3"

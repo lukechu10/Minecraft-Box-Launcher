@@ -1,5 +1,5 @@
 import ElectronStore = require('electron-store');
-import { MinecraftFolder } from '@xmcl/minecraft-launcher-core';
+import * as minecraft from '@xmcl/minecraft-launcher-core';
 
 const instancesData = new ElectronStore();
 

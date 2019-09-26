@@ -4,6 +4,7 @@
   "description": "Open source Minecraft Java Edition launcher build with ElectronJS",
   "main": "dist/main.js",
   "scripts": {
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ts-main": "tsc -p tsconfig.json --watch",
     "build:pug-watch": "pug ./src/templates --watch --out ./dist/views",
