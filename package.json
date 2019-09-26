@@ -17,7 +17,7 @@
   "author": "lukechu10",
   "license": " GPL-3.0-or-later",
   "devDependencies": {
-    "electron": "^6.0.9",
+    "electron": "^6.0.10",
     "pug-cli": "^1.0.0-alpha6"
   },
   "repository": {
@@ -29,7 +29,7 @@
     "@types/fast-html-parser": "^1.0.0",
     "@types/got": "^9.6.7",
     "@types/yauzl": "^2.9.1",
-    "@xmcl/minecraft-launcher-core": "^0.1.20",
+    "@xmcl/minecraft-launcher-core": "^0.1.22",
     "electron-store": "^5.0.0",
     "jquery": "^3.4.1",
     "typescript": "^3.6.3"
