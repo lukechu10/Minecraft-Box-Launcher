@@ -13,3 +13,10 @@ export async function login(username: string, password: string): Promise<Auth> {
     // const accessToken: string = authFromMojang.accessToken;
     return authFromMojang;
 }
+
+/**
+ * Shows modal that appears over page
+ */
+export function showLoginModal() {
+    $("")
+}

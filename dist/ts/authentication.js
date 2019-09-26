@@ -36,20 +36,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var ElectronStore = require("electron-store");
 var minecraft_launcher_core_1 = require("@xmcl/minecraft-launcher-core");
+var instancesData = new ElectronStore();
 function login(username, password) {
     return __awaiter(this, void 0, void 0, function () {
-        var authFromMojang, accessToken;
+        var authFromMojang;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4, minecraft_launcher_core_1.Auth.Yggdrasil.login({ username: username, password: password })];
                 case 1:
                     authFromMojang = _a.sent();
-                    accessToken = authFromMojang.accessToken;
-                    return [2, accessToken];
+                    return [2, authFromMojang];
             }
         });
     });
 }
 exports.login = login;
+function showLoginModal() {
+    $("");
+}
+exports.showLoginModal = showLoginModal;
 //# sourceMappingURL=authentication.js.map
