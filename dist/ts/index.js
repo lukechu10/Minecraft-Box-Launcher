@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ElectronStore = require("electron-store");
-var instancesData = new ElectronStore();
+const ElectronStore = require("electron-store");
+const instancesData = new ElectronStore();
 function newInstance() {
 }
 exports.newInstance = newInstance;

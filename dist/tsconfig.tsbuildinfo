@@ -321,65 +321,6 @@
         "version": "03add243227130d88cb5a47c46a8a96553bc287af285deafa0952097b71eb847",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
-      "../node_modules/type-fest/source/basic.d.ts": {
-        "version": "fda9e5c2afd0920ead6baed40f164229ec8f93188b5c8df196594a54bb8fb5e3",
-        "signature": "fda9e5c2afd0920ead6baed40f164229ec8f93188b5c8df196594a54bb8fb5e3"
-      },
-      "../node_modules/type-fest/source/except.d.ts": {
-        "version": "c58be3e560989a877531d3ff7c9e5db41c5dd9282480ccf197abfcc708a95b8d",
-        "signature": "c58be3e560989a877531d3ff7c9e5db41c5dd9282480ccf197abfcc708a95b8d"
-      },
-      "../node_modules/type-fest/source/mutable.d.ts": {
-        "version": "4d1462b70f05fd1b16d7d4f78ac195824560a1dd96407de0a1fe964f3ec0e9d4",
-        "signature": "4d1462b70f05fd1b16d7d4f78ac195824560a1dd96407de0a1fe964f3ec0e9d4"
-      },
-      "../node_modules/type-fest/source/merge.d.ts": {
-        "version": "50d22844db90a0dcd359afeb59dd1e9a384d977b4b363c880b4e65047237a29e",
-        "signature": "50d22844db90a0dcd359afeb59dd1e9a384d977b4b363c880b4e65047237a29e"
-      },
-      "../node_modules/type-fest/source/merge-exclusive.d.ts": {
-        "version": "b065ba1b9a52bc541a638fa4b11115644001bcf82a0a0b984b7c1834451bd2b5",
-        "signature": "b065ba1b9a52bc541a638fa4b11115644001bcf82a0a0b984b7c1834451bd2b5"
-      },
-      "../node_modules/type-fest/source/require-at-least-one.d.ts": {
-        "version": "cb328633afdbf2115fc1b44d5cf95558ca2bf84a4b36f6ce82a998e198c47bf6",
-        "signature": "cb328633afdbf2115fc1b44d5cf95558ca2bf84a4b36f6ce82a998e198c47bf6"
-      },
-      "../node_modules/type-fest/source/readonly-deep.d.ts": {
-        "version": "d8b4c196cedbfbdd557ab5d5c609c32d8a77a86ac1a5e7406a06413ab56a1d67",
-        "signature": "d8b4c196cedbfbdd557ab5d5c609c32d8a77a86ac1a5e7406a06413ab56a1d67"
-      },
-      "../node_modules/type-fest/source/literal-union.d.ts": {
-        "version": "091af8276fbc70609a00e296840bd284a2fe29df282f0e8dae2de9f0a706685f",
-        "signature": "091af8276fbc70609a00e296840bd284a2fe29df282f0e8dae2de9f0a706685f"
-      },
-      "../node_modules/type-fest/source/promisable.d.ts": {
-        "version": "537aff717746703d2157ec563b5de4f6393ce9f69a84ae62b49e9b6c80b6e587",
-        "signature": "537aff717746703d2157ec563b5de4f6393ce9f69a84ae62b49e9b6c80b6e587"
-      },
-      "../node_modules/type-fest/source/opaque.d.ts": {
-        "version": "5a0c23174f822edd4a0c5f52308fd6cbdfcc5ef9c4279286cf7da548fd46cb1b",
-        "signature": "5a0c23174f822edd4a0c5f52308fd6cbdfcc5ef9c4279286cf7da548fd46cb1b"
-      },
-      "../node_modules/type-fest/source/package-json.d.ts": {
-        "version": "8b108d831999b4c6b1df9c39cdcc57c059ef19219c441e5b61bca20aabb9f411",
-        "signature": "8b108d831999b4c6b1df9c39cdcc57c059ef19219c441e5b61bca20aabb9f411"
-      },
-      "../node_modules/type-fest/index.d.ts": {
-        "version": "9678fcd0694d481e7dcec15c4bd9292ba4b4ed87c5ab97924f7ec8253805b85a",
-        "signature": "9678fcd0694d481e7dcec15c4bd9292ba4b4ed87c5ab97924f7ec8253805b85a"
-      },
-      "../node_modules/json-schema-typed/src/index.ts": {
-        "version": "d97d166143368b9ef58b4a269fc53eaa021759879a2ce660e3401ea1f927df5d"
-      },
-      "../node_modules/conf/index.d.ts": {
-        "version": "727bd03c71ab8cad7dc970ec94c70dca814383cf8abb6f1b9f4dc3651d0d786d",
-        "signature": "727bd03c71ab8cad7dc970ec94c70dca814383cf8abb6f1b9f4dc3651d0d786d"
-      },
-      "../node_modules/electron-store/index.d.ts": {
-        "version": "4f36659c3ba432449ecb053d66082de4409b69038a0c6930b2d258ce2e2efdd2",
-        "signature": "4f36659c3ba432449ecb053d66082de4409b69038a0c6930b2d258ce2e2efdd2"
-      },
       "../node_modules/@xmcl/common/game.ts": {
         "version": "892d79c09bcb958141c37e6453d21d3f92be33b6950bbc70926a38bd0c7a6324"
       },
@@ -557,9 +498,76 @@
       "../node_modules/@xmcl/minecraft-launcher-core/index.ts": {
         "version": "68c0cf3099c3ecee8dc00842283a4e9c8054c1ffed65e9215ad5bbe051af451d"
       },
+      "../node_modules/type-fest/source/basic.d.ts": {
+        "version": "fda9e5c2afd0920ead6baed40f164229ec8f93188b5c8df196594a54bb8fb5e3",
+        "signature": "fda9e5c2afd0920ead6baed40f164229ec8f93188b5c8df196594a54bb8fb5e3"
+      },
+      "../node_modules/type-fest/source/except.d.ts": {
+        "version": "c58be3e560989a877531d3ff7c9e5db41c5dd9282480ccf197abfcc708a95b8d",
+        "signature": "c58be3e560989a877531d3ff7c9e5db41c5dd9282480ccf197abfcc708a95b8d"
+      },
+      "../node_modules/type-fest/source/mutable.d.ts": {
+        "version": "4d1462b70f05fd1b16d7d4f78ac195824560a1dd96407de0a1fe964f3ec0e9d4",
+        "signature": "4d1462b70f05fd1b16d7d4f78ac195824560a1dd96407de0a1fe964f3ec0e9d4"
+      },
+      "../node_modules/type-fest/source/merge.d.ts": {
+        "version": "50d22844db90a0dcd359afeb59dd1e9a384d977b4b363c880b4e65047237a29e",
+        "signature": "50d22844db90a0dcd359afeb59dd1e9a384d977b4b363c880b4e65047237a29e"
+      },
+      "../node_modules/type-fest/source/merge-exclusive.d.ts": {
+        "version": "b065ba1b9a52bc541a638fa4b11115644001bcf82a0a0b984b7c1834451bd2b5",
+        "signature": "b065ba1b9a52bc541a638fa4b11115644001bcf82a0a0b984b7c1834451bd2b5"
+      },
+      "../node_modules/type-fest/source/require-at-least-one.d.ts": {
+        "version": "cb328633afdbf2115fc1b44d5cf95558ca2bf84a4b36f6ce82a998e198c47bf6",
+        "signature": "cb328633afdbf2115fc1b44d5cf95558ca2bf84a4b36f6ce82a998e198c47bf6"
+      },
+      "../node_modules/type-fest/source/readonly-deep.d.ts": {
+        "version": "d8b4c196cedbfbdd557ab5d5c609c32d8a77a86ac1a5e7406a06413ab56a1d67",
+        "signature": "d8b4c196cedbfbdd557ab5d5c609c32d8a77a86ac1a5e7406a06413ab56a1d67"
+      },
+      "../node_modules/type-fest/source/literal-union.d.ts": {
+        "version": "091af8276fbc70609a00e296840bd284a2fe29df282f0e8dae2de9f0a706685f",
+        "signature": "091af8276fbc70609a00e296840bd284a2fe29df282f0e8dae2de9f0a706685f"
+      },
+      "../node_modules/type-fest/source/promisable.d.ts": {
+        "version": "537aff717746703d2157ec563b5de4f6393ce9f69a84ae62b49e9b6c80b6e587",
+        "signature": "537aff717746703d2157ec563b5de4f6393ce9f69a84ae62b49e9b6c80b6e587"
+      },
+      "../node_modules/type-fest/source/opaque.d.ts": {
+        "version": "5a0c23174f822edd4a0c5f52308fd6cbdfcc5ef9c4279286cf7da548fd46cb1b",
+        "signature": "5a0c23174f822edd4a0c5f52308fd6cbdfcc5ef9c4279286cf7da548fd46cb1b"
+      },
+      "../node_modules/type-fest/source/package-json.d.ts": {
+        "version": "8b108d831999b4c6b1df9c39cdcc57c059ef19219c441e5b61bca20aabb9f411",
+        "signature": "8b108d831999b4c6b1df9c39cdcc57c059ef19219c441e5b61bca20aabb9f411"
+      },
+      "../node_modules/type-fest/index.d.ts": {
+        "version": "9678fcd0694d481e7dcec15c4bd9292ba4b4ed87c5ab97924f7ec8253805b85a",
+        "signature": "9678fcd0694d481e7dcec15c4bd9292ba4b4ed87c5ab97924f7ec8253805b85a"
+      },
+      "../node_modules/json-schema-typed/src/index.ts": {
+        "version": "d97d166143368b9ef58b4a269fc53eaa021759879a2ce660e3401ea1f927df5d"
+      },
+      "../node_modules/conf/index.d.ts": {
+        "version": "727bd03c71ab8cad7dc970ec94c70dca814383cf8abb6f1b9f4dc3651d0d786d",
+        "signature": "727bd03c71ab8cad7dc970ec94c70dca814383cf8abb6f1b9f4dc3651d0d786d"
+      },
+      "../node_modules/electron-store/index.d.ts": {
+        "version": "4f36659c3ba432449ecb053d66082de4409b69038a0c6930b2d258ce2e2efdd2",
+        "signature": "4f36659c3ba432449ecb053d66082de4409b69038a0c6930b2d258ce2e2efdd2"
+      },
+      "../src/ts/store.ts": {
+        "version": "86ce88c808edf45f2576ddc7614b199b17077ceea1ee671a394a3c072a464cef",
+        "signature": "1eb3d376008df6b1989edf72726ed68593660a76e6706f3646563dd4b42edc2b"
+      },
       "../src/ts/authentication.ts": {
-        "version": "39ba5a38183183a9dba240a632f21aabc8e9c1bac27866ca266e9d3d196b3361",
-        "signature": "d96bd2103aeb098b0aecaaf683b0e59ed53851ab541624a8d4587705432f81cc"
+        "version": "3f8dfbe9dfdd18548446358728c17f1de431035e1750e7aec1954ba1b2cf4a75",
+        "signature": "d110a08c3f569058d9a171ec8f2af8b0bbb1b97b7137c41ab2a818e867672071"
+      },
+      "../src/ts/global.ts": {
+        "version": "949aefe85f6a1f12bb1ff04a306ea552200fd5370d972aef61df2643f963557d",
+        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
       "../src/ts/index.ts": {
         "version": "71587ae8bde7aca3a057bdd3213d4274671109e32192d385eba5049b4afa18f3",
@@ -597,6 +605,170 @@
         "version": "6739393f79c9a48ec82c6faa0d6b25d556daf3b6871fc4e5131f5445a13e7d15",
         "signature": "6739393f79c9a48ec82c6faa0d6b25d556daf3b6871fc4e5131f5445a13e7d15"
       },
+      "../node_modules/@types/semantic-ui-site/global.d.ts": {
+        "version": "ed4ce4569fd434ca0630bfa93eaefe8069ff8c292b312729989565952d89eb12",
+        "signature": "ed4ce4569fd434ca0630bfa93eaefe8069ff8c292b312729989565952d89eb12"
+      },
+      "../node_modules/@types/semantic-ui-site/index.d.ts": {
+        "version": "74fd2c976a8c56ab7011a7bda9fb661bfae179313cd1bb6746ec899ae812eef3",
+        "signature": "74fd2c976a8c56ab7011a7bda9fb661bfae179313cd1bb6746ec899ae812eef3"
+      },
+      "../node_modules/@types/semantic-ui-accordion/global.d.ts": {
+        "version": "7f2577540fc5e9f4d5e2e9c2ebd2715c0f1ef06c66892d94a38dcf5557b861f1",
+        "signature": "7f2577540fc5e9f4d5e2e9c2ebd2715c0f1ef06c66892d94a38dcf5557b861f1"
+      },
+      "../node_modules/@types/semantic-ui-accordion/index.d.ts": {
+        "version": "29762cdc19dbd02df21b1790586f6138019d482b904f39e96019fe06e71915da",
+        "signature": "29762cdc19dbd02df21b1790586f6138019d482b904f39e96019fe06e71915da"
+      },
+      "../node_modules/@types/semantic-ui-checkbox/global.d.ts": {
+        "version": "deac0876a9a9b350a24350905b6a49c45926ec34b5015684254834bb77f08610",
+        "signature": "deac0876a9a9b350a24350905b6a49c45926ec34b5015684254834bb77f08610"
+      },
+      "../node_modules/@types/semantic-ui-checkbox/index.d.ts": {
+        "version": "981c9ce0799330a3be72a1063b59b19554530673abb7e5ddf6867206532b0975",
+        "signature": "981c9ce0799330a3be72a1063b59b19554530673abb7e5ddf6867206532b0975"
+      },
+      "../node_modules/@types/semantic-ui-dimmer/global.d.ts": {
+        "version": "156c4240c0827fec03ed1e0ff014396a60c00801690fdee1ea9bd648fa8b0719",
+        "signature": "156c4240c0827fec03ed1e0ff014396a60c00801690fdee1ea9bd648fa8b0719"
+      },
+      "../node_modules/@types/semantic-ui-dimmer/index.d.ts": {
+        "version": "faf846e002edbdb7f2c2b03be291372b1d8a10ff2a2826c4f9cb7b6b2e03e2be",
+        "signature": "faf846e002edbdb7f2c2b03be291372b1d8a10ff2a2826c4f9cb7b6b2e03e2be"
+      },
+      "../node_modules/@types/semantic-ui-dropdown/global.d.ts": {
+        "version": "e09edbe2c595ab1bde2787cb93e9e10e4f9a9858fb8dae5e3f0e666e161c8fa2",
+        "signature": "e09edbe2c595ab1bde2787cb93e9e10e4f9a9858fb8dae5e3f0e666e161c8fa2"
+      },
+      "../node_modules/@types/semantic-ui-api/global.d.ts": {
+        "version": "79689d8ed7f6da0a23cf5bb4606a352569ef5e4800721780218edb0974bf42a7",
+        "signature": "79689d8ed7f6da0a23cf5bb4606a352569ef5e4800721780218edb0974bf42a7"
+      },
+      "../node_modules/@types/semantic-ui-api/index.d.ts": {
+        "version": "ee6f4bbe6152c45ab59702c1633cb21e23779ad8ea65aa8851d98e13c4f1fa73",
+        "signature": "ee6f4bbe6152c45ab59702c1633cb21e23779ad8ea65aa8851d98e13c4f1fa73"
+      },
+      "../node_modules/@types/semantic-ui-dropdown/index.d.ts": {
+        "version": "572696e3b641db4800ee8da60f6388e845e4ed3354053f6c441a7668d63a8956",
+        "signature": "572696e3b641db4800ee8da60f6388e845e4ed3354053f6c441a7668d63a8956"
+      },
+      "../node_modules/@types/semantic-ui-embed/global.d.ts": {
+        "version": "adbc4ff87c03c7bfaa300a3931396a4885ea380058f81efb78a44213ae95023d",
+        "signature": "adbc4ff87c03c7bfaa300a3931396a4885ea380058f81efb78a44213ae95023d"
+      },
+      "../node_modules/@types/semantic-ui-embed/index.d.ts": {
+        "version": "f15157fa34c3c0501bfb7647b8ca41c75c00c51f02b2271df0e5849243ba31aa",
+        "signature": "f15157fa34c3c0501bfb7647b8ca41c75c00c51f02b2271df0e5849243ba31aa"
+      },
+      "../node_modules/@types/semantic-ui-modal/global.d.ts": {
+        "version": "c711ebe880c8b6088ac10fcc9525be4599cd8c332a20f218439b55d214791a06",
+        "signature": "c711ebe880c8b6088ac10fcc9525be4599cd8c332a20f218439b55d214791a06"
+      },
+      "../node_modules/@types/semantic-ui-modal/index.d.ts": {
+        "version": "53a6a6199aeabaca3eb5d6230af0e03a1ede00058d1faa5952e4bf5ffbbab235",
+        "signature": "53a6a6199aeabaca3eb5d6230af0e03a1ede00058d1faa5952e4bf5ffbbab235"
+      },
+      "../node_modules/@types/semantic-ui-nag/global.d.ts": {
+        "version": "eafc9bf7fc6b420d514fd59239782bb2a5bea0a07dcb76acf53620e15da7a7df",
+        "signature": "eafc9bf7fc6b420d514fd59239782bb2a5bea0a07dcb76acf53620e15da7a7df"
+      },
+      "../node_modules/@types/semantic-ui-nag/index.d.ts": {
+        "version": "7abbe2adf5c83dc7a0ff594a0bb229f21a19c1d47151b76d217a9c13014427e2",
+        "signature": "7abbe2adf5c83dc7a0ff594a0bb229f21a19c1d47151b76d217a9c13014427e2"
+      },
+      "../node_modules/@types/semantic-ui-popup/global.d.ts": {
+        "version": "c516aa1b6eb7844b0b1dc3d40769b50a2dbf3c7b0ab8bd314ef43175436ad799",
+        "signature": "c516aa1b6eb7844b0b1dc3d40769b50a2dbf3c7b0ab8bd314ef43175436ad799"
+      },
+      "../node_modules/@types/semantic-ui-popup/index.d.ts": {
+        "version": "4e322b049fa2508098f80c12e32eb83535b2eae391cb7e646eec1502451e8e95",
+        "signature": "4e322b049fa2508098f80c12e32eb83535b2eae391cb7e646eec1502451e8e95"
+      },
+      "../node_modules/@types/semantic-ui-progress/global.d.ts": {
+        "version": "7c90c482175a2b51e4a81283c0e11abbba2ebee8b5550f4de692b73f7f37eac2",
+        "signature": "7c90c482175a2b51e4a81283c0e11abbba2ebee8b5550f4de692b73f7f37eac2"
+      },
+      "../node_modules/@types/semantic-ui-progress/index.d.ts": {
+        "version": "24afa1b5f78748e7c4a810bd64f613e52dec47b5907b48fbc57d510d8e6deea7",
+        "signature": "24afa1b5f78748e7c4a810bd64f613e52dec47b5907b48fbc57d510d8e6deea7"
+      },
+      "../node_modules/@types/semantic-ui-rating/global.d.ts": {
+        "version": "fcfc3d4320760436f9eecb934f96f3b7e3ca260bb2ad97477f6afd22ed88ccc1",
+        "signature": "fcfc3d4320760436f9eecb934f96f3b7e3ca260bb2ad97477f6afd22ed88ccc1"
+      },
+      "../node_modules/@types/semantic-ui-rating/index.d.ts": {
+        "version": "e5b5f0ee7008c2c033c0f1312a54dcda28dc34a1bf66ef9b59234afec962bc73",
+        "signature": "e5b5f0ee7008c2c033c0f1312a54dcda28dc34a1bf66ef9b59234afec962bc73"
+      },
+      "../node_modules/@types/semantic-ui-search/global.d.ts": {
+        "version": "aa151e73f2f81f876f68f15694fb521167ecc98c76f5c9b40b5f6ba5b4f0b4b2",
+        "signature": "aa151e73f2f81f876f68f15694fb521167ecc98c76f5c9b40b5f6ba5b4f0b4b2"
+      },
+      "../node_modules/@types/semantic-ui-search/index.d.ts": {
+        "version": "d8d4e05fcf3cd439868926db866a09b1a7d5edbf80b245cf0c4058c126945970",
+        "signature": "d8d4e05fcf3cd439868926db866a09b1a7d5edbf80b245cf0c4058c126945970"
+      },
+      "../node_modules/@types/semantic-ui-shape/global.d.ts": {
+        "version": "3b4164ed5a9d760ffee447e693d95f89f22a1726ab176352cc2d20c3460bf3d0",
+        "signature": "3b4164ed5a9d760ffee447e693d95f89f22a1726ab176352cc2d20c3460bf3d0"
+      },
+      "../node_modules/@types/semantic-ui-shape/index.d.ts": {
+        "version": "caf0ab6f7a200e4ba1ccbc383d61ba4390bbf63a85ddeee1b29bb3af88d690df",
+        "signature": "caf0ab6f7a200e4ba1ccbc383d61ba4390bbf63a85ddeee1b29bb3af88d690df"
+      },
+      "../node_modules/@types/semantic-ui-sidebar/global.d.ts": {
+        "version": "045b4f686c76dfcefe909704743a46b40577129649c4afc8534fd22f6579fa95",
+        "signature": "045b4f686c76dfcefe909704743a46b40577129649c4afc8534fd22f6579fa95"
+      },
+      "../node_modules/@types/semantic-ui-sidebar/index.d.ts": {
+        "version": "9ba19e78f0d56fc4cb43d453fb9fbad863b14d1ed653341e1208d4768afc3d40",
+        "signature": "9ba19e78f0d56fc4cb43d453fb9fbad863b14d1ed653341e1208d4768afc3d40"
+      },
+      "../node_modules/@types/semantic-ui-sticky/global.d.ts": {
+        "version": "7662252dd29693394cff6a6f458c3d45c84e99d4963d2f88f08543115289e89e",
+        "signature": "7662252dd29693394cff6a6f458c3d45c84e99d4963d2f88f08543115289e89e"
+      },
+      "../node_modules/@types/semantic-ui-sticky/index.d.ts": {
+        "version": "2a75a4357582ef6939a1afefde29b584a7bef403eabd9c7eb53b5fd58a0bbea6",
+        "signature": "2a75a4357582ef6939a1afefde29b584a7bef403eabd9c7eb53b5fd58a0bbea6"
+      },
+      "../node_modules/@types/semantic-ui-tab/global.d.ts": {
+        "version": "fde068d65494876fbabbbdb4eebc7c86f3d2c1f12a58511413bd92244919c79c",
+        "signature": "fde068d65494876fbabbbdb4eebc7c86f3d2c1f12a58511413bd92244919c79c"
+      },
+      "../node_modules/@types/semantic-ui-tab/index.d.ts": {
+        "version": "7524e7c0c07c96232fada8cebdd52c32a9dcfe9260b75cbb1669548ef318aeee",
+        "signature": "7524e7c0c07c96232fada8cebdd52c32a9dcfe9260b75cbb1669548ef318aeee"
+      },
+      "../node_modules/@types/semantic-ui-transition/global.d.ts": {
+        "version": "52463033e75a56df4c296a1a6d8c215a40c3a995f94612c1550c23f33907c7b2",
+        "signature": "52463033e75a56df4c296a1a6d8c215a40c3a995f94612c1550c23f33907c7b2"
+      },
+      "../node_modules/@types/semantic-ui-transition/index.d.ts": {
+        "version": "be1710f22e4885be6039d850385b9b90e1f3c5cfe6ba81c41b1e3adb1134fb44",
+        "signature": "be1710f22e4885be6039d850385b9b90e1f3c5cfe6ba81c41b1e3adb1134fb44"
+      },
+      "../node_modules/@types/semantic-ui-form/global.d.ts": {
+        "version": "d1dd35e344dc7c34dbcea2e60f9c36f19b55f89942c932d93538b2897dc47340",
+        "signature": "d1dd35e344dc7c34dbcea2e60f9c36f19b55f89942c932d93538b2897dc47340"
+      },
+      "../node_modules/@types/semantic-ui-form/index.d.ts": {
+        "version": "98cf42a4bf653f93ac31b4f4c6a2d9abe6fd574fbf8880f213c552dcbc6e38e5",
+        "signature": "98cf42a4bf653f93ac31b4f4c6a2d9abe6fd574fbf8880f213c552dcbc6e38e5"
+      },
+      "../node_modules/@types/semantic-ui-visibility/global.d.ts": {
+        "version": "d976f3467947c9d86144a1baef1e227ee0098a5cd55ac615c4be69cb43e9c132",
+        "signature": "d976f3467947c9d86144a1baef1e227ee0098a5cd55ac615c4be69cb43e9c132"
+      },
+      "../node_modules/@types/semantic-ui-visibility/index.d.ts": {
+        "version": "40583ebe905212cdbb223a6c315e69bd88b508ee9a7d3903cd380263106691cf",
+        "signature": "40583ebe905212cdbb223a6c315e69bd88b508ee9a7d3903cd380263106691cf"
+      },
+      "../node_modules/@types/semantic-ui/index.d.ts": {
+        "version": "836efc447989eb4db5d1b3336a7cc2e5d2dc0e40a06bc5406146c93796f8073f",
+        "signature": "836efc447989eb4db5d1b3336a7cc2e5d2dc0e40a06bc5406146c93796f8073f"
+      },
       "../node_modules/@types/yauzl/index.d.ts": {
         "version": "3845d3b64286c12c60d39fc90ac1cc5e47cbc951530658d2567d578b2faa1f26",
         "signature": "3845d3b64286c12c60d39fc90ac1cc5e47cbc951530658d2567d578b2faa1f26"
@@ -604,7 +776,7 @@
     },
     "options": {
       "incremental": true,
-      "target": 1,
+      "target": 3,
       "module": 1,
       "lib": [
         "lib.dom.d.ts",
@@ -1038,88 +1210,6 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../node_modules/type-fest/source/basic.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/except.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/mutable.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/merge.d.ts": [
-        "../node_modules/type-fest/source/except.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/merge-exclusive.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/require-at-least-one.d.ts": [
-        "../node_modules/type-fest/source/except.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/readonly-deep.d.ts": [
-        "../node_modules/type-fest/source/basic.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/literal-union.d.ts": [
-        "../node_modules/type-fest/source/basic.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/promisable.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/opaque.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/package-json.d.ts": [
-        "../node_modules/type-fest/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/index.d.ts": [
-        "../node_modules/type-fest/source/basic.d.ts",
-        "../node_modules/type-fest/source/except.d.ts",
-        "../node_modules/type-fest/source/mutable.d.ts",
-        "../node_modules/type-fest/source/merge.d.ts",
-        "../node_modules/type-fest/source/merge-exclusive.d.ts",
-        "../node_modules/type-fest/source/require-at-least-one.d.ts",
-        "../node_modules/type-fest/source/readonly-deep.d.ts",
-        "../node_modules/type-fest/source/literal-union.d.ts",
-        "../node_modules/type-fest/source/promisable.d.ts",
-        "../node_modules/type-fest/source/opaque.d.ts",
-        "../node_modules/type-fest/source/package-json.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/json-schema-typed/src/index.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/conf/index.d.ts": [
-        "../node_modules/json-schema-typed/src/index.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/electron-store/index.d.ts": [
-        "../node_modules/@types/node/events.d.ts",
-        "../node_modules/type-fest/index.d.ts",
-        "../node_modules/conf/index.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
       "../node_modules/@xmcl/common/game.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
@@ -1466,9 +1556,102 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../src/ts/authentication.ts": [
+      "../node_modules/type-fest/source/basic.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/except.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/mutable.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/merge.d.ts": [
+        "../node_modules/type-fest/source/except.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/merge-exclusive.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/require-at-least-one.d.ts": [
+        "../node_modules/type-fest/source/except.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/readonly-deep.d.ts": [
+        "../node_modules/type-fest/source/basic.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/literal-union.d.ts": [
+        "../node_modules/type-fest/source/basic.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/promisable.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/opaque.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/package-json.d.ts": [
+        "../node_modules/type-fest/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/index.d.ts": [
+        "../node_modules/type-fest/source/basic.d.ts",
+        "../node_modules/type-fest/source/except.d.ts",
+        "../node_modules/type-fest/source/mutable.d.ts",
+        "../node_modules/type-fest/source/merge.d.ts",
+        "../node_modules/type-fest/source/merge-exclusive.d.ts",
+        "../node_modules/type-fest/source/require-at-least-one.d.ts",
+        "../node_modules/type-fest/source/readonly-deep.d.ts",
+        "../node_modules/type-fest/source/literal-union.d.ts",
+        "../node_modules/type-fest/source/promisable.d.ts",
+        "../node_modules/type-fest/source/opaque.d.ts",
+        "../node_modules/type-fest/source/package-json.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/json-schema-typed/src/index.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/conf/index.d.ts": [
+        "../node_modules/json-schema-typed/src/index.ts",
+        "../node_modules/@types/node/ts3.2/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/electron-store/index.d.ts": [
+        "../node_modules/@types/node/events.d.ts",
+        "../node_modules/type-fest/index.d.ts",
+        "../node_modules/conf/index.d.ts",
+        "../node_modules/@types/node/ts3.2/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/ts/store.ts": [
         "../node_modules/electron-store/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/ts/authentication.ts": [
         "../node_modules/@xmcl/minecraft-launcher-core/index.ts",
+        "../src/ts/store.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/ts/global.ts": [
+        "../src/ts/store.ts",
+        "../src/ts/authentication.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -1513,6 +1696,235 @@
         "../node_modules/@types/jquery/misc.d.ts",
         "../node_modules/@types/jquery/legacy.d.ts",
         "../node_modules/@types/sizzle/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-site/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-site/index.d.ts": [
+        "../node_modules/@types/semantic-ui-site/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-accordion/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-accordion/index.d.ts": [
+        "../node_modules/@types/semantic-ui-accordion/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-checkbox/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-checkbox/index.d.ts": [
+        "../node_modules/@types/semantic-ui-checkbox/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-dimmer/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-dimmer/index.d.ts": [
+        "../node_modules/@types/semantic-ui-dimmer/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-dropdown/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-api/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-api/index.d.ts": [
+        "../node_modules/@types/semantic-ui-api/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-dropdown/index.d.ts": [
+        "../node_modules/@types/semantic-ui-dropdown/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/semantic-ui-api/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-embed/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-embed/index.d.ts": [
+        "../node_modules/@types/semantic-ui-embed/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-modal/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-modal/index.d.ts": [
+        "../node_modules/@types/semantic-ui-modal/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/semantic-ui-dimmer/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-nag/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-nag/index.d.ts": [
+        "../node_modules/@types/semantic-ui-nag/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-popup/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-popup/index.d.ts": [
+        "../node_modules/@types/semantic-ui-popup/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-progress/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-progress/index.d.ts": [
+        "../node_modules/@types/semantic-ui-progress/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-rating/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-rating/index.d.ts": [
+        "../node_modules/@types/semantic-ui-rating/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-search/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-search/index.d.ts": [
+        "../node_modules/@types/semantic-ui-search/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/semantic-ui-api/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-shape/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-shape/index.d.ts": [
+        "../node_modules/@types/semantic-ui-shape/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-sidebar/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-sidebar/index.d.ts": [
+        "../node_modules/@types/semantic-ui-sidebar/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-sticky/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-sticky/index.d.ts": [
+        "../node_modules/@types/semantic-ui-sticky/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-tab/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-tab/index.d.ts": [
+        "../node_modules/@types/semantic-ui-tab/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/semantic-ui-api/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-transition/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-transition/index.d.ts": [
+        "../node_modules/@types/semantic-ui-transition/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-form/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-form/index.d.ts": [
+        "../node_modules/@types/semantic-ui-form/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-visibility/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-visibility/index.d.ts": [
+        "../node_modules/@types/semantic-ui-visibility/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui/index.d.ts": [
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/semantic-ui-site/index.d.ts",
+        "../node_modules/@types/semantic-ui-accordion/index.d.ts",
+        "../node_modules/@types/semantic-ui-checkbox/index.d.ts",
+        "../node_modules/@types/semantic-ui-dimmer/index.d.ts",
+        "../node_modules/@types/semantic-ui-dropdown/index.d.ts",
+        "../node_modules/@types/semantic-ui-embed/index.d.ts",
+        "../node_modules/@types/semantic-ui-modal/index.d.ts",
+        "../node_modules/@types/semantic-ui-nag/index.d.ts",
+        "../node_modules/@types/semantic-ui-popup/index.d.ts",
+        "../node_modules/@types/semantic-ui-progress/index.d.ts",
+        "../node_modules/@types/semantic-ui-rating/index.d.ts",
+        "../node_modules/@types/semantic-ui-search/index.d.ts",
+        "../node_modules/@types/semantic-ui-shape/index.d.ts",
+        "../node_modules/@types/semantic-ui-sidebar/index.d.ts",
+        "../node_modules/@types/semantic-ui-sticky/index.d.ts",
+        "../node_modules/@types/semantic-ui-tab/index.d.ts",
+        "../node_modules/@types/semantic-ui-transition/index.d.ts",
+        "../node_modules/@types/semantic-ui-api/index.d.ts",
+        "../node_modules/@types/semantic-ui-form/index.d.ts",
+        "../node_modules/@types/semantic-ui-visibility/index.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -1931,84 +2343,6 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../node_modules/type-fest/source/basic.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/except.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/mutable.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/merge.d.ts": [
-        "../node_modules/type-fest/source/except.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/merge-exclusive.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/require-at-least-one.d.ts": [
-        "../node_modules/type-fest/source/except.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/readonly-deep.d.ts": [
-        "../node_modules/type-fest/source/basic.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/literal-union.d.ts": [
-        "../node_modules/type-fest/source/basic.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/promisable.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/opaque.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/source/package-json.d.ts": [
-        "../node_modules/type-fest/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/type-fest/index.d.ts": [
-        "../node_modules/type-fest/source/basic.d.ts",
-        "../node_modules/type-fest/source/except.d.ts",
-        "../node_modules/type-fest/source/mutable.d.ts",
-        "../node_modules/type-fest/source/merge.d.ts",
-        "../node_modules/type-fest/source/merge-exclusive.d.ts",
-        "../node_modules/type-fest/source/require-at-least-one.d.ts",
-        "../node_modules/type-fest/source/readonly-deep.d.ts",
-        "../node_modules/type-fest/source/literal-union.d.ts",
-        "../node_modules/type-fest/source/promisable.d.ts",
-        "../node_modules/type-fest/source/opaque.d.ts",
-        "../node_modules/type-fest/source/package-json.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/conf/index.d.ts": [
-        "../node_modules/json-schema-typed/src/index.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/electron-store/index.d.ts": [
-        "../node_modules/@types/node/events.d.ts",
-        "../node_modules/type-fest/index.d.ts",
-        "../node_modules/conf/index.d.ts",
-        "../node_modules/@types/node/ts3.2/index.d.ts",
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
       "../node_modules/@types/long/index.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
@@ -2210,6 +2544,87 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../node_modules/type-fest/source/basic.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/except.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/mutable.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/merge.d.ts": [
+        "../node_modules/type-fest/source/except.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/merge-exclusive.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/require-at-least-one.d.ts": [
+        "../node_modules/type-fest/source/except.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/readonly-deep.d.ts": [
+        "../node_modules/type-fest/source/basic.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/literal-union.d.ts": [
+        "../node_modules/type-fest/source/basic.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/promisable.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/opaque.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/source/package-json.d.ts": [
+        "../node_modules/type-fest/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/type-fest/index.d.ts": [
+        "../node_modules/type-fest/source/basic.d.ts",
+        "../node_modules/type-fest/source/except.d.ts",
+        "../node_modules/type-fest/source/mutable.d.ts",
+        "../node_modules/type-fest/source/merge.d.ts",
+        "../node_modules/type-fest/source/merge-exclusive.d.ts",
+        "../node_modules/type-fest/source/require-at-least-one.d.ts",
+        "../node_modules/type-fest/source/readonly-deep.d.ts",
+        "../node_modules/type-fest/source/literal-union.d.ts",
+        "../node_modules/type-fest/source/promisable.d.ts",
+        "../node_modules/type-fest/source/opaque.d.ts",
+        "../node_modules/type-fest/source/package-json.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/conf/index.d.ts": [
+        "../node_modules/json-schema-typed/src/index.ts",
+        "../node_modules/@types/node/ts3.2/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/electron-store/index.d.ts": [
+        "../node_modules/@types/node/events.d.ts",
+        "../node_modules/type-fest/index.d.ts",
+        "../node_modules/conf/index.d.ts",
+        "../node_modules/@types/node/ts3.2/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/ts/store.ts": [
+        "../node_modules/electron-store/index.d.ts"
+      ],
       "../src/ts/authentication.ts": [
         "../node_modules/@xmcl/minecraft-launcher-core/index.ts"
       ],
@@ -2248,6 +2663,235 @@
         "../node_modules/@types/jquery/misc.d.ts",
         "../node_modules/@types/jquery/legacy.d.ts",
         "../node_modules/@types/sizzle/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-site/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-site/index.d.ts": [
+        "../node_modules/@types/semantic-ui-site/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-accordion/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-accordion/index.d.ts": [
+        "../node_modules/@types/semantic-ui-accordion/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-checkbox/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-checkbox/index.d.ts": [
+        "../node_modules/@types/semantic-ui-checkbox/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-dimmer/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-dimmer/index.d.ts": [
+        "../node_modules/@types/semantic-ui-dimmer/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-dropdown/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-api/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-api/index.d.ts": [
+        "../node_modules/@types/semantic-ui-api/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-dropdown/index.d.ts": [
+        "../node_modules/@types/semantic-ui-dropdown/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/semantic-ui-api/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-embed/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-embed/index.d.ts": [
+        "../node_modules/@types/semantic-ui-embed/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-modal/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-modal/index.d.ts": [
+        "../node_modules/@types/semantic-ui-modal/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/semantic-ui-dimmer/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-nag/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-nag/index.d.ts": [
+        "../node_modules/@types/semantic-ui-nag/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-popup/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-popup/index.d.ts": [
+        "../node_modules/@types/semantic-ui-popup/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-progress/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-progress/index.d.ts": [
+        "../node_modules/@types/semantic-ui-progress/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-rating/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-rating/index.d.ts": [
+        "../node_modules/@types/semantic-ui-rating/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-search/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-search/index.d.ts": [
+        "../node_modules/@types/semantic-ui-search/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/semantic-ui-api/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-shape/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-shape/index.d.ts": [
+        "../node_modules/@types/semantic-ui-shape/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-sidebar/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-sidebar/index.d.ts": [
+        "../node_modules/@types/semantic-ui-sidebar/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-sticky/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-sticky/index.d.ts": [
+        "../node_modules/@types/semantic-ui-sticky/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-tab/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-tab/index.d.ts": [
+        "../node_modules/@types/semantic-ui-tab/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/semantic-ui-api/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-transition/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-transition/index.d.ts": [
+        "../node_modules/@types/semantic-ui-transition/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-form/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-form/index.d.ts": [
+        "../node_modules/@types/semantic-ui-form/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-visibility/global.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui-visibility/index.d.ts": [
+        "../node_modules/@types/semantic-ui-visibility/global.d.ts",
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/semantic-ui/index.d.ts": [
+        "../node_modules/@types/jquery/index.d.ts",
+        "../node_modules/@types/semantic-ui-site/index.d.ts",
+        "../node_modules/@types/semantic-ui-accordion/index.d.ts",
+        "../node_modules/@types/semantic-ui-checkbox/index.d.ts",
+        "../node_modules/@types/semantic-ui-dimmer/index.d.ts",
+        "../node_modules/@types/semantic-ui-dropdown/index.d.ts",
+        "../node_modules/@types/semantic-ui-embed/index.d.ts",
+        "../node_modules/@types/semantic-ui-modal/index.d.ts",
+        "../node_modules/@types/semantic-ui-nag/index.d.ts",
+        "../node_modules/@types/semantic-ui-popup/index.d.ts",
+        "../node_modules/@types/semantic-ui-progress/index.d.ts",
+        "../node_modules/@types/semantic-ui-rating/index.d.ts",
+        "../node_modules/@types/semantic-ui-search/index.d.ts",
+        "../node_modules/@types/semantic-ui-shape/index.d.ts",
+        "../node_modules/@types/semantic-ui-sidebar/index.d.ts",
+        "../node_modules/@types/semantic-ui-sticky/index.d.ts",
+        "../node_modules/@types/semantic-ui-tab/index.d.ts",
+        "../node_modules/@types/semantic-ui-transition/index.d.ts",
+        "../node_modules/@types/semantic-ui-api/index.d.ts",
+        "../node_modules/@types/semantic-ui-form/index.d.ts",
+        "../node_modules/@types/semantic-ui-visibility/index.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -2340,21 +2984,6 @@
       "../node_modules/@types/node/ts3.2/index.d.ts",
       "../node_modules/electron/electron.d.ts",
       "../src/main.ts",
-      "../node_modules/type-fest/source/basic.d.ts",
-      "../node_modules/type-fest/source/except.d.ts",
-      "../node_modules/type-fest/source/mutable.d.ts",
-      "../node_modules/type-fest/source/merge.d.ts",
-      "../node_modules/type-fest/source/merge-exclusive.d.ts",
-      "../node_modules/type-fest/source/require-at-least-one.d.ts",
-      "../node_modules/type-fest/source/readonly-deep.d.ts",
-      "../node_modules/type-fest/source/literal-union.d.ts",
-      "../node_modules/type-fest/source/promisable.d.ts",
-      "../node_modules/type-fest/source/opaque.d.ts",
-      "../node_modules/type-fest/source/package-json.d.ts",
-      "../node_modules/type-fest/index.d.ts",
-      "../node_modules/json-schema-typed/src/index.ts",
-      "../node_modules/conf/index.d.ts",
-      "../node_modules/electron-store/index.d.ts",
       "../node_modules/@xmcl/common/game.ts",
       "../node_modules/@xmcl/common/platform.ts",
       "../node_modules/@xmcl/common/version.ts",
@@ -2404,7 +3033,24 @@
       "../node_modules/@xmcl/resourcepack/index.d.ts",
       "../node_modules/@xmcl/world/index.d.ts",
       "../node_modules/@xmcl/minecraft-launcher-core/index.ts",
+      "../node_modules/type-fest/source/basic.d.ts",
+      "../node_modules/type-fest/source/except.d.ts",
+      "../node_modules/type-fest/source/mutable.d.ts",
+      "../node_modules/type-fest/source/merge.d.ts",
+      "../node_modules/type-fest/source/merge-exclusive.d.ts",
+      "../node_modules/type-fest/source/require-at-least-one.d.ts",
+      "../node_modules/type-fest/source/readonly-deep.d.ts",
+      "../node_modules/type-fest/source/literal-union.d.ts",
+      "../node_modules/type-fest/source/promisable.d.ts",
+      "../node_modules/type-fest/source/opaque.d.ts",
+      "../node_modules/type-fest/source/package-json.d.ts",
+      "../node_modules/type-fest/index.d.ts",
+      "../node_modules/json-schema-typed/src/index.ts",
+      "../node_modules/conf/index.d.ts",
+      "../node_modules/electron-store/index.d.ts",
+      "../src/ts/store.ts",
       "../src/ts/authentication.ts",
+      "../src/ts/global.ts",
       "../src/ts/index.ts",
       "../node_modules/@types/babel-types/index.d.ts",
       "../node_modules/@types/babylon/index.d.ts",
@@ -2414,6 +3060,47 @@
       "../node_modules/@types/jquery/legacy.d.ts",
       "../node_modules/@types/sizzle/index.d.ts",
       "../node_modules/@types/jquery/index.d.ts",
+      "../node_modules/@types/semantic-ui-site/global.d.ts",
+      "../node_modules/@types/semantic-ui-site/index.d.ts",
+      "../node_modules/@types/semantic-ui-accordion/global.d.ts",
+      "../node_modules/@types/semantic-ui-accordion/index.d.ts",
+      "../node_modules/@types/semantic-ui-checkbox/global.d.ts",
+      "../node_modules/@types/semantic-ui-checkbox/index.d.ts",
+      "../node_modules/@types/semantic-ui-dimmer/global.d.ts",
+      "../node_modules/@types/semantic-ui-dimmer/index.d.ts",
+      "../node_modules/@types/semantic-ui-dropdown/global.d.ts",
+      "../node_modules/@types/semantic-ui-api/global.d.ts",
+      "../node_modules/@types/semantic-ui-api/index.d.ts",
+      "../node_modules/@types/semantic-ui-dropdown/index.d.ts",
+      "../node_modules/@types/semantic-ui-embed/global.d.ts",
+      "../node_modules/@types/semantic-ui-embed/index.d.ts",
+      "../node_modules/@types/semantic-ui-modal/global.d.ts",
+      "../node_modules/@types/semantic-ui-modal/index.d.ts",
+      "../node_modules/@types/semantic-ui-nag/global.d.ts",
+      "../node_modules/@types/semantic-ui-nag/index.d.ts",
+      "../node_modules/@types/semantic-ui-popup/global.d.ts",
+      "../node_modules/@types/semantic-ui-popup/index.d.ts",
+      "../node_modules/@types/semantic-ui-progress/global.d.ts",
+      "../node_modules/@types/semantic-ui-progress/index.d.ts",
+      "../node_modules/@types/semantic-ui-rating/global.d.ts",
+      "../node_modules/@types/semantic-ui-rating/index.d.ts",
+      "../node_modules/@types/semantic-ui-search/global.d.ts",
+      "../node_modules/@types/semantic-ui-search/index.d.ts",
+      "../node_modules/@types/semantic-ui-shape/global.d.ts",
+      "../node_modules/@types/semantic-ui-shape/index.d.ts",
+      "../node_modules/@types/semantic-ui-sidebar/global.d.ts",
+      "../node_modules/@types/semantic-ui-sidebar/index.d.ts",
+      "../node_modules/@types/semantic-ui-sticky/global.d.ts",
+      "../node_modules/@types/semantic-ui-sticky/index.d.ts",
+      "../node_modules/@types/semantic-ui-tab/global.d.ts",
+      "../node_modules/@types/semantic-ui-tab/index.d.ts",
+      "../node_modules/@types/semantic-ui-transition/global.d.ts",
+      "../node_modules/@types/semantic-ui-transition/index.d.ts",
+      "../node_modules/@types/semantic-ui-form/global.d.ts",
+      "../node_modules/@types/semantic-ui-form/index.d.ts",
+      "../node_modules/@types/semantic-ui-visibility/global.d.ts",
+      "../node_modules/@types/semantic-ui-visibility/index.d.ts",
+      "../node_modules/@types/semantic-ui/index.d.ts",
       "../node_modules/@types/yauzl/index.d.ts"
     ]
   },

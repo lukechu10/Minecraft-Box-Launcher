@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var electron_1 = require("electron");
-var mainWindow;
+const electron_1 = require("electron");
+let mainWindow;
 function createWindow() {
     mainWindow = new electron_1.BrowserWindow({
         width: 800,

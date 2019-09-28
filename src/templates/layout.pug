@@ -13,8 +13,11 @@ html(lang="en")
         script(link-js-library).
             window.jQuery = window.$ = require('jquery');
             // load modules
-            window.minecraft = require('../ts/index')
-            window.auth = require('../ts/authentication')
+            window.minecraft = require('../ts/index');
+            window.auth = require('../ts/authentication');
+            window.main = require('../ts/global');
+            window.shell = require('electron').shell;
+            window.store = require('../ts/store');
         script(src='../js/semantic.min.js')
         block js
     body
@@ -22,10 +25,33 @@ html(lang="en")
             .item Minecraft Box
             a.item(href="./index.html") Instances
             a.item(href="./news.html") News
+            .right.menu
+                a.item#login-status
         
         // page content
         .ui.container(style="padding-top: 40px;")
             block content
 
         // modals
-        .ui.modal.login-modal
+        .ui.modal#login-modal
+            .header Login
+            .content
+                .ui.centered.grid
+                    .row
+                        .twelve.wide.column
+                            // error messages
+                            .ui.tertiary.inverted.red.segment#login-errors-container(style="display:none;")
+                                p#login-errors
+                            // login form
+                            form.ui.form.segment.error#login-form
+                                .field
+                                    label Mojang Email
+                                    input(type="text" name="username" placeholder="Email")#username-field
+                                .field
+                                    label Password (#[a(tabindex="-1" onclick="shell.openExternal('https://my.minecraft.net/en-us/password/forgot/')") Forgot your password?])
+                                    input(type="password" name="password" placeholder="Password")#password-field
+                                button(type="submit").ui.fluid.button.positive#login-btn Login
+                                .ui.horizontal.divider or
+                                .actions
+                                    center
+                                        button.ui.tiny.cancel.button.inverted.red Continue without logging in
