@@ -6,6 +6,7 @@
         {
             "type": "npm",
             "script": "build:ts-main",
+            "label": "Build Typescript (Watch)",
             "problemMatcher": [
                 "$tsc-watch"
             ],
@@ -15,6 +16,7 @@
         {
             "type": "npm",
             "script": "build:pug-watch",
+            "label": "Build Pug (Watch)",
             "problemMatcher": [
             ],
             "group": "build",
@@ -23,10 +25,28 @@
         {
             "type": "npm",
             "script": "build:pug-build",
+            "label": "Build Pug",
             "problemMatcher": [
             ],
             "group": "build",
             "isBackground": true
+        },
+        {
+            "type": "shell",
+            "command": "npx eslint \"src/**.ts\"",
+            "label": "ESLint (Typescript)",
+            "problemMatcher": [
+                "$eslint-stylish"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            }
         }
     ]
 }
