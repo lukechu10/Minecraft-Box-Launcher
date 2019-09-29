@@ -1,5 +1,5 @@
-name: ESLint (JS/TS) Action 
-uses: iCrawl/action-eslint@v1
+- name: ESLint (JS/TS) Action 
+  uses: iCrawl/action-eslint@v1
 on:
   push:
   pull_request:
