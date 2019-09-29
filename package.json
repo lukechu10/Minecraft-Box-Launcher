@@ -9,7 +9,7 @@
     "build:ts-main": "tsc -p tsconfig.json --watch",
     "build:pug-watch": "pug ./src/templates --watch --out ./dist/views",
     "build:pug-build": "pug ./src/templates --out ./dist/views",
-    "eslint": "eslint \"src/**.ts\""
+    "eslint": "eslint src/ --ext .ts,.tsx"
   },
   "keywords": [
     "minecraft",

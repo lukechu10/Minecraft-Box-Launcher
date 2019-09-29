@@ -33,7 +33,7 @@
         },
         {
             "type": "shell",
-            "command": "npx eslint \"src/**.ts\"",
+            "command": "npx eslint src/ --ext .ts,.tsx",
             "label": "ESLint (Typescript)",
             "problemMatcher": [
                 "$eslint-stylish"
