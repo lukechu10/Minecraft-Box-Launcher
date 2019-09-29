@@ -47,6 +47,23 @@
                 "showReuseMessage": true,
                 "clear": true
             }
+        },
+        {
+            "type": "shell",
+            "command": "npx eslint src/ --ext .ts,.tsx --fix",
+            "label": "ESLint (Typescript) Fix",
+            "problemMatcher": [
+                "$eslint-stylish"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            }
         }
     ]
 }
