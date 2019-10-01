@@ -11,11 +11,12 @@
 		"build": "run-p build:*",
 		"build-watch:ts": "tsc -p tsconfig.json --watch",
 		"build:ts": "tsc -p tsconfig.json",
-		"build-watch:pug": "pug ./src/templates --watch --out ./dist/views",
-		"build:pug": "pug ./src/templates --out ./dist/views",
+		"build-watch:pug": "pug ./src/templates --watch --out ./views",
+		"build:pug": "pug ./src/templates --out ./views",
 		"eslint": "eslint src/ --ext .ts,.tsx",
 		"pack": "electron-builder --dir",
-		"dist": "electron-builder"
+		"dist": "electron-builder",
+		"postinstall": "run-p build:*"
 	},
 	"keywords": [
 		"minecraft",

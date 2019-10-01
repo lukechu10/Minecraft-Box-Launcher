@@ -21,7 +21,7 @@ function createWindow() {
         }
     });
     mainWindow.setMenu(null);
-    mainWindow.loadFile(path.join("./views/", "index.html"));
+    mainWindow.loadFile(path.join("../views/", "index.html"));
     mainWindow.webContents.openDevTools();
     mainWindow.on("closed", function () {
         mainWindow = null;

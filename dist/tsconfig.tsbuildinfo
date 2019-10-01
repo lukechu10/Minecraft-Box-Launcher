@@ -318,7 +318,7 @@
         "signature": "4022e5090d4f29530a39684caf0b77fbd6ef612957f2848afbcc459dfbab6f7f"
       },
       "../src/main.ts": {
-        "version": "6df4d0b920b05d3db3c04eba5ae55c46731cb0eba9c93b75ad0a5db5c36fc8a7",
+        "version": "ef4c348d246b99dc1730853891641546381fb5fd39d96c1e59ed02f942d39b1b",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "../node_modules/@xmcl/common/game.ts": {
@@ -806,7 +806,6 @@
       "emitDecoratorMetadata": true,
       "skipLibCheck": true,
       "project": "../tsconfig.json",
-      "watch": true,
       "configFilePath": "../tsconfig.json"
     },
     "referencedMap": {
@@ -2661,6 +2660,22 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../node_modules/@types/debug/index.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/eslint-visitor-keys/index.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/jquery/JQueryStatic.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/jquery/JQuery.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../node_modules/@types/jquery/misc.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
@@ -2679,6 +2694,10 @@
         "../node_modules/@types/jquery/misc.d.ts",
         "../node_modules/@types/jquery/legacy.d.ts",
         "../node_modules/@types/sizzle/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/json-schema/index.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -2917,26 +2936,6 @@
         "../node_modules/@types/node/ts3.2/index.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@types/debug/index.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@types/eslint-visitor-keys/index.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@types/jquery/JQueryStatic.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@types/jquery/JQuery.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@types/json-schema/index.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -2974,14 +2973,6 @@
       "../node_modules/typescript/lib/lib.es2019.symbol.d.ts",
       "../node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "../node_modules/typescript/lib/lib.esnext.bigint.d.ts",
-      "../src/main.ts",
-      "../src/ts/store.ts",
-      "../src/ts/global.ts",
-      "../src/ts/authentication.ts",
-      "../src/ts/index.ts",
-      "../node_modules/@types/debug/index.d.ts",
-      "../node_modules/@types/eslint-visitor-keys/index.d.ts",
-      "../node_modules/@types/jquery/JQueryStatic.d.ts",
       "../node_modules/@types/node/globals.d.ts",
       "../node_modules/@types/node/assert.d.ts",
       "../node_modules/@types/node/async_hooks.d.ts",
@@ -3091,8 +3082,15 @@
       "../node_modules/json-schema-typed/src/index.ts",
       "../node_modules/conf/index.d.ts",
       "../node_modules/electron-store/index.d.ts",
+      "../src/ts/store.ts",
+      "../src/ts/authentication.ts",
+      "../src/ts/global.ts",
+      "../src/ts/index.ts",
       "../node_modules/@types/babel-types/index.d.ts",
       "../node_modules/@types/babylon/index.d.ts",
+      "../node_modules/@types/debug/index.d.ts",
+      "../node_modules/@types/eslint-visitor-keys/index.d.ts",
+      "../node_modules/@types/jquery/JQueryStatic.d.ts",
       "../node_modules/@types/jquery/JQuery.d.ts",
       "../node_modules/@types/jquery/misc.d.ts",
       "../node_modules/@types/jquery/legacy.d.ts",
@@ -3140,7 +3138,8 @@
       "../node_modules/@types/semantic-ui-visibility/global.d.ts",
       "../node_modules/@types/semantic-ui-visibility/index.d.ts",
       "../node_modules/@types/semantic-ui/index.d.ts",
-      "../node_modules/@types/yauzl/index.d.ts"
+      "../node_modules/@types/yauzl/index.d.ts",
+      "../src/main.ts"
     ]
   },
   "version": "3.6.3"
