@@ -5,5 +5,5 @@ const instancesData = new ElectronStore();
 function newInstance() {
 }
 exports.newInstance = newInstance;
-exports.api = require('@xmcl/minecraft-launcher-core');
+exports.api = require("@xmcl/minecraft-launcher-core");
 //# sourceMappingURL=index.js.map

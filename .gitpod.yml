@@ -3,4 +3,11 @@ image:
 
 # List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/43_config_ports/
 ports:
-  - port: 3000
+  - port: 5900
+  - port: 6080
+    onOpen: notify
+  - port: 35900
+
+tasks:
+  - init: npm install
+  - command: npm run start:gitpod

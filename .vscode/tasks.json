@@ -1,69 +1,67 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558 
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "type": "npm",
-            "script": "build:ts-main",
-            "label": "Build Typescript (Watch)",
-            "problemMatcher": [
-                "$tsc-watch"
-            ],
-            "group": "build",
-            "isBackground": true
-        },
-        {
-            "type": "npm",
-            "script": "build:pug-watch",
-            "label": "Build Pug (Watch)",
-            "problemMatcher": [
-            ],
-            "group": "build",
-            "isBackground": true
-        },
-        {
-            "type": "npm",
-            "script": "build:pug-build",
-            "label": "Build Pug",
-            "problemMatcher": [
-            ],
-            "group": "build",
-            "isBackground": true
-        },
-        {
-            "type": "shell",
-            "command": "npx eslint src/ --ext .ts,.tsx",
-            "label": "ESLint (Typescript)",
-            "problemMatcher": [
-                "$eslint-stylish"
-            ],
-            "group": "test",
-            "presentation": {
-                "echo": true,
-                "reveal": "never",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": true
-            }
-        },
-        {
-            "type": "shell",
-            "command": "npx eslint src/ --ext .ts,.tsx --fix",
-            "label": "ESLint (Typescript) Fix",
-            "problemMatcher": [
-                "$eslint-stylish"
-            ],
-            "group": "test",
-            "presentation": {
-                "echo": true,
-                "reveal": "never",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true,
-                "clear": true
-            }
-        }
-    ]
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "build-watch:ts",
+			"label": "Build Typescript (Watch)",
+			"problemMatcher": [
+				"$tsc-watch"
+			],
+			"group": "build",
+			"isBackground": true
+		},
+		{
+			"type": "npm",
+			"script": "build-watch:pug",
+			"label": "Build Pug (Watch)",
+			"problemMatcher": [],
+			"group": "build",
+			"isBackground": true
+		},
+		{
+			"type": "npm",
+			"script": "build:pug",
+			"label": "Build Pug",
+			"problemMatcher": [],
+			"group": "build",
+			"isBackground": true
+		},
+		{
+			"type": "shell",
+			"command": "npx eslint src/ --ext .ts,.tsx",
+			"label": "ESLint (Typescript)",
+			"problemMatcher": [
+				"$eslint-stylish"
+			],
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "never",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": true
+			}
+		},
+		{
+			"type": "shell",
+			"command": "npx eslint src/ --ext .ts,.tsx --fix",
+			"label": "ESLint (Typescript) Fix",
+			"problemMatcher": [
+				"$eslint-stylish"
+			],
+			"group": "test",
+			"presentation": {
+				"echo": true,
+				"reveal": "never",
+				"focus": true,
+				"panel": "shared",
+				"showReuseMessage": true,
+				"clear": true
+			}
+		}
+	]
 }

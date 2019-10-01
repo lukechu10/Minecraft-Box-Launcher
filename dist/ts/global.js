@@ -15,16 +15,16 @@ $(() => {
     $("#login-form").form({
         fields: {
             username: {
-                identifier: 'username',
+                identifier: "username",
                 rules: [{
-                        type: 'email',
-                        prompt: 'Invalid email'
+                        type: "email",
+                        prompt: "Invalid email"
                     }]
             },
             password: {
-                identifier: 'password',
-                type: 'minLength[1]',
-                prompt: 'Please enter your password'
+                identifier: "password",
+                type: "minLength[1]",
+                prompt: "Please enter your password"
             }
         }
     });

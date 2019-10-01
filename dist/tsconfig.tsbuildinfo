@@ -318,8 +318,8 @@
         "signature": "4022e5090d4f29530a39684caf0b77fbd6ef612957f2848afbcc459dfbab6f7f"
       },
       "../src/main.ts": {
-        "version": "03add243227130d88cb5a47c46a8a96553bc287af285deafa0952097b71eb847",
-        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
+        "version": "6df4d0b920b05d3db3c04eba5ae55c46731cb0eba9c93b75ad0a5db5c36fc8a7",
+        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "../node_modules/@xmcl/common/game.ts": {
         "version": "892d79c09bcb958141c37e6453d21d3f92be33b6950bbc70926a38bd0c7a6324"
@@ -558,20 +558,20 @@
         "signature": "4f36659c3ba432449ecb053d66082de4409b69038a0c6930b2d258ce2e2efdd2"
       },
       "../src/ts/store.ts": {
-        "version": "86ce88c808edf45f2576ddc7614b199b17077ceea1ee671a394a3c072a464cef",
-        "signature": "1eb3d376008df6b1989edf72726ed68593660a76e6706f3646563dd4b42edc2b"
+        "version": "2c7f88c737adcd4beeba156a21b7a68c301a3407d6d982a37904c8d961bc0a6d",
+        "signature": "1e601db0b1ea30c09e20d5099c59bef5fc84afc61e199e522ebac8b34b376110"
       },
       "../src/ts/authentication.ts": {
-        "version": "3f8dfbe9dfdd18548446358728c17f1de431035e1750e7aec1954ba1b2cf4a75",
-        "signature": "d110a08c3f569058d9a171ec8f2af8b0bbb1b97b7137c41ab2a818e867672071"
+        "version": "732815ef2fac0b9026f138669ae9195940ddeefa77a22e3defc2baed2d5b81f2",
+        "signature": "000412410b4adc5b74afeb4e871a0e6f214bdedc270fa4a8b73a41eee8a8975e"
       },
       "../src/ts/global.ts": {
-        "version": "949aefe85f6a1f12bb1ff04a306ea552200fd5370d972aef61df2643f963557d",
-        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
+        "version": "70b21598472714f589b8103812b3ab707f2133a01c04d2d94506d461fcc8fa04",
+        "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "../src/ts/index.ts": {
-        "version": "71587ae8bde7aca3a057bdd3213d4274671109e32192d385eba5049b4afa18f3",
-        "signature": "14d239a11ef7eb1c1394f80c1360cfe9f617cbb11734795f8e1c3952cf64dd0e"
+        "version": "7e5f1d921628d8bb48a1963eb514761e6b931007f3b2fd1c2e5542adb3cab8c2",
+        "signature": "d7edd89192c97c3b60b3e34716d46de166561228124b6c15fd1b28fb9895985b"
       },
       "../node_modules/@types/babel-types/index.d.ts": {
         "version": "d9422bf2f3d2b4a02d901bd80370b6e58b4165e4bf488b99a3687c6eea721d27",
@@ -581,11 +581,19 @@
         "version": "e7ef01fb3213b1be13321648ac2612d60e9e2742e28fc2fcf68d27fb965a8d5c",
         "signature": "e7ef01fb3213b1be13321648ac2612d60e9e2742e28fc2fcf68d27fb965a8d5c"
       },
-      "../node_modules/@types/jquery/jquerystatic.d.ts": {
+      "../node_modules/@types/debug/index.d.ts": {
+        "version": "3cf5f191d75bbe7c92f921e5ae12004ac672266e2be2ece69f40b1d6b1b678f9",
+        "signature": "3cf5f191d75bbe7c92f921e5ae12004ac672266e2be2ece69f40b1d6b1b678f9"
+      },
+      "../node_modules/@types/eslint-visitor-keys/index.d.ts": {
+        "version": "725d9be2fd48440256f4deb00649adffdbc5ecd282b09e89d4e200663792c34c",
+        "signature": "725d9be2fd48440256f4deb00649adffdbc5ecd282b09e89d4e200663792c34c"
+      },
+      "../node_modules/@types/jquery/JQueryStatic.d.ts": {
         "version": "84c8e0dfd0d885abd37c1d213ef0b949dd8ef795291e7e7b1baadbbe4bc0f8a9",
         "signature": "84c8e0dfd0d885abd37c1d213ef0b949dd8ef795291e7e7b1baadbbe4bc0f8a9"
       },
-      "../node_modules/@types/jquery/jquery.d.ts": {
+      "../node_modules/@types/jquery/JQuery.d.ts": {
         "version": "9d21da8939908dafa89d693c3e22aabeef28c075b68bb863257e631deef520f5",
         "signature": "9d21da8939908dafa89d693c3e22aabeef28c075b68bb863257e631deef520f5"
       },
@@ -604,6 +612,10 @@
       "../node_modules/@types/jquery/index.d.ts": {
         "version": "6739393f79c9a48ec82c6faa0d6b25d556daf3b6871fc4e5131f5445a13e7d15",
         "signature": "6739393f79c9a48ec82c6faa0d6b25d556daf3b6871fc4e5131f5445a13e7d15"
+      },
+      "../node_modules/@types/json-schema/index.d.ts": {
+        "version": "751b8d5b85eee82bd38964a6ff43e89e61a586c64f653e3d1eb8fa7eb372ed30",
+        "signature": "751b8d5b85eee82bd38964a6ff43e89e61a586c64f653e3d1eb8fa7eb372ed30"
       },
       "../node_modules/@types/semantic-ui-site/global.d.ts": {
         "version": "ed4ce4569fd434ca0630bfa93eaefe8069ff8c292b312729989565952d89eb12",
@@ -1670,11 +1682,19 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../node_modules/@types/jquery/jquerystatic.d.ts": [
+      "../node_modules/@types/debug/index.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../node_modules/@types/jquery/jquery.d.ts": [
+      "../node_modules/@types/eslint-visitor-keys/index.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/jquery/JQueryStatic.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/jquery/JQuery.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -1691,11 +1711,15 @@
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
       "../node_modules/@types/jquery/index.d.ts": [
-        "../node_modules/@types/jquery/jquerystatic.d.ts",
-        "../node_modules/@types/jquery/jquery.d.ts",
+        "../node_modules/@types/jquery/JQueryStatic.d.ts",
+        "../node_modules/@types/jquery/JQuery.d.ts",
         "../node_modules/@types/jquery/misc.d.ts",
         "../node_modules/@types/jquery/legacy.d.ts",
         "../node_modules/@types/sizzle/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/json-schema/index.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -2637,14 +2661,6 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../node_modules/@types/jquery/jquerystatic.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../node_modules/@types/jquery/jquery.d.ts": [
-        "../node_modules/@types/node/util.d.ts",
-        "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
       "../node_modules/@types/jquery/misc.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
@@ -2901,6 +2917,26 @@
         "../node_modules/@types/node/ts3.2/index.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/debug/index.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/eslint-visitor-keys/index.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/jquery/JQueryStatic.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/jquery/JQuery.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/json-schema/index.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -2938,6 +2974,14 @@
       "../node_modules/typescript/lib/lib.es2019.symbol.d.ts",
       "../node_modules/typescript/lib/lib.esnext.intl.d.ts",
       "../node_modules/typescript/lib/lib.esnext.bigint.d.ts",
+      "../src/main.ts",
+      "../src/ts/store.ts",
+      "../src/ts/global.ts",
+      "../src/ts/authentication.ts",
+      "../src/ts/index.ts",
+      "../node_modules/@types/debug/index.d.ts",
+      "../node_modules/@types/eslint-visitor-keys/index.d.ts",
+      "../node_modules/@types/jquery/JQueryStatic.d.ts",
       "../node_modules/@types/node/globals.d.ts",
       "../node_modules/@types/node/assert.d.ts",
       "../node_modules/@types/node/async_hooks.d.ts",
@@ -2983,7 +3027,6 @@
       "../node_modules/@types/node/ts3.2/globals.d.ts",
       "../node_modules/@types/node/ts3.2/index.d.ts",
       "../node_modules/electron/electron.d.ts",
-      "../src/main.ts",
       "../node_modules/@xmcl/common/game.ts",
       "../node_modules/@xmcl/common/platform.ts",
       "../node_modules/@xmcl/common/version.ts",
@@ -3048,18 +3091,14 @@
       "../node_modules/json-schema-typed/src/index.ts",
       "../node_modules/conf/index.d.ts",
       "../node_modules/electron-store/index.d.ts",
-      "../src/ts/store.ts",
-      "../src/ts/authentication.ts",
-      "../src/ts/global.ts",
-      "../src/ts/index.ts",
       "../node_modules/@types/babel-types/index.d.ts",
       "../node_modules/@types/babylon/index.d.ts",
-      "../node_modules/@types/jquery/jquerystatic.d.ts",
-      "../node_modules/@types/jquery/jquery.d.ts",
+      "../node_modules/@types/jquery/JQuery.d.ts",
       "../node_modules/@types/jquery/misc.d.ts",
       "../node_modules/@types/jquery/legacy.d.ts",
       "../node_modules/@types/sizzle/index.d.ts",
       "../node_modules/@types/jquery/index.d.ts",
+      "../node_modules/@types/json-schema/index.d.ts",
       "../node_modules/@types/semantic-ui-site/global.d.ts",
       "../node_modules/@types/semantic-ui-site/index.d.ts",
       "../node_modules/@types/semantic-ui-accordion/global.d.ts",

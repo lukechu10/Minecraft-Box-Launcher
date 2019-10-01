@@ -31,7 +31,7 @@ function showLoginModal() {
     $("#login-modal").modal({
         onDeny: () => {
         }
-    }).modal('show');
+    }).modal("show");
 }
 exports.showLoginModal = showLoginModal;
 function updateLoginStatus() {
