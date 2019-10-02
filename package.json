@@ -3,19 +3,22 @@
 	"name": "minecraft-box-launcher",
 	"version": "0.0.1",
 	"description": "Open source Minecraft Java Edition launcher build with ElectronJS",
-	"main": "dist/main.js",
+	"main": "js/main.js",
 	"scripts": {
 		"start": "electron .",
-		"start:gitpod": "electron --no-sandbox dist/main.js",
+		"start:gitpod": "electron --no-sandbox js/main.js",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "run-p build:*",
 		"build-watch:ts": "tsc -p tsconfig.json --watch",
 		"build:ts": "tsc -p tsconfig.json",
-		"build-watch:pug": "pug ./src/templates --watch --out ./dist/views",
-		"build:pug": "pug ./src/templates --out ./dist/views",
+		"build-watch:pug": "pug ./src/templates --watch --out ./static/views",
+		"build:pug": "pug ./src/templates --out ./static/views",
 		"eslint": "eslint src/ --ext .ts,.tsx",
 		"pack": "electron-builder --dir",
-		"dist": "electron-builder"
+		"pack:windows": "electron-builder --dir --windows",
+		"pack:macos": "electron-builder --dir --macos",
+		"dist": "electron-builder",
+		"postinstall": "run-p build:*"
 	},
 	"keywords": [
 		"minecraft",
@@ -47,5 +50,12 @@
 		"electron-store": "^5.0.0",
 		"jquery": "^3.4.1",
 		"typescript": "^3.6.3"
+	},
+	"build": {
+		"appId": "launcher.box.minecraft",
+		"productName": "Minecraft Box",
+		"mac": {
+			"category": "public.app-category.games"
+		}
 	}
 }
