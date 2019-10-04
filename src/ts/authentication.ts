@@ -47,7 +47,8 @@ export function updateLoginStatus() {
             position: "top right",
             delay: {
                 hide: 500
-            }
+			},
+			hoverable: true
         });
 	}
 }

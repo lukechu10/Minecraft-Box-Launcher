@@ -6,7 +6,7 @@
             "request": "launch",
             "name": "Electron Start",
             "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
-            "program": "${workspaceFolder}/dist/main.js"
+            "program": "${workspaceFolder}/js/main.js"
         }
     ],
     "compounds": []
