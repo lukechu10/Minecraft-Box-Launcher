@@ -31,7 +31,7 @@ function showLoginModal() {
     $("#login-modal").modal({
         onDeny: () => {
         }
-    }).modal('show');
+    }).modal("show");
 }
 exports.showLoginModal = showLoginModal;
 function updateLoginStatus() {
@@ -40,8 +40,17 @@ function updateLoginStatus() {
         $("#login-status").attr("onclick", "auth.showLoginModal()");
     }
     else {
-        $("#login-status").html(store.auth.get("profiles")[0].name);
+        const skinUrl = `https://minotar.net/avatar/${store.auth.get("profiles")[0].name}`;
+        $("#login-status").html(store.auth.get("profiles")[0].name +
+            `<img src='${skinUrl}' style='margin-left: 5px; width: 25px;'>`);
         $("#login-status").attr("onclick", "");
+        $("#login-status").popup({
+            inline: true,
+            position: "top right",
+            delay: {
+                hide: 500
+            }
+        });
     }
 }
 exports.updateLoginStatus = updateLoginStatus;

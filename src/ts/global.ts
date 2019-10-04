@@ -1,8 +1,8 @@
 import * as store from "./store";
 import { login, updateLoginStatus } from "./authentication";
 
-// initiate form
 $(() => {
+	// initiate form
 	updateLoginStatus();
 	$("#login-form").form({
 		fields: {

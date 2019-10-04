@@ -1,4 +1,5 @@
 import ElectronStore = require("electron-store");
+import Auth from "@xmcl/auth";
 
 
 export var instances: ElectronStore = new ElectronStore({

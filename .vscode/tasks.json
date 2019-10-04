@@ -5,7 +5,7 @@
     "tasks": [
         {
             "type": "npm",
-            "script": "build:ts-main",
+            "script": "build-watch:ts",
             "label": "Build Typescript (Watch)",
             "problemMatcher": [
                 "$tsc-watch"
@@ -15,7 +15,7 @@
         },
         {
             "type": "npm",
-            "script": "build:pug-watch",
+            "script": "build-watch:pug",
             "label": "Build Pug (Watch)",
             "problemMatcher": [
             ],
@@ -24,7 +24,7 @@
         },
         {
             "type": "npm",
-            "script": "build:pug-build",
+            "script": "build:pug",
             "label": "Build Pug",
             "problemMatcher": [
             ],

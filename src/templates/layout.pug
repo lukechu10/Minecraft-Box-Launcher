@@ -13,7 +13,7 @@ html(lang="en")
         script(link-js-library).
             window.jQuery = window.$ = require('jquery');
             // load modules
-            window.minecraft = require('../ts/index');
+            window.minecraft = require('../ts/instance');
             window.auth = require('../ts/authentication');
             window.main = require('../ts/global');
             window.shell = require('electron').shell;
@@ -27,6 +27,10 @@ html(lang="en")
             a.item(href="./news.html") News
             .right.menu
                 a.item#login-status
+                // user popup
+                .ui.transition.popup
+                    .ui.link.list
+                        a.item(href="") Settings
         
         // page content
         .ui.container(style="padding-top: 40px;")

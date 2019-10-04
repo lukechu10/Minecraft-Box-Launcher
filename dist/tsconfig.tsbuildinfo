@@ -318,7 +318,7 @@
         "signature": "4022e5090d4f29530a39684caf0b77fbd6ef612957f2848afbcc459dfbab6f7f"
       },
       "../src/main.ts": {
-        "version": "03add243227130d88cb5a47c46a8a96553bc287af285deafa0952097b71eb847",
+        "version": "b3110ee2c4a698409e4ee3c5f7bca9872c4548540ec6aad009ee14b8ebf08e11",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
       "../node_modules/@xmcl/common/game.ts": {
@@ -558,19 +558,19 @@
         "signature": "4f36659c3ba432449ecb053d66082de4409b69038a0c6930b2d258ce2e2efdd2"
       },
       "../src/ts/store.ts": {
-        "version": "86ce88c808edf45f2576ddc7614b199b17077ceea1ee671a394a3c072a464cef",
-        "signature": "1eb3d376008df6b1989edf72726ed68593660a76e6706f3646563dd4b42edc2b"
+        "version": "dfc9650699a1aceb5e979e89c7bbc81d80ac4eb747911b0add73b8c82bd8a28a",
+        "signature": "ebe53fce339af3d84759f159b19926ac838b8f2abe03b89a8a803da8cc8a44b5"
       },
       "../src/ts/authentication.ts": {
-        "version": "3f8dfbe9dfdd18548446358728c17f1de431035e1750e7aec1954ba1b2cf4a75",
-        "signature": "d110a08c3f569058d9a171ec8f2af8b0bbb1b97b7137c41ab2a818e867672071"
+        "version": "a68cc5039931b0f2c5e2561839297cd9fc7ceb50a2f68ad0cfba2173697f9f30",
+        "signature": "e55d56e2e79fa3676b44977eacdbc422606088782ee86092293c9f75ed0cb16d"
       },
       "../src/ts/global.ts": {
-        "version": "949aefe85f6a1f12bb1ff04a306ea552200fd5370d972aef61df2643f963557d",
+        "version": "05b250904fb02a11ad3c2f0424cba2e6c6d485429c032d81e00e82c9a0892f30",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
-      "../src/ts/index.ts": {
-        "version": "71587ae8bde7aca3a057bdd3213d4274671109e32192d385eba5049b4afa18f3",
+      "../src/ts/instance.ts": {
+        "version": "f50d13889c833c3140317282753509232a7610a2cbd73c9e477a4bef98932fc3",
         "signature": "14d239a11ef7eb1c1394f80c1360cfe9f617cbb11734795f8e1c3952cf64dd0e"
       },
       "../node_modules/@types/babel-types/index.d.ts": {
@@ -580,6 +580,10 @@
       "../node_modules/@types/babylon/index.d.ts": {
         "version": "e7ef01fb3213b1be13321648ac2612d60e9e2742e28fc2fcf68d27fb965a8d5c",
         "signature": "e7ef01fb3213b1be13321648ac2612d60e9e2742e28fc2fcf68d27fb965a8d5c"
+      },
+      "../node_modules/@types/eslint-visitor-keys/index.d.ts": {
+        "version": "725d9be2fd48440256f4deb00649adffdbc5ecd282b09e89d4e200663792c34c",
+        "signature": "725d9be2fd48440256f4deb00649adffdbc5ecd282b09e89d4e200663792c34c"
       },
       "../node_modules/@types/jquery/jquerystatic.d.ts": {
         "version": "84c8e0dfd0d885abd37c1d213ef0b949dd8ef795291e7e7b1baadbbe4bc0f8a9",
@@ -604,6 +608,10 @@
       "../node_modules/@types/jquery/index.d.ts": {
         "version": "6739393f79c9a48ec82c6faa0d6b25d556daf3b6871fc4e5131f5445a13e7d15",
         "signature": "6739393f79c9a48ec82c6faa0d6b25d556daf3b6871fc4e5131f5445a13e7d15"
+      },
+      "../node_modules/@types/json-schema/index.d.ts": {
+        "version": "751b8d5b85eee82bd38964a6ff43e89e61a586c64f653e3d1eb8fa7eb372ed30",
+        "signature": "751b8d5b85eee82bd38964a6ff43e89e61a586c64f653e3d1eb8fa7eb372ed30"
       },
       "../node_modules/@types/semantic-ui-site/global.d.ts": {
         "version": "ed4ce4569fd434ca0630bfa93eaefe8069ff8c292b312729989565952d89eb12",
@@ -1640,6 +1648,7 @@
       ],
       "../src/ts/store.ts": [
         "../node_modules/electron-store/index.d.ts",
+        "../node_modules/@xmcl/auth/index.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -1655,7 +1664,7 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../src/ts/index.ts": [
+      "../src/ts/instance.ts": [
         "../node_modules/electron-store/index.d.ts",
         "../node_modules/@xmcl/minecraft-launcher-core/index.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -1667,6 +1676,10 @@
       ],
       "../node_modules/@types/babylon/index.d.ts": [
         "../node_modules/@types/babel-types/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/eslint-visitor-keys/index.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -1696,6 +1709,10 @@
         "../node_modules/@types/jquery/misc.d.ts",
         "../node_modules/@types/jquery/legacy.d.ts",
         "../node_modules/@types/sizzle/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/json-schema/index.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -2637,6 +2654,10 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../node_modules/@types/eslint-visitor-keys/index.d.ts": [
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../node_modules/@types/jquery/jquerystatic.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
@@ -2663,6 +2684,10 @@
         "../node_modules/@types/jquery/misc.d.ts",
         "../node_modules/@types/jquery/legacy.d.ts",
         "../node_modules/@types/sizzle/index.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@types/json-schema/index.d.ts": [
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -3051,15 +3076,17 @@
       "../src/ts/store.ts",
       "../src/ts/authentication.ts",
       "../src/ts/global.ts",
-      "../src/ts/index.ts",
+      "../src/ts/instance.ts",
       "../node_modules/@types/babel-types/index.d.ts",
       "../node_modules/@types/babylon/index.d.ts",
+      "../node_modules/@types/eslint-visitor-keys/index.d.ts",
       "../node_modules/@types/jquery/jquerystatic.d.ts",
       "../node_modules/@types/jquery/jquery.d.ts",
       "../node_modules/@types/jquery/misc.d.ts",
       "../node_modules/@types/jquery/legacy.d.ts",
       "../node_modules/@types/sizzle/index.d.ts",
       "../node_modules/@types/jquery/index.d.ts",
+      "../node_modules/@types/json-schema/index.d.ts",
       "../node_modules/@types/semantic-ui-site/global.d.ts",
       "../node_modules/@types/semantic-ui-site/index.d.ts",
       "../node_modules/@types/semantic-ui-accordion/global.d.ts",

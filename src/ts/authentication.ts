@@ -36,7 +36,18 @@ export function updateLoginStatus() {
 	}
 	else {
 		// show user profile name
-		$("#login-status").html(store.auth.get("profiles")[0].name);
-		$("#login-status").attr("onclick", "");
+		const skinUrl = `https://minotar.net/avatar/${store.auth.get("profiles")[0].name}`;
+		$("#login-status").html(store.auth.get("profiles")[0].name +
+		/* skin head */ `<img src='${skinUrl}' style='margin-left: 5px; width: 25px;'>`);
+        $("#login-status").attr("onclick", "");
+        
+        // user popup
+        $("#login-status").popup({
+            inline: true,
+            position: "top right",
+            delay: {
+                hide: 500
+            }
+        });
 	}
 }
