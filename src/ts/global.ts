@@ -1,9 +1,9 @@
 import * as store from "./store";
 import { login, updateLoginStatus } from "./authentication";
 
-$(() => {
-	// initiate form
+function initiateLoginForm(): void {
 	updateLoginStatus();
+	// initiate form
 	$("#login-form").form({
 		fields: {
 			username: {
@@ -28,8 +28,8 @@ $(() => {
 		if ($("#login-form").form("is valid")) {
 			try {
 				// send request to Yggsdrasil auth server
-				await login($("#username-field").val() as string, $("#password-field").val() as string);
-
+				await login($("#username-field").val() as string,
+					$("#password-field").val() as string);
 				// login successfull
 				$("#login-modal").modal("hide");
 			}
@@ -37,12 +37,19 @@ $(() => {
 				$("#login-errors-container").css("display", "block");
 				// if invalid credentials
 				if (e.statusCode == 403) {
-					$("#login-errors").html("Invalid username or password!");
+					$("#login-errors").text("Invalid username or password!");
 				}
 				else {
-					$("#login-errors").html("An unknown error occured: " + e);
+					$("#login-errors").text("An unknown error occured: " + e);
 				}
 			}
 		}
+		else {
+			$("#login-errors").text("Please fill out the form!");
+		}
 	});
+}
+
+$(() => {
+	initiateLoginForm();
 });

@@ -31,7 +31,8 @@ html(lang="en")
                 .ui.flowing.popup
                     .ui.link.list
                         a.item(href="./settings.html") Settings
-        
+                        a.item(onclick="auth.logout()") Logout
+
         // page content
         .ui.container(style="padding-top: 40px;")
             block content

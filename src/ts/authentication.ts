@@ -12,13 +12,24 @@ export async function login(username: string, password: string): Promise<Auth> {
 	// save data to electron store
 	store.auth.set(authFromMojang);
 	store.auth.set("loggedIn", true);
+	updateLoginStatus();
 	return authFromMojang;
+}
+
+/**
+ * Logouts user and resets store
+ */
+export async function logout(): Promise<void> {
+	store.auth.clear();
+	store.auth.set("loggedIn", false);
+	updateLoginStatus();
+	return;
 }
 
 /**
  * Shows modal that appears over page
  */
-export function showLoginModal() {
+export function showLoginModal(): void {
 	$("#login-modal").modal({
 		onDeny: () => {
 			// show are you sure message
@@ -29,26 +40,27 @@ export function showLoginModal() {
 /**
  * Updates the login status in the navigation
  */
-export function updateLoginStatus() {
+export function updateLoginStatus(): void {
 	if (store.auth.get("loggedIn", false) == false) {
 		$("#login-status").html("Log in");
 		$("#login-status").attr("onclick", "auth.showLoginModal()");
+		$("#login-status").popup("hide").popup("destroy");
 	}
 	else {
 		// show user profile name
 		const skinUrl = `https://minotar.net/avatar/${store.auth.get("profiles")[0].name}`;
 		$("#login-status").html(store.auth.get("profiles")[0].name +
 		/* skin head */ `<img src='${skinUrl}' style='margin-left: 5px; width: 25px;'>`);
-        $("#login-status").attr("onclick", "");
-        
-        // user popup
-        $("#login-status").popup({
-            inline: true,
-            position: "top right",
-            delay: {
-                hide: 500
+		$("#login-status").attr("onclick", "");
+
+		// user popup
+		$("#login-status").popup({
+			inline: true,
+			position: "top right",
+			delay: {
+				hide: 500
 			},
 			hoverable: true
-        });
+		});
 	}
 }

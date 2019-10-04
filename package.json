@@ -9,6 +9,7 @@
 		"start:gitpod": "electron --no-sandbox js/main.js",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "run-p build:*",
+		"build-watch": "run-p build-watch:*",
 		"build-watch:ts": "tsc -p tsconfig.json --watch",
 		"build:ts": "tsc -p tsconfig.json",
 		"build-watch:pug": "pug ./src/templates --watch --out ./static/views",
