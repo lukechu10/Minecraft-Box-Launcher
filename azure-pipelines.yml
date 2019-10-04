@@ -6,16 +6,68 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'windows-latest'
+jobs:
+# windows build
+- job: windowsLatestBuild
+  displayName: Windows Latest Build
+  pool:
+    vmImage: 'windows-latest'
+  steps:
+  # use nodeJS 10
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+  - task: CmdLine@2
+    displayName: Install Node Modules
+    inputs:
+      script: 'npm install'
+  - task: CmdLine@2
+    displayName: Pack application
+    inputs:
+      script: 'npm run pack:windows'
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: './dist/win-unpacked/'
+      includeRootFolder: true
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-windows.zip'
+      replaceExistingArchive: true
+  # publish artifact
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'Windows Build ($(Build.BuildId))'
+      publishLocation: 'Container'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+# macOS build
+- job: macosLatestBuild
+  displayName: MacOS Latest Build
+  pool:
+    vmImage: 'macOS-latest'
+  steps:
+  # use nodeJS 10
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+  - task: CmdLine@2
+    displayName: Install Node Modules
+    inputs:
+      script: 'npm install'
+  - task: CmdLine@2
+    displayName: Pack application
+    inputs:
+      script: 'npm run pack:macos'
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: './dist/mac/'
+      includeRootFolder: true
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-macos.zip'
+      replaceExistingArchive: true
+  # publish artifact
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'MacOS Build ($(Build.BuildId))'
+      publishLocation: 'Container'
