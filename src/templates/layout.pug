@@ -48,7 +48,7 @@ html(lang="en")
                             .ui.tertiary.inverted.red.segment#login-errors-container(style="display:none;")
                                 p#login-errors
                             // login form
-                            form.ui.form.segment.error#login-form
+                            form.ui.form.segment.error#login-form(onSubmit="return false;")
                                 .field
                                     label Mojang Email
                                     input(type="text" name="username" placeholder="Email")#username-field

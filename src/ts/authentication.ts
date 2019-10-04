@@ -12,7 +12,7 @@ export async function login(username: string, password: string): Promise<Auth> {
 	// save data to electron store
 	store.auth.set(authFromMojang);
 	store.auth.set("loggedIn", true);
-	updateLoginStatus();
+	updateLoginStatus("login");
 	return authFromMojang;
 }
 
@@ -22,7 +22,7 @@ export async function login(username: string, password: string): Promise<Auth> {
 export async function logout(): Promise<void> {
 	store.auth.clear();
 	store.auth.set("loggedIn", false);
-	updateLoginStatus();
+	updateLoginStatus("logout");
 	return;
 }
 
@@ -38,19 +38,71 @@ export function showLoginModal(): void {
 }
 
 /**
+ * Show form on click if logged out
+ */
+function initiateLoginForm(): void {
+	// initiate form
+	$("#login-form").form({
+		fields: {
+			username: {
+				identifier: "username",
+				rules: [{
+					type: "email",
+					prompt: "Invalid email"
+				}]
+			},
+			password: {
+				identifier: "password",
+				type: "minLength[1]",
+				prompt: "Please enter your password"
+			}
+		}
+	} as any);
+
+	// login button
+	$("#login-form").submit(async (event: JQuery.Event) => {
+		event.preventDefault();
+		$("#login-form").form("validate form");
+		if ($("#login-form").form("is valid")) {
+			try {
+				// send request to Yggsdrasil auth server
+				await login($("#username-field").val() as string,
+					$("#password-field").val() as string);
+				// login successfull
+				$("#login-modal").modal("hide");
+			}
+			catch (e) {
+				$("#login-errors-container").css("display", "block");
+				// if invalid credentials
+				if (e.statusCode == 403) {
+					$("#login-errors").text("Invalid username or password!");
+				}
+				else {
+					$("#login-errors").text("An unknown error occured: " + e);
+				}
+			}
+		}
+		else {
+			$("#login-errors").text("Please fill out the form!");
+		}
+	});
+}
+
+/**
  * Updates the login status in the navigation
  */
-export function updateLoginStatus(): void {
-	if (store.auth.get("loggedIn", false) == false) {
+export function updateLoginStatus(status: "login" | "logout"): void {
+	if (status == "logout") {
 		$("#login-status").html("Log in");
 		$("#login-status").attr("onclick", "auth.showLoginModal()");
 		$("#login-status").popup("hide").popup("destroy");
+		initiateLoginForm();
 	}
-	else {
+	else if (status == "login") {
 		// show user profile name
 		const skinUrl = `https://minotar.net/avatar/${store.auth.get("profiles")[0].name}`;
 		$("#login-status").html(store.auth.get("profiles")[0].name +
-		/* skin head */ `<img src='${skinUrl}' style='margin-left: 5px; width: 25px;'>`);
+		/* skin head */ `<img src='${skinUrl}' style='margin-left: 5px; width: 18px;'>`);
 		$("#login-status").attr("onclick", "");
 
 		// user popup
@@ -62,5 +114,8 @@ export function updateLoginStatus(): void {
 			},
 			hoverable: true
 		});
+	}
+	else {
+		throw `Option ${status} is not availible for argument status`;
 	}
 }
