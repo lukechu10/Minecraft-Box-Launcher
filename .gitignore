@@ -65,3 +65,6 @@ static/views/
 
 # typescript output
 js/
+
+# electron-builder output
+dist/
