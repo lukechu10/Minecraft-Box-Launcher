@@ -1,7 +1,11 @@
 import ElectronStore = require("electron-store");
-import * as minecraft from "@xmcl/minecraft-launcher-core";
+import { } from "@xmcl/minecraft-launcher-core";
 
 const instancesData = new ElectronStore();
+
+export interface SaveInstance {
+    
+}
 
 export function newInstance() {
     
