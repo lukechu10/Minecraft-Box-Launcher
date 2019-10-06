@@ -1,0 +1,23 @@
+name: Build binaries and package
+
+on: [push, pull_request]
+
+jobs:
+  windows_build:
+    name: Windows Latest Build
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 10
+        uses: actions/setup-node@v1
+        with:
+          version: 10
+      - name: npm install
+        run: npm install
+      - name: Package application with electron-builder
+        run: npm pack
+      - name: Publish artificats
+        uses: actions/upload-artifact@master
+        with:
+          name: windows-build
+          path: dist/win-unpacked
