@@ -1,3 +1,7 @@
 body {
     user-select: none;
 }
+
+.ui.modal {
+    user-select: none !important;
+}
