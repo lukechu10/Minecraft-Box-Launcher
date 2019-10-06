@@ -1,4 +1,4 @@
-import { Auth } from "@xmcl/minecraft-launcher-core";
+import { Auth } from "@xmcl/auth";
 
 import * as store from "./store";
 

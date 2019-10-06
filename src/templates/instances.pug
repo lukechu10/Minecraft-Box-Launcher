@@ -8,4 +8,17 @@ block js
 
 block content
     h1 Instances
-    .ui.button New Instance
+    .ui.button(onclick="instances.newInstanceModal()") New Instance
+    .ui.raised.segment
+        .ui.divided.items#instance-list
+        // render list
+        script instances.renderInstanceList();
+
+block templates
+    script#template-instance(type="text/x-jsrender")
+        .item
+            .content 
+                .header {{:name}}
+                .meta {{:version}}
+
+block modals

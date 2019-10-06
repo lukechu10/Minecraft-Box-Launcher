@@ -13,7 +13,7 @@ html(lang="en")
         script(link-js-library).
             window.jQuery = window.$ = require('jquery');
             // load modules
-            window.minecraft = require('../../js/ts/instance');
+            window.instances = require('../../js/ts/instance');
             window.auth = require('../../js/ts/authentication');
             window.main = require('../../js/ts/global');
             window.shell = require('electron').shell;
@@ -39,6 +39,7 @@ html(lang="en")
 
         // modals
         .ui.modal#login-modal
+            block modals
             .header Login
             .content
                 .ui.centered.grid
@@ -60,3 +61,7 @@ html(lang="en")
                                 .actions
                                     center
                                         button.ui.tiny.cancel.button.inverted.red Continue without logging in
+        
+        // templates
+        .templates
+            block templates

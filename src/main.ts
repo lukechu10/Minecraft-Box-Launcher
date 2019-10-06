@@ -2,6 +2,10 @@
 import { app, BrowserWindow } from "electron";
 import * as path from "path";
 
+import debug from "electron-debug";
+
+debug();
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: BrowserWindow | null;

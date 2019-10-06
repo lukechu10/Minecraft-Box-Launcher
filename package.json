@@ -15,6 +15,7 @@
 		"build-watch:pug": "pug ./src/templates --watch --out ./static/views",
 		"build:pug": "pug ./src/templates --out ./static/views",
 		"eslint": "eslint src/ --ext .ts,.tsx",
+		"eslint:fix": "eslint src/ --ext .ts,.tsx --fix",
 		"pack": "electron-builder --dir",
 		"pack:windows": "electron-builder --dir --windows",
 		"pack:macos": "electron-builder --dir --macos",
@@ -48,8 +49,10 @@
 		"@types/semantic-ui": "^2.2.7",
 		"@types/yauzl": "^2.9.1",
 		"@xmcl/minecraft-launcher-core": "^0.1.22",
+		"electron-debug": "^3.0.1",
 		"electron-store": "^5.0.0",
 		"jquery": "^3.4.1",
+		"jsrender": "^1.0.5",
 		"typescript": "^3.6.3"
 	},
 	"build": {
