@@ -23,7 +23,7 @@ block modals
             p Note, install functionality has not been implemented yet. Please check back later.
             .ui.segment
                 .scrolling.content
-                    .ui.divided.items#versions-list
+                    .ui.divided.relaxed.list#versions-list
 
 
 
@@ -36,5 +36,10 @@ block templates
     script#template-versionModal(type="text/x-jsrender")
         a.item
             .content 
-                p {{:id}}
-                .meta {{:type}}
+                .header {{:id}}
+                .meta.
+                    {{if clientType}}
+                        {{:clientType}} - {{:type}}
+                    {{else}}
+                        Vanilla - {{:type}}
+                    {{/if}}

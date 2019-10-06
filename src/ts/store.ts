@@ -1,8 +1,8 @@
-import ElectronStore = require("electron-store");
+import Store = require("electron-store");
 // import Auth from "@xmcl/auth";
 
 
-export var instances: ElectronStore = new ElectronStore({
+export var instances: Store = new Store({
 	name: "instances",
 	defaults: {
 		instances: [
@@ -11,7 +11,16 @@ export var instances: ElectronStore = new ElectronStore({
 	}
 });
 
-export var auth: ElectronStore = new ElectronStore({
+export var installed: Store = new Store({
+	name: "installed",
+	defaults: {
+		installed: [
+
+		]
+	}
+})
+
+export var auth: Store = new Store({
 	name: "auth",
 	defaults: {
 		loggedIn: false
@@ -21,7 +30,7 @@ export var auth: ElectronStore = new ElectronStore({
 /**
  * Cached versions meta
  */
-export var versionsMetaCache: ElectronStore = new ElectronStore({
+export var versionsMetaCache: Store = new Store({
 	name: "versionsMetaCache",
 	defaults: {
 		versions: []
