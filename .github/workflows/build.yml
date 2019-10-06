@@ -15,7 +15,7 @@ jobs:
       - name: npm install
         run: npm install
       - name: Package application with electron-builder
-        run: npm pack
+        run: npm run pack
       - name: Publish artificats
         uses: actions/upload-artifact@master
         with:
