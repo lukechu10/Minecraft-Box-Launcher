@@ -1,3 +1,5 @@
+name: ESLint (Typescript)
+
 on:
   push:
   pull_request:
