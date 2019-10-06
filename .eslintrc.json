@@ -31,7 +31,7 @@
 			"double"
 		],
 		"semi": [
-			"error",
+			"warn",
 			"always"
 		],
 		"no-unused-vars": [
