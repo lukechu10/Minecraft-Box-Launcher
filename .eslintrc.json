@@ -30,14 +30,12 @@
 			"warn",
 			"double"
 		],
-		"semi": [
-			"warn",
-			"always"
-		],
+		"semi": "off",
+		"@typescript-eslint/semi": "error",
 		"no-unused-vars": [
 			"warn",
 			{
-				"vars": "all",
+				"vars": "local",
 				"args": "after-used",
 				"ignoreRestSiblings": false
 			}
@@ -53,6 +51,19 @@
 			{
 				"skipBlankLines": true
 			}
-		]
+		],
+		"no-empty": [
+			"error",
+			{
+				"allowEmptyCatch": true
+			}
+		],
+		"no-multi-spaces": [
+			"error",
+			{
+				"ignoreEOLComments": false
+			}
+		],
+		"yoda": "warn"
 	}
 }

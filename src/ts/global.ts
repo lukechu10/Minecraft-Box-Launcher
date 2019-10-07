@@ -1,5 +1,5 @@
 import * as store from "./store";
-import { login, updateLoginStatus } from "./authentication";
+import { updateLoginStatus } from "./authentication";
 import { updateVersionMeta } from "./instance";
 
 // startup tasks

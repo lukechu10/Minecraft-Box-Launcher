@@ -9,7 +9,6 @@ import * as path from "path";
 import InstanceSave from "./instance/InstanceSave";
 
 import jsrender from "jsrender";
-import { version } from "punycode";
 
 /**
  * Folder where are the minecraft versions are saved
@@ -19,16 +18,17 @@ export var MinecraftSavePathBase: string = path.join(app.getPath("userData"), ".
 
 
 export function newInstanceModal() {
-    $("#instance-modal").modal("show");
-    renderVersionsList();
+	$("#instance-modal").modal("show");
+	renderVersionsList();
 }
 
-export async function newInstance() {
-	const minecraft: MinecraftLocation = path.join(MinecraftSavePathBase, "./test/");
-	// const versionPromise: Promise<ResolvedVersion> = Installer.updateVersionMeta()
-	//    .then((metas: Installer.VersionMetaList) => metas.versions[0]) // i just pick the first version in list here
-	//    .then((meta: Installer.VersionMeta) => Installer.install("client", meta, minecraft));
-	console.log(Installer.updateVersionMeta());
+/**
+ *
+ * @param version Version of Minecraft to add
+ */
+export async function newInstance(version: Installer.VersionMeta) {
+	// To-do: cast version to InstanceSave
+	InstancesStore.set("instances", InstancesStore.get("instances").concat(version));
 }
 
 /**
@@ -48,8 +48,8 @@ export async function updateVersionMeta(): Promise<Installer.VersionMeta[] | nul
 		return null;
 	else {
 		// save to electron store
-        versionsMetaCache.set("versions", versionsMeta.versions);
-        return versionsMeta.versions;
+		versionsMetaCache.set("versions", versionsMeta.versions);
+		return versionsMeta.versions;
 	}
 }
 
@@ -78,20 +78,20 @@ export function renderInstanceList(instances: InstanceSave[] = getAllInstances()
  * @param versions list of versions to be rendered (in order)
  */
 export function renderVersionsList(versions: Installer.VersionMeta[] = versionsMetaCache.get("versions")): void {
-    console.log(versions);
-    if (versions.length == 0) {
-        // show no instances availible message
-        $("#versions-list").text("No versions were found. Wierd. This is probably a problem with Mojang.");
-        return;
-    }
-    // clear instance list
-    $("#versions-list").html("");
-    let versionTemplate = jsrender.templates($("#template-versionModal").html());
-    versions.forEach((version) => {
-        const html: string = versionTemplate.render(version);
-        $("#versions-list").append(html);
-    });
-    return;
+	console.log(versions);
+	if (versions.length == 0) {
+		// show no instances availible message
+		$("#versions-list").text("No versions were found. Wierd. This is probably a problem with Mojang.");
+		return;
+	}
+	// clear instance list
+	$("#versions-list").html("");
+	let versionTemplate = jsrender.templates($("#template-versionModal").html());
+	versions.forEach((version) => {
+		const html: string = versionTemplate.render(version);
+		$("#versions-list").append(html);
+	});
+	return;
 }
 
 export var api = require("@xmcl/minecraft-launcher-core");

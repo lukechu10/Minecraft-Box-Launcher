@@ -18,7 +18,7 @@ export var installed: Store = new Store({
 
 		]
 	}
-})
+});
 
 export var auth: Store = new Store({
 	name: "auth",
