@@ -4,7 +4,11 @@ block css
     link(rel="stylesheet", href="../css/index.css")
 
 block js
-
+    script.
+        $(() => {
+            // render list
+            instances.renderInstanceList();
+        });
 
 block content
     h1 Instances
@@ -12,7 +16,6 @@ block content
     .ui.raised.segment
         .ui.divided.items#instance-list
         // render list
-        script instances.renderInstanceList();
 
 
 block modals
@@ -32,7 +35,12 @@ block templates
         .item
             .content 
                 .header {{:name}}
-                .meta {{:version}}
+                .meta.
+                    {{if clientType}}
+                            {{:clientType}} 
+                        {{else}}
+                            Vanilla 
+                        {{/if}} #[strong {{:id}}] ({{:type}})
     script#template-versionModal(type="text/x-jsrender")
         a.item
             .content 
