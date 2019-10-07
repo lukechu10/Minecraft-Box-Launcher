@@ -13,4 +13,8 @@ export default interface InstanceSave {
      * name of version (human readable)
      */
     type: string
+    /**
+     * Type of client
+     */
+    clientType: "vanilla" | "forge";
 }

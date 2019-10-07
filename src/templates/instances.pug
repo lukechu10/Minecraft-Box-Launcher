@@ -8,6 +8,23 @@ block js
         $(() => {
             // render list
             instances.renderInstanceList();
+            // apply event handlers
+            $(document).on("click", ".version-option", (event) => {
+                jqThis = $(event.currentTarget);
+                const options = {
+                    name: jqThis.attr("data-instance-id"),
+                    id: jqThis.attr("data-instance-id"),
+                    clientType: jqThis.attr("data-instance-clienttype"),
+                    type: jqThis.attr("data-instance-type")
+                }
+                // add new instance
+                instances.newInstance(options);
+                console.log($(this).attr("data-instance-id"))
+                // hide modal
+                $("#instance-modal").modal("hide");
+                // update list
+                instances.renderInstanceList();
+            });
         });
 
 block content
@@ -21,12 +38,10 @@ block content
 block modals
     .ui.modal#instance-modal
         .header New Instance
-        .content
+        .scrolling.content
             h3 Vanilla instances
             .ui.negative.message #[strong Important:] Install functionality has not been implemented yet. Please check back later.
-            .ui.segment
-                .scrolling.content
-                    .ui.divided.relaxed.list#versions-list
+            .ui.divided.relaxed.list#versions-list
 
 
 
@@ -42,7 +57,9 @@ block templates
                             Vanilla 
                         {{/if}} #[strong {{:id}}] ({{:type}})
     script#template-versionModal(type="text/x-jsrender")
-        a.item
+        a.item.version-option(data-instance-id="{{:id}}"
+        data-instance-clienttype="{{if clientType}}{{:clientType}}{{else}}Vanilla{{/if}}",
+        data-instance-type="{{:type}}")
             .content 
                 .header {{:id}}
                 .meta.

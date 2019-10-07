@@ -1,5 +1,6 @@
 body {
     user-select: none;
+    overflow: hidden;
 }
 
 .ui.modal {
