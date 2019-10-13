@@ -19,7 +19,8 @@ function createWindow() {
 		webPreferences: {
 			nodeIntegration: true,
 			sandbox: false
-		}
+		},
+		titleBarStyle: "hiddenInset"
 	});
 
 	mainWindow.setMenu(null);
