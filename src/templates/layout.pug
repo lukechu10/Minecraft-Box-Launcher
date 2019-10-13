@@ -11,13 +11,13 @@ html(lang="en")
         block css
         // js
         script(link-js-library).
-            window.jQuery = window.$ = require('jquery');
+            const jQuery = window.$ = require('jquery');
             // load modules
-            window.instances = require('../../js/ts/instance');
-            window.auth = require('../../js/ts/authentication');
-            window.main = require('../../js/ts/global');
-            window.shell = require('electron').shell;
-            window.store = require('../../js/ts/store');
+            const instances = require('../../js/ts/instance');
+            const auth = require('../../js/ts/authentication');
+            const main = require('../../js/ts/global');
+            const shell = require('electron').shell;
+            const store = require('../../js/ts/store');
         script(src='../js/semantic.min.js' link-js-library)
         block js
     body
