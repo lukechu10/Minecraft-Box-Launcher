@@ -1,15 +1,9 @@
 import Store = require("electron-store");
+import InstanceStore from "./store/InstanceStore";
 // import Auth from "@xmcl/auth";
 
+export var instances: Store = new InstanceStore();
 
-export var instances: Store = new Store({
-	name: "instances",
-	defaults: {
-		instances: [
-            
-		]
-	}
-});
 
 export var installed: Store = new Store({
 	name: "installed",
