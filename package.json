@@ -53,7 +53,8 @@
 		"electron-store": "^5.0.0",
 		"jquery": "^3.4.1",
 		"jsrender": "^1.0.5",
-		"typescript": "^3.6.3"
+		"typescript": "^3.6.3",
+		"v8-compile-cache": "^2.1.0"
 	},
 	"build": {
 		"appId": "launcher.box.minecraft",

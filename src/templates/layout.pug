@@ -11,6 +11,7 @@ html(lang="en")
         block css
         // js
         script(link-js-library).
+            require("v8-compile-cache");
             const jQuery = window.$ = require('jquery');
             // load modules
             const instances = require('../../js/ts/instance');

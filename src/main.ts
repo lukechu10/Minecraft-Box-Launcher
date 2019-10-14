@@ -1,3 +1,5 @@
+import "v8-compile-cache";
+
 // Modules to control application life and create native browser window
 import { app, BrowserWindow } from "electron";
 import * as path from "path";
