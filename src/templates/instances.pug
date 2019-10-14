@@ -56,6 +56,8 @@ block templates
                         {{else}}
                             Vanilla 
                         {{/if}} #[strong {{:id}}] ({{:type}})
+                // TODO: Add delete button for instances
+    
     script#template-versionModal(type="text/x-jsrender")
         a.item.version-option(data-instance-id="{{:id}}"
         data-instance-clienttype="{{if clientType}}{{:clientType}}{{else}}Vanilla{{/if}}",
