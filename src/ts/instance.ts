@@ -12,7 +12,7 @@ import jsrender from "jsrender";
 
 /**
  * Folder where are the minecraft versions are saved
- * To-do: add possibility to customize directory
+ * TODO: add possibility to customize directory
  */
 export var MinecraftSavePathBase: string = path.join(app.getPath("userData"), "./instances/");
 
@@ -27,7 +27,7 @@ export function newInstanceModal() {
  * @param version Version of Minecraft to add
  */
 export async function newInstance(version: Installer.VersionMeta) {
-	// To-do: cast version to InstanceSave
+	// TODO: cast version to InstanceSave
 	InstancesStore.set("instances", InstancesStore.get("instances").concat(version));
 }
 
