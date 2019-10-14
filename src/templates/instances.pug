@@ -30,6 +30,7 @@ block js
 block content
     h1 Instances
     .ui.button(onclick="instances.newInstanceModal()") New Instance
+    .ui.warning.message #[strong Disclaimer:] Buttons are currently only placeholders. They do not actually work (yet).
     .ui.raised.segment
         .ui.divided.items#instance-list
         // render list
@@ -43,20 +44,27 @@ block modals
             .ui.negative.message #[strong Important:] Install functionality has not been implemented yet. Please check back later.
             .ui.divided.relaxed.list#versions-list
 
-
-
 block templates
     script#template-instance(type="text/x-jsrender")
-        .item
-            .content 
-                .header {{:name}}
-                .meta.
-                    {{if clientType}}
-                            {{:clientType}} 
-                        {{else}}
-                            Vanilla 
-                        {{/if}} #[strong {{:id}}] ({{:type}})
-                // TODO: Add delete button for instances
+        section.item
+            .content
+                .ui.grid
+                    .twelve.wide.column
+                        h3.ui.header {{:name}}
+                        p.description.
+                            {{if clientType}}
+                                    {{:clientType}} 
+                                {{else}}
+                                    Vanilla 
+                                {{/if}} #[strong {{:id}}] ({{:type}})
+                        // TODO: Add delete button for instances
+                    .four.wide.column
+                        .ui.right.floated.buttons
+                            .ui.green.button Play
+                            .ui.olive.floating.dropdown.button ▼
+                                .menu
+                                    .item Options
+                                    .item Delete
     
     script#template-versionModal(type="text/x-jsrender")
         a.item.version-option(data-instance-id="{{:id}}"

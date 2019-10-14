@@ -70,6 +70,8 @@ export function renderInstanceList(instances: InstanceSave[] = getAllInstances()
 		const html: string = instanceTemplate.render(instance);
 		$("#instance-list").append(html);
 	});
+
+	$(".ui.dropdown").dropdown();
 	return;
 }
 
