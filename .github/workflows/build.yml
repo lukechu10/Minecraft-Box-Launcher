@@ -21,3 +21,21 @@ jobs:
         with:
           name: windows-build
           path: dist/win-unpacked
+  macos_build:
+    name: MacOS Latest Build
+    runs-on: macOS-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 10
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - name: npm install
+        run: npm install
+      - name: Package application with electron-builder
+        run: npm run pack
+      - name: Publish artificats
+        uses: actions/upload-artifact@master
+        with:
+          name: macos-build
+          path: dist/mac
