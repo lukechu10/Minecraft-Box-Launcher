@@ -38,7 +38,6 @@ export default class InstanceStore extends Store {
      * @throws {Error} if no instance is found
      */
 	deleteInstance(name: string) {
-		// FIXME: fix .splice
 		const index: number = this.instances.findIndex(obj => obj.name == name);
 		console.log(index);
 		if (index == -1) throw Error("An instance with this name does not exist");

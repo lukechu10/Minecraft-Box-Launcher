@@ -2,35 +2,36 @@
 import { Installer } from "@xmcl/installer";
 
 export default class InstanceSave {
-    /**
+	/**
      * Name of instance
      */
-	name: string
-    /**
+	name: string;
+	/**
      * Instance version
      */
-	id: string
-    /**
+	id: string;
+	/**
      * Mojang release or snapshot (vanilla only)
      */
-	type?: string
-    /**
+	type?: string;
+	/**
      * Type of client
      */
 	clientType: "vanilla" | "forge";
-	lastPlayed: Date
+	lastPlayed: Date;
 	/**
 	 * Date version was released
 	 */
-	releaseTime: Date
-	url?: string
+	releaseTime: Date;
+	url?: string;
 
 	/**
 	 * Create a save from VersionMeta
 	 */
 	constructor(name: string, data: Installer.VersionMeta) {
 		this.name = name;
-		this.id = data.id;
+        this.id = data.id;
+        this.type = data.type;
 		this.releaseTime = new Date(data.releaseTime);
 		this.lastPlayed = new Date(); // now
 		this.clientType = "vanilla";

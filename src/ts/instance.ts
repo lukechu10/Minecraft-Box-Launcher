@@ -1,4 +1,5 @@
 import { instances as InstancesStore, versionsMetaCache } from "./store";
+import InstanceSave from "./instance/InstanceSave";
 
 import { Installer } from "@xmcl/installer";
 import { MinecraftLocation, MinecraftFolder } from "@xmcl/util";
@@ -6,7 +7,6 @@ import { MinecraftLocation, MinecraftFolder } from "@xmcl/util";
 import { remote } from "electron";
 const app = remote.app;
 import * as path from "path";
-import InstanceSave from "./instance/InstanceSave";
 
 import jsrender from "jsrender";
 
@@ -27,9 +27,9 @@ export function newInstanceModal() {
  * @param version Version of Minecraft to add
  */
 export async function newInstance(version: Installer.VersionMeta) {
-	// TODO: cast version to InstanceSave
-	// InstancesStore.set("instances", InstancesStore.get("instances").concat(version));
-	InstancesStore.addInstance(version);
+	// TODO: Add ability to change name in setup
+	// FIXME: Check if name exists already
+	InstancesStore.addInstance(new InstanceSave(version.id, version));
 }
 
 /**
