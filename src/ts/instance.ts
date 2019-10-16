@@ -1,4 +1,4 @@
-import { instances as InstancesStore, versionsMetaCache} from "./store";
+import { instances as InstancesStore, versionsMetaCache } from "./store";
 
 import { Installer } from "@xmcl/installer";
 import { MinecraftLocation, MinecraftFolder } from "@xmcl/util";
@@ -28,7 +28,8 @@ export function newInstanceModal() {
  */
 export async function newInstance(version: Installer.VersionMeta) {
 	// TODO: cast version to InstanceSave
-	InstancesStore.set("instances", InstancesStore.get("instances").concat(version));
+	// InstancesStore.set("instances", InstancesStore.get("instances").concat(version));
+	InstancesStore.addInstance(version);
 }
 
 /**
