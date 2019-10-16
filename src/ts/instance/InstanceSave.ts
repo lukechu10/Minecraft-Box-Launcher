@@ -30,8 +30,8 @@ export default class InstanceSave {
 	 */
 	constructor(name: string, data: Installer.VersionMeta) {
 		this.name = name;
-        this.id = data.id;
-        this.type = data.type;
+		this.id = data.id;
+		this.type = data.type;
 		this.releaseTime = new Date(data.releaseTime);
 		this.lastPlayed = new Date(); // now
 		this.clientType = "vanilla";
