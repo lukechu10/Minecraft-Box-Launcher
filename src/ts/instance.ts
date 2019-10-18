@@ -33,7 +33,8 @@ export async function newInstance(version: Installer.VersionMeta) {
 }
 
 /**
- * Returns all instances from instance.json
+ * Returns all instances from `instance.json`
+ * @deprecated Use `InstanceStore.instances` instead
  */
 export function getAllInstances(): InstanceSave[] {
 	return InstancesStore.get("instances") as InstanceSave[];
