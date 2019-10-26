@@ -55,6 +55,8 @@ export async function updateVersionMeta(): Promise<Installer.VersionMeta[] | nul
 	}
 }
 
+// TODO: Move declare into new file with rest of templates
+declare function instancelistTemplate(data: any): string;
 /**
  * Renders all instances onto the instance page
  * @param instances list of instances to be rendered (in order)
