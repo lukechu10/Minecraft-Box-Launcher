@@ -1,7 +1,9 @@
-// import { MinecraftLocation, MinecraftFolder } from "@xmcl/util";
+import path from "path";
+import { app } from "electron";
 import { Installer } from "@xmcl/installer";
+import { MinecraftLocation } from "@xmcl/util";
 
-export default class InstanceSave {
+export default class InstanceSave implements Installer.VersionMeta {
 	/**
      * Name of instance
      */
@@ -13,7 +15,7 @@ export default class InstanceSave {
 	/**
      * Mojang release or snapshot (vanilla only)
      */
-	type?: string;
+	type: string;
 	/**
      * Type of client
      */
@@ -22,12 +24,13 @@ export default class InstanceSave {
 	/**
 	 * Date version was released
 	 */
-	releaseTime: Date;
-	url?: string;
+	releaseTime: string;
+	url: string;
 	/**
 	 * Version binaires are completely installed
 	 */
 	installed: boolean = false;
+	time: string;
 	/**
 	 * Create a save from VersionMeta
 	 */
@@ -35,8 +38,18 @@ export default class InstanceSave {
 		this.name = name;
 		this.id = data.id;
 		this.type = data.type;
-		this.releaseTime = new Date(data.releaseTime);
+		this.releaseTime = data.releaseTime;
 		this.lastPlayed = new Date(); // now
 		this.clientType = "vanilla";
+		this.url = data.url;
+		this.time = data.time;
 	}
+
+	/**
+	 * Install this version
+	 */
+	install = () => {
+		const location: MinecraftLocation = path.join(app.getPath("userData"), "./instances/");
+		console.log(location);
+	};
 }

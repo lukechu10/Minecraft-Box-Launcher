@@ -21,7 +21,13 @@ export default class InstanceStore extends Store {
      * Get list of instances
      */
 	get instances(): InstanceSave[] {
-		return this.get("instances") as InstanceSave[];
+		const instances = this.get("instances") as Array<any>;
+		let returnData: InstanceSave[] = new Array<InstanceSave>();
+		for (let i = 0; i < instances.length; i++) {
+			// instances[i].__proto__ = InstanceSave.prototype;
+			returnData.push(new InstanceSave(instances[i].name, instances[i]));
+		}
+		return returnData;
 	}
 	/**
      * Add a new instance to the store
@@ -44,5 +50,11 @@ export default class InstanceStore extends Store {
 		const temp = Array.from(this.instances);
 		console.log(temp.splice(index));
 		this.set("instances", temp);
+	}
+	/**
+	 *
+	 */
+	findFromName(name: string) {
+		return this.instances.find(obj => obj.name == name);
 	}
 }
