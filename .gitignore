@@ -62,6 +62,7 @@ typings/
 
 # pug template output
 static/views/
+static/templates/
 
 # typescript output
 js/
