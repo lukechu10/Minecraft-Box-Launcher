@@ -27,10 +27,12 @@ html(lang="en")
             a.item(href="./instances.html") Instances
             a.item(href="./news.html") News
             .right.menu
-                a.item#login-status
-                // user popup
-                .ui.flowing.popup
-                    .ui.link.list
+                a.ui.item.dropdown#login-status
+                    #login-status-text
+                    .menu
+                        .item Test
+                        .item Test2
+                    // .ui.link.list
                         a.item(href="./settings.html") Settings
                         a.item(onclick="auth.logout()") Logout
 

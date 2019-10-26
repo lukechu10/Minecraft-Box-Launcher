@@ -93,27 +93,20 @@ function initiateLoginForm(): void {
  */
 export function updateLoginStatus(status: "login" | "logout"): void {
 	if (status == "logout") {
-		$("#login-status").html("Log in");
+		$("#login-status-text").text("Log in");
 		$("#login-status").attr("onclick", "auth.showLoginModal()");
-		$("#login-status").popup("hide").popup("destroy");
+		$("#login-status").dropdown("hide").dropdown("destroy");
 		initiateLoginForm();
 	}
 	else if (status == "login") {
 		// show user profile name
 		const skinUrl = `https://minotar.net/avatar/${store.auth.get("profiles")[0].name}`;
-		$("#login-status").html(store.auth.get("profiles")[0].name +
+		$("#login-status-text").html(store.auth.get("profiles")[0].name +
 		/* skin head */ `<img src='${skinUrl}' style='margin-left: 5px; width: 18px;'>`);
 		$("#login-status").attr("onclick", "");
 
 		// user popup
-		$("#login-status").popup({
-			inline: true,
-			position: "top right",
-			delay: {
-				hide: 500
-			},
-			hoverable: true
-		});
+		$("#login-status").dropdown();
 	}
 	else {
 		throw `Option ${status} is not availible for argument status`;
