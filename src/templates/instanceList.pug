@@ -14,7 +14,7 @@
                             //- TODO: Add delete button for instances
                         .four.wide.column
                             .ui.right.floated.buttons
-                                .ui.green.button Play
+                                .ui.green.button= data[i].installed ? "Play" : "Install"
                                 .ui.olive.floating.dropdown.button ▼
                                     .menu
                                         .item Rename

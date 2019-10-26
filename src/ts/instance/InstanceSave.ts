@@ -24,7 +24,10 @@ export default class InstanceSave {
 	 */
 	releaseTime: Date;
 	url?: string;
-
+	/**
+	 * Version binaires are completely installed
+	 */
+	installed: boolean = false;
 	/**
 	 * Create a save from VersionMeta
 	 */
