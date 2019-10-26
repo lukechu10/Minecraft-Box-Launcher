@@ -30,17 +30,18 @@ html(lang="en")
                 a.ui.item.dropdown#login-status
                     #login-status-text
                     .menu
+                        //- FIXME: Replace .item with a.item for integration with linkJS
                         .item(onclick="location.href = './settings.html'") Settings
                         .item(onclick="auth.logout()") Logout
-                    // .ui.link.list
+                    //- .ui.link.list
                         a.item(href="./settings.html") Settings
                         a.item(onclick="auth.logout()") Logout
 
-        // page content
+        //- page content
         .ui.container(style="padding-top: 40px;")
             block content
 
-        // modals
+        //- modals
         block modals
         .ui.modal#login-modal
             .header Login
@@ -48,10 +49,10 @@ html(lang="en")
                 .ui.centered.grid
                     .row
                         .twelve.wide.column
-                            // error messages
+                            //- error messages
                             .ui.tertiary.inverted.red.segment#login-errors-container(style="display:none;")
                                 p#login-errors
-                            // login form
+                            //- login form
                             form.ui.form.segment.error#login-form(onSubmit="return false;")
                                 .field
                                     label Mojang Email
@@ -65,6 +66,6 @@ html(lang="en")
                                     center
                                         button.ui.tiny.cancel.button.inverted.red Continue without logging in
 
-        // templates
+        //- templates
         .templates
             block templates
