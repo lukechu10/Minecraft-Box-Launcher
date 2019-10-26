@@ -46,31 +46,6 @@ block modals
             .ui.divided.relaxed.list#versions-list
 
 block templates
-    script#template-instance(type="text/x-jsrender")
-        section.item(data-instance-id="{{:id}}"
-        data-instance-clienttype="{{if clientType}}{{:clientType}}{{else}}Vanilla{{/if}}"
-        data-instance-type="{{:type}}")
-            .content
-                .ui.grid
-                    .twelve.wide.column
-                        h3.ui.header {{:name}}
-                        p.description.
-                            {{if clientType}}
-                                    {{:clientType}} 
-                                {{else}}
-                                    Vanilla 
-                                {{/if}} #[strong {{:id}}] ({{:type}})
-                        // TODO: Add delete button for instances
-                    .four.wide.column
-                        .ui.right.floated.buttons
-                            .ui.green.button Play
-                            .ui.olive.floating.dropdown.button ▼
-                                .menu
-                                    .item Rename
-                                    .item Reinstall
-                                    .item Options
-                                    .item Delete
-    
     script#template-versionModal(type="text/x-jsrender")
         a.item.version-option(data-instance-id="{{:id}}"
         data-instance-clienttype="{{if clientType}}{{:clientType}}{{else}}Vanilla{{/if}}"
