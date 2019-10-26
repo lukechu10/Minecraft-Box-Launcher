@@ -60,20 +60,6 @@ export async function updateVersionMeta(): Promise<Installer.VersionMeta[] | nul
  * @param instances list of instances to be rendered (in order)
  */
 export function renderInstanceList(instances: InstanceSave[] = getAllInstances()): void {
-	/*
-	if (!instances || instances.length == 0) {
-		// show no instances availible message
-		$("#instance-list").text("You don't have any instances yet. Create one to start playing. 😆");
-		return;
-	}
-	// clear instance list
-	$("#instance-list").html("");
-	let instanceTemplate = jsrender.templates($("#template-instance").html());
-	instances.forEach((instance) => {
-		const html: string = instanceTemplate.render(instance);
-		$("#instance-list").append(html);
-	});
-	*/
 	$("#instance-list").html(instancelistTemplate({ data: InstancesStore.instances }));
 	$(".ui.dropdown").dropdown();
 	return;
