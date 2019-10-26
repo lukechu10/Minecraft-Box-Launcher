@@ -1,0 +1,26 @@
+//- structure: InstanceSave[]
+- if(data == undefined || data.length == 0)
+    p= "You don't have any instances yet. Create one to start playing. 😆"
+- else
+    - for(let i = 0; i < data.length; i++)
+        section.item(data-instance-id=data[i].id
+            data-instance-clienttype=data[i].clientType || "Vanilla"
+            data-instance-type=data[i].type)
+                .content
+                    .ui.grid
+                        .twelve.wide.column
+                            h3.ui.header= data[i].name
+                            p.description
+                                | data[i].clientType || "Vanilla"
+                                strong= data[i].id
+                                | (#{data[i].type})
+                            //- TODO: Add delete button for instances
+                        .four.wide.column
+                            .ui.right.floated.buttons
+                                .ui.green.button Play
+                                .ui.olive.floating.dropdown.button ▼
+                                    .menu
+                                        .item Rename
+                                        .item Reinstall
+                                        .item Options
+                                        .item Delete
