@@ -14,6 +14,8 @@
 		"build:ts": "tsc -p tsconfig.json",
 		"build-watch:pug": "pug ./src/views --watch --out ./static/views",
 		"build:pug": "pug ./src/views --out ./static/views",
+		"build-watch:pug-template": "pug ./src/templates --out ./static/templates -c -w",
+		"build-pug-template": "pug ./src/templates --out ./static/templates -c",
 		"eslint": "eslint src/ --ext .ts,.tsx",
 		"eslint:fix": "eslint src/ --ext .ts,.tsx --fix",
 		"pack": "electron-builder --dir",

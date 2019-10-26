@@ -5,6 +5,15 @@
 	"tasks": [
 		{
 			"type": "npm",
+			"script": "build-watch",
+			"label": "Build All (Watch)",
+			"problemMatcher": [
+				"$tsc-watch",
+				"$eslint-stylish"
+			]
+		},
+		{
+			"type": "npm",
 			"script": "build-watch:ts",
 			"label": "Build Typescript (Watch)",
 			"problemMatcher": [
