@@ -30,8 +30,8 @@ html(lang="en")
                 a.ui.item.dropdown#login-status
                     #login-status-text
                     .menu
-                        .item Test
-                        .item Test2
+                        .item(onclick="location.href = './settings.html'") Settings
+                        .item(onclick="auth.logout()") Logout
                     // .ui.link.list
                         a.item(href="./settings.html") Settings
                         a.item(onclick="auth.logout()") Logout
