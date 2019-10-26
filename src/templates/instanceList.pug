@@ -10,10 +10,7 @@
                     .ui.grid
                         .twelve.wide.column
                             h3.ui.header= data[i].name
-                            p.description
-                                | data[i].clientType || "Vanilla"
-                                strong= data[i].id
-                                | (#{data[i].type})
+                            p.description #{data[i].clientType || "Vanilla"} #[strong= data[i].id] (#{data[i].type})
                             //- TODO: Add delete button for instances
                         .four.wide.column
                             .ui.right.floated.buttons
