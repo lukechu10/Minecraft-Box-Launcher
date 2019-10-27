@@ -15,8 +15,14 @@
                             //- TODO: Add delete button for instances
                         .four.wide.column
                             .ui.right.floated.buttons
-                                .ui.green.button= data[i].installed ? "Play" : "Install"
-                                .ui.olive.floating.dropdown.button ▼
+                                - if(data[i].installed)
+                                    //- TODO: Add onclick property to launch game
+                                    .ui.green.button
+                                        | Play
+                                - else
+                                    .ui.olive.button(onclick=`instances.installByName("${data[i].name}")`)
+                                        | Install
+                                .ui.gray.floating.dropdown.button ▼
                                     .menu
                                         .item Rename
                                         .item Reinstall
