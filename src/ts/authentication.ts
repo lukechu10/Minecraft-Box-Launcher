@@ -88,10 +88,13 @@ function initiateLoginForm(): void {
 	});
 }
 
+// TODO: Move declare to new file
+declare function loginstatusTemplate(opts?: any): string;
 /**
  * Updates the login status in the navigation
  */
 export function updateLoginStatus(status: "login" | "logout"): void {
+	/*
 	if (status == "logout") {
 		$("#login-status-text").text("Log in");
 		$("#login-status").attr("onclick", "auth.showLoginModal()");
@@ -102,9 +105,19 @@ export function updateLoginStatus(status: "login" | "logout"): void {
 		// show user profile name
 		const skinUrl = `https://minotar.net/avatar/${store.auth.get("profiles")[0].name}`;
 		$("#login-status-text").html(store.auth.get("profiles")[0].name +
-		/* skin head */ `<img src='${skinUrl}' style='margin-left: 5px; width: 18px;'>`);
+		`<img src='${skinUrl}' style='margin-left: 5px; width: 18px;'>`);
 		$("#login-status").attr("onclick", "");
 
+		// user popup
+		$("#login-status").dropdown();
+}
+	*/
+	if (status == "logout") {
+		$("#login-status").html(loginstatusTemplate({ loggedIn: false }));
+		initiateLoginForm();
+	}
+	else if (status == "login") {
+		$("#login-status").html(loginstatusTemplate({ loggedIn: true, name: store.auth.get("profiles")[0].name }));
 		// user popup
 		$("#login-status").dropdown();
 	}

@@ -20,25 +20,20 @@ html(lang="en")
             const shell = require('electron').shell;
             const store = require('../../js/store');
         script(src='../js/semantic.min.js' link-js-library)
+
+        script(src="../templates/loginstatus.js")
         block js
     body
-        navbar.ui.menu.fixed.inverted
+        navbar.ui.menu.fixed.inverted(style="height: 45px;")
             .item Minecraft Box
             a.item(href="./instances.html") Instances
             a.item(href="./news.html") News
             .right.menu
-                a.ui.item.dropdown#login-status
-                    #login-status-text
-                    .menu
-                        //- FIXME: Replace .item with a.item for integration with linkJS
-                        .item(onclick="location.href = './settings.html'") Settings
-                        .item(onclick="auth.logout()") Logout
-                    //- .ui.link.list
-                        a.item(href="./settings.html") Settings
-                        a.item(onclick="auth.logout()") Logout
+                //- FIXME: Fix username and text position
+                .ui.item.dropdown#login-status
 
         //- page content
-        .ui.container(style="padding-top: 40px;")
+        .ui.container(style="padding-top: 45px;")
             block content
 
         //- modals
@@ -65,7 +60,7 @@ html(lang="en")
                                 .actions
                                     center
                                         button.ui.tiny.cancel.button.inverted.red Continue without logging in
-
+        //- TODO: Replace all jsrender with pug
         //- templates
         .templates
             block templates

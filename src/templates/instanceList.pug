@@ -5,7 +5,8 @@
     - for(let i = 0; i < data.length; i++)
         section.item(data-instance-id=data[i].id
             data-instance-clienttype=data[i].clientType || "Vanilla"
-            data-instance-type=data[i].type)
+            data-instance-type=data[i].type
+            data-instance-name=data[i].name)
                 .content
                     .ui.grid
                         .twelve.wide.column
@@ -14,8 +15,14 @@
                             //- TODO: Add delete button for instances
                         .four.wide.column
                             .ui.right.floated.buttons
-                                .ui.green.button= data[i].installed ? "Play" : "Install"
-                                .ui.olive.floating.dropdown.button ▼
+                                - if(data[i].installed)
+                                    //- TODO: Add onclick property to launch game
+                                    .ui.green.button
+                                        | Play
+                                - else
+                                    .ui.olive.button(onclick=`instances.installByName("${data[i].name}")`)
+                                        | Install
+                                .ui.gray.floating.dropdown.button ▼
                                     .menu
                                         .item Rename
                                         .item Reinstall
