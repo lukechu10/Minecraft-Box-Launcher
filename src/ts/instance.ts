@@ -65,9 +65,7 @@ export async function installByName(name: string) {
 	if (!i) throw "An instance with this name does not exist";
 	else {
 		console.log(`[DEBUG] Started installation of instance ${i.name} with version ${i.id} and type ${i.clientType}.`);
-		console.log(i);
 		await i.install();
-		console.log(i.installed);
 		// update instance in store
 		InstancesStore.setInstance(i.name, i);
 		console.log(`[DEBUG] Installation of ${i.name} finished.`);
@@ -83,7 +81,6 @@ declare function instancelistTemplate(data: any): string;
  * @param instances list of instances to be rendered (in order)
  */
 export function renderInstanceList(instances: InstanceSave[] = getAllInstances()): void {
-	console.log(InstancesStore.instances[1].installed);
 	$("#instance-list").html(instancelistTemplate({ data: InstancesStore.instances }));
 	$(".ui.dropdown").dropdown();
 	return;
