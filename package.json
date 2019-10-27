@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "minecraft-box-launcher",
-	"version": "0.0.2",
+	"version": "0.1.0",
 	"description": "Open source Minecraft Java Edition launcher build with ElectronJS",
 	"main": "js/main.js",
 	"scripts": {
