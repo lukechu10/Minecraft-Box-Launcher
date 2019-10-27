@@ -10,15 +10,11 @@ block js
             instances.renderInstanceList();
             // apply event handlers
             $(document).on("click", ".version-option", (event) => {
-                jqThis = $(event.currentTarget);
-                const options = {
-                    name: jqThis.attr("data-instance-id"),
-                    id: jqThis.attr("data-instance-id"),
-                    clientType: jqThis.attr("data-instance-clienttype"),
-                    type: jqThis.attr("data-instance-type")
-                }
+                let jqThis = $(event.currentTarget);
+                const thisId = jqThis.attr("data-instance-id");
+                let instance = store.versionsMetaCache.get().versions.find(obj => obj.id == thisId);
                 // add new instance
-                instances.newInstance(options);
+                instances.newInstance(instance);
                 console.log($(this).attr("data-instance-id"))
                 // hide modal
                 $("#instance-modal").modal("hide");

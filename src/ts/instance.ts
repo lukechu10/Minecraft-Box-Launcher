@@ -28,7 +28,6 @@ export function newInstanceModal() {
  */
 export async function newInstance(version: Installer.VersionMeta) {
 	// TODO: Add ability to change name in setup
-	// FIXME: Check if name exists already
 	InstancesStore.addInstance(new InstanceSave(version.id, version));
 }
 
@@ -55,6 +54,23 @@ export async function updateVersionMeta(): Promise<Installer.VersionMeta[] | nul
 	}
 }
 
+/**
+ * Finds an instance and installs it
+ * @param name name of instance
+ * @throws if instance is not found
+ */
+export async function installByName(name: string) {
+	// find instance
+	const i = InstancesStore.instances.find(obj => obj.name === name);
+	if (!i) throw "An instance with this name does not exist";
+	else {
+		console.log(`[DEBUG] Started installation of instance ${i.name} with version ${i.id} and type ${i.clientType}.`)
+		await i.install();
+		console.log(`[DEBUG] Installation of ${i.name} finished.`)
+		return;
+	}
+}
+
 // TODO: Move declare into new file with rest of templates
 declare function instancelistTemplate(data: any): string;
 /**
@@ -72,7 +88,6 @@ export function renderInstanceList(instances: InstanceSave[] = getAllInstances()
  * @param versions list of versions to be rendered (in order)
  */
 export function renderVersionsList(versions: Installer.VersionMeta[] = versionsMetaCache.get("versions")): void {
-	console.log(versions);
 	if (versions.length == 0) {
 		// show no instances availible message
 		$("#versions-list").text("No versions were found. Wierd. This is probably a problem with Mojang.");

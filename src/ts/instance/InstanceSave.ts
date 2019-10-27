@@ -1,7 +1,8 @@
 import path from "path";
-import { app } from "electron";
+import { remote } from "electron";
+const app = remote.app;
 import { Installer } from "@xmcl/installer";
-import { MinecraftLocation } from "@xmcl/util";
+import { MinecraftLocation, MinecraftFolder } from "@xmcl/util";
 
 export default class InstanceSave implements Installer.VersionMeta {
 	/**
@@ -48,8 +49,8 @@ export default class InstanceSave implements Installer.VersionMeta {
 	/**
 	 * Install this version
 	 */
-	install = () => {
-		const location: MinecraftLocation = path.join(app.getPath("userData"), "./instances/");
-		console.log(location);
+	async install() {
+		const location: MinecraftLocation = new MinecraftFolder(path.join(app.getPath("userData"), "./instances/"));
+		let temp = await Installer.install("client", this, location);
 	};
 }

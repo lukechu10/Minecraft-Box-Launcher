@@ -5,7 +5,8 @@
     - for(let i = 0; i < data.length; i++)
         section.item(data-instance-id=data[i].id
             data-instance-clienttype=data[i].clientType || "Vanilla"
-            data-instance-type=data[i].type)
+            data-instance-type=data[i].type
+            data-instance-name=data[i].name)
                 .content
                     .ui.grid
                         .twelve.wide.column
