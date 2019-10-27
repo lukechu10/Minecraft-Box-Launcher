@@ -58,7 +58,7 @@ export default class InstanceStore extends Store {
 		const temp = this.instances;
 		temp[i] = newValue;
 		console.log(temp);
-		this.set(`instances`, temp);
+		this.set("instances", temp);
 	}
 	/**
 	 * Find an instance by name
