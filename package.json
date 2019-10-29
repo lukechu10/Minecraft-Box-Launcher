@@ -31,8 +31,8 @@
 	"author": "lukechu10",
 	"license": " GPL-3.0-or-later",
 	"devDependencies": {
-		"@typescript-eslint/eslint-plugin": "^2.5.0",
-		"@typescript-eslint/parser": "^2.5.0",
+		"@typescript-eslint/eslint-plugin": "^2.6.0",
+		"@typescript-eslint/parser": "^2.6.0",
 		"electron": "^7.0.0",
 		"electron-builder": "^21.2.0",
 		"eslint": "^6.6.0",
