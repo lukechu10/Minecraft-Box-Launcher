@@ -11,3 +11,4 @@ ports:
 tasks:
   - init: npm install
   - command: npm run start:gitpod
+  - command: npm run build-watch
