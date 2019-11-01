@@ -8,6 +8,9 @@ import { remote } from "electron";
 const app = remote.app;
 import * as path from "path";
 
+import * as Render from "./Render";
+
+// TODO: Replace jsrender with PugJS
 import jsrender from "jsrender";
 
 /**
@@ -61,7 +64,7 @@ export async function updateVersionMeta(): Promise<Installer.VersionMeta[] | nul
  */
 export async function installByName(name: string) {
 	// find instance
-	const i = InstancesStore.instances.find(obj => obj.name === name);
+	const i = InstancesStore.all.find(obj => obj.name === name);
 	if (!i) throw "An instance with this name does not exist";
 	else {
 		console.log(`[DEBUG] Started installation of instance ${i.name} with version ${i.id} and type ${i.clientType}.`);
@@ -69,7 +72,7 @@ export async function installByName(name: string) {
 		// update instance in store
 		InstancesStore.setInstance(i.name, i);
 		console.log(`[DEBUG] Installation of ${i.name} finished.`);
-		renderInstanceList();
+		Render.instanceList();
 		return;
 	}
 }
@@ -79,12 +82,15 @@ declare function instancelistTemplate(data: any): string;
 /**
  * Renders all instances onto the instance page
  * @param instances list of instances to be rendered (in order)
+ * @deprecated Use `Render.instanceList()` instead
  */
+/*
 export function renderInstanceList(instances: InstanceSave[] = getAllInstances()): void {
-	$("#instance-list").html(instancelistTemplate({ data: InstancesStore.instances }));
-	$(".ui.dropdown").dropdown();
-	return;
+   $("#instance-list").html(instancelistTemplate({ data: InstancesStore.all }));
+   $(".ui.dropdown").dropdown();
+   return;
 }
+*/
 
 /**
  * Renders all versions onto the versions modal

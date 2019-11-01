@@ -20,7 +20,7 @@ export default class InstanceStore extends Store {
 	/**
      * Get list of instances
      */
-	get instances(): InstanceSave[] {
+	get all(): InstanceSave[] {
 		let instances = this.get("instances") as Array<InstanceSave>;
 		for (let i = 0; i < instances.length; i++) {
 			Object.setPrototypeOf(instances[i], InstanceSave.prototype);
@@ -33,7 +33,7 @@ export default class InstanceStore extends Store {
      */
 	addInstance(item: InstanceSave): void {
 		// TODO: check for name already exists
-		const result = this.instances.find(obj => obj.name == item.name);
+		const result = this.all.find(obj => obj.name == item.name);
 		if (result !== undefined) throw Error("An instance with this name already exists!");
 		else this.set("instances", this.get("instances").concat(item));
 	}
@@ -42,10 +42,10 @@ export default class InstanceStore extends Store {
      * @throws {Error} if no instance is found
      */
 	deleteInstance(name: string) {
-		const index: number = this.instances.findIndex(obj => obj.name == name);
+		const index: number = this.all.findIndex(obj => obj.name == name);
 		console.log(index);
 		if (index == -1) throw Error("An instance with this name does not exist");
-		const temp = Array.from(this.instances);
+		const temp = Array.from(this.all);
 		console.log(temp.splice(index));
 		this.set("instances", temp);
 	}
@@ -54,8 +54,8 @@ export default class InstanceStore extends Store {
 	 * @param name
 	 */
 	setInstance(name: string, newValue: InstanceSave): void {
-		const i = this.instances.findIndex(obj => obj.name == name);
-		const temp = this.instances;
+		const i = this.all.findIndex(obj => obj.name == name);
+		const temp = this.all;
 		temp[i] = newValue;
 		console.log(temp);
 		this.set("instances", temp);
@@ -65,6 +65,6 @@ export default class InstanceStore extends Store {
 	 * @param name of instance
 	 */
 	findFromName(name: string): InstanceSave | undefined {
-		return this.instances.find(obj => obj.name == name);
+		return this.all.find(obj => obj.name == name);
 	}
 }

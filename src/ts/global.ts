@@ -12,3 +12,9 @@ $(() => {
 	// update versions
 	updateVersionMeta();
 });
+
+// export modules
+import * as Render from "./Render";
+import * as auth from "./authentication";
+
+export { Render, auth, store };

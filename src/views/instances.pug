@@ -7,7 +7,7 @@ block js
     script.
         $(() => {
             // render list
-            instances.renderInstanceList();
+            Render.instanceList();
             // apply event handlers
             $(document).on("click", ".version-option", (event) => {
                 let jqThis = $(event.currentTarget);
@@ -19,7 +19,7 @@ block js
                 // hide modal
                 $("#instance-modal").modal("hide");
                 // update list
-                instances.renderInstanceList();
+                Render.instanceList();
             });
         });
     script(src="../templates/instanceList.js")
