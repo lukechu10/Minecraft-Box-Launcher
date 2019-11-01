@@ -16,5 +16,6 @@ $(() => {
 // export modules
 import * as Render from "./Render";
 import * as auth from "./authentication";
+import * as instances from "./instance";
 
-export { Render, auth, store };
+export { Render, auth, store, instances };

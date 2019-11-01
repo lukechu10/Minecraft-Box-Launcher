@@ -77,21 +77,6 @@ export async function installByName(name: string) {
 	}
 }
 
-// TODO: Move declare into new file with rest of templates
-declare function instancelistTemplate(data: any): string;
-/**
- * Renders all instances onto the instance page
- * @param instances list of instances to be rendered (in order)
- * @deprecated Use `Render.instanceList()` instead
- */
-/*
-export function renderInstanceList(instances: InstanceSave[] = getAllInstances()): void {
-   $("#instance-list").html(instancelistTemplate({ data: InstancesStore.all }));
-   $(".ui.dropdown").dropdown();
-   return;
-}
-*/
-
 /**
  * Renders all versions onto the versions modal
  * @param versions list of versions to be rendered (in order)
