@@ -1,30 +1,31 @@
 //- structure: InstanceSave[]
 - if(data == undefined || data.length == 0)
-    p= "You don't have any instances yet. Create one to start playing. 😆"
+	p= "You don't have any instances yet. Create one to start playing. 😆"
 - else
-    - for(let i = 0; i < data.length; i++)
-        section.item(data-instance-id=data[i].id
-            data-instance-clienttype=data[i].clientType || "Vanilla"
-            data-instance-type=data[i].type
-            data-instance-name=data[i].name)
-                .content
-                    .ui.grid
-                        .twelve.wide.column
-                            h3.ui.header= data[i].name
-                            p.description #{data[i].clientType || "Vanilla"} #[strong= data[i].id] (#{data[i].type})
-                            //- TODO: Add delete button for instances
-                        .four.wide.column
-                            .ui.right.floated.buttons
-                                - if(data[i].installed)
-                                    //- TODO: Add onclick property to launch game
-                                    .ui.green.button
-                                        | Play
-                                - else
-                                    .ui.olive.button(onclick=`instances.installByName("${data[i].name}")`)
-                                        | Install
-                                .ui.gray.floating.dropdown.button ▼
-                                    .menu
-                                        .item Rename
-                                        .item Reinstall
-                                        .item Options
-                                        .item Delete
+	- for(let i = 0; i < data.length; i++)
+		section.item(data-instance-id=data[i].id
+			data-instance-clienttype=data[i].clientType || "Vanilla"
+			data-instance-type=data[i].type
+			data-instance-name=data[i].name)
+				.content
+					.ui.grid
+						.twelve.wide.column
+							h3.ui.header= data[i].name
+							p.description #{data[i].clientType || "Vanilla"} #[strong= data[i].id] (#{data[i].type})
+							//- TODO: Add delete button for instances
+						.four.wide.column
+							.ui.right.floated.buttons
+								- if(data[i].installed)
+									//- TODO: Add onclick property to launch game
+									.ui.green.button#btn-play
+										| Play
+								- else
+									.ui.olive.button#btn-install(data-instance-name=data[i].name)
+										// (onclick=`instances.installByName("${data[i].name}")`)
+										| Install
+								.ui.gray.floating.dropdown.button ▼
+									.menu
+										.item Rename
+										.item Reinstall
+										.item Options
+										.item Delete
