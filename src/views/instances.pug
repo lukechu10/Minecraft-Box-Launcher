@@ -41,18 +41,3 @@ block modals
 			h3 Vanilla instances
 			.ui.negative.message #[strong Important:] Install functionality has not been implemented yet. Please check back later.
 			.ui.divided.relaxed.list#versions-list
-
-block templates
-	//- TODO: Migrate to PugJS
-	script#template-versionModal(type="text/x-jsrender")
-		a.item.version-option(data-instance-id="{{:id}}"
-		data-instance-clienttype="{{if clientType}}{{:clientType}}{{else}}Vanilla{{/if}}"
-		data-instance-type="{{:type}}")
-			.content 
-				.header {{:id}}
-				.meta.
-					{{if clientType}}
-						{{:clientType}} - {{:type}}
-					{{else}}
-						Vanilla - {{:type}}
-					{{/if}}
