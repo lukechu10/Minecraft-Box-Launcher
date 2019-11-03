@@ -17,12 +17,13 @@ block js
 				instances.newInstance(instance);
 				console.log($(this).attr("data-instance-id"))
 				// hide modal
-				$("#instance-modal").modal("hide");
+				$("#version-modal").modal("hide");
 				// update list
 				Render.instanceList();
 			});
 		});
 	script(src="../templates/instanceList.js")
+	script(src="../templates/versionModal.js")
 
 block content
 	h1 Instances
@@ -34,7 +35,7 @@ block content
 
 
 block modals
-	.ui.modal#instance-modal
+	.ui.modal#version-modal
 		.header New Instance
 		.scrolling.content
 			h3 Vanilla instances
