@@ -1,15 +1,27 @@
+//- argument filter is of type "all" | "release" | "snapshot"
+mixin versionList(filter)
+	each version in versions
+		- if(filter === "all" || version.type == filter)
+			a.item.version-option(data-instance-id=version.id
+			data-instance-clienttype=version.clientType || "Vanilla"
+			data-instance-type=version.type)
+				.content 
+					.header=version.id
+					.meta=(version.clientType || "Vanilla") + " - " + version.type
+
 .header New Instance
-.scrolling.content
+.scrolling.content(style="background-color: #FAF9F8;")
 	h3 Vanilla instances
 	.ui.negative.message #[strong Important:] Install functionality has not been implemented yet. Please check back later.
 	.ui.divided.relaxed.list#versions-list
-		- if (versions === undefined || versions.length === 0)
+		- if(versions === undefined || versions.length === 0)
 			p No versions were found. Wierd. This is probably a problem with Mojang.
 		- else
-			each version in versions
+			// each version in versions
 				a.item.version-option(data-instance-id=version.id
 				data-instance-clienttype=version.clientType || "Vanilla"
 				data-instance-type=version.type)
 					.content 
 						.header=version.id
 						.meta=(version.clientType || "Vanilla") + " - " + version.type
+			+versionList("all")
