@@ -1,20 +1,25 @@
 import "v8-compile-cache";
 
 // Modules to control application life and create native browser window
-import { app, BrowserWindow } from "electron";
+import { app, ipcMain } from "electron";
 import * as path from "path";
 
 import debug from "electron-debug";
+
+import * as consoleUtils from "./consoleUtils"
+import Window from './Window';
 
 debug();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow: BrowserWindow | null;
+let mainWindow: Window | null;
 
 function createWindow() {
 	// Create the browser window.
-	mainWindow = new BrowserWindow({
+	mainWindow = new Window({
+		type: "file",
+		path: path.join(__dirname, "../static/views/", "instances.html"),
 		width: 800,
 		height: 600,
 		title: "Minecraft Box",
@@ -24,12 +29,6 @@ function createWindow() {
 		},
 		titleBarStyle: "hiddenInset"
 	});
-
-	mainWindow.setMenu(null);
-
-	// and load the index.html of the app.
-	mainWindow.loadFile(path.join(__dirname, "../static/views/", "instances.html"));
-
 	// Emitted when the window is closed.
 	mainWindow.on("closed", function() {
 		// Dereference the window object, usually you would store windows
