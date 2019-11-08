@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { remote } from 'electron';
+import { remote } from "electron";
 const BrowserWindow = remote.BrowserWindow;
 
 interface WindowConstructorOptions extends Electron.BrowserWindowConstructorOptions {
@@ -7,23 +7,34 @@ interface WindowConstructorOptions extends Electron.BrowserWindowConstructorOpti
 	path: string
 }
 
-export default class Window extends BrowserWindow {
+// TODO: make inherit from Electron.BrowserWindow to provide full api
+export default class Window {
+	browser: Electron.BrowserWindow;
 	private static defaultOpts: WindowConstructorOptions = {
 		type: "url",
 		path: "",
-	}
+	};
 	/**
 	* Create a new window with properties
 	*/
 	constructor(opts?: WindowConstructorOptions | undefined) {
 		const newOpts = _.defaultsDeep(opts, Window.defaultOpts);
-		super(newOpts);
+		this.browser = new BrowserWindow(newOpts);
 		// type
 		if (newOpts.type == "file") {
-			this.loadFile(newOpts.path);
+			this.browser.loadFile(newOpts.path);
 		}
 		else if (newOpts.type == "url") {
-			this.loadURL(newOpts.path);
+			this.browser.loadURL(newOpts.path);
 		}
+	}
+	show() {
+		this.browser.show();
+	}
+	hide() {
+		this.browser.hide();
+	}
+	setMenu(menu: Electron.Menu | null) {
+		this.browser.setMenu(menu);
 	}
 }

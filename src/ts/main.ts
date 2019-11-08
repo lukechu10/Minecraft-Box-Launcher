@@ -6,8 +6,8 @@ import * as path from "path";
 
 import debug from "electron-debug";
 
-import * as consoleUtils from "./consoleUtils"
-import Window from './Window';
+import * as consoleUtils from "./consoleUtils";
+import Window from "./Window";
 
 debug();
 

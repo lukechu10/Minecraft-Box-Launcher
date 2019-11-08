@@ -12,6 +12,7 @@ import * as Render from "./Render";
 
 // TODO: Replace jsrender with PugJS
 import jsrender from "jsrender";
+import Window from "./WindowRemote";
 
 /**
  * Folder where are the minecraft versions are saved
@@ -21,11 +22,16 @@ export var MinecraftSavePathBase: string = path.join(app.getPath("userData"), ".
 
 
 export function newInstanceModal() {
-	/*
-	$("#version-modal").modal("show");
-	renderVersionsList();
-	*/
-	Render.versionList();
+	var window = new Window({
+		type: "file",
+		path: path.join(__dirname, "../static/views/", "newInstance.html"),
+		title: "New Instance",
+		webPreferences: {
+			nodeIntegration: true
+		}
+	});
+
+	window.show();
 }
 
 /**

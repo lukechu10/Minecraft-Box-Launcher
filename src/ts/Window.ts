@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { BrowserWindow } from 'electron';
+import { BrowserWindow } from "electron";
 
 interface WindowConstructorOptions extends Electron.BrowserWindowConstructorOptions {
 	type: "file" | "url"
@@ -10,7 +10,7 @@ export default class Window extends BrowserWindow {
 	private static defaultOpts: WindowConstructorOptions = {
 		type: "url",
 		path: ""
-	}
+	};
 	/**
 	* Create a new window with properties
 	*/
