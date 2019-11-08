@@ -58,3 +58,11 @@ app.on("activate", function() {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+// change to instance list from different window
+ipcMain.on("new-instance", (event: Electron.IpcMainEvent) => {
+	consoleUtils.debug("Updating instance list");
+	if (mainWindow !== null)
+		mainWindow.webContents.send("update-instance-list");
+	event.returnValue = "success";
+});

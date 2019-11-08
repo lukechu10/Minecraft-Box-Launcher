@@ -3,7 +3,7 @@ import * as consoleUtils from "../consoleUtils";
 import { versionsMetaCache, instances } from "../store";
 import { Installer } from "@xmcl/installer";
 import { Version } from "@xmcl/common";
-import { remote } from "electron";
+import { remote, ipcRenderer } from "electron";
 
 function menuItem(version: Installer.VersionMeta) {
 	return `<div class="item" data-value="${version.id}">
@@ -110,6 +110,8 @@ $(() => {
 			console.log(tempInstance);
 			// create a new instance in InstanceStore
 			instances.addInstance(tempInstance);
+			// tell main window to update
+			ipcRenderer.sendSync("new-instance");
 			// close window
 			remote.getCurrentWindow().close();
 		}
