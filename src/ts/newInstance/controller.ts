@@ -1,9 +1,9 @@
 import InstanceSave from "../instance/InstanceSave";
 import * as consoleUtils from "../consoleUtils";
 import { versionsMetaCache, instances } from "../store";
-import { Installer } from '@xmcl/installer';
-import { Version } from '@xmcl/common';
-import { remote } from 'electron';
+import { Installer } from "@xmcl/installer";
+import { Version } from "@xmcl/common";
+import { remote } from "electron";
 
 function menuItem(version: Installer.VersionMeta) {
 	return `<div class="item" data-value="${version.id}">
@@ -14,7 +14,7 @@ function menuItem(version: Installer.VersionMeta) {
 
 function updateIdDropdown(val?: string) {
 	$("#dropdown-id .menu").empty();
-	$("#dropdown-id").dropdown("set text", "Select Version")
+	$("#dropdown-id").dropdown("set text", "Select Version");
 	// check if version is selected
 	if (val !== undefined) {
 		// remove disable on #dropdown-id
@@ -27,7 +27,7 @@ function updateIdDropdown(val?: string) {
 				for (const version of versions) {
 					if (version.type == "release") {
 						// render versions
-						$("#dropdown-id .menu").append(menuItem(version))
+						$("#dropdown-id .menu").append(menuItem(version));
 					}
 				}
 				break;
@@ -35,7 +35,7 @@ function updateIdDropdown(val?: string) {
 				for (const version of versions) {
 					if (version.type == "snapshot") {
 						// render versions
-						$("#dropdown-id .menu").append(menuItem(version))
+						$("#dropdown-id .menu").append(menuItem(version));
 					}
 				}
 				break;
@@ -43,7 +43,7 @@ function updateIdDropdown(val?: string) {
 				for (const version of versions) {
 					if (version.type == "old_alpha" || version.type == "old_beta") {
 						// render versions
-						$("#dropdown-id .menu").append(menuItem(version))
+						$("#dropdown-id .menu").append(menuItem(version));
 					}
 				}
 				break;
@@ -101,7 +101,7 @@ $(() => {
 			// create instance from form values
 			let tempVersionMeta = versionsMetaCache.get("versions")
 				.find((obj: Installer.VersionMeta) => {
-					return obj.id == form.form("get value", "instance-id")
+					return obj.id == form.form("get value", "instance-id");
 				});
 			let tempInstance = new InstanceSave(
 				form.form("get value", "instance-name"),
