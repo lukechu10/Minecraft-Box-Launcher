@@ -12,6 +12,7 @@ import * as Render from "./Render";
 
 // TODO: Replace jsrender with PugJS
 import jsrender from "jsrender";
+import Window from "./WindowRemote";
 
 /**
  * Folder where are the minecraft versions are saved
@@ -21,8 +22,16 @@ export var MinecraftSavePathBase: string = path.join(app.getPath("userData"), ".
 
 
 export function newInstanceModal() {
-	$("#instance-modal").modal("show");
-	renderVersionsList();
+	var window = new Window({
+		type: "file",
+		path: path.join(__dirname, "../static/views/", "newInstance.html"),
+		title: "New Instance",
+		webPreferences: {
+			nodeIntegration: true
+		}
+	});
+
+	window.show();
 }
 
 /**
@@ -75,26 +84,6 @@ export async function installByName(name: string) {
 		Render.instanceList();
 		return;
 	}
-}
-
-/**
- * Renders all versions onto the versions modal
- * @param versions list of versions to be rendered (in order)
- */
-export function renderVersionsList(versions: Installer.VersionMeta[] = versionsMetaCache.get("versions")): void {
-	if (versions.length == 0) {
-		// show no instances availible message
-		$("#versions-list").text("No versions were found. Wierd. This is probably a problem with Mojang.");
-		return;
-	}
-	// clear instance list
-	$("#versions-list").html("");
-	let versionTemplate = jsrender.templates($("#template-versionModal").html());
-	versions.forEach((version) => {
-		const html: string = versionTemplate.render(version);
-		$("#versions-list").append(html);
-	});
-	return;
 }
 
 export var api = require("@xmcl/minecraft-launcher-core");

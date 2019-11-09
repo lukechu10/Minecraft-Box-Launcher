@@ -31,6 +31,7 @@
 	"author": "lukechu10",
 	"license": " GPL-3.0-or-later",
 	"devDependencies": {
+		"@types/lodash": "^4.14.144",
 		"@typescript-eslint/eslint-plugin": "^2.6.0",
 		"@typescript-eslint/parser": "^2.6.0",
 		"electron": "^7.0.0",
@@ -56,6 +57,7 @@
 		"jquery": "^3.4.1",
 		"jsrender": "^1.0.5",
 		"tslib": "^1.10.0",
+		"lodash": "^4.17.15",
 		"typescript": "^3.6.4",
 		"v8-compile-cache": "^2.1.0"
 	},

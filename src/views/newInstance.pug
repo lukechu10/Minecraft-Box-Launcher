@@ -1,0 +1,55 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible" content="ie=edge")
+		// css
+		// semantic-ui
+		link(rel="stylesheet" href="../css/global.css")
+		link(rel="stylesheet" href="../css/semantic.min.css")
+		block css
+		// js
+		script.
+			// load modules
+			require("v8-compile-cache");
+			const jQuery = window.$ = require('jquery');
+			const { ipcRenderer, shell, remote } = require('electron');
+		script(src='../js/semantic.min.js' link-js-library)
+		script(src="../templates/loginStatus.js" link-js-library)
+		script.
+			const controller = require("../../js/newInstance/controller");
+		block js
+	body
+		.ui.container
+			h1 New Instance
+			form.ui.form#new-instance-form
+				//- TODO: Show error if name is already taken
+				.field
+					label Instance Name
+					.ui.input
+						input(type="text" name="instance-name" placeholder="Unnamed Instance")
+				// type of instance
+				.field
+					label Instance Type
+					.ui.fluid.selection.dropdown#dropdown-type
+						//- id == minecraft type
+						input(type="hidden", name="instance-type")
+						.default.text Select Type
+						.menu
+							.item(data-value="vanilla-release") Vanilla Release
+							.item(data-value="vanilla-snapshot") Vanilla Snapshot
+							.item(data-value="vanilla-historical") Vanilla Old Beta / Alpha
+							.item.disabled(data-value="forge") Forge (Comming Soon!)
+				// instance version
+				.field
+					label Minecraft Version
+					.ui.fluid.search.selection.scrolling.dropdown.disabled#dropdown-id
+						input(type="hidden" name="instance-id")
+						.default.text Select Version
+						.menu
+				#action-buttons
+					.ui.fluid.buttons
+						button(type="submit")#submit-button.ui.primary.button Create
+						.or
+						button#cancel-button.ui.cancel.button(onclick="remote.getCurrentWindow().close()") Cancel
