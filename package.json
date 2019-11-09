@@ -55,6 +55,7 @@
 		"electron-store": "^5.0.0",
 		"jquery": "^3.4.1",
 		"jsrender": "^1.0.5",
+		"tslib": "^1.10.0",
 		"typescript": "^3.6.4",
 		"v8-compile-cache": "^2.1.0"
 	},
