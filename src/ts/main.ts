@@ -27,8 +27,7 @@ class WindowOptsList {
 		webPreferences: {
 			nodeIntegration: true,
 			sandbox: false
-		},
-		titleBarStyle: "hiddenInset",
+		}
 	};
 	newInstance: WindowConstructorOptions = {
 		type: "file",
@@ -47,7 +46,7 @@ function createWindow() {
 	// Create the browser window.
 	windows.main = new Window(windowsOpts.main);
 
-	Menu.setApplicationMenu(null);
+	// Menu.setApplicationMenu(null);
 	// Emitted when the window is closed.
 	windows.main.on("closed", function () {
 		// Dereference the window object, usually you would store windows

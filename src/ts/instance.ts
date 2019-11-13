@@ -12,7 +12,6 @@ import * as Render from "./Render";
 
 // TODO: Replace jsrender with PugJS
 import jsrender from "jsrender";
-import Window from "./WindowRemote";
 
 /**
  * Folder where are the minecraft versions are saved
