@@ -1,11 +1,12 @@
 import _ from "lodash";
 import { BrowserWindow } from "electron";
 
-interface WindowConstructorOptions extends Electron.BrowserWindowConstructorOptions {
+export interface WindowConstructorOptions extends Electron.BrowserWindowConstructorOptions {
 	type: "file" | "url"
 	path: string
 }
 
+// TODO: Change to Proxy for BrowserWindow to set this.on("closed", () => { browser =  null; })) automatically
 export default class Window extends BrowserWindow {
 	private static defaultOpts: WindowConstructorOptions = {
 		type: "url",

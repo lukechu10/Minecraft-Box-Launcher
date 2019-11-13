@@ -23,6 +23,6 @@ $(() => {
 import * as Render from "./Render";
 import * as auth from "./authentication";
 import * as instances from "./instance";
-import { ipcRenderer } from 'electron';
+import { ipcRenderer } from "electron";
 
 export { Render, auth, store, instances };

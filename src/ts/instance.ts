@@ -4,7 +4,7 @@ import InstanceSave from "./instance/InstanceSave";
 import { Installer } from "@xmcl/installer";
 import { MinecraftLocation, MinecraftFolder } from "@xmcl/util";
 
-import { remote } from "electron";
+import { remote, ipcRenderer } from "electron";
 const app = remote.app;
 import * as path from "path";
 
@@ -22,16 +22,7 @@ export var MinecraftSavePathBase: string = path.join(app.getPath("userData"), ".
 
 
 export function newInstanceModal() {
-	var window = new Window({
-		type: "file",
-		path: path.join(__dirname, "../static/views/", "newInstance.html"),
-		title: "New Instance",
-		webPreferences: {
-			nodeIntegration: true
-		}
-	});
-
-	window.show();
+	ipcRenderer.sendSync("show-window", "newInstance");
 }
 
 /**
