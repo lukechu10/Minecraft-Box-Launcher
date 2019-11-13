@@ -98,12 +98,12 @@ ipcMain.on("show-window", (event: Electron.IpcMainEvent, ...args) => {
 						// keep a reference of the window for future uses
 						windows[windowName] = null;
 					});
-					event.returnValue = { message: `Window ${windowName} created and shown` }
+					event.returnValue = { message: `Window ${windowName} created and shown` };
 				}
 				else {
 					consoleUtils.debug(`Showing window ${windowName}`);
 					(windows[windowName] as Window).show();
-					event.returnValue = { message: `Window ${windowName} shown` }
+					event.returnValue = { message: `Window ${windowName} shown` };
 				}
 			}
 			else {
@@ -112,7 +112,7 @@ ipcMain.on("show-window", (event: Electron.IpcMainEvent, ...args) => {
 			}
 		}
 		catch (err) {
-			consoleUtils.debug(`Error: ${err}`)
+			consoleUtils.debug(`Error: ${err}`);
 			event.returnValue = { message: err };
 		}
 	}
