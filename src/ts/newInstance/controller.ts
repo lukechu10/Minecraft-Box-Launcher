@@ -1,5 +1,5 @@
 import InstanceSave from "../instance/InstanceSave";
-import * as consoleUtils from "../consoleUtils";
+import * as consoleUtils from "../../universal/consoleUtils";
 import { versionsMetaCache, instances } from "../store";
 import { Installer } from "@xmcl/installer";
 import { Version } from "@xmcl/common";
