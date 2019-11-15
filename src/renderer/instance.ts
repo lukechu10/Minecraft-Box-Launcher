@@ -1,4 +1,4 @@
-import { instances as InstancesStore, versionsMetaCache } from "./store";
+import { instances as InstancesStore, versionsMetaCache } from "../universal/store";
 import InstanceSave from "./instance/InstanceSave";
 
 import { Installer } from "@xmcl/installer";
@@ -63,7 +63,7 @@ export async function updateVersionMeta(): Promise<Installer.VersionMeta[] | nul
  */
 export async function installByName(name: string) {
 	// find instance
-	const i = InstancesStore.all.find(obj => obj.name === name);
+	const i = InstancesStore.all.find((obj: InstanceSave) => obj.name === name);
 	if (!i) throw "An instance with this name does not exist";
 	else {
 		console.log(`[DEBUG] Started installation of instance ${i.name} with version ${i.id} and type ${i.clientType}.`);

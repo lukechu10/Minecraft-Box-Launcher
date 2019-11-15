@@ -3,11 +3,11 @@ html(lang="en")
 	head
 		meta(charset="UTF-8")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
-		meta(http-equiv="X-UA-Compatible" content="ie=edge")
+		meta(http-equiv="X-UA-Compatible", content="ie=edge")
 		// css
 		// semantic-ui
-		link(rel="stylesheet" href="../css/global.css")
-		link(rel="stylesheet" href="../css/semantic.min.css")
+		link(rel="stylesheet" href="../../src/renderer/css/global.css")
+		link(rel="stylesheet" href="../../src/renderer/css/semantic.min.css")
 		block css
 		// js
 		script.
@@ -15,10 +15,9 @@ html(lang="en")
 			require("v8-compile-cache");
 			const jQuery = window.$ = require('jquery');
 			const { ipcRenderer, shell, remote } = require('electron');
-		script(src='../js/semantic.min.js' link-js-library)
-		script(src="../templates/loginStatus.js" link-js-library)
+		script(src='../../src/renderer/js/semantic.min.js' link-js-library)
 		script.
-			const controller = require("../../js/newInstance/controller");
+			const controller = require("../js/renderer/newInstance/controller");
 		block js
 	body
 		.ui.container

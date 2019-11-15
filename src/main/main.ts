@@ -6,7 +6,7 @@ import * as path from "path";
 
 import debug from "electron-debug";
 
-import * as consoleUtils from "./consoleUtils";
+import * as consoleUtils from "../universal/consoleUtils";
 import Window, { WindowConstructorOptions } from "./Window";
 
 debug();
@@ -20,7 +20,7 @@ class WindowList {
 class WindowOptsList {
 	main: WindowConstructorOptions = {
 		type: "file",
-		path: path.join(__dirname, "../static/views/", "instances.html"),
+		path: path.join(__dirname, "../../views/", "instances.html"),
 		width: 800,
 		height: 600,
 		title: "Minecraft Box",
@@ -31,7 +31,7 @@ class WindowOptsList {
 	};
 	newInstance: WindowConstructorOptions = {
 		type: "file",
-		path: path.join(__dirname, "../static/views/", "newInstance.html"),
+		path: path.join(__dirname, "../../views/", "newInstance.html"),
 		title: "New Instance",
 		webPreferences: {
 			nodeIntegration: true

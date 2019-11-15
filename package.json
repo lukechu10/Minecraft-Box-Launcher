@@ -1,21 +1,21 @@
 {
 	"private": true,
 	"name": "minecraft-box-launcher",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Open source Minecraft Java Edition launcher build with ElectronJS",
-	"main": "js/main.js",
+	"main": "dist/js/main/main.js",
 	"scripts": {
 		"start": "electron .",
-		"start:gitpod": "electron --no-sandbox js/main.js",
+		"start:gitpod": "electron --no-sandbox .",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "run-p build:*",
 		"build-watch": "run-p build-watch:*",
 		"build-watch:ts": "tsc -p tsconfig.json --watch",
 		"build:ts": "tsc -p tsconfig.json",
-		"build-watch:pug": "pug ./src/views --watch --out ./static/views",
-		"build:pug": "pug ./src/views --out ./static/views",
-		"build-watch:pug-template": "pug ./src/templates --out ./static/templates -c -w -D --name-after-file",
-		"build:pug-template": "pug ./src/templates --out ./static/templates -c -D --name-after-file",
+		"build-watch:pug": "pug ./src/renderer/views --watch --out ./dist/views",
+		"build:pug": "pug ./src/renderer/views --out ./dist/views",
+		"build-watch:pug-template": "pug ./src/renderer/templates --out ./dist/templates -c -w -D --name-after-file",
+		"build:pug-template": "pug ./src/renderer/templates --out ./dist/templates -c -D --name-after-file",
 		"eslint": "eslint src/ --ext .ts,.tsx",
 		"eslint:fix": "eslint src/ --ext .ts,.tsx --fix",
 		"pack": "electron-builder --dir",
@@ -31,10 +31,10 @@
 	"author": "lukechu10",
 	"license": " GPL-3.0-or-later",
 	"devDependencies": {
-		"@types/lodash": "^4.14.146",
+		"@types/lodash": "^4.14.147",
 		"@types/uuid": "^3.4.6",
-		"@typescript-eslint/eslint-plugin": "^2.6.1",
-		"@typescript-eslint/parser": "^2.6.1",
+		"@typescript-eslint/eslint-plugin": "^2.7.0",
+		"@typescript-eslint/parser": "^2.7.0",
 		"electron": "^7.1.1",
 		"electron-builder": "^21.2.0",
 		"eslint": "^6.6.0",
@@ -69,8 +69,7 @@
 			"category": "public.app-category.games"
 		},
 		"files": [
-			"static/**/*",
-			"js/**/*.js"
+			"dist/**/*"
 		]
 	}
 }
