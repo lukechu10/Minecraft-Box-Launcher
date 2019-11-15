@@ -6,7 +6,7 @@ import * as path from "path";
 
 import debug from "electron-debug";
 
-import * as consoleUtils from "./consoleUtils";
+import * as consoleUtils from "../universal/consoleUtils";
 import Window, { WindowConstructorOptions } from "./Window";
 
 debug();

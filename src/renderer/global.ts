@@ -1,7 +1,7 @@
-import * as store from "./store";
+import * as store from "../universal/store";
 import { updateLoginStatus } from "./authentication";
 import { updateVersionMeta } from "./instance";
-import * as consoleUtils from "./consoleUtils";
+import * as consoleUtils from "../universal/consoleUtils";
 
 // startup tasks
 $(() => {

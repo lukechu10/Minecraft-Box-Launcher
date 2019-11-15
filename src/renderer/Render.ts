@@ -1,4 +1,4 @@
-import { instances } from "./store";
+import { instances } from "../universal/store";
 import InstanceSave from "./instance/InstanceSave";
 import * as instancesController from "./instance";
 import { store } from "./global";

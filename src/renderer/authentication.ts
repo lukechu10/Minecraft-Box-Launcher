@@ -1,6 +1,6 @@
 import { Auth } from "@xmcl/auth";
 
-import * as store from "./store";
+import * as store from "../universal/store";
 
 /**
  * Sends a request Yggdrasil auth server and stores the returned data
