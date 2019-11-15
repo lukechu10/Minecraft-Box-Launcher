@@ -3,7 +3,7 @@
 	"name": "minecraft-box-launcher",
 	"version": "0.1.0",
 	"description": "Open source Minecraft Java Edition launcher build with ElectronJS",
-	"main": "js/main.js",
+	"main": "dist/js/main/main.js",
 	"scripts": {
 		"start": "electron .",
 		"start:gitpod": "electron --no-sandbox js/main.js",
@@ -69,8 +69,7 @@
 			"category": "public.app-category.games"
 		},
 		"files": [
-			"static/**/*",
-			"js/**/*.js"
+			"dist/**/*"
 		]
 	}
 }
