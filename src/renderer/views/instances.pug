@@ -1,7 +1,7 @@
 extend layout
 
 block css
-	link(rel="stylesheet", href="../css/instances.css")
+	link(rel="stylesheet", href="../../src/renderer/css/instances.css")
 
 block js
 	script.
@@ -23,8 +23,6 @@ block js
 			});
 		});
 	script(src="../templates/instanceList.js")
-	script(src="../templates/versionModal.js")
-
 block content
 	h1 Instances
 	.ui.button(onclick="instances.newInstanceModal()") New Instance

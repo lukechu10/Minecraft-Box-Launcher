@@ -64,8 +64,5 @@ typings/
 static/views/
 static/templates/
 
-# typescript output
-js/
-
-# electron-builder output
+# build output
 dist/
