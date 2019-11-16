@@ -1,17 +1,8 @@
-import { instances as InstancesStore, versionsMetaCache } from "../universal/store";
-import InstanceSave from "./instance/InstanceSave";
+import { versionsMetaCache } from "../universal/store";
 
 import { Installer } from "@xmcl/installer";
-import { MinecraftLocation, MinecraftFolder } from "@xmcl/util";
-
-import { remote, ipcRenderer } from "electron";
+import { remote } from "electron";
 const app = remote.app;
-import * as path from "path";
-
-import { Render } from "./Render";
-
-// TODO: Replace jsrender with PugJS
-import jsrender from "jsrender";
 
 /**
  * Sends a request to mojang versions list and saves result in electron store

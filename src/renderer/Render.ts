@@ -1,6 +1,4 @@
 import { instances } from "../universal/store";
-import InstanceSave from "./instance/InstanceSave";
-import { store } from "./global";
 import { InstanceController } from "./controllers/InstanceController";
 
 import { ipcRenderer } from "electron";
