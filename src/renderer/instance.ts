@@ -39,24 +39,4 @@ export async function updateVersionMeta(): Promise<Installer.VersionMeta[] | nul
 	}
 }
 
-/**
- * Finds an instance and installs it
- * @param name name of instance
- * @throws if instance is not found
- */
-export async function installByName(name: string) {
-	// find instance
-	const i = InstancesStore.all.find((obj: InstanceSave) => obj.name === name);
-	if (!i) throw "An instance with this name does not exist";
-	else {
-		console.log(`[DEBUG] Started installation of instance ${i.name} with version ${i.id} and type ${i.clientType}.`);
-		await i.install();
-		// update instance in store
-		InstancesStore.setInstance(i.name, i);
-		console.log(`[DEBUG] Installation of ${i.name} finished.`);
-		Render.instanceList();
-		return;
-	}
-}
-
 // export var api = require("@xmcl/minecraft-launcher-core");

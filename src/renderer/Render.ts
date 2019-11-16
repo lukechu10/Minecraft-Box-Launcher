@@ -1,6 +1,5 @@
 import { instances } from "../universal/store";
 import InstanceSave from "./instance/InstanceSave";
-import * as instancesController from "./instance";
 import { store } from "./global";
 import { InstanceController } from "./controllers/InstanceController";
 
@@ -20,7 +19,7 @@ export namespace Render {
 $(document).on("click", "#btn-install", e => {
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	// install by name
-	instancesController.installByName(name);
+	InstanceController.installByName(name);
 	// update text
 	// TODO: add as member to InstanceSave to save text when switching pages
 	$(e.currentTarget).text("Installing...").removeClass("olive").attr("id", "").addClass(["gray", "disabled"]);
