@@ -5,6 +5,6 @@
             style="margin-left: 8px; width: 18px; vertical-align: middle")
     .menu
         a.item(href="./settings.html") Settings
-        .item(onclick="auth.logout()") Logout
+        .item(onclick="AuthenticationController.logout()") Logout
 - else
-    a#login-status-text(onclick="auth.showLoginModal()") Login
+    a#login-status-text(onclick="Render.showLoginModal()") Login

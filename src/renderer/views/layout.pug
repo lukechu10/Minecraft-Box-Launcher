@@ -16,6 +16,7 @@ html(lang="en")
 			const jQuery = window.$ = require('jquery');
 			const { Render, auth, store, instances } = require("../js/renderer/global");
 			const { InstanceController } = require("../js/renderer/controllers/InstanceController");
+			const { AuthenticationController } = require("../js/renderer/controllers/AuthenticationController");
 			
 			const { ipcRenderer, shell } = require('electron');
 		script(src='../../src/renderer/js/semantic.min.js' link-js-library)
