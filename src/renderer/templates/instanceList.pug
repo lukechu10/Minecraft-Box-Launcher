@@ -17,7 +17,7 @@
 							.ui.right.floated.buttons
 								- if(data[i].installed)
 									//- TODO: Add onclick property to launch game
-									.ui.green.button#btn-play
+									.ui.green.button#btn-play(data-instance-name=data[i].name)
 										| Play
 								- else
 									.ui.olive.button#btn-install(data-instance-name=data[i].name)

@@ -2,6 +2,7 @@ import { instances } from "../universal/store";
 import InstanceSave from "./instance/InstanceSave";
 import * as instancesController from "./instance";
 import { store } from "./global";
+import { InstanceController } from './controllers/InstanceController';
 
 declare function instancelistTemplate(data: any): string;
 /**
@@ -22,5 +23,7 @@ $(document).on("click", "#btn-install", e => {
 	// TODO: add as member to InstanceSave to save text when switching pages
 	$(e.currentTarget).text("Installing...").removeClass("olive").attr("id", "").addClass(["gray", "disabled"]);
 }).on("click", "#btn-play", e => {
+	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	// launch by name
+	InstanceController.launch(name);
 });
