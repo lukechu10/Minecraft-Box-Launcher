@@ -13,7 +13,6 @@ import { Auth } from "@xmcl/auth";
 import { remote, ipcRenderer } from "electron";
 const app = remote.app;
 
-// TODO: Move all logic from ../instance.ts to this file
 /**
  * All instance related logic
  */
@@ -72,6 +71,22 @@ export namespace InstanceController {
 			// update instance in store
 			ApplicationStore.instances.setInstance(i.name, i);
 			console.log(`[DEBUG] Installation of ${i.name} finished.`);
+			Render.instanceList();
+			return;
+		}
+	}
+	/**
+	 * Finds an instance and deletes it. Does not uninstall the resolved version
+	 * @param name name of instance
+	 * @throws if instance is not found
+	 */
+	export function deleteInstance(name: string) {
+		// find instance
+		const i = ApplicationStore.instances.findFromName(name);
+		if (!i) throw "An instance with this name does not exist";
+		else {
+			consoleUtils.debug("Removing instance ", name);
+			ApplicationStore.instances.deleteInstance(name);
 			Render.instanceList();
 			return;
 		}
