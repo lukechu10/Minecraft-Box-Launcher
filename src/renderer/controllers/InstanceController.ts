@@ -85,7 +85,7 @@ export namespace InstanceController {
 		const i = ApplicationStore.instances.findFromName(name);
 		if (!i) throw "An instance with this name does not exist";
 		else {
-			consoleUtils.debug("Removing instance ", name);
+			consoleUtils.debug("Removing instance", name);
 			ApplicationStore.instances.deleteInstance(name);
 			Render.instanceList();
 			return;

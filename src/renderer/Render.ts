@@ -103,16 +103,22 @@ export namespace Render {
 		}).modal("show");
 	}
 }
-	// attach event handlers
-	$(document).on("click", "#btn-install", e => {
-		const name: string = $(e.currentTarget).attr("data-instance-name") as string;
-		// install by name
-		InstanceController.installByName(name);
-		// update text
-		// TODO: add as member to InstanceSave to save text when switching pages
-		$(e.currentTarget).text("Installing...").removeClass("olive").attr("id", "").addClass(["gray", "disabled"]);
-	}).on("click", "#btn-play", e => {
-		const name: string = $(e.currentTarget).attr("data-instance-name") as string;
-		// launch by name
-		InstanceController.launch(name);
-	});
+// attach event handlers
+$(document).on("click", "#btn-install", e => {
+	// install instance
+	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
+	// install by name
+	InstanceController.installByName(name);
+	// update text
+	// TODO: add as member to InstanceSave to save text when switching pages
+	$(e.currentTarget).text("Installing...").removeClass("olive").attr("id", "").addClass(["gray", "disabled"]);
+}).on("click", "#btn-play", e => {
+	// launch instance
+	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
+	// launch by name
+	InstanceController.launch(name);
+}).on("click", "#btn-delete", e => {
+	// delete instance
+	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
+	InstanceController.deleteInstance(name);
+});

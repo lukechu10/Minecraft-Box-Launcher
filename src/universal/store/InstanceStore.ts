@@ -45,7 +45,8 @@ export default class InstanceStore extends Store {
 		const index: number = this.all.findIndex(obj => obj.name == name);
 		if (index == -1) throw Error("An instance with this name does not exist");
 		const temp = Array.from(this.all);
-		this.set("instances", temp.splice(index, 1));
+		temp.splice(index, 1);
+		this.set("instances", temp);
 	}
 	/**
 	 * Replace instance with new instance
