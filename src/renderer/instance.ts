@@ -1,4 +1,4 @@
-import { versionsMetaCache } from "../universal/store";
+import { ApplicationStore } from "../universal/store";
 
 import { Installer } from "@xmcl/installer";
 import { remote } from "electron";
@@ -14,7 +14,7 @@ export async function updateVersionMeta(): Promise<Installer.VersionMeta[] | nul
 		return null;
 	else {
 		// save to electron store
-		versionsMetaCache.set("versions", versionsMeta.versions);
+		ApplicationStore.versionsMetaCache.set("versions", versionsMeta.versions);
 		return versionsMeta.versions;
 	}
 }

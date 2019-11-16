@@ -1,6 +1,6 @@
 import { Auth } from "@xmcl/auth";
 
-import * as store from "../universal/store";
+import { ApplicationStore } from "../universal/store";
 
 /**
  * Sends a request Yggdrasil auth server and stores the returned data
@@ -10,8 +10,8 @@ import * as store from "../universal/store";
 export async function login(username: string, password: string): Promise<Auth> {
 	const authFromMojang: Auth = await Auth.Yggdrasil.login({ username, password }); // official login
 	// save data to electron store
-	store.auth.set(authFromMojang);
-	store.auth.set("loggedIn", true);
+	ApplicationStore.auth.set(authFromMojang);
+	ApplicationStore.auth.set("loggedIn", true);
 	updateLoginStatus("login");
 	return authFromMojang;
 }
@@ -20,8 +20,8 @@ export async function login(username: string, password: string): Promise<Auth> {
  * Logouts user and resets store
  */
 export async function logout(): Promise<void> {
-	store.auth.clear();
-	store.auth.set("loggedIn", false);
+	ApplicationStore.auth.clear();
+	ApplicationStore.auth.set("loggedIn", false);
 	updateLoginStatus("logout");
 	return;
 }
@@ -117,7 +117,7 @@ export function updateLoginStatus(status: "login" | "logout"): void {
 		initiateLoginForm();
 	}
 	else if (status == "login") {
-		$("#login-status").html(loginstatusTemplate({ loggedIn: true, name: store.auth.get("profiles")[0].name }));
+		$("#login-status").html(loginstatusTemplate({ loggedIn: true, name: ApplicationStore.auth.get("profiles")[0].name }));
 		// user popup
 		$("#login-status").dropdown();
 	}

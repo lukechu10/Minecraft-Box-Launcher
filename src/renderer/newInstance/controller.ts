@@ -1,6 +1,6 @@
 import InstanceSave from "../instance/InstanceSave";
 import * as consoleUtils from "../../universal/consoleUtils";
-import { versionsMetaCache, instances } from "../../universal/store";
+import { ApplicationStore } from "../../universal/store";
 import { Installer } from "@xmcl/installer";
 import { Version } from "@xmcl/common";
 import { remote, ipcRenderer } from "electron";
@@ -20,7 +20,7 @@ function updateIdDropdown(val?: string) {
 		// remove disable on #dropdown-id
 		$(".ui.dropdown#dropdown-id").removeClass("disabled");
 		// find list of instances
-		const versions = versionsMetaCache.get("versions") as Installer.VersionMeta[];
+		const versions = ApplicationStore.versionsMetaCache.get("versions") as Installer.VersionMeta[];
 		// append to dropdown
 		switch (val) {
 			case "vanilla-release":
@@ -99,7 +99,7 @@ $(() => {
 		$("#new-instance-form").form("validate form");
 		if ($("new-instance-form").form("is valid")) {
 			// create instance from form values
-			let tempVersionMeta = versionsMetaCache.get("versions")
+			let tempVersionMeta = ApplicationStore.versionsMetaCache.get("versions")
 				.find((obj: Installer.VersionMeta) => {
 					return obj.id == form.form("get value", "instance-id");
 				});
@@ -109,7 +109,7 @@ $(() => {
 			);
 			console.log(tempInstance);
 			// create a new instance in InstanceStore
-			instances.addInstance(tempInstance);
+			ApplicationStore.instances.addInstance(tempInstance);
 			// tell main window to update
 			ipcRenderer.sendSync("new-instance");
 			// close window

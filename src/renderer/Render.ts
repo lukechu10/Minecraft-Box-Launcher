@@ -1,4 +1,4 @@
-import { instances } from "../universal/store";
+import { ApplicationStore } from "../universal/store";
 import { InstanceController } from "./controllers/InstanceController";
 
 import { ipcRenderer } from "electron";
@@ -9,7 +9,7 @@ export namespace Render {
 	 * Renders instance list on instance page
 	 */
 	export function instanceList(): void {
-		$("#instance-list").html(instancelistTemplate({ data: instances.all }));
+		$("#instance-list").html(instancelistTemplate({ data: ApplicationStore.instances.all }));
 		$(".ui.dropdown").dropdown();
 		return;
 	}

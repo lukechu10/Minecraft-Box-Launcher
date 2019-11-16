@@ -1,11 +1,11 @@
-import * as store from "../universal/store";
+import { ApplicationStore } from "../universal/store";
 import { updateLoginStatus } from "./authentication";
 import { updateVersionMeta } from "./instance";
 import * as consoleUtils from "../universal/consoleUtils";
 
 // startup tasks
 $(() => {
-	if (store.auth.get("loggedIn", false) == false) {
+	if (ApplicationStore.auth.get("loggedIn", false) == false) {
 		updateLoginStatus("logout");
 	}
 	else updateLoginStatus("login");
@@ -26,4 +26,4 @@ import * as instances from "./instance";
 import { ipcRenderer } from "electron";
 import { InstanceController } from "./controllers/InstanceController";
 
-export { Render, auth, store, instances, InstanceController };
+export { Render, auth, ApplicationStore as store, instances, InstanceController };
