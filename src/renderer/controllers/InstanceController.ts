@@ -21,7 +21,7 @@ export namespace InstanceController {
 	 * Folder where are the minecraft versions are saved
 	 * TODO: add possibility to customize directory
 	 */
-	export var MinecraftSavePathBase: string = path.join(app.getPath("userData"), "./instances/");
+	export const MinecraftSavePathBase: string = path.join(app.getPath("userData"), "./instances/");
 
 	// FIXME: Function not working correctly on windows
 	/**
