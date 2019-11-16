@@ -4,14 +4,16 @@ import * as instancesController from "./instance";
 import { store } from "./global";
 import { InstanceController } from "./controllers/InstanceController";
 
-declare function instancelistTemplate(data: any): string;
-/**
- * Renders instance list on instance page
- */
-export function instanceList(): void {
-	$("#instance-list").html(instancelistTemplate({ data: instances.all }));
-	$(".ui.dropdown").dropdown();
-	return;
+export namespace Render {
+	declare function instancelistTemplate(data: any): string;
+	/**
+	 * Renders instance list on instance page
+	 */
+	export function instanceList(): void {
+		$("#instance-list").html(instancelistTemplate({ data: instances.all }));
+		$(".ui.dropdown").dropdown();
+		return;
+	}
 }
 
 // attach event handlers

@@ -20,7 +20,7 @@ $(() => {
 });
 
 // export modules
-import * as Render from "./Render";
+import { Render } from "./Render";
 import * as auth from "./authentication";
 import * as instances from "./instance";
 import { ipcRenderer } from "electron";
