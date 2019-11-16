@@ -25,15 +25,15 @@ export namespace InstanceController {
 
 	// FIXME: Function not working correctly on windows
 	/**
-	 * Find where java is installed on local machine 
+	 * Find where java is installed on local machine
 	 */
 	export function findJava(): string {
 		var spawn = child_process.spawnSync("which", ["java"]).stdout;
 		return spawn;
 	}
 	/**
-	 * 
-	 * @param name of instance to launch 
+	 *
+	 * @param name of instance to launch
 	 * @throws if an instance with `name` does not exist
 	 */
 	export function launch(name: string) {
@@ -49,7 +49,7 @@ export namespace InstanceController {
 				launcherName: "Minecraft Box Launcher",
 				user: AppStore.auth.store as Auth,
 				auth: AppStore.auth.store as Auth
-			}
+			};
 			consoleUtils.debug(`Launching instance ${name} with options: `, opts);
 			// span game
 			const proc = Launcher.launch(opts);

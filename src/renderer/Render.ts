@@ -2,7 +2,7 @@ import { instances } from "../universal/store";
 import InstanceSave from "./instance/InstanceSave";
 import * as instancesController from "./instance";
 import { store } from "./global";
-import { InstanceController } from './controllers/InstanceController';
+import { InstanceController } from "./controllers/InstanceController";
 
 declare function instancelistTemplate(data: any): string;
 /**

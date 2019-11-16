@@ -67,6 +67,7 @@
 				"ignoreEOLComments": false
 			}
 		],
-		"yoda": "warn"
+		"yoda": "warn",
+		"no-inner-declarations": "off"
 	}
 }
