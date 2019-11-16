@@ -8,7 +8,7 @@ import { remote, ipcRenderer } from "electron";
 const app = remote.app;
 import * as path from "path";
 
-import * as Render from "./Render";
+import { Render } from "./Render";
 
 // TODO: Replace jsrender with PugJS
 import jsrender from "jsrender";
@@ -22,23 +22,6 @@ export var MinecraftSavePathBase: string = path.join(app.getPath("userData"), ".
 
 export function newInstanceModal() {
 	ipcRenderer.sendSync("show-window", "newInstance");
-}
-
-/**
- *
- * @param version Version of Minecraft to add
- */
-export async function newInstance(version: Installer.VersionMeta) {
-	// TODO: Add ability to change name in setup
-	InstancesStore.addInstance(new InstanceSave(version.id, version));
-}
-
-/**
- * Returns all instances from `instance.json`
- * @deprecated Use `InstanceStore.instances` instead
- */
-export function getAllInstances(): InstanceSave[] {
-	return InstancesStore.get("instances") as InstanceSave[];
 }
 
 /**
