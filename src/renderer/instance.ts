@@ -14,17 +14,6 @@ import { Render } from "./Render";
 import jsrender from "jsrender";
 
 /**
- * Folder where are the minecraft versions are saved
- * TODO: add possibility to customize directory
- */
-export var MinecraftSavePathBase: string = path.join(app.getPath("userData"), "./instances/");
-
-
-export function newInstanceModal() {
-	ipcRenderer.sendSync("show-window", "newInstance");
-}
-
-/**
  * Sends a request to mojang versions list and saves result in electron store
  * @returns list of all availible vanilla versions or null if error
  */

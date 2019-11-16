@@ -3,6 +3,8 @@ import InstanceSave from "./instance/InstanceSave";
 import { store } from "./global";
 import { InstanceController } from "./controllers/InstanceController";
 
+import { ipcRenderer } from "electron";
+
 export namespace Render {
 	declare function instancelistTemplate(data: any): string;
 	/**
@@ -12,6 +14,12 @@ export namespace Render {
 		$("#instance-list").html(instancelistTemplate({ data: instances.all }));
 		$(".ui.dropdown").dropdown();
 		return;
+	}
+	/**
+	 * Shows new instance page
+	 */
+	export function newInstance() {
+		ipcRenderer.sendSync("show-window", "newInstance");
 	}
 }
 
