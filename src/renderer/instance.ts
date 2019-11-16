@@ -76,4 +76,4 @@ export async function installByName(name: string) {
 	}
 }
 
-export var api = require("@xmcl/minecraft-launcher-core");
+// export var api = require("@xmcl/minecraft-launcher-core");

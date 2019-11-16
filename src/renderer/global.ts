@@ -24,5 +24,6 @@ import * as Render from "./Render";
 import * as auth from "./authentication";
 import * as instances from "./instance";
 import { ipcRenderer } from "electron";
+import { InstanceController } from "./controllers/InstanceController";
 
-export { Render, auth, store, instances };
+export { Render, auth, store, instances, InstanceController };

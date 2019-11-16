@@ -12,3 +12,7 @@ tasks:
   - init: npm install
   - command: npm run start:gitpod
   - command: npm run build-watch
+
+vscode:
+  extensions:
+    - wayou.vscode-todo-highlight@1.0.4:8IqxuxCVol2WnScJc5xVzg==
