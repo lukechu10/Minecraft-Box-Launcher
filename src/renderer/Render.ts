@@ -21,4 +21,6 @@ $(document).on("click", "#btn-install", e => {
 	// update text
 	// TODO: add as member to InstanceSave to save text when switching pages
 	$(e.currentTarget).text("Installing...").removeClass("olive").attr("id", "").addClass(["gray", "disabled"]);
+}).on("click", "#btn-play", e => {
+	// launch by name
 });
