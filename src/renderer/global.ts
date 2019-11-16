@@ -1,6 +1,6 @@
 import { ApplicationStore } from "../universal/store";
 import { updateLoginStatus } from "./authentication";
-import { updateVersionMeta } from "./instance";
+import { VersionsController } from "./controllers/VersionsController";
 import * as consoleUtils from "../universal/consoleUtils";
 
 // startup tasks
@@ -11,7 +11,7 @@ $(() => {
 	else updateLoginStatus("login");
 
 	// update versions
-	updateVersionMeta();
+	VersionsController.updateVersionMeta();
 
 	ipcRenderer.on("update-instance-list", () => {
 		consoleUtils.debug("Updating instance list");
@@ -22,8 +22,6 @@ $(() => {
 // export modules
 import { Render } from "./Render";
 import * as auth from "./authentication";
-import * as instances from "./instance";
 import { ipcRenderer } from "electron";
-import { InstanceController } from "./controllers/InstanceController";
 
-export { Render, auth, ApplicationStore as store, instances, InstanceController };
+export { Render, auth, ApplicationStore };
