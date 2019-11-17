@@ -14,7 +14,10 @@ html(lang="en")
 			// load modules
 			require("v8-compile-cache");
 			const jQuery = window.$ = require('jquery');
-			const { Render, auth, store, instances, InstanceController } = require("../js/renderer/global");
+			const { Render, ApplicationStore } = require("../js/renderer/global");
+			const { InstanceController } = require("../js/renderer/controllers/InstanceController");
+			const { AuthenticationController } = require("../js/renderer/controllers/AuthenticationController");
+			
 			const { ipcRenderer, shell } = require('electron');
 		script(src='../../src/renderer/js/semantic.min.js' link-js-library)
 		script(src="../templates/loginStatus.js" link-js-library)
@@ -34,7 +37,7 @@ html(lang="en")
 
 		//- modals
 		block modals
-		.ui.modal#login-modal
+		.ui.modal#modal-login
 			.header Login
 			.content
 				.ui.centered.grid
@@ -56,3 +59,4 @@ html(lang="en")
 								.actions
 									center
 										button.ui.tiny.cancel.button.inverted.red Continue without logging in
+		.ui.basic.modal#modal-confirmDelete

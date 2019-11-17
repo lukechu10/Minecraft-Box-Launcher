@@ -25,7 +25,7 @@
 										| Install
 								.ui.gray.floating.dropdown.button ▼
 									.menu
-										.item Rename
-										.item Reinstall
-										.item Options
-										.item Delete
+										.disabled.item Rename
+										.disabled.item Reinstall
+										.disabled.item Options
+										.red.inverted.item#btn-delete(style="color: red;" data-instance-name=data[i].name) Delete

@@ -23,14 +23,14 @@ block js
 			});
 		});
 	script(src="../templates/instanceList.js")
+	script(src="../templates/instanceConfirmDelete.js")
 block content
 	h1 Instances
-	.ui.button(onclick="instances.newInstanceModal()") New Instance
+	.ui.button(onclick="Render.newInstance();") New Instance
 	.ui.warning.message #[strong Disclaimer:] Buttons are currently only placeholders. They do not actually work (yet).
 	.ui.raised.segment
 		.ui.divided.items#instance-list
 		//- render list
-
 
 block modals
 	.ui.modal#version-modal

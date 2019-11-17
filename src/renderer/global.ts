@@ -1,17 +1,18 @@
-import * as store from "../universal/store";
-import { updateLoginStatus } from "./authentication";
-import { updateVersionMeta } from "./instance";
+import { ApplicationStore } from "../universal/store";
+import { Render } from "./Render";
+
+import { VersionsController } from "./controllers/VersionsController";
 import * as consoleUtils from "../universal/consoleUtils";
 
 // startup tasks
 $(() => {
-	if (store.auth.get("loggedIn", false) == false) {
-		updateLoginStatus("logout");
+	if (ApplicationStore.auth.get("loggedIn", false) == false) {
+		Render.updateLoginStatus("logout");
 	}
-	else updateLoginStatus("login");
+	else Render.updateLoginStatus("login");
 
 	// update versions
-	updateVersionMeta();
+	VersionsController.updateVersionMeta();
 
 	ipcRenderer.on("update-instance-list", () => {
 		consoleUtils.debug("Updating instance list");
@@ -20,10 +21,5 @@ $(() => {
 });
 
 // export modules
-import * as Render from "./Render";
-import * as auth from "./authentication";
-import * as instances from "./instance";
 import { ipcRenderer } from "electron";
-import { InstanceController } from "./controllers/InstanceController";
-
-export { Render, auth, store, instances, InstanceController };
+export { Render, ApplicationStore };

@@ -24,5 +24,8 @@
    "importCost.showCalculatingDecoration": true,
    // Print debug messages in output channel
    "importCost.debug": false,
-   "editor.autoSave": "off"
+   "editor.autoSave": "off",
+   "editor.detectIndentation": true,
+   "editor.insertSpaces": false,
+   "editor.tabSize": 4,
 }
