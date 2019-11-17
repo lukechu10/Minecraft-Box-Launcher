@@ -53,7 +53,7 @@ export namespace Render {
 					await AuthenticationController.login($("#username-field").val() as string,
 						$("#password-field").val() as string);
 					// login successfull
-					$("#login-modal").modal("hide");
+					$("#modal-login").modal("hide");
 				}
 				catch (e) {
 					$("#login-errors-container").css("display", "block");
@@ -96,7 +96,7 @@ export namespace Render {
 	 * Shows modal that appears over page
 	 */
 	export function showLoginModal(): void {
-		$("#login-modal").modal({
+		$("#modal-login").modal({
 			onDeny: () => {
 				// show are you sure message
 			}
