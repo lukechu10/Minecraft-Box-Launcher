@@ -21,6 +21,23 @@ export namespace Render {
 		ipcRenderer.sendSync("show-window", "newInstance");
 	}
 
+	declare function instanceconfirmdeleteTemplate(data: any): string;
+	/**
+	 * Renders and shows the confirm delete modal
+	 * @param opts arguments to pass to pugjs
+	 */
+	export function instanceConfirmDelete({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }) {
+		// render html
+		$("#modal-confirmDelete").html(instanceconfirmdeleteTemplate({ name }));
+		// show modal
+		$("#modal-confirmDelete").modal({
+			closable: false,
+			onApprove,
+			onDeny
+		});
+		$("#modal-confirmDelete").modal("show");
+	}
+
 	/**
 	 * Show form on click if logged out
 	 */
@@ -120,5 +137,15 @@ $(document).on("click", "#btn-install", e => {
 }).on("click", "#btn-delete", e => {
 	// delete instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
-	InstanceController.deleteInstance(name);
+	// show prompt
+	Render.instanceConfirmDelete({
+		name,
+		onApprove: () => {
+			// delete instance
+			InstanceController.deleteInstance(name);
+		},
+		onDeny: () => {
+			// close modal
+		}
+	});
 });
