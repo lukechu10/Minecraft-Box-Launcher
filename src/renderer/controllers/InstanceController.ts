@@ -1,6 +1,6 @@
 // TODO: Rename all imports from store as AppStore and export namespace
 import { ApplicationStore } from "../../universal/store";
-import InstanceSave from "../instance/InstanceSave";
+import InstanceSave from "../../universal/store/InstanceSave";
 import * as consoleUtils from "../../universal/consoleUtils";
 import { Render } from "../Render";
 

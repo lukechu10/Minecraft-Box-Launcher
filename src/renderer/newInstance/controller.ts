@@ -1,4 +1,4 @@
-import InstanceSave from "../instance/InstanceSave";
+import InstanceSave from "../../universal/store/InstanceSave";
 import * as consoleUtils from "../../universal/consoleUtils";
 import { ApplicationStore } from "../../universal/store";
 import { Installer } from "@xmcl/installer";
