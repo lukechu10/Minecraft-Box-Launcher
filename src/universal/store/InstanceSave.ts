@@ -21,7 +21,10 @@ export default class InstanceSave implements Installer.VersionMeta {
      * Type of client
      */
 	clientType: "vanilla" | "forge";
-	lastPlayed: Date;
+	/**
+	 * Format: `new Date().toISOString()` or `"never"` if never played
+	 */
+	lastPlayed: string | "never";
 	/**
 	 * Date version was released
 	 */
@@ -40,7 +43,7 @@ export default class InstanceSave implements Installer.VersionMeta {
 		this.id = data.id;
 		this.type = data.type;
 		this.releaseTime = data.releaseTime;
-		this.lastPlayed = new Date(); // now
+		this.lastPlayed = "never"; // now
 		this.clientType = "vanilla";
 		this.url = data.url;
 		this.time = data.time;

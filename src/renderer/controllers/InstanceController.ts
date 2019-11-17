@@ -53,6 +53,9 @@ export namespace InstanceController {
 			consoleUtils.debug(`Launching instance ${name} with options: `, opts);
 			// span game
 			const proc = Launcher.launch(opts);
+			// update last played
+			instance.lastPlayed = new Date().toISOString();
+			ApplicationStore.instances.setInstance(instance.name, instance);
 		}
 	}
 
