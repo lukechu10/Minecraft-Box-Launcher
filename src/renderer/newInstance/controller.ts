@@ -63,7 +63,7 @@ $(() => {
 	$(".ui.dropdown#dropdown-id").dropdown();
 
 	// setup form
-	$("#new-instance-form").form({
+	$("#form-newInstance").form({
 		inline: true,
 		fields: {
 			name: {
@@ -91,13 +91,13 @@ $(() => {
 	});
 
 	// setup submit event
-	$("#new-instance-form").submit((event: JQuery.SubmitEvent) => {
+	$("#form-newInstance").submit((event: JQuery.SubmitEvent) => {
 		event.preventDefault();
-		const form = $("#new-instance-form");
+		const form = $("#form-newInstance");
 		consoleUtils.debug("Submit button clicked, adding instance with following values:");
 		// validate form
-		$("#new-instance-form").form("validate form");
-		if ($("new-instance-form").form("is valid")) {
+		$("#form-newInstance").form("validate form");
+		if ($("form-newInstance").form("is valid")) {
 			// create instance from form values
 			let tempVersionMeta = ApplicationStore.versionsMetaCache.get("versions")
 				.find((obj: Installer.VersionMeta) => {
