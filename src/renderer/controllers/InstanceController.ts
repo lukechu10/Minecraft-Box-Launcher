@@ -21,7 +21,12 @@ export namespace InstanceController {
 	 * Folder where are the minecraft versions are saved
 	 * TODO: add possibility to customize directory
 	 */
-	export const MinecraftSavePathBase: string = path.join(app.getPath("userData"), "./instances/");
+	export const MinecraftGamePath: string = path.join(app.getPath("userData"), "./game/");
+	/**
+	 * Returns the path for minecraft saves/logs/configs for a specific instance
+	 * @param name name of instance
+	 */
+	export const MinecraftSavePath = (name: string) => { return path.join(app.getPath("userData"), "./instances/", name) };
 
 	// FIXME: Function not working correctly on windows
 	/**
@@ -43,7 +48,8 @@ export namespace InstanceController {
 		}
 		else {
 			const opts: Launcher.Option & Launcher.PrecheckService = {
-				gamePath: MinecraftSavePathBase,
+				gamePath: MinecraftSavePath(instance.name),
+				resourcePath: MinecraftGamePath,
 				version: instance.id,
 				javaPath: "java", // TODO: Change to executable path if java is not in %PATH%
 				launcherName: "Minecraft Box Launcher",

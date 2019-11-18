@@ -53,7 +53,7 @@ export default class InstanceSave implements Installer.VersionMeta {
 	 * Install this version
 	 */
 	async install() {
-		const location: MinecraftLocation = new MinecraftFolder(path.join(app.getPath("userData"), "./instances/"));
+		const location: MinecraftLocation = new MinecraftFolder(path.join(app.getPath("userData"), "./game/"));
 		let res = await Installer.install("client", this, location);
 		this.installed = true;
 	}
