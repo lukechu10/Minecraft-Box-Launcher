@@ -97,7 +97,7 @@ $(() => {
 		consoleUtils.debug("Submit button clicked, adding instance with following values:");
 		// validate form
 		$("#form-newInstance").form("validate form");
-		if ($("form-newInstance").form("is valid")) {
+		if ($("#form-newInstance").form("is valid")) {
 			// create instance from form values
 			let tempVersionMeta = ApplicationStore.versionsMetaCache.get("versions")
 				.find((obj: Installer.VersionMeta) => {
