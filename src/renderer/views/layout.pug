@@ -10,15 +10,20 @@ html(lang="en")
 		link(rel="stylesheet" href="../../src/renderer/css/semantic.min.css")
 		block css
 		// js
+		// load modules
 		script(link-js-library).
-			// load modules
 			require("v8-compile-cache");
 			const jQuery = window.$ = require('jquery');
-			const { Render, ApplicationStore } = require("../js/renderer/global");
+			
+			const { ApplicationStore } = require("../js/universal/store");
+			const { Render } = require("../js/renderer/Render");
 			const { InstanceController } = require("../js/renderer/controllers/InstanceController");
 			const { AuthenticationController } = require("../js/renderer/controllers/AuthenticationController");
-			
 			const { ipcRenderer, shell } = require('electron');
+		// load defered modules
+		script(defer link-js-library).
+			require("../js/renderer/StartupTasks");
+			
 		script(src='../../src/renderer/js/semantic.min.js' link-js-library)
 		script(src="../templates/loginStatus.js" link-js-library)
 		block js
