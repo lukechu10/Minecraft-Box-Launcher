@@ -93,17 +93,17 @@ $(() => {
 	// setup submit event
 	$("#form-newInstance").submit((event: JQuery.SubmitEvent) => {
 		event.preventDefault();
-		const form = $("#form-newInstance").form;
+		const form = $("#form-newInstance");
 		// validate form
-		form("validate form");
-		if (form("is valid")) {
+		form.form("validate form");
+		if (form.form("is valid")) {
 			// create instance from form values
 			let tempVersionMeta = ApplicationStore.versionsMetaCache.get("versions")
 				.find((obj: Installer.VersionMeta) => {
-					return obj.id == form("get value", "instance-id");
+					return obj.id == form.form("get value", "instance-id");
 				});
 			let tempInstance = new InstanceSave(
-				form("get value", "instance-name"),
+				form.form("get value", "instance-name"),
 				tempVersionMeta
 			);
 			console.log(tempInstance);
