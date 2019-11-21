@@ -34,8 +34,7 @@ export namespace Render {
 			closable: false,
 			onApprove,
 			onDeny
-		});
-		$("#modal-confirmDelete").modal("show");
+		}).modal("show");
 	}
 
 	/**
@@ -131,8 +130,7 @@ export namespace Render {
 			closable: false,
 			onApprove,
 			onDeny
-		});
-		$("#modal-rename").modal("show");
+		}).modal("show");
 	}
 }
 // attach event handlers
