@@ -108,16 +108,31 @@ export namespace Render {
 		}
 	}
 
-
 	/**
 	 * Shows modal that appears over page
 	 */
 	export function showLoginModal(): void {
 		$("#modal-login").modal({
 			onDeny: () => {
-				// show are you sure message
+				// TODO: show are you sure message
 			}
 		}).modal("show");
+	}
+
+	declare function instancerenameTemplate(data: any): string;
+	/**
+	 * Show rename modal
+	 */
+	export function renameModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
+		// render html
+		$("#modal-rename").html(instancerenameTemplate({ name }));
+		// show modal
+		$("#modal-rename").modal({
+			closable: false,
+			onApprove,
+			onDeny
+		});
+		$("#modal-rename").modal("show");
 	}
 }
 // attach event handlers
@@ -143,6 +158,18 @@ $(document).on("click", "#btn-install", e => {
 		onApprove: () => {
 			// delete instance
 			InstanceController.deleteInstance(name);
+		},
+		onDeny: () => {
+			// close modal
+		}
+	});
+}).on("click", "#btn-rename", e => {
+	// rename instance
+	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
+	Render.renameModal({
+		name,
+		onApprove: () => {
+			InstanceController.renameInstance(name, $("#input-rename").val() as string);
 		},
 		onDeny: () => {
 			// close modal

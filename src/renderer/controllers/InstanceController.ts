@@ -104,4 +104,23 @@ export namespace InstanceController {
 			return;
 		}
 	}
+
+	/**
+	 * Finds an instance and deletes it. Does not uninstall the resolved version
+	 * @param oldName name of instance to find
+	 * @param newName new name for instance
+	 * @throws if instance is not found
+	 */
+	export function renameInstance(oldName: string, newName: string) {
+		// find instance
+		let i = ApplicationStore.instances.findFromName(oldName);
+		if (!i) throw "An instance with this name does not exist";
+		else {
+			consoleUtils.debug("Renaming instance", name, "to", newName);
+			i.name = newName;
+			ApplicationStore.instances.setInstance(oldName, i);
+			Render.instanceList();
+			return;
+		}
+	}
 }
