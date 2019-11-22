@@ -1,8 +1,6 @@
-.version-option {
-    transition-duration: 300ms;
-}
-
-.version-option:hover {
-	background-color: white;
-    box-shadow: 0 6.4px 14.4px 0 rgba(80, 80, 80, 0.132), 0 1.2px 3.6px 0 rgba(0,0,0,.108);
+.text-instanceName {
+	text-overflow: ellipsis;
+	margin-bottom: 0 !important;
+	overflow: hidden;
+	white-space: nowrap;
 }

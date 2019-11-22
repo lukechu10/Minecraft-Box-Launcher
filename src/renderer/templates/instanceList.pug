@@ -10,7 +10,7 @@
 				.content
 					.ui.grid
 						.twelve.wide.column
-							h3.ui.header= data[i].name
+							p.ui.header.text-instanceName= data[i].name
 							p.description #{data[i].clientType || "Vanilla"} #[strong= data[i].id] (#{data[i].type})
 							//- TODO: Add delete button for instances
 						.four.wide.column
