@@ -70,7 +70,9 @@
 			"category": "public.app-category.games"
 		},
 		"files": [
-			"dist/**/*",
+			"dist/js/**/*.js",
+			"dist/templates/**/*",
+			"dist/views/**/*",
 			"!(dist/**/*.map)"
 		],
 		"asar": false
