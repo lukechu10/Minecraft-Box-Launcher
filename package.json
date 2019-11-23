@@ -75,7 +75,6 @@
 			"dist/views/**/*",
 			"src/renderer/css/*.css",
 			"src/renderer/js/**/*.js"
-		],
-		"asar": false
+		]
 	}
 }
