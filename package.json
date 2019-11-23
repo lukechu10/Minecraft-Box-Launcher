@@ -73,6 +73,6 @@
 			"dist/**/*",
 			"!(dist/**/*.map)"
 		],
-		"asar": true
+		"asar": false
 	}
 }
