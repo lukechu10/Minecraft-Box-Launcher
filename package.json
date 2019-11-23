@@ -70,7 +70,11 @@
 			"category": "public.app-category.games"
 		},
 		"files": [
-			"dist/**/*"
+			"dist/js/**/*.js",
+			"dist/templates/**/*",
+			"dist/views/**/*",
+			"src/renderer/css/*.css",
+			"src/renderer/js/**/*.js"
 		]
 	}
 }
