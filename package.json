@@ -71,9 +71,10 @@
 		},
 		"files": [
 			"dist/js/**/*.js",
-			"dist/js/renderer/**/*.css",
 			"dist/templates/**/*",
-			"dist/views/**/*"
+			"dist/views/**/*",
+			"src/renderer/css/*.css",
+			"src/renderer/js/**/*.js"
 		],
 		"asar": false
 	}
