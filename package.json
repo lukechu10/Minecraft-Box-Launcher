@@ -70,7 +70,8 @@
 			"category": "public.app-category.games"
 		},
 		"files": [
-			"dist/**/*"
+			"dist/**/*",
+			"!(dist/**/*.map)"
 		]
 	}
 }
