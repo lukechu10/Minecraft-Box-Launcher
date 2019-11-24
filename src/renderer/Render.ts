@@ -111,6 +111,7 @@ export namespace Render {
 	 * Shows modal that appears over page
 	 */
 	export function showLoginModal(): void {
+		// TODO: allow option to customize error message on show (for session expired)
 		$("#modal-login").modal({
 			onDeny: () => {
 				// TODO: show are you sure message

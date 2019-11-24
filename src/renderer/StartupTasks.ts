@@ -18,8 +18,12 @@ $(() => {
 		consoleUtils.debug("Updating instance list");
 		Render.instanceList();
 	});
+
+	// update auth
+	AuthenticationController.refreshLogin();
 });
 
 // export modules
 import { ipcRenderer } from "electron";
+import { AuthenticationController } from './controllers/AuthenticationController';
 export { Render, ApplicationStore };
