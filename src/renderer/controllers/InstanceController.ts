@@ -1,6 +1,6 @@
 // TODO: Rename all imports from store as AppStore and export namespace
 import { ApplicationStore } from "../../universal/store";
-import InstanceSave from "../../universal/store/InstanceSave";
+import { InstanceSave } from "../../universal/store/InstanceSave";
 import * as consoleUtils from "../../universal/consoleUtils";
 import { Render } from "../Render";
 
@@ -57,8 +57,8 @@ export namespace InstanceController {
 				version: instance.id,
 				javaPath: "java", // TODO: Change to executable path if java is not in %PATH%
 				launcherName: "Minecraft Box Launcher",
-				user: ApplicationStore.auth.store as Auth,
-				auth: ApplicationStore.auth.store as Auth
+				// user: ApplicationStore.auth.store as Auth.Response,
+				// auth: ApplicationStore.auth.store as Auth.Response
 			};
 			consoleUtils.debug(`Launching instance ${name} with options: `, opts);
 			// span game
@@ -66,7 +66,7 @@ export namespace InstanceController {
 			// update last played
 			instance.lastPlayed = new Date().toISOString();
 			ApplicationStore.instances.setInstance(instance.name, instance);
-		}
+		// }
 	}
 
 	/**
