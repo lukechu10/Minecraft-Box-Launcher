@@ -1,5 +1,5 @@
 import Store = require("electron-store");
-import InstanceSave from "./InstanceSave";
+import { InstanceSave } from "./InstanceSave";
 
 export default class InstanceStore extends Store {
 	constructor() {

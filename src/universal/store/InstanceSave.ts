@@ -4,7 +4,7 @@ const app = remote.app;
 import { Installer } from "@xmcl/installer";
 import { MinecraftLocation, MinecraftFolder } from "@xmcl/util";
 
-export default class InstanceSave implements Installer.VersionMeta {
+export class InstanceSave implements Installer.VersionMeta {
 	/**
      * Name of instance
      */

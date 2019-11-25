@@ -10,8 +10,8 @@ export namespace AuthenticationController {
 	 * @param username Minecraft email
 	 * @param password Minecraft password
 	 */
-	export async function login(username: string, password: string): Promise<Auth> {
-		const authFromMojang: Auth = await Auth.Yggdrasil.login({ username, password }); // official login
+	export async function login(username: string, password: string): Promise<Auth.Response> {
+		const authFromMojang: Auth.Response = await Auth.Yggdrasil.login({ username, password }); // official login
 		// save data to electron store
 		ApplicationStore.auth.set(authFromMojang);
 		ApplicationStore.auth.set("loggedIn", true);
@@ -22,7 +22,7 @@ export namespace AuthenticationController {
 	 * Logouts user and resets store
 	 */
 	export async function logout(): Promise<void> {
-		const authData = ApplicationStore.auth.store as Auth & { loggedIn: boolean };
+		const authData = ApplicationStore.auth.store as Auth.Response & { loggedIn: boolean };
 		// invalidate tokens
 		const accessToken: string = authData.accessToken;
 		const clientToken: string = authData.clientToken;
@@ -44,7 +44,7 @@ export namespace AuthenticationController {
 			throw "User is not logged in. Cannot refresh auth."
 		}
 		else {
-			const authData = ApplicationStore.auth.store as Auth & { loggedIn: boolean };
+			const authData = ApplicationStore.auth.store as Auth.Response & { loggedIn: boolean };
 			const accessToken: string = authData.accessToken;
 			const clientToken: string = authData.clientToken;
 			console.log(accessToken,"\n\n", clientToken)
@@ -52,7 +52,7 @@ export namespace AuthenticationController {
 			const valid: boolean = await Auth.Yggdrasil.validate({ accessToken, clientToken });
 			if (!valid) {
 				try {
-					const newAuth: Auth = await Auth.Yggdrasil.refresh({ accessToken, clientToken });
+					const newAuth: Auth.Response = await Auth.Yggdrasil.refresh({ accessToken, clientToken });
 					console.log(newAuth)
 					consoleUtils.debug("Refreshing auth. New auth value: ", newAuth);
 					// save new auth to store
