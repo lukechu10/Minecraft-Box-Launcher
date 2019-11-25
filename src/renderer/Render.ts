@@ -98,7 +98,7 @@ export namespace Render {
 			initiateLoginForm();
 		}
 		else if (status == "login") {
-			$("#login-status").html(loginstatusTemplate({ loggedIn: true, name: ApplicationStore.auth.get("profiles")[0].name }));
+			$("#login-status").html(loginstatusTemplate({ loggedIn: true, name: ApplicationStore.auth.get("selectedProfile").name }));
 			// user popup
 			$("#login-status").dropdown();
 		}
