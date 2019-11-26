@@ -58,7 +58,9 @@ function createWindow() {
 	// Create the browser window.
 	windows.main = new Window(windowsOpts.main);
 
-	Menu.setApplicationMenu(null);
+	// FIXME: allow flag to be anywhere
+	if (process.argv[2] !== "--dev") // show dev tools if flag --dev is passed as 3rd argument
+		Menu.setApplicationMenu(null); // only show menu in dev
 	// Emitted when the window is closed.
 	windows.main.on("closed", function () {
 		// Dereference the window object, usually you would store windows
