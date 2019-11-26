@@ -125,9 +125,9 @@ ipcMain.on("show-window", (event: Electron.IpcMainEvent, ...args) => {
 });
 
 ipcMain.on("showWindow-newInstance", (event: Electron.IpcMainEvent) => {
-	consoleUtils.debug("Showing new instance window");
 	if (windows.newInstance === null) {
 		windows.newInstance = new Window(windowsOpts.newInstance);
+		consoleUtils.debug("Creating window newInstance");
 		// create on closed event
 		windows.newInstance.once("closed", (event: Electron.Event) => {
 			windows.newInstance = null;
@@ -135,6 +135,7 @@ ipcMain.on("showWindow-newInstance", (event: Electron.IpcMainEvent) => {
 		});
 	}
 	windows.newInstance.show();
+	consoleUtils.debug("Showing new instance window");
 	event.returnValue = "success";
 });
 
