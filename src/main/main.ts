@@ -80,6 +80,10 @@ app.on("activate", function () {
 // code. You can also put them in separate files and require them here.
 
 // show window
+// TODO: split up into seperate requests
+/**
+ * @deprecated split up into seperate requests
+ */
 ipcMain.on("show-window", (event: Electron.IpcMainEvent, ...args) => {
 	if (args === undefined || typeof args[0] !== "string") {
 		console.error("Argument args[0] must be of type string. Ignorring");
@@ -118,6 +122,20 @@ ipcMain.on("show-window", (event: Electron.IpcMainEvent, ...args) => {
 			event.returnValue = { message: err };
 		}
 	}
+});
+
+ipcMain.on("showWindow-newInstance", (event: Electron.IpcMainEvent) => {
+	consoleUtils.debug("Showing new instance window");
+	if (windows.newInstance === null) {
+		windows.newInstance = new Window(windowsOpts.newInstance);
+		// create on closed event
+		windows.newInstance.once("closed", (event: Electron.Event) => {
+			windows.newInstance = null;
+			// keep reference for future use
+		});
+	}
+	windows.newInstance.show();
+	event.returnValue = "success";
 });
 
 // change to instance list from different window

@@ -27,12 +27,12 @@ export namespace AuthenticationController {
 		const accessToken: string = authData.accessToken;
 		const clientToken: string = authData.clientToken;
 		consoleUtils.debug("Invalidating access/client pair.")
-		Auth.Yggdrasil.invalidate({accessToken, clientToken})
+		Auth.Yggdrasil.invalidate({ accessToken, clientToken })
 
 		// clear store
 		ApplicationStore.auth.clear();
 		ApplicationStore.auth.set("loggedIn", false);
-		Render.updateLoginStatus("logout");		
+		Render.updateLoginStatus("logout");
 		return;
 	}
 	/**
@@ -47,7 +47,7 @@ export namespace AuthenticationController {
 			const authData = ApplicationStore.auth.store as Auth & { loggedIn: boolean };
 			const accessToken: string = authData.accessToken;
 			const clientToken: string = authData.clientToken;
-			console.log(accessToken,"\n\n", clientToken)
+			console.log(accessToken, "\n\n", clientToken)
 
 			const valid: boolean = await Auth.Yggdrasil.validate({ accessToken, clientToken });
 			if (!valid) {

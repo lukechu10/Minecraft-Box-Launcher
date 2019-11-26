@@ -18,7 +18,7 @@ export namespace Render {
 	 * Shows new instance page
 	 */
 	export function newInstance(): void {
-		ipcRenderer.sendSync("show-window", "newInstance");
+		ipcRenderer.sendSync("showWindow-newInstance");
 	}
 
 	declare function instanceconfirmdeleteTemplate(data: any): string;
