@@ -44,7 +44,7 @@ class WindowOptsList {
 	instanceOptions: WindowConstructorOptions = {
 		type: "file",
 		path: path.join(__dirname, "../../views/", "instanceOptions.html"),
-		title: "Options", // TODO: add instance name to title
+		title: "Options",
 		webPreferences: {
 			nodeIntegration: true
 		}
@@ -120,7 +120,12 @@ ipcMain.on("showWindow-newInstance", (event: Electron.IpcMainEvent) => {
 				if (windows.instanceOptions.findIndex(val => { val.instanceName == instanceName; }) === -1) {
 					// create window and push to array
 					consoleUtils.debug(`Creating options window for instance ${instanceName}`);
-					let newWindow: Window | null = new Window(windowsOpts.instanceOptions);
+					// get opts
+					let opts = windowsOpts.instanceOptions;
+					// set title
+					opts.title = `${instanceName} | Options`;
+					// create window
+					let newWindow: Window | null = new Window(opts);
 					// attach event handlers
 					newWindow.once("closed", (event: Electron.Event) => {
 						newWindow = null;
