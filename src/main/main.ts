@@ -79,51 +79,6 @@ app.on("activate", function () {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-// show window
-// TODO: split up into seperate requests
-/**
- * @deprecated split up into seperate requests
- */
-ipcMain.on("show-window", (event: Electron.IpcMainEvent, ...args) => {
-	if (args === undefined || typeof args[0] !== "string") {
-		console.error("Argument args[0] must be of type string. Ignorring");
-		event.returnValue = { message: "Argument args[0] must be of type string. Ignorring" };
-	}
-	else {
-		try {
-			const windowName: string = args[0];
-			if (windows[windowName] !== undefined) {
-				// get window and show
-				if (windows[windowName] === null) {
-					// create new window
-					consoleUtils.debug(`Creating and showing window ${windowName}`);
-					// construct new window with options
-					windows[windowName] = new Window(windowsOpts[windowName]);
-					(windows[windowName] as Window).show();
-					(windows[windowName] as Window).on("closed", (event: Electron.Event) => {
-						// keep a reference of the window for future uses
-						windows[windowName] = null;
-					});
-					event.returnValue = { message: `Window ${windowName} created and shown` };
-				}
-				else {
-					consoleUtils.debug(`Showing window ${windowName}`);
-					(windows[windowName] as Window).show();
-					event.returnValue = { message: `Window ${windowName} shown` };
-				}
-			}
-			else {
-				console.error(`Window ${windowName} not found`);
-				event.returnValue = { message: `Window ${windowName} not found` };
-			}
-		}
-		catch (err) {
-			consoleUtils.debug(`Error: ${err}`);
-			event.returnValue = { message: err };
-		}
-	}
-});
-
 ipcMain.on("showWindow-newInstance", (event: Electron.IpcMainEvent) => {
 	if (windows.newInstance === null) {
 		windows.newInstance = new Window(windowsOpts.newInstance);
