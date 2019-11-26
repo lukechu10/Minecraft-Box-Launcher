@@ -25,5 +25,5 @@ $(() => {
 
 // export modules
 import { ipcRenderer } from "electron";
-import { AuthenticationController } from './controllers/AuthenticationController';
+import { AuthenticationController } from "./controllers/AuthenticationController";
 export { Render, ApplicationStore };

@@ -26,8 +26,8 @@ export namespace AuthenticationController {
 		// invalidate tokens
 		const accessToken: string = authData.accessToken;
 		const clientToken: string = authData.clientToken;
-		consoleUtils.debug("Invalidating access/client pair.")
-		Auth.Yggdrasil.invalidate({ accessToken, clientToken })
+		consoleUtils.debug("Invalidating access/client pair.");
+		Auth.Yggdrasil.invalidate({ accessToken, clientToken });
 
 		// clear store
 		ApplicationStore.auth.clear();
@@ -41,19 +41,18 @@ export namespace AuthenticationController {
 	 */
 	export async function refreshLogin(): Promise<void> {
 		if (ApplicationStore.auth.get("loggedIn") == false) {
-			throw "User is not logged in. Cannot refresh auth."
+			throw "User is not logged in. Cannot refresh auth.";
 		}
 		else {
 			const authData = ApplicationStore.auth.store as Auth & { loggedIn: boolean };
 			const accessToken: string = authData.accessToken;
 			const clientToken: string = authData.clientToken;
-			console.log(accessToken, "\n\n", clientToken)
 
 			const valid: boolean = await Auth.Yggdrasil.validate({ accessToken, clientToken });
 			if (!valid) {
 				try {
 					const newAuth: Auth = await Auth.Yggdrasil.refresh({ accessToken, clientToken });
-					console.log(newAuth)
+					console.log(newAuth);
 					consoleUtils.debug("Refreshing auth. New auth value: ", newAuth);
 					// save new auth to store
 					ApplicationStore.auth.set(newAuth);

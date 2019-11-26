@@ -8,6 +8,8 @@ import debug from "electron-debug";
 
 import * as consoleUtils from "../universal/consoleUtils";
 import Window, { WindowConstructorOptions } from "./Window";
+import { ApplicationStore } from "../universal/store";
+import InstanceSave from "../universal/store/InstanceSave";
 
 debug({
 	showDevTools: false
@@ -16,7 +18,7 @@ debug({
 class WindowList {
 	main: Window | null = null;
 	newInstance: Window | null = null;
-	[index: string]: Window | null;
+	instanceOptions: Array<{ window: Window | null, instanceName: string }> = [];
 }
 
 class WindowOptsList {
@@ -39,7 +41,14 @@ class WindowOptsList {
 			nodeIntegration: true
 		}
 	};
-	[index: string]: WindowConstructorOptions;
+	instanceOptions: WindowConstructorOptions = {
+		type: "file",
+		path: path.join(__dirname, "../../views/", "instanceOptions.html"),
+		title: "Options", // TODO: add instance name to title
+		webPreferences: {
+			nodeIntegration: true
+		}
+	};
 }
 let windows: WindowList = new WindowList();
 const windowsOpts: WindowOptsList = new WindowOptsList();
@@ -79,6 +88,7 @@ app.on("activate", function () {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
+// windows
 ipcMain.on("showWindow-newInstance", (event: Electron.IpcMainEvent) => {
 	if (windows.newInstance === null) {
 		windows.newInstance = new Window(windowsOpts.newInstance);
@@ -92,7 +102,45 @@ ipcMain.on("showWindow-newInstance", (event: Electron.IpcMainEvent) => {
 	windows.newInstance.show();
 	consoleUtils.debug("Showing new instance window");
 	event.returnValue = "success";
+}).on("showWindow-instanceOptions", (event: Electron.IpcMainEvent, ...args: any[]) => {
+	try {
+		if (args.length === 0)
+			throw RangeError("args must at least have one element");
+		else if (typeof args[0] !== "string")
+			throw TypeError("expected argument args[0] to be type string");
+		else {
+			const instanceName: string = args[0];
+			// check if instance exists
+			const findResult: InstanceSave | undefined = ApplicationStore.instances.findFromName(instanceName);
+			if (findResult === undefined) {
+				throw Error(`an instance named ${instanceName} does not exist`);
+			}
+			else {
+				// check if window has already been created
+				if (windows.instanceOptions.findIndex(val => { val.instanceName == instanceName; }) === -1) {
+					// create window and push to array
+					consoleUtils.debug(`Creating options window for instance ${instanceName}`);
+					let newWindow: Window | null = new Window(windowsOpts.instanceOptions);
+					// attach event handlers
+					newWindow.once("closed", (event: Electron.Event) => {
+						newWindow = null;
+					});
+					windows.instanceOptions.push({ window: newWindow, instanceName }); // pushes a shallow copy
+				}
+				// show window
+				consoleUtils.debug(`Showing options window for instance ${instanceName}`);
+				windows.instanceOptions[windows.instanceOptions.length - 1].window?.show();
+				event.returnValue = { success: true, message: "window successfully created" };
+			}
+		}
+	}
+	catch (err) {
+		// return error
+		console.warn(err);
+		event.returnValue = { success: false, message: err.message };
+	}
 });
+
 
 // change to instance list from different window
 ipcMain.on("new-instance", (event: Electron.IpcMainEvent) => {

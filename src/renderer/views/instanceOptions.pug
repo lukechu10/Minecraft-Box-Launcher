@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		meta(http-equiv="X-UA-Compatible", content="ie=edge")
+		// css
+		// semantic-ui
+		link(rel="stylesheet" href="../../src/renderer/css/semantic.min.css")
+		block css
+		// js
+		// load modules
+		script(link-js-library).
+			require("v8-compile-cache");
+			const jQuery = window.$ = require('jquery');
+			const { ApplicationStore } = require("../js/universal/store");
+		script(src='../../src/renderer/js/semantic.min.js' link-js-library)
+		block js
+	body
+		h1 Options
