@@ -15,10 +15,20 @@ export namespace Render {
 		return;
 	}
 	/**
-	 * Shows new instance page
+	 * Shows new instance window
 	 */
 	export function newInstance(): void {
 		ipcRenderer.sendSync("showWindow-newInstance");
+	}
+	/**
+	 * Shows instance options window
+	 * @param name name of instance
+	 */
+	export function instanceOptions(name: string): void {
+		const result = ipcRenderer.sendSync("showWindow-instanceOptions", name);
+		if (result.success === false) {
+			throw Error("Error returned from main process");
+		}
 	}
 
 	declare function instanceconfirmdeleteTemplate(data: any): string;
@@ -174,4 +184,8 @@ $(document).on("click", "#btn-install", e => {
 			// close modal
 		}
 	});
+}).on("click", "#btn-options", e => {
+	// open options window
+	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
+	Render.instanceOptions(name);
 });
