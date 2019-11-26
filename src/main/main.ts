@@ -1,7 +1,7 @@
 import "v8-compile-cache";
 
 // Modules to control application life and create native browser window
-import { app, ipcMain } from "electron";
+import { app, ipcMain, Menu } from "electron";
 import * as path from "path";
 import querystring from "querystring";
 
@@ -58,7 +58,7 @@ function createWindow() {
 	// Create the browser window.
 	windows.main = new Window(windowsOpts.main);
 
-	// Menu.setApplicationMenu(null);
+	Menu.setApplicationMenu(null);
 	// Emitted when the window is closed.
 	windows.main.on("closed", function () {
 		// Dereference the window object, usually you would store windows
