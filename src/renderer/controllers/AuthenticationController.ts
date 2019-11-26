@@ -59,8 +59,9 @@ export namespace AuthenticationController {
 					ApplicationStore.auth.set(newAuth);
 					ApplicationStore.auth.set("loggedIn", true);
 				}
-				catch {
+				catch(err) {
 					// user needs to login again
+					console.error(err);
 					logout();
 					Render.showLoginModal();
 				}
