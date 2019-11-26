@@ -3,6 +3,7 @@ import "v8-compile-cache";
 // Modules to control application life and create native browser window
 import { app, ipcMain } from "electron";
 import * as path from "path";
+import querystring from "querystring";
 
 import debug from "electron-debug";
 
@@ -122,10 +123,11 @@ ipcMain.on("showWindow-newInstance", (event: Electron.IpcMainEvent) => {
 					consoleUtils.debug(`Creating options window for instance ${instanceName}`);
 					// get opts
 					let opts = windowsOpts.instanceOptions;
-					// set title
+					// set title and queries
 					opts.title = `${instanceName} | Options`;
 					// create window
 					let newWindow: Window | null = new Window(opts);
+					(newWindow as any).instanceName = instanceName; // FIXME: remove work around as this breaks BrowserWindow type
 					// attach event handlers
 					newWindow.once("closed", (event: Electron.Event) => {
 						newWindow = null;
