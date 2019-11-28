@@ -62,6 +62,7 @@ export default class InstanceStore extends Store {
 	/**
 	 * Find an instance by name
 	 * @param name of instance
+	 * @returns value of instance or undefined if not found
 	 */
 	findFromName(name: string): InstanceSave | undefined {
 		return this.all.find(obj => obj.name == name);
