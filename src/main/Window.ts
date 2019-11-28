@@ -20,8 +20,6 @@ export default class Window extends BrowserWindow {
 		super(newOpts);
 		// type
 		if (newOpts.type == "file") {
-			console.log(newOpts.path)
-
 			this.loadFile(newOpts.path);
 		}
 		else if (newOpts.type == "url") {
