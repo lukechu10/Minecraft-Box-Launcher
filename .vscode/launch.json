@@ -8,8 +8,9 @@
             "protocol": "inspector",
             "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
             "runtimeArgs": [
-                "--remote-debugging-port=9223",
-                "."
+                ".",
+                "--dev",
+                "--remote-debugging-port=9223"
             ],
             "windows": {
                 "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
