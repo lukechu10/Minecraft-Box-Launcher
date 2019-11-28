@@ -55,6 +55,7 @@ export namespace AuthenticationController {
 					console.log(newAuth);
 					consoleUtils.debug("Refreshing auth. New auth value: ", newAuth);
 					// save new auth to store
+					ApplicationStore.auth.clear();
 					ApplicationStore.auth.set(newAuth);
 					ApplicationStore.auth.set("loggedIn", true);
 				}
