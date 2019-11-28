@@ -59,7 +59,7 @@ function createWindow() {
 	windows.main = new Window(windowsOpts.main);
 
 	// FIXME: allow flag to be anywhere
-	if (process.argv[2] !== "--dev") // show dev tools if flag --dev is passed as 3rd argument
+	if (process.argv.findIndex(val => val === "--dev") === -1) // show application menu only if flag --dev is passed as 3rd argument
 		Menu.setApplicationMenu(null); // only show menu in dev
 	// Emitted when the window is closed.
 	windows.main.on("closed", function () {
