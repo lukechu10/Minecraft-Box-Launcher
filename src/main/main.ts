@@ -119,9 +119,9 @@ ipcMain.on("showWindow-newInstance", (event: Electron.IpcMainEvent) => {
 				throw Error(`an instance named ${instanceName} does not exist`);
 			}
 			else {
-				let windowIndex = windows.instanceOptions.findIndex(val => { val.instanceName == instanceName; });
+				let windowIndex = windows.instanceOptions.findIndex(val => val.instanceName == instanceName);
 				// check if window has already been created
-				if (windowIndex === -1) {
+				if (windowIndex === -1 || windows.instanceOptions[windowIndex].window === null) {
 					// create window and push to array
 					consoleUtils.debug(`Creating options window for instance ${instanceName}`);
 					// get opts
@@ -132,14 +132,15 @@ ipcMain.on("showWindow-newInstance", (event: Electron.IpcMainEvent) => {
 					let newWindow: Window | null = new Window(opts);
 					(newWindow as any).instanceName = instanceName; // FIXME: remove work around as this breaks BrowserWindow type
 					(newWindow as any).startPage = args[1] || "general";
-					// attach event handlers
-					newWindow.once("closed", (event: Electron.Event) => {
-						newWindow = null;
-					});
-					windows.instanceOptions.push({ window: newWindow, instanceName }); // pushes a shallow copy
+					// create / recreate
+					if (windowIndex === -1)
+						windows.instanceOptions.push({ window: newWindow, instanceName }); // pushes a shallow copy
+					else
+						windows.instanceOptions[windowIndex].window = newWindow;
 				}
 				else {
 					// send switch page request with ipc
+					// windows.instanceOptions[windowIndex].window
 				}
 				// update window index
 				windowIndex = windows.instanceOptions.findIndex(val => { val.instanceName == instanceName; });
