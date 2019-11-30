@@ -1,8 +1,10 @@
 import { ApplicationStore } from "../universal/store";
-import { Render } from "./Render";
-
+import { AuthenticationController } from "./controllers/AuthenticationController";
 import { VersionsController } from "./controllers/VersionsController";
+import { Render } from "./Render";
+import { ipcRenderer } from "electron";
 import * as consoleUtils from "../universal/consoleUtils";
+
 
 // startup tasks
 $(() => {
@@ -24,6 +26,4 @@ $(() => {
 });
 
 // export modules
-import { ipcRenderer } from "electron";
-import { AuthenticationController } from './controllers/AuthenticationController';
 export { Render, ApplicationStore };

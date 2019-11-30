@@ -1,10 +1,19 @@
 import path from "path";
-import { remote } from "electron";
-const app = remote.app;
+
 import { Installer } from "@xmcl/installer";
 import { MinecraftLocation, MinecraftFolder } from "@xmcl/util";
 
-export class InstanceSave implements Installer.VersionMeta {
+import { remote, app as mainApp, App } from "electron";
+
+let app: App;
+if (process && process.type == "renderer") {
+	app = remote.app;
+}
+else {
+	app = mainApp;
+}
+
+export default class InstanceSave implements Installer.VersionMeta {
 	/**
      * Name of instance
      */

@@ -125,3 +125,4 @@ export namespace InstanceController {
 			}
 		}
 	}
+}

@@ -6,7 +6,9 @@
 	"main": "dist/js/main/main.js",
 	"scripts": {
 		"start": "electron .",
+		"dev": "electron . --dev",
 		"start:gitpod": "electron --no-sandbox .",
+		"dev:gitpod": "electron . --dev --no-sandbox",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "run-p build:*",
 		"build-watch": "run-p build-watch:*",
