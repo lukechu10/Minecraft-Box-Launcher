@@ -13,7 +13,7 @@ else {
 	app = mainApp;
 }
 
-export default class InstanceSave implements Installer.VersionMeta {
+export class InstanceSave implements Installer.VersionMeta {
 	/**
      * Name of instance
      */
