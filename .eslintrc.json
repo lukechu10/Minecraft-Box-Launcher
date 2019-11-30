@@ -69,6 +69,7 @@
 		],
 		"yoda": "warn",
 		"no-inner-declarations": "off",
-		"eol-last": "error"
+		"eol-last": "error",
+		"prefer-arrow-callback": "warn"
 	}
 }
