@@ -10,7 +10,7 @@ import debug from "electron-debug";
 import * as consoleUtils from "../universal/consoleUtils";
 import Window, { WindowConstructorOptions } from "./Window";
 import { ApplicationStore } from "../universal/store";
-import InstanceSave from "../universal/store/InstanceSave";
+import { InstanceSave } from "../universal/store/InstanceSave";
 import { MainWindow } from "./MainWindow";
 
 debug({

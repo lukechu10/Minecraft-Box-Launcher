@@ -1,6 +1,6 @@
 import { remote, ipcRenderer } from "electron";
 import { ApplicationStore } from "../../universal/store";
-import InstanceSave from "../../universal/store/InstanceSave";
+import { InstanceSave } from "../../universal/store/InstanceSave";
 // load data from store
 declare let instanceName: string;
 export let instanceData: InstanceSave = ApplicationStore.instances.findFromName(instanceName) as InstanceSave;

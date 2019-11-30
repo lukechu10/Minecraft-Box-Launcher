@@ -1,8 +1,7 @@
-import InstanceSave from "../../universal/store/InstanceSave";
+import { InstanceSave } from "../../universal/store/InstanceSave";
 import * as consoleUtils from "../../universal/consoleUtils";
 import { ApplicationStore } from "../../universal/store";
 import { Installer } from "@xmcl/installer";
-import { Version } from "@xmcl/common";
 import { remote, ipcRenderer } from "electron";
 
 function menuItem(version: Installer.VersionMeta) {
