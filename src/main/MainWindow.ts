@@ -1,5 +1,5 @@
 import path from "path";
-import { BrowserWindow } from 'electron';
+import { BrowserWindow } from "electron";
 
 const MainWindowOptions: Electron.BrowserWindowConstructorOptions = {
 	width: 800,
@@ -9,7 +9,7 @@ const MainWindowOptions: Electron.BrowserWindowConstructorOptions = {
 		nodeIntegration: true,
 		sandbox: false
 	}
-}
+};
 
 export class MainWindow extends BrowserWindow {
 	constructor() {

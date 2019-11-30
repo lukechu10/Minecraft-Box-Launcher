@@ -11,7 +11,7 @@ import * as consoleUtils from "../universal/consoleUtils";
 import Window, { WindowConstructorOptions } from "./Window";
 import { ApplicationStore } from "../universal/store";
 import InstanceSave from "../universal/store/InstanceSave";
-import { MainWindow } from './MainWindow';
+import { MainWindow } from "./MainWindow";
 
 debug({
 	showDevTools: false
