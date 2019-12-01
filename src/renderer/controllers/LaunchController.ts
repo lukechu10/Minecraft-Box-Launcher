@@ -67,7 +67,8 @@ export namespace LaunchController {
 				return;
 			}
 			const args: string[] = await Launcher.generateArguments(options); // get arguments from options
-			child_process.spawn(args[0], args.slice(1)); // spawn java instance (args[0] should be "java" or java path from options.javaPath)
+			const spawnOptions = { cwd: options.gamePath, env: process.env, ...(options.extraExecOption || {}) };
+			child_process.spawn(args[0], args.slice(1), spawnOptions); // spawn java instance (args[0] should be "java" or java path from options.javaPath)
 
 			// update last played
 			instance.lastPlayed = new Date().toISOString();
