@@ -17,18 +17,18 @@
 							.ui.right.floated.buttons
 								- if(data[i].installed)
 									//- TODO: Add onclick property to launch game
-									.ui.green.button#btn-play(data-instance-name=data[i].name)
+									.ui.green.button.btn-play(data-instance-name=data[i].name)
 										| Play
 								- else
-									.ui.olive.button#btn-install(data-instance-name=data[i].name)
+									.ui.olive.button.btn-install(data-instance-name=data[i].name)
 										// (onclick=`instances.installByName("${data[i].name}")`)
 										| Install
 								.ui.gray.floating.dropdown.button ▼
 									.menu
-										.item#btn-rename(data-instance-name=data[i].name) Rename
+										.item.btn-rename(data-instance-name=data[i].name) Rename
 										- if(data[i].installed)
-											.item#btn-reinstall(data-instance-name=data[i].name class=data[i].installed) Reinstall
+											.item.btn-reinstall(data-instance-name=data[i].name class=data[i].installed) Reinstall
 										- else
 											.disabled.item Reinstall
-										.item#btn-options(data-instance-name=data[i].name) Options
-										.red.inverted.item#btn-delete(style="color: red;" data-instance-name=data[i].name) Delete
+										.item.btn-options(data-instance-name=data[i].name) Options
+										.red.inverted.item.btn-delete(style="color: red;" data-instance-name=data[i].name) Delete

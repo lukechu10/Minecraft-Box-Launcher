@@ -145,7 +145,7 @@ export namespace Render {
 	}
 }
 // attach event handlers
-$(document).on("click", "#btn-install", e => {
+$(document).on("click", ".btn-install", e => {
 	// install instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	// install by name
@@ -153,20 +153,20 @@ $(document).on("click", "#btn-install", e => {
 	// update text
 	// TODO: add as member to InstanceSave to save text when switching pages
 	$(e.currentTarget).text("Installing...").removeClass("olive").attr("id", "").addClass(["gray", "disabled"]);
-}).on("click", "#btn-reinstall", e => {
+}).on("click", ".btn-reinstall", e => {
 	// install instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	// install by name
 	InstanceController.installByName(name);
 	// update text
 	// TODO: add as member to InstanceSave to save text when switching pages
-	$(`#btn-play[data-instance-name=${name}]`).text("Installing...").removeClass("green").attr("id", "").addClass(["gray", "disabled"]);
-}).on("click", "#btn-play", e => {
+	$(`.btn-play[data-instance-name=${name}]`).text("Installing...").removeClass("green").attr("id", "").addClass(["gray", "disabled"]);
+}).on("click", ".btn-play", e => {
 	// launch instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	// launch by name
 	InstanceController.launch(name);
-}).on("click", "#btn-delete", e => {
+}).on("click", ".btn-delete", e => {
 	// delete instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	// show prompt
@@ -180,7 +180,7 @@ $(document).on("click", "#btn-install", e => {
 			// close modal
 		}
 	});
-}).on("click", "#btn-rename", e => {
+}).on("click", ".btn-rename", e => {
 	// rename instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	Render.renameModal({
@@ -192,7 +192,7 @@ $(document).on("click", "#btn-install", e => {
 			// close modal
 		}
 	});
-}).on("click", "#btn-options", e => {
+}).on("click", ".btn-options", e => {
 	// open options window
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	Render.instanceOptions(name);
