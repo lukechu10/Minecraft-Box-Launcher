@@ -3,6 +3,7 @@ import { InstanceController } from "./controllers/InstanceController";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 
 import { ipcRenderer } from "electron";
+import { LaunchController } from './controllers/LaunchController';
 
 export namespace Render {
 	declare function instancelistTemplate(data: any): string;
@@ -165,7 +166,7 @@ $(document).on("click", ".btn-install", e => {
 	// launch instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	// launch by name
-	InstanceController.launch(name);
+	LaunchController.launch(name);
 }).on("click", ".btn-delete", e => {
 	// delete instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;

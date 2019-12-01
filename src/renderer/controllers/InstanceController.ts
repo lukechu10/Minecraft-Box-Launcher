@@ -1,4 +1,3 @@
-// TODO: Rename all imports from store as AppStore and export namespace
 import { ApplicationStore } from "../../universal/store";
 import { InstanceSave } from "../../universal/store/InstanceSave";
 import * as consoleUtils from "../../universal/consoleUtils";
@@ -36,39 +35,7 @@ export namespace InstanceController {
 		var spawn = child_process.spawnSync("which", ["java"]).stdout;
 		return spawn;
 	}
-	/**
-	 *
-	 * @param name of instance to launch
-	 * @throws if an instance with `name` does not exist
-	 * @throws if user is not logged in
-	 */
-	export function launch(name: string) {
-		const instance: InstanceSave | undefined = ApplicationStore.instances.findFromName(name);
-		if (instance === undefined)
-			throw "An instance with this name does not exist";
-		else if (ApplicationStore.auth.get("loggedIn") == false) {
-			// TODO: Show warning
-			throw "User is not logged in";
-		}
-		else {
-			const opts: Launcher.Option & Launcher.PrecheckService = {
-				gamePath: MinecraftSavePath(instance.name),
-				resourcePath: MinecraftGamePath,
-				version: instance.id,
-				javaPath: "java", // TODO: Change to executable path if java is not in %PATH%
-				launcherName: "Minecraft Box Launcher",
-				// FIXME: update to new api for auth
-				// user: ApplicationStore.auth.store as Auth.Response,
-				// auth: ApplicationStore.auth.store as Auth.Response
-			};
-			consoleUtils.debug(`Launching instance ${name} with options: `, opts);
-			// spawn game
-			const proc = Launcher.launch(opts);
-			// update last played
-			instance.lastPlayed = new Date().toISOString();
-			ApplicationStore.instances.setInstance(instance.name, instance);
-		}
-	}
+	
 
 	/**
 	 * Finds an instance and installs it
@@ -125,4 +92,3 @@ export namespace InstanceController {
 		}
 	}
 }
-
