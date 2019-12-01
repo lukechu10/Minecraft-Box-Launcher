@@ -24,7 +24,8 @@
 		"pack:windows": "electron-builder --dir --windows",
 		"pack:macos": "electron-builder --dir --macos",
 		"dist": "electron-builder",
-		"postinstall": "run-p build:*"
+		"postinstall": "run-p build:*",
+		"preversion": "npm run eslint"
 	},
 	"keywords": [
 		"minecraft",
