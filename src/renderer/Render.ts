@@ -144,6 +144,22 @@ export namespace Render {
 			onDeny
 		}).modal("show");
 	}
+
+	declare function instancecorruptedTemplate(data: any): string;
+
+	/**
+	 * Show instance is corrupted modal
+	 */
+	export function corruptedModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
+		// render html
+		$("#modal-instanceCorrupted").html(instancecorruptedTemplate({ name }));
+		// show modal
+		$("#modal-instanceCorrupted").modal({
+			closable: false,
+			onApprove,
+			onDeny
+		}).modal("show");
+	}
 }
 // attach event handlers
 $(document).on("click", ".btn-install", e => {
