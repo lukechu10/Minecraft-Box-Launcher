@@ -19,7 +19,7 @@ debug({
 let WindowList: Map<string, BrowserWindow | null> = new Map();
 
 class WindowOptsList {
-	main: WindowConstructorOptions = {
+	public main: WindowConstructorOptions = {
 		type: "file",
 		path: path.join(__dirname, "../../views/", "instances.html"),
 		width: 800,
@@ -30,7 +30,7 @@ class WindowOptsList {
 			sandbox: false
 		}
 	};
-	newInstance: WindowConstructorOptions = {
+	public newInstance: WindowConstructorOptions = {
 		type: "file",
 		path: path.join(__dirname, "../../views/", "newInstance.html"),
 		title: "New Instance",
@@ -38,7 +38,7 @@ class WindowOptsList {
 			nodeIntegration: true
 		}
 	};
-	instanceOptions: WindowConstructorOptions = {
+	public instanceOptions: WindowConstructorOptions = {
 		type: "file",
 		path: path.join(__dirname, "../../views/", "instanceOptions.html"),
 		title: "Options",
