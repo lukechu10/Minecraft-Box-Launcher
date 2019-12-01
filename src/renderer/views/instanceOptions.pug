@@ -58,8 +58,9 @@ html(lang="en")
 
 			// listen for ipc to change page
 			ipcRenderer.on("switchPage", (event, ...args) => {
-				if(args.length === 0 || typeof args[0] !== "string") throw TypeError("Expected args[0] to be of type `string`");
-				switchPage(args[0]);
+				if (args.length === 0 || typeof args[0] !== "string") throw TypeError("Expected args[0] to be of type `string`");
+				if (args!== undefined)
+					switchPage(args[0]);
 			});
 	body
 		.ui.container

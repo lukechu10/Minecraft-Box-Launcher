@@ -16,14 +16,6 @@ debug({
 	showDevTools: false
 });
 
-/*
-namespace WindowList {
-	export let main: MainWindow | null = null;
-	export let newInstance: Window | null = null;
-	export let instanceOptions: Array<{ window: Window | null, instanceName: string }> = [];
-}
-*/
-
 let WindowList: Map<string, BrowserWindow | null> = new Map();
 
 class WindowOptsList {
@@ -125,7 +117,6 @@ ipcMain.on("showWindow-newInstance", (event: Electron.IpcMainEvent) => {
 				throw Error(`an instance named ${instanceName} does not exist`);
 			}
 			else {
-				// let windowIndex = WindowList.instanceOptions.findIndex(val => val.instanceName == instanceName);
 				// check if window has already been created
 				if (!WindowList.has(`instanceList-${instanceName}`) || WindowList.get(`instanceList-${instanceName}`) === null) {
 					// create window and push to array
@@ -145,8 +136,8 @@ ipcMain.on("showWindow-newInstance", (event: Electron.IpcMainEvent) => {
 					WindowList.set(`instanceList-${instanceName}`, newWindow);
 				}
 				else {
-					// send switch page request with ipc
-					// windows.instanceOptions[windowIndex].window
+					// window already created: send switch page request with ipc
+					WindowList.get(`instanceList-${instanceName}`)?.webContents.send("switchPage", args[1]);
 				}
 				// show window
 				consoleUtils.debug(`Showing options window for instance ${instanceName}`);
