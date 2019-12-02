@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "minecraft-box-launcher",
-	"version": "0.3.4",
+	"version": "0.4.3",
 	"description": "Open source Minecraft Java Edition launcher build with ElectronJS",
 	"main": "dist/js/main/main.js",
 	"scripts": {
@@ -24,7 +24,8 @@
 		"pack:windows": "electron-builder --dir --windows",
 		"pack:macos": "electron-builder --dir --macos",
 		"dist": "electron-builder",
-		"postinstall": "run-p build:*"
+		"postinstall": "run-p build:*",
+		"preversion": "npm run eslint"
 	},
 	"keywords": [
 		"minecraft",

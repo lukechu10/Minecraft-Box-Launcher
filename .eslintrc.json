@@ -70,6 +70,7 @@
 		"yoda": "warn",
 		"no-inner-declarations": "off",
 		"eol-last": "error",
-		"prefer-arrow-callback": "warn"
+		"prefer-arrow-callback": "warn",
+		"require-atomic-updates": "warn"
 	}
 }

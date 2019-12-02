@@ -49,7 +49,6 @@ class WindowOptsList {
 }
 const windowsOpts: WindowOptsList = new WindowOptsList();
 
-// FIXME: allow flag to be anywhere
 if (process.argv.findIndex(val => val === "--dev") === -1) // show application menu only if flag --dev is passed as 3rd argument
 	Menu.setApplicationMenu(null); // only show menu in dev
 

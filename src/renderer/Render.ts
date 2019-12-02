@@ -3,6 +3,7 @@ import { InstanceController } from "./controllers/InstanceController";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 
 import { ipcRenderer } from "electron";
+import { LaunchController } from "./controllers/LaunchController";
 
 export namespace Render {
 	declare function instancelistTemplate(data: any): string;
@@ -143,9 +144,25 @@ export namespace Render {
 			onDeny
 		}).modal("show");
 	}
+
+	declare function instancecorruptedTemplate(data: any): string;
+
+	/**
+	 * Show instance is corrupted modal
+	 */
+	export function corruptedModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
+		// render html
+		$("#modal-instanceCorrupted").html(instancecorruptedTemplate({ name }));
+		// show modal
+		$("#modal-instanceCorrupted").modal({
+			closable: false,
+			onApprove,
+			onDeny
+		}).modal("show");
+	}
 }
 // attach event handlers
-$(document).on("click", "#btn-install", e => {
+$(document).on("click", ".btn-install", e => {
 	// install instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	// install by name
@@ -153,12 +170,20 @@ $(document).on("click", "#btn-install", e => {
 	// update text
 	// TODO: add as member to InstanceSave to save text when switching pages
 	$(e.currentTarget).text("Installing...").removeClass("olive").attr("id", "").addClass(["gray", "disabled"]);
-}).on("click", "#btn-play", e => {
+}).on("click", ".btn-reinstall", e => {
+	// install instance
+	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
+	// install by name
+	InstanceController.installByName(name);
+	// update text
+	// TODO: add as member to InstanceSave to save text when switching pages
+	$(`.btn-play[data-instance-name=${name}]`).text("Installing...").removeClass("green").attr("id", "").addClass(["gray", "disabled"]);
+}).on("click", ".btn-play", e => {
 	// launch instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	// launch by name
-	InstanceController.launch(name);
-}).on("click", "#btn-delete", e => {
+	LaunchController.launch(name);
+}).on("click", ".btn-delete", e => {
 	// delete instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	// show prompt
@@ -172,19 +197,25 @@ $(document).on("click", "#btn-install", e => {
 			// close modal
 		}
 	});
-}).on("click", "#btn-rename", e => {
+}).on("click", ".btn-rename", e => {
 	// rename instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	Render.renameModal({
 		name,
 		onApprove: () => {
-			InstanceController.renameInstance(name, $("#input-rename").val() as string);
+			const find = ApplicationStore.instances.findFromName($("#input-rename").val() as string); // make sure an instance with this name does not already exist
+			if (find !== undefined) {
+				alert("An instance with this name already exists"); // TODO: Change to modal to match rest of UI FIXME: Clicking on OK in alert removes focus from input. No longer able to focus on input unless the window is unfocused and focused again
+				return false;
+			}
+			else
+				InstanceController.renameInstance(name, $("#input-rename").val() as string);
 		},
 		onDeny: () => {
 			// close modal
 		}
 	});
-}).on("click", "#btn-options", e => {
+}).on("click", ".btn-options", e => {
 	// open options window
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	Render.instanceOptions(name);
