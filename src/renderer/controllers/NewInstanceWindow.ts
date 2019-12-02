@@ -3,6 +3,7 @@ import * as consoleUtils from "../../universal/consoleUtils";
 import { ApplicationStore } from "../../universal/store";
 import { Installer } from "@xmcl/installer";
 import { remote, ipcRenderer } from "electron";
+import { LaunchController } from './LaunchController';
 
 function menuItem(version: Installer.VersionMeta) {
 	return `<div class="item" data-value="${version.id}">
@@ -60,6 +61,15 @@ $(() => {
 		onChange: updateIdDropdown
 	});
 	$(".ui.dropdown#dropdown-id").dropdown();
+	
+	if ($.fn.form.settings.rules !== undefined) {
+		$.fn.form.settings.rules.doesNotExist = function (param): boolean {
+			// Your validation condition goes here
+			const find = ApplicationStore.instances.findFromName(param);
+			console.log(find)
+			return param.length !== 0 && find === undefined;
+		}
+	}
 
 	// setup form
 	$("#form-newInstance").form({
@@ -68,8 +78,11 @@ $(() => {
 			name: {
 				identifier: "instance-name",
 				rules: [{
-					type: "empty",
-					prompt: "Please enter a name for the instance"
+					type: "doesNotExist",
+					prompt: ((value: string) => {
+						if (value.length === 0) return "Please enter a name for this instance";
+						else return "An instance with this name already exists"; // can only be invalid if not blank
+					}) as unknown as string // FIXME: This is a bug with semantic-ui typings where validating programmatically is not working
 				}]
 			},
 			type: {
