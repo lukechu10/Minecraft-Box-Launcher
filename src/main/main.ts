@@ -16,7 +16,7 @@ debug({
 	showDevTools: false
 });
 
-let WindowList: Map<string, BrowserWindow | null> = new Map();
+const WindowList: Map<string, BrowserWindow | null> = new Map();
 
 class WindowOptsList {
 	public main: WindowConstructorOptions = {
