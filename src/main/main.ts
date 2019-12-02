@@ -57,7 +57,7 @@ function createWindow() {
 	WindowList.set("main", new MainWindow());
 
 	// Emitted when the window is closed.
-	WindowList.get("main")?.on("closed", function () {
+	WindowList.get("main")?.on("closed", () => {
 		// Dereference the window object, usually you would store windows
 		// in an array if your app supports multi windows, this is the time
 		// when you should delete the corresponding element.
