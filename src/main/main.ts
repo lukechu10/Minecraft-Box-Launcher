@@ -52,7 +52,7 @@ const windowsOpts: WindowOptsList = new WindowOptsList();
 if (!process.argv.includes("--dev")) // show application menu only if flag --dev is passed as 3rd argument
 	Menu.setApplicationMenu(null); // only show menu in dev
 
-function createWindow() {
+function createWindow(): void {
 	// Create the browser window.
 	WindowList.set("main", new MainWindow());
 

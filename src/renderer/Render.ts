@@ -37,7 +37,7 @@ export namespace Render {
 	 * Renders and shows the confirm delete modal
 	 * @param opts arguments to pass to pugjs
 	 */
-	export function instanceConfirmDelete({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }) {
+	export function instanceConfirmDelete({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
 		// render html
 		$("#modal-confirmDelete").html(instanceconfirmdeleteTemplate({ name }));
 		// show modal
