@@ -42,7 +42,7 @@ export namespace InstanceController {
 	 * @param name name of instance
 	 * @throws if instance is not found
 	 */
-	export async function installByName(name: string) {
+	export async function installByName(name: string): Promise<void> {
 		// find instance
 		const i = ApplicationStore.instances.findFromName(name);
 		if (!i) throw "An instance with this name does not exist";
@@ -61,7 +61,7 @@ export namespace InstanceController {
 	 * @param name name of instance
 	 * @throws if instance is not found
 	 */
-	export function deleteInstance(name: string) {
+	export function deleteInstance(name: string): void {
 		// find instance
 		const i = ApplicationStore.instances.findFromName(name);
 		if (!i) throw "An instance with this name does not exist";
@@ -79,7 +79,7 @@ export namespace InstanceController {
 	 * @param newName new name for instance
 	 * @throws if instance is not found
 	 */
-	export function renameInstance(oldName: string, newName: string) {
+	export function renameInstance(oldName: string, newName: string): void {
 		// find instance
 		let i = ApplicationStore.instances.findFromName(oldName);
 		if (!i) throw "An instance with this name does not exist";

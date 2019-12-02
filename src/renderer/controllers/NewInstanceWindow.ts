@@ -5,14 +5,14 @@ import { Installer } from "@xmcl/installer";
 import { remote, ipcRenderer } from "electron";
 import { LaunchController } from "./LaunchController";
 
-function menuItem(version: Installer.VersionMeta) {
+function menuItem(version: Installer.VersionMeta): string {
 	return `<div class="item" data-value="${version.id}">
 	<div class="text" style="display:inline-block">${version.id}</div>
 	<div class="description">${version.releaseTime}</div>
 	</div>`;
 }
 
-function updateIdDropdown(val?: string) {
+function updateIdDropdown(val?: string): void {
 	$("#dropdown-id .menu").empty();
 	$("#dropdown-id").dropdown("set text", "Select Version");
 	// check if version is selected
