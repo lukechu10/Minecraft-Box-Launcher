@@ -49,7 +49,7 @@ class WindowOptsList {
 }
 const windowsOpts: WindowOptsList = new WindowOptsList();
 
-if (process.argv.findIndex(val => val === "--dev") === -1) // show application menu only if flag --dev is passed as 3rd argument
+if (!process.argv.includes("--dev")) // show application menu only if flag --dev is passed as 3rd argument
 	Menu.setApplicationMenu(null); // only show menu in dev
 
 function createWindow() {
