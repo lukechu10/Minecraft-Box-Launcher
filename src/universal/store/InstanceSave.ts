@@ -17,37 +17,37 @@ export class InstanceSave implements Installer.VersionMeta {
 	/**
      * Name of instance
      */
-	name: string;
+	public name: string;
 	/**
      * Instance version
      */
-	id: string;
+	public id: string;
 	/**
      * Mojang release or snapshot (vanilla only)
      */
-	type: string;
+	public type: string;
 	/**
      * Type of client
      */
-	clientType: "vanilla" | "forge";
+	public clientType: "vanilla" | "forge";
 	/**
 	 * Format: `new Date().toISOString()` or `"never"` if never played
 	 */
-	lastPlayed: string | "never";
+	public lastPlayed: string | "never";
 	/**
 	 * Date version was released
 	 */
-	releaseTime: string;
-	url: string;
+	public releaseTime: string;
+	public url: string;
 	/**
 	 * Version binaires are completely installed
 	 */
-	installed: boolean = false;
-	time: string;
+	public installed: boolean = false;
+	public time: string;
 	/**
 	 * Create a save from VersionMeta
 	 */
-	constructor(name: string, data: Installer.VersionMeta) {
+	public constructor(name: string, data: Installer.VersionMeta) {
 		this.name = name;
 		this.id = data.id;
 		this.type = data.type;
@@ -61,7 +61,7 @@ export class InstanceSave implements Installer.VersionMeta {
 	/**
 	 * Install this version
 	 */
-	async install() {
+	public async install() {
 		const location: MinecraftLocation = new MinecraftFolder(path.join(app.getPath("userData"), "./game/"));
 		let res = await Installer.install("client", this, location);
 		this.installed = true;
