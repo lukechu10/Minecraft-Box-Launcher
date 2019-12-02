@@ -2,7 +2,7 @@ import Store = require("electron-store");
 import { InstanceSave } from "./InstanceSave";
 
 export default class InstanceStore extends Store {
-	constructor() {
+	public constructor() {
 		super({
 			name: "instances",
 			accessPropertiesByDotNotation: true,
@@ -20,8 +20,8 @@ export default class InstanceStore extends Store {
 	/**
      * Get list of instances
      */
-	get all(): InstanceSave[] {
-		let instances = this.get("instances") as Array<InstanceSave>;
+	public get all(): InstanceSave[] {
+		const instances = this.get("instances") as Array<InstanceSave>;
 		for (let i = 0; i < instances.length; i++) {
 			Object.setPrototypeOf(instances[i], InstanceSave.prototype);
 		}
@@ -31,7 +31,7 @@ export default class InstanceStore extends Store {
      * Add a new instance to the store
      * @param item Instance to be added
      */
-	addInstance(item: InstanceSave): void {
+	public addInstance(item: InstanceSave): void {
 		// TODO: check for name already exists
 		const result = this.all.find(obj => obj.name == item.name);
 		if (result !== undefined) throw Error("An instance with this name already exists!");
@@ -41,7 +41,7 @@ export default class InstanceStore extends Store {
      * Deletes an instance by name
      * @throws {Error} if no instance is found
      */
-	deleteInstance(name: string) {
+	public deleteInstance(name: string): void {
 		const index: number = this.all.findIndex(obj => obj.name == name);
 		if (index == -1) throw Error("An instance with this name does not exist");
 		const temp = Array.from(this.all);
@@ -52,7 +52,7 @@ export default class InstanceStore extends Store {
 	 * Replace instance with new instance
 	 * @param name
 	 */
-	setInstance(name: string, newValue: InstanceSave): void {
+	public setInstance(name: string, newValue: InstanceSave): void {
 		const i = this.all.findIndex(obj => obj.name == name);
 		const temp = this.all;
 		temp[i] = newValue;
@@ -64,7 +64,7 @@ export default class InstanceStore extends Store {
 	 * @param name of instance
 	 * @returns value of instance or undefined if not found
 	 */
-	findFromName(name: string): InstanceSave | undefined {
+	public findFromName(name: string): InstanceSave | undefined {
 		return this.all.find(obj => obj.name == name);
 	}
 }
