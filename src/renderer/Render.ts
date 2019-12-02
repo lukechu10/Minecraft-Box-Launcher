@@ -203,7 +203,13 @@ $(document).on("click", ".btn-install", e => {
 	Render.renameModal({
 		name,
 		onApprove: () => {
-			InstanceController.renameInstance(name, $("#input-rename").val() as string);
+			const find = ApplicationStore.instances.findFromName($("#input-rename").val() as string); // make sure an instance with this name does not already exist
+			if (find !== undefined) {
+				alert("An instance with this name already exists"); // TODO: Change to modal to match rest of UI FIXME: Clicking on OK in alert removes focus from input. No longer able to focus on input unless the window is unfocused and focused again
+				return false;
+			}
+			else
+				InstanceController.renameInstance(name, $("#input-rename").val() as string);
 		},
 		onDeny: () => {
 			// close modal
