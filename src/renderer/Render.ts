@@ -3,7 +3,7 @@ import { InstanceController } from "./controllers/InstanceController";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 
 import { ipcRenderer } from "electron";
-import { LaunchController } from './controllers/LaunchController';
+import { LaunchController } from "./controllers/LaunchController";
 
 export namespace Render {
 	declare function instancelistTemplate(data: any): string;

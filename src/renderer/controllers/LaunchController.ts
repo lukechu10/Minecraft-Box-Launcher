@@ -16,7 +16,7 @@ import { MinecraftFolder } from "@xmcl/util";
 import { ResolvedVersion, Version } from "@xmcl/version";
 
 import { remote } from "electron";
-import { Render } from '../Render';
+import { Render } from "../Render";
 const app = remote.app;
 
 export namespace LaunchController {
@@ -63,7 +63,7 @@ export namespace LaunchController {
 						$(`.btn-play[data-instance-name=${instance.name}]`).text("Installing...").removeClass("green").attr("id", "").addClass(["gray", "disabled"]);
 					},
 					onDeny: () => { }
-				})
+				});
 				return;
 			}
 			const args: string[] = await Launcher.generateArguments(options); // get arguments from options

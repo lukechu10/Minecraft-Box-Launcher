@@ -3,7 +3,7 @@ import * as consoleUtils from "../../universal/consoleUtils";
 import { ApplicationStore } from "../../universal/store";
 import { Installer } from "@xmcl/installer";
 import { remote, ipcRenderer } from "electron";
-import { LaunchController } from './LaunchController';
+import { LaunchController } from "./LaunchController";
 
 function menuItem(version: Installer.VersionMeta) {
 	return `<div class="item" data-value="${version.id}">
@@ -66,9 +66,9 @@ $(() => {
 		$.fn.form.settings.rules.doesNotExist = function (param): boolean {
 			// Your validation condition goes here
 			const find = ApplicationStore.instances.findFromName(param);
-			console.log(find)
+			console.log(find);
 			return param.length !== 0 && find === undefined;
-		}
+		};
 	}
 
 	// setup form
