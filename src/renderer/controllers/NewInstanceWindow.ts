@@ -63,7 +63,7 @@ $(() => {
 	$(".ui.dropdown#dropdown-id").dropdown();
 	
 	if ($.fn.form.settings.rules !== undefined) {
-		$.fn.form.settings.rules.doesNotExist = function (param): boolean {
+		$.fn.form.settings.rules.doesNotExist = (param): boolean => {
 			// Your validation condition goes here
 			const find = ApplicationStore.instances.findFromName(param);
 			console.log(find);
