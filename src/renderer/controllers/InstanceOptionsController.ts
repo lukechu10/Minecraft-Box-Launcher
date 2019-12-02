@@ -7,10 +7,16 @@ export let instanceData: InstanceSave = ApplicationStore.instances.findFromName(
 
 /**
  * Save modified data to instance store
+ * @returns `true` success and `false` if error
  */
-export function saveInstanceData(): void {
+export function saveInstanceData(): boolean {
+	const find = ApplicationStore.instances.findFromName(instanceData.name); // make sure an instance with this name does not already exist
+	if (find !== undefined) {
+		alert("An instance with this name already exists"); // TODO: Change to modal to match rest of UI
+		return false;
+	}
 	ApplicationStore.instances.setInstance(instanceName, instanceData);
-	return;
+	return true;
 }
 
 /**
@@ -27,9 +33,10 @@ export function refreshEventHandlers(): void {
 $(() => {
 	// save event
 	$("#button-saveOptions").on("click", () => {
-		saveInstanceData();
-		ipcRenderer.sendSync("new-instance");
-		// save data from form
-		remote.getCurrentWindow().close(); // close window
+		if (saveInstanceData()) {
+			ipcRenderer.sendSync("new-instance");
+			// save data from form
+			remote.getCurrentWindow().close(); // close window
+		}
 	});
 });
