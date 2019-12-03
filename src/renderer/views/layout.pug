@@ -21,8 +21,9 @@ html(lang="en")
 			const { AuthenticationController } = require("../js/renderer/controllers/AuthenticationController");
 			const { ipcRenderer, shell } = require('electron');
 		// load defered modules
-		script(defer link-js-library).
+		// script(defer link-js-library).
 			require("../js/renderer/StartupTasks");
+		script(src="../dist/renderer.bundle.js")
 			
 		script(src='../../src/renderer/js/semantic.min.js' link-js-library)
 		script(src="../templates/loginStatus.js" link-js-library)
