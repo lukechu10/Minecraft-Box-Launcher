@@ -5,6 +5,8 @@ import { AuthenticationController } from "./controllers/AuthenticationController
 import { ipcRenderer } from "electron";
 import { LaunchController } from "./controllers/LaunchController";
 
+import * as consoleUtils from "../universal/consoleUtils";
+
 export namespace Render {
 	declare function instancelistTemplate(data: any): string;
 	/**
@@ -76,9 +78,10 @@ export namespace Render {
 			$("#login-form").form("validate form");
 			if ($("#login-form").form("is valid")) {
 				try {
+					const username = $("#username-field").val() as string;
+					const password = $("#password-field").val() as string;
 					// send request to Yggsdrasil auth server
-					await AuthenticationController.login($("#username-field").val() as string,
-						$("#password-field").val() as string);
+					await AuthenticationController.login(username, password);
 					// login successfull
 					$("#modal-login").modal("hide");
 				}
@@ -90,6 +93,7 @@ export namespace Render {
 					}
 					else {
 						$("#login-errors").text("An unknown error occured: " + e);
+						consoleUtils.debug("An unknown error occured when trying to login user. Caught exception: ", e);
 					}
 				}
 			}
