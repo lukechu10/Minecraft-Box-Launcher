@@ -1,0 +1,47 @@
+name: Build and publish artifacts to release
+
+on:
+  create:
+  push:
+    tags: 
+      - v*
+
+jobs:
+  windows_build:
+    name: Windows Latest Build
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 10
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - name: npm install
+        run: npm install
+      - name: Package application with electron-builder
+        run: npm run pack
+      - name: Publish artificats
+        uses: actions/upload-artifact@master
+        with:
+          name: windows-build
+          path: dist/win-unpacked
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release
+          draft: true
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: dist/win-unpacked
+          asset_name: windows-unpacked.zip
+          asset_content_type: application/zip
