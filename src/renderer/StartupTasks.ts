@@ -5,7 +5,6 @@ import { Render } from "./Render";
 import { ipcRenderer } from "electron";
 import * as consoleUtils from "../universal/consoleUtils";
 
-
 // startup tasks
 $(() => {
 	if (ApplicationStore.auth.get("loggedIn", false) == false) {
@@ -27,3 +26,5 @@ $(() => {
 
 // export modules
 export { Render, ApplicationStore };
+// export imported controllers
+export { AuthenticationController };
