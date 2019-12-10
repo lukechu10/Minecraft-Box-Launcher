@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
 	mode: "development",
 	devtool: "inline-source-map",
@@ -13,8 +15,15 @@ module.exports = {
 	module: {
 		rules: [
 			// all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-			{ test: /\.tsx?$/, loader: "ts-loader" }
+			{
+				test: /\.tsx?$/,
+				include: path.resolve(__dirname, 'src'),
+				loader: "ts-loader"
+			}
 		]
 	},
-	target: "electron-renderer"
+	target: "electron-renderer",
+	externals: {
+		got: "commonjs got"
+	}
 };
