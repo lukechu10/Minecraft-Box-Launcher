@@ -7,8 +7,14 @@ import { LaunchController } from "./controllers/LaunchController";
 
 import * as consoleUtils from "../universal/consoleUtils";
 
+// import templates
+import instancelistTemplate from "./templates/instanceList.pug";
+import instanceconfirmdeleteTemplate from "./templates/instanceConfirmDelete.pug";
+import instancerenameTemplate from "./templates/instanceRename.pug";
+import loginstatusTemplate from "./templates/loginStatus.pug";
+import instancecorruptedTemplate from "./templates/instanceCorrupted.pug";
+
 export namespace Render {
-	declare function instancelistTemplate(data: any): string;
 	/**
 	 * Renders instance list on instance page
 	 */
@@ -34,7 +40,6 @@ export namespace Render {
 		}
 	}
 
-	declare function instanceconfirmdeleteTemplate(data: any): string;
 	/**
 	 * Renders and shows the confirm delete modal
 	 * @param opts arguments to pass to pugjs
@@ -102,8 +107,7 @@ export namespace Render {
 			}
 		});
 	}
-	// TODO: Move declare to new file
-	declare function loginstatusTemplate(opts?: any): string;
+
 	/**
 	 * Updates the login status in the navigation
 	 */
@@ -134,7 +138,6 @@ export namespace Render {
 		}).modal("show");
 	}
 
-	declare function instancerenameTemplate(data: any): string;
 	/**
 	 * Show rename modal
 	 */
@@ -148,8 +151,6 @@ export namespace Render {
 			onDeny
 		}).modal("show");
 	}
-
-	declare function instancecorruptedTemplate(data: any): string;
 
 	/**
 	 * Show instance is corrupted modal
