@@ -9,12 +9,12 @@ import * as consoleUtils from "../universal/consoleUtils";
 
 // import templates
 import instancelistTemplate from "./templates/instanceList.pug";
-import instanceconfirmdeleteTemplate from "./templates/instanceConfirmDelete.pug";
 import loginstatusTemplate from "./templates/loginStatus.pug";
-import instancecorruptedTemplate from "./templates/instanceCorrupted.pug";
 
 // import modal templates
-import instanceRenameModal from "./templates/modals/instanceRename.pug"
+import renameModal from "./templates/modals/instances/rename.pug";
+import confirmDeleteModal from "./templates/modals/instances/confirmDelete.pug";
+import corruptedModal from "./templates/modals/instances/corrupted.pug";
 
 export namespace Render {
 	/**
@@ -47,10 +47,8 @@ export namespace Render {
 	 * @param opts arguments to pass to pugjs
 	 */
 	export function instanceConfirmDelete({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
-		// render html
-		$("#modal-confirmDelete").html(instanceconfirmdeleteTemplate({ name }));
 		// show modal
-		$("#modal-confirmDelete").modal({
+		$(confirmDeleteModal({ name })).modal({
 			closable: false,
 			onApprove,
 			onDeny
@@ -143,18 +141,8 @@ export namespace Render {
 	/**
 	 * Show rename modal
 	 */
-	export function renameModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
-		// render html
-		/*
-		$("#modal-rename").html(instancerenameTemplate({ name }));
-		// show modal
-		$("#modal-rename").modal({
-			closable: false,
-			onApprove,
-			onDeny
-		}).modal("show");
-		*/
-		$(instanceRenameModal({ name })).modal({
+	export function showRenameModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
+		$(renameModal({ name })).modal({
 			closable: false,
 			onApprove,
 			onDeny
@@ -164,11 +152,8 @@ export namespace Render {
 	/**
 	 * Show instance is corrupted modal
 	 */
-	export function corruptedModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
-		// render html
-		$("#modal-instanceCorrupted").html(instancecorruptedTemplate({ name }));
-		// show modal
-		$("#modal-instanceCorrupted").modal({
+	export function showCorruptedModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
+		$(corruptedModal({ name })).modal({
 			closable: false,
 			onApprove,
 			onDeny
@@ -214,7 +199,7 @@ $(document).on("click", ".btn-install", e => {
 }).on("click", ".btn-rename", e => {
 	// rename instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
-	Render.renameModal({
+	Render.showRenameModal({
 		name,
 		onApprove: () => {
 			const find = ApplicationStore.instances.findFromName($("#input-rename").val() as string); // make sure an instance with this name does not already exist

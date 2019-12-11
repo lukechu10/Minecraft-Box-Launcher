@@ -56,7 +56,7 @@ export namespace LaunchController {
 			}
 			catch (err) {
 				// TODO: Show error modal
-				Render.corruptedModal({
+				Render.showCorruptedModal({
 					name: instance.name, onApprove: () => {
 						InstanceController.installByName(instance.name);
 						// TODO: add as member to InstanceSave to save text when switching pages
