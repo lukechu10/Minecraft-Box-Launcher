@@ -10,9 +10,11 @@ import * as consoleUtils from "../universal/consoleUtils";
 // import templates
 import instancelistTemplate from "./templates/instanceList.pug";
 import instanceconfirmdeleteTemplate from "./templates/instanceConfirmDelete.pug";
-import instancerenameTemplate from "./templates/instanceRename.pug";
 import loginstatusTemplate from "./templates/loginStatus.pug";
 import instancecorruptedTemplate from "./templates/instanceCorrupted.pug";
+
+// import modal templates
+import instanceRenameModal from "./templates/modals/instanceRename.pug"
 
 export namespace Render {
 	/**
@@ -143,9 +145,16 @@ export namespace Render {
 	 */
 	export function renameModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
 		// render html
+		/*
 		$("#modal-rename").html(instancerenameTemplate({ name }));
 		// show modal
 		$("#modal-rename").modal({
+			closable: false,
+			onApprove,
+			onDeny
+		}).modal("show");
+		*/
+		$(instanceRenameModal({ name })).modal({
 			closable: false,
 			onApprove,
 			onDeny
