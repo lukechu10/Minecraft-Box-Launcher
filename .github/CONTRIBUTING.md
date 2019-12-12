@@ -31,5 +31,20 @@ Please be aware of the following:
 + Use JavaDocs (JavaScriptDocs) if the name of a method or member is not obvious.
 + We use `webpack` to package all renderer code.
 + To ensure a consistent coding style across the projet, please run `npm run eslint` or `npm run eslint:fix` before pushing the commits.
-
++ Some style conventions:
+  + Lines should be ended with a semi colon, except for function definitions, `interface` / `class` / `namespace` and `import` / `export` statements. In general, in case of doubt, just run `npm run eslint:fix`
+  + Brackets shoul always be on the same line:
+  ```ts
+  if (foo === "bar") { // correct
+    alert("hello world!");
+  }
+  else
+  { // incorect, bracket is not on same line as else
+    // ...
+  }
+  ```
+  + Use ES6 `import`s and `export`s over commonJS `require()`.
+  + All code is in *Strict Mode*.
+  + To see more style conventions, check out the eslint config file [here](https://github.com/lukechu10/Minecraft-Box-Launcher/blob/master/.eslintrc.json)
++ Always prefer readability over performance.
 Thanks, Luke Chu
