@@ -26,8 +26,10 @@ $ git commit -m "A brief summary of the commit
 
 There are few constraints for contributing. Just run `npm run eslint:fix` to normalize styles with the rest of the repository.
 Please be aware of the following:
-+ All views should be written with [PugJS](https://pugjs.org/api/getting-started.html).
++ All views should be written with [PugJS](https://pugjs.org/api/getting-started.html). The templates are loaded to JS via `pug-loader` and `webpack`.
 + Typescript should be used as much as possible.
 + Use JavaDocs (JavaScriptDocs) if the name of a method or member is not obvious.
++ We use `webpack` to package all renderer code.
++ To ensure a consistent coding style across the projet, please run `npm run eslint` or `npm run eslint:fix` before pushing the commits.
 
 Thanks, Luke Chu
