@@ -8,24 +8,12 @@ block js
 		$(() => {
 			// render list
 			Render.instanceList();
-			// apply event handlers
-			$(document).on("click", ".version-option", (event) => {
-				let jqThis = $(event.currentTarget);
-				const thisId = jqThis.attr("data-instance-id");
-				let instance = store.versionsMetaCache.get().versions.find(obj => obj.id == thisId);
-				// add new instance
-				instances.newInstance(instance);
-				console.log($(this).attr("data-instance-id"))
-				// hide modal
-				$("#version-modal").modal("hide");
-				// update list
-				Render.instanceList();
-			});
 		});
-	script(src="../templates/instanceList.js")
-	script(src="../templates/instanceConfirmDelete.js")
-	script(src="../templates/instanceRename.js")
-	script(src="../templates/instanceCorrupted.js")
+
+	//- script(src="../templates/instanceList.js")
+	//- script(src="../templates/instanceConfirmDelete.js")
+	//- script(src="../templates/instanceRename.js")
+	//- script(src="../templates/instanceCorrupted.js")
 
 block content
 	h1 Instances

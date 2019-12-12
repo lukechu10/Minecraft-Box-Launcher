@@ -26,5 +26,5 @@ $(() => {
 
 // export modules
 export { Render, ApplicationStore };
-// export imported controllers
+// export imported controllers to window
 export { AuthenticationController };
