@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
 	mode: "development",
 	devtool: "inline-source-map",
@@ -17,5 +19,8 @@ module.exports = {
 			{ test: /\.pug/, loader: "pug-loader"}
 		]
 	},
-	target: "electron-renderer"
+	target: "electron-renderer",
+	externals: {
+		got: "commonjs got"
+	}
 };

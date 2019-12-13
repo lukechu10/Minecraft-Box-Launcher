@@ -1,3 +1,3 @@
-declare module '*.pug' {
-	export default function (locals: any): string;
+declare module "*.pug" {
+	export default function (locals: object): string;
 }
