@@ -2,6 +2,9 @@ import { ApplicationStore } from "../universal/store";
 import { InstanceController } from "./controllers/InstanceController";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 
+// TODO: remove workaround
+import * as NewInstanceController from "./controllers/NewInstanceWindow"; // attach event handlers
+
 import { ipcRenderer } from "electron";
 import { LaunchController } from "./controllers/LaunchController";
 
@@ -11,10 +14,13 @@ import * as consoleUtils from "../universal/consoleUtils";
 import instancelistTemplate from "./templates/instanceList.pug";
 import loginstatusTemplate from "./templates/loginStatus.pug";
 
-// import modal templates
+// import instance modal templates
 import renameModal from "./templates/modals/instances/rename.pug";
 import confirmDeleteModal from "./templates/modals/instances/confirmDelete.pug";
 import corruptedModal from "./templates/modals/instances/corrupted.pug";
+
+import newInstanceModal from "./templates/modals/newInstance.pug"
+import { attachEvents } from './controllers/NewInstanceWindow';
 
 export namespace Render {
 	/**
@@ -29,7 +35,12 @@ export namespace Render {
 	 * Shows new instance window
 	 */
 	export function newInstance(): void {
-		ipcRenderer.sendSync("showWindow-newInstance");
+		// ipcRenderer.sendSync("showWindow-newInstance");
+		$(newInstanceModal({})).modal({
+			closable: false
+		}).modal("show");
+
+		NewInstanceController.attachEvents(); // attach events
 	}
 	/**
 	 * Shows instance options window

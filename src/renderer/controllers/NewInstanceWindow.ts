@@ -4,6 +4,7 @@ import { ApplicationStore } from "../../universal/store";
 import { Installer } from "@xmcl/installer";
 import { remote, ipcRenderer } from "electron";
 import { LaunchController } from "./LaunchController";
+import { Render } from '../StartupTasks';
 
 function menuItem(version: Installer.VersionMeta): string {
 	return `<div class="item" data-value="${version.id}">
@@ -55,7 +56,11 @@ function updateIdDropdown(val?: string): void {
 		$(".ui.dropdown#dropdown-id").addClass("disabled");
 }
 
-$(() => {
+/**
+ * Attach events to new instance modal
+ * TODO: move code to new file
+ */
+export function attachEvents() {
 	// setup dropdowns
 	$(".ui.dropdown#dropdown-type").dropdown({
 		onChange: updateIdDropdown
@@ -103,7 +108,7 @@ $(() => {
 	});
 
 	// setup submit event
-	$("#form-newInstance").submit((event: JQuery.SubmitEvent) => {
+	$("#submit-newInstanceForm").on("click", (event: JQuery.ClickEvent) => {
 		event.preventDefault();
 		const form = $("#form-newInstance");
 		// validate form
@@ -121,10 +126,10 @@ $(() => {
 			console.log(tempInstance);
 			// create a new instance in InstanceStore
 			ApplicationStore.instances.addInstance(tempInstance);
-			// tell main window to update
-			ipcRenderer.sendSync("new-instance");
-			// close window
-			remote.getCurrentWindow().close();
+			// close modal
+			$("#modal-newInstance").modal("hide");
+			// render instance list
+			Render.instanceList();
 		}
 	});
-});
+}
