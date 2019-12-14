@@ -60,7 +60,7 @@ function updateIdDropdown(val?: string): void {
  * Attach events to new instance modal
  * TODO: move code to new file
  */
-export function attachEvents() {
+export function attachEvents(): void {
 	// setup dropdowns
 	$(".ui.dropdown#dropdown-type").dropdown({
 		onChange: updateIdDropdown
