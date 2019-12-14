@@ -5,7 +5,6 @@ import { AuthenticationController } from "./controllers/AuthenticationController
 // TODO: remove workaround
 import * as NewInstanceController from "./controllers/NewInstanceWindow"; // attach event handlers
 
-import { ipcRenderer } from "electron";
 import { LaunchController } from "./controllers/LaunchController";
 
 import * as consoleUtils from "../universal/consoleUtils";
@@ -36,7 +35,6 @@ export namespace Render {
 	 * Shows new instance window
 	 */
 	export function newInstance(): void {
-		// ipcRenderer.sendSync("showWindow-newInstance");
 		$(newInstanceModal({})).modal({
 			closable: false
 		}).modal("show");

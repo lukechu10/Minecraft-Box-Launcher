@@ -9,7 +9,7 @@ import child_process from "child_process";
 import { Launcher } from "@xmcl/launch";
 import { Auth } from "@xmcl/auth";
 
-import { remote, ipcRenderer } from "electron";
+import { remote } from "electron";
 const app = remote.app;
 
 /**
