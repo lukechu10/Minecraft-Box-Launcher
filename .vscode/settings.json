@@ -3,4 +3,10 @@
    "editor.detectIndentation": true,
    "editor.insertSpaces": false,
    "editor.tabSize": 4,
+   "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+   ]
 }

@@ -21,6 +21,7 @@ import corruptedModal from "./templates/modals/instances/corrupted.pug";
 
 import newInstanceModal from "./templates/modals/newInstance.pug";
 import { attachEvents } from "./controllers/NewInstanceWindow";
+import * as InstanceOptionsController from "./InstanceOptionsRender";
 
 export namespace Render {
 	/**
@@ -43,14 +44,11 @@ export namespace Render {
 		NewInstanceController.attachEvents(); // attach events
 	}
 	/**
-	 * Shows instance options window
+	 * Shows instance options modal
 	 * @param name name of instance
 	 */
 	export function instanceOptions(name: string): void {
-		const result = ipcRenderer.sendSync("showWindow-instanceOptions", name);
-		if (result.success === false) {
-			throw Error("Error returned from main process");
-		}
+		InstanceOptionsController.showOptionsForInstance(name);
 	}
 
 	/**
