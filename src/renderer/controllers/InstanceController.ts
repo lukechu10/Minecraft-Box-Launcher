@@ -32,7 +32,7 @@ export namespace InstanceController {
 	 * Find where java is installed on local machine
 	 */
 	export function findJava(): string {
-		var spawn = child_process.spawnSync("which", ["java"]).stdout;
+		const spawn = child_process.spawnSync("which", ["java"]).stdout;
 		return spawn;
 	}
 	
@@ -81,7 +81,7 @@ export namespace InstanceController {
 	 */
 	export function renameInstance(oldName: string, newName: string): void {
 		// find instance
-		let i = ApplicationStore.instances.findFromName(oldName);
+		const i = ApplicationStore.instances.findFromName(oldName);
 		if (!i) throw "An instance with this name does not exist";
 		else {
 			consoleUtils.debug("Renaming instance", name, "to", newName);

@@ -41,7 +41,7 @@ function attachEvents(): void {
 	});
 	// submit button
 	$("#btn-modalOptionsSave").on("click", (): boolean => {
-		var $form = $("#form-options");
+		const $form = $("#form-options");
 		$form.form("validate form");
 		if ($form.form("is valid")) {
 			console.log(instanceOptionsName);
