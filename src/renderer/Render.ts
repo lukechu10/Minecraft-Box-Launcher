@@ -20,7 +20,7 @@ import confirmDeleteModal from "./templates/modals/instances/confirmDelete.pug";
 import corruptedModal from "./templates/modals/instances/corrupted.pug";
 
 import newInstanceModal from "./templates/modals/newInstance.pug";
-import { attachEvents } from './controllers/NewInstanceWindow';
+import { attachEvents } from "./controllers/NewInstanceWindow";
 
 export namespace Render {
 	/**
