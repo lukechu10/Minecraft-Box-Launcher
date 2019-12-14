@@ -30,14 +30,6 @@ class WindowOptsList {
 			sandbox: false
 		}
 	};
-	public newInstance: WindowConstructorOptions = {
-		type: "file",
-		path: path.join(__dirname, "../../views/", "newInstance.html"),
-		title: "New Instance",
-		webPreferences: {
-			nodeIntegration: true
-		}
-	};
 	public instanceOptions: WindowConstructorOptions = {
 		type: "file",
 		path: path.join(__dirname, "../../views/", "instanceOptions.html"),
@@ -87,19 +79,7 @@ app.on("activate", () => {
 // code. You can also put them in separate files and require them here.
 
 // windows
-ipcMain.on("showWindow-newInstance", (event: Electron.IpcMainEvent) => {
-	if (!WindowList.has("newInstance") || WindowList.get("newInstance") === null) {
-		WindowList.set("newInstance", new Window(windowsOpts.newInstance));
-		consoleUtils.debug("Creating window newInstance");
-		// create on closed event
-		WindowList.get("newInstance")?.once("closed", (event: Electron.Event) => {
-			WindowList.set("newInstance", null); // keep reference for future use
-		});
-	}
-	WindowList.get("newInstance")?.show();
-	consoleUtils.debug("Showing new instance window");
-	event.returnValue = "success";
-}).on("showWindow-instanceOptions", (event: Electron.IpcMainEvent, ...args: any[]) => {
+ipcMain.on("showWindow-instanceOptions", (event: Electron.IpcMainEvent, ...args: any[]) => {
 	/*
 	NOTE: instance option windows are represented as `instanceOption-${instance name}` in WindowList: Map<string, BrowserWindow | null>
 	*/
