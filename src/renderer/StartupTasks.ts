@@ -1,6 +1,7 @@
 import { ApplicationStore } from "../universal/store";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 import { VersionsController } from "./controllers/VersionsController";
+import { InstanceController } from "./controllers/InstanceController";
 import { Render } from "./Render";
 import { ipcRenderer } from "electron";
 import * as consoleUtils from "../universal/consoleUtils";
@@ -27,4 +28,4 @@ $(() => {
 // export modules
 export { Render, ApplicationStore };
 // export imported controllers to window
-export { AuthenticationController };
+export { AuthenticationController, InstanceController };

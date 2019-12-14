@@ -14,12 +14,6 @@ html(lang="en")
 		script(link-js-library).
 			require("v8-compile-cache");
 			const jQuery = window.$ = require('jquery');
-			/* TODO: Remove comments once refactor is complete
-			const { ApplicationStore } = require("../js/universal/store");
-			const { Render } = require("../js/renderer/Render");
-			const { InstanceController } = require("../js/renderer/controllers/InstanceController");
-			const { AuthenticationController } = require("../js/renderer/controllers/AuthenticationController");
-			*/
 			const { ipcRenderer, shell } = require('electron');
 		// load defered modules
 		// script(defer link-js-library).
