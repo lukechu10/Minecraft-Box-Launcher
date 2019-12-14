@@ -14,18 +14,13 @@ html(lang="en")
 		script(link-js-library).
 			require("v8-compile-cache");
 			const jQuery = window.$ = require('jquery');
-			
-			const { ApplicationStore } = require("../js/universal/store");
-			const { Render } = require("../js/renderer/Render");
-			const { InstanceController } = require("../js/renderer/controllers/InstanceController");
-			const { AuthenticationController } = require("../js/renderer/controllers/AuthenticationController");
-			const { ipcRenderer, shell } = require('electron');
+			const { shell } = require('electron');
 		// load defered modules
-		script(defer link-js-library).
+		// script(defer link-js-library).
 			require("../js/renderer/StartupTasks");
+		script(src="../dist/renderer.bundle.js")
 			
 		script(src='../../src/renderer/js/semantic.min.js' link-js-library)
-		script(src="../templates/loginStatus.js" link-js-library)
 		block js
 	body
 		navbar.ui.menu.fixed.inverted(style="height: 45px;")
@@ -64,6 +59,3 @@ html(lang="en")
 								.actions
 									center
 										button.ui.tiny.cancel.button.inverted.red Continue without logging in
-		.ui.basic.modal#modal-confirmDelete
-		.ui.modal#modal-rename
-		.ui.basic.modal#modal-instanceCorrupted

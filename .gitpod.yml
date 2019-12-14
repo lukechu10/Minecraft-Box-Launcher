@@ -16,3 +16,4 @@ tasks:
 vscode:
   extensions:
     - wayou.vscode-todo-highlight@1.0.4:8IqxuxCVol2WnScJc5xVzg==
+    - msjsdiag.debugger-for-chrome@4.12.2:OgS8bhPr0xhAeewS3vg4Qw==

@@ -43,7 +43,8 @@
 			"command": "npx eslint src/ --ext .ts,.tsx",
 			"label": "ESLint (Typescript)",
 			"problemMatcher": [
-				"$eslint-stylish"
+				"$eslint-stylish",
+				"$eslint-compact"
 			],
 			"group": "test",
 			"presentation": {
@@ -60,7 +61,8 @@
 			"command": "npx eslint src/ --ext .ts,.tsx --fix",
 			"label": "ESLint (Typescript) Fix",
 			"problemMatcher": [
-				"$eslint-stylish"
+				"$eslint-stylish",
+				"$eslint-compact"
 			],
 			"group": "test",
 			"presentation": {

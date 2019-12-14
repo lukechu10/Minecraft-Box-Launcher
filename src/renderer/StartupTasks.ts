@@ -1,10 +1,9 @@
 import { ApplicationStore } from "../universal/store";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 import { VersionsController } from "./controllers/VersionsController";
+import { InstanceController } from "./controllers/InstanceController";
 import { Render } from "./Render";
-import { ipcRenderer } from "electron";
 import * as consoleUtils from "../universal/consoleUtils";
-
 
 // startup tasks
 $(() => {
@@ -16,14 +15,11 @@ $(() => {
 	// update versions
 	VersionsController.updateVersionMeta();
 
-	ipcRenderer.on("update-instance-list", () => {
-		consoleUtils.debug("Updating instance list");
-		Render.instanceList();
-	});
-
 	// update auth
 	AuthenticationController.refreshLogin();
 });
 
 // export modules
 export { Render, ApplicationStore };
+// export imported controllers to window
+export { AuthenticationController, InstanceController };

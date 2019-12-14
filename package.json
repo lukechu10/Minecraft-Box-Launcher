@@ -16,8 +16,8 @@
 		"build:ts": "tsc -p tsconfig.json",
 		"build-watch:pug": "pug ./src/renderer/views --watch --out ./dist/views",
 		"build:pug": "pug ./src/renderer/views --out ./dist/views",
-		"build-watch:pug-template": "pug ./src/renderer/templates --out ./dist/templates -c -w -D --name-after-file",
-		"build:pug-template": "pug ./src/renderer/templates --out ./dist/templates -c -D --name-after-file",
+		"build:webpack": "webpack",
+		"build-watch:webpack": "webpack -w",
 		"eslint": "eslint src/ --ext .ts,.tsx",
 		"eslint:fix": "eslint src/ --ext .ts,.tsx --fix",
 		"pack": "electron-builder --dir",
@@ -43,7 +43,11 @@
 		"electron-builder": "^21.2.0",
 		"eslint": "^6.7.2",
 		"npm-run-all": "^4.1.5",
-		"pug-cli": "^1.0.0-alpha6"
+		"pug-cli": "^1.0.0-alpha6",
+		"pug-loader": "^2.4.0",
+		"ts-loader": "^6.2.1",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.10"
 	},
 	"repository": {
 		"url": "https://github.com/lukechu10/Minecraft-Box-Launcher",
@@ -60,7 +64,6 @@
 		"electron-debug": "^3.0.1",
 		"electron-store": "^5.1.0",
 		"jquery": "^3.4.1",
-		"jsrender": "^1.0.5",
 		"lodash": "^4.17.15",
 		"tslib": "^1.10.0",
 		"typescript": "^3.7.3",

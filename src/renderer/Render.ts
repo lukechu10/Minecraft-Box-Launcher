@@ -2,11 +2,27 @@ import { ApplicationStore } from "../universal/store";
 import { InstanceController } from "./controllers/InstanceController";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 
-import { ipcRenderer } from "electron";
+// TODO: remove workaround
+import * as NewInstanceController from "./controllers/NewInstanceWindow"; // attach event handlers
+
 import { LaunchController } from "./controllers/LaunchController";
 
+import * as consoleUtils from "../universal/consoleUtils";
+
+// import templates
+import instancelistTemplate from "./templates/instanceList.pug";
+import loginstatusTemplate from "./templates/loginStatus.pug";
+
+// import instance modal templates
+import renameModal from "./templates/modals/instances/rename.pug";
+import confirmDeleteModal from "./templates/modals/instances/confirmDelete.pug";
+import corruptedModal from "./templates/modals/instances/corrupted.pug";
+
+import newInstanceModal from "./templates/modals/newInstance.pug";
+import { attachEvents } from "./controllers/NewInstanceWindow";
+import * as InstanceOptionsController from "./InstanceOptionsRender";
+
 export namespace Render {
-	declare function instancelistTemplate(data: any): string;
 	/**
 	 * Renders instance list on instance page
 	 */
@@ -19,29 +35,27 @@ export namespace Render {
 	 * Shows new instance window
 	 */
 	export function newInstance(): void {
-		ipcRenderer.sendSync("showWindow-newInstance");
+		$(newInstanceModal({})).modal({
+			closable: false
+		}).modal("show");
+
+		NewInstanceController.attachEvents(); // attach events
 	}
 	/**
-	 * Shows instance options window
+	 * Shows instance options modal
 	 * @param name name of instance
 	 */
 	export function instanceOptions(name: string): void {
-		const result = ipcRenderer.sendSync("showWindow-instanceOptions", name);
-		if (result.success === false) {
-			throw Error("Error returned from main process");
-		}
+		InstanceOptionsController.showOptionsForInstance(name);
 	}
 
-	declare function instanceconfirmdeleteTemplate(data: any): string;
 	/**
 	 * Renders and shows the confirm delete modal
 	 * @param opts arguments to pass to pugjs
 	 */
 	export function instanceConfirmDelete({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
-		// render html
-		$("#modal-confirmDelete").html(instanceconfirmdeleteTemplate({ name }));
 		// show modal
-		$("#modal-confirmDelete").modal({
+		$(confirmDeleteModal({ name })).modal({
 			closable: false,
 			onApprove,
 			onDeny
@@ -76,9 +90,10 @@ export namespace Render {
 			$("#login-form").form("validate form");
 			if ($("#login-form").form("is valid")) {
 				try {
+					const username = $("#username-field").val() as string;
+					const password = $("#password-field").val() as string;
 					// send request to Yggsdrasil auth server
-					await AuthenticationController.login($("#username-field").val() as string,
-						$("#password-field").val() as string);
+					await AuthenticationController.login(username, password);
 					// login successfull
 					$("#modal-login").modal("hide");
 				}
@@ -90,6 +105,7 @@ export namespace Render {
 					}
 					else {
 						$("#login-errors").text("An unknown error occured: " + e);
+						consoleUtils.debug("An unknown error occured when trying to login user. Caught exception: ", e);
 					}
 				}
 			}
@@ -98,8 +114,7 @@ export namespace Render {
 			}
 		});
 	}
-	// TODO: Move declare to new file
-	declare function loginstatusTemplate(opts?: any): string;
+
 	/**
 	 * Updates the login status in the navigation
 	 */
@@ -130,31 +145,22 @@ export namespace Render {
 		}).modal("show");
 	}
 
-	declare function instancerenameTemplate(data: any): string;
 	/**
 	 * Show rename modal
 	 */
-	export function renameModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
-		// render html
-		$("#modal-rename").html(instancerenameTemplate({ name }));
-		// show modal
-		$("#modal-rename").modal({
+	export function showRenameModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
+		$(renameModal({ name })).modal({
 			closable: false,
 			onApprove,
 			onDeny
 		}).modal("show");
 	}
 
-	declare function instancecorruptedTemplate(data: any): string;
-
 	/**
 	 * Show instance is corrupted modal
 	 */
-	export function corruptedModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
-		// render html
-		$("#modal-instanceCorrupted").html(instancecorruptedTemplate({ name }));
-		// show modal
-		$("#modal-instanceCorrupted").modal({
+	export function showCorruptedModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
+		$(corruptedModal({ name })).modal({
 			closable: false,
 			onApprove,
 			onDeny
@@ -200,7 +206,7 @@ $(document).on("click", ".btn-install", e => {
 }).on("click", ".btn-rename", e => {
 	// rename instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
-	Render.renameModal({
+	Render.showRenameModal({
 		name,
 		onApprove: () => {
 			const find = ApplicationStore.instances.findFromName($("#input-rename").val() as string); // make sure an instance with this name does not already exist

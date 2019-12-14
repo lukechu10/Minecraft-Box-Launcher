@@ -53,15 +53,14 @@ export namespace AuthenticationController {
 			if (!valid) {
 				try {
 					const newAuth: Auth.Response = await Auth.Yggdrasil.refresh({ accessToken, clientToken });
-					console.log(newAuth);
-          
+
 					consoleUtils.debug("Refreshing auth. New auth value: ", newAuth);
 					// save new auth to store
 					ApplicationStore.auth.clear();
 					ApplicationStore.auth.set(newAuth);
 					ApplicationStore.auth.set("loggedIn", true);
 				}
-				catch(err) {
+				catch (err) {
 					// user needs to login again
 					console.error(err);
 					logout();
