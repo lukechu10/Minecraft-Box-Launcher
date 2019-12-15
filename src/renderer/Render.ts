@@ -53,7 +53,7 @@ export namespace Render {
 	 * Renders and shows the confirm delete modal
 	 * @param opts arguments to pass to pugjs
 	 */
-	export function instanceConfirmDelete({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
+	export function instanceConfirmDelete({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
 		// show modal
 		$(confirmDeleteModal({ name })).modal({
 			closable: false,
@@ -148,7 +148,7 @@ export namespace Render {
 	/**
 	 * Show rename modal
 	 */
-	export function showRenameModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
+	export function showRenameModal({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
 		$(renameModal({ name })).modal({
 			closable: false,
 			onApprove,
@@ -159,7 +159,7 @@ export namespace Render {
 	/**
 	 * Show instance is corrupted modal
 	 */
-	export function showCorruptedModal({ name, onApprove, onDeny }: { name: string, onApprove: () => any, onDeny: () => any }): void {
+	export function showCorruptedModal({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
 		$(corruptedModal({ name })).modal({
 			closable: false,
 			onApprove,
