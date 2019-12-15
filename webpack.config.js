@@ -27,7 +27,4 @@ module.exports = {
 		]
 	},
 	target: "electron-renderer",
-	externals: {
-		got: "commonjs got"
-	}
 };
