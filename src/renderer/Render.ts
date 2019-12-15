@@ -202,7 +202,8 @@ $(document).on("click", ".btn-install", e => {
 		name,
 		onApprove: () => {
 			// delete instance
-			InstanceController.deleteInstance(name);
+			const deleteFolder: boolean = $("#modal-confirmDelete input[name='deleteFolder']").is(":checked");
+			InstanceController.deleteInstance(name, deleteFolder);
 		},
 		onDeny: () => {
 			// close modal

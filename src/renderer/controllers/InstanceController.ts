@@ -5,6 +5,7 @@ import { Render } from "../Render";
 
 import path from "path";
 import child_process from "child_process";
+import fs from "fs-extra";
 
 import { Launcher } from "@xmcl/launch";
 import { Auth } from "@xmcl/auth";
@@ -35,7 +36,7 @@ export namespace InstanceController {
 		const spawn = child_process.spawnSync("which", ["java"]).stdout;
 		return spawn;
 	}
-	
+
 
 	/**
 	 * Finds an instance and installs it
@@ -59,15 +60,21 @@ export namespace InstanceController {
 	/**
 	 * Finds an instance and deletes it. Does not uninstall the resolved version
 	 * @param name name of instance
+	 * @param deleteFolder if true, deletes the folder connected to the instance
 	 * @throws if instance is not found
+	 * @throws if error when deleting folder
 	 */
-	export function deleteInstance(name: string): void {
+	export async function deleteInstance(name: string, deleteFolder: boolean = false): Promise<void> {
 		// find instance
 		const i = ApplicationStore.instances.findFromName(name);
 		if (!i) throw "An instance with this name does not exist";
 		else {
 			consoleUtils.debug("Removing instance", name);
 			ApplicationStore.instances.deleteInstance(name);
+			if (deleteFolder) {
+				// delete the folder
+				await fs.remove(MinecraftSavePath(name));
+			}
 			Render.instanceList();
 			return;
 		}

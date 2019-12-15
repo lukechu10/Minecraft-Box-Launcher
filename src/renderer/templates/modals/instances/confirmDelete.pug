@@ -2,6 +2,9 @@
 	.header Are you sure?
 	.content
 		p Are you sure you want to delete the instance #[strong #{name}]? This action is irreversable.
+		.ui.checkbox
+			input(type="checkbox" name="deleteFolder" checked)
+			label(style="color: white;") Delete the instance folder. #[strong IMPORTANT:] This will delete all your worlds and other resources in this instance.
 	.actions
 		.ui.button.cancel.inverted.basic.blue Cancel
 		.ui.button.approve.inverted.red Delete it
