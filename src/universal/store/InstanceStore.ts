@@ -1,5 +1,16 @@
 import Store from "electron-store";
+import fs from "fs-extra";
+import path from "path";
+import { remote } from "electron";
+const app = remote.app;
 import { InstanceSave } from "./InstanceSave";
+
+/**
+ * Returns the path for minecraft saves/logs/configs for a specific instance
+ * @param name name of instance
+ * TODO: remove duplicate in InstanceController.ts
+ */
+export const MinecraftSavePath = (name: string) => { return path.join(app.getPath("userData"), "./instances/", name); };
 
 export default class InstanceStore extends Store {
 	public constructor() {
@@ -49,14 +60,20 @@ export default class InstanceStore extends Store {
 		this.set("instances", temp);
 	}
 	/**
-	 * Replace instance with new instance
+	 * Replace instance with new instance. If name is changed, renames the instance folder
 	 * @param name
 	 */
-	public setInstance(name: string, newValue: InstanceSave): void {
+	public async setInstance(name: string, newValue: InstanceSave): Promise<void> {
 		const i = this.all.findIndex(obj => obj.name == name);
+
 		const temp = this.all;
 		temp[i] = newValue;
 		console.log(temp);
+		// name changed?
+		if (name !== newValue.name) {
+			// rename folder
+			fs.renameSync(MinecraftSavePath(name), MinecraftSavePath(newValue.name));
+		}
 		this.set("instances", temp);
 	}
 	/**
