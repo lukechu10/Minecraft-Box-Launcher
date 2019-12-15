@@ -48,3 +48,35 @@ jobs:
           asset_path: windows-portable.zip
           asset_name: MinecraftBox-WindowsPortable(${{ github.ref }})
           asset_content_type: application/zip
+  macos_build:
+    needs: [windows_build] # needs to wait for release to be created
+    name: MacOS Latest Build
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: npm install
+        run: npm install
+      - name: Package application with electron-builder
+        run: npm run pack
+      - name: Publish artificats
+        uses: actions/upload-artifact@master
+        with:
+          name: macos-build
+          path: dist/mac
+      - name: Create Zip archive
+        shell: bash
+        run: zip -r macos-portable dist/mac
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: macos-portable.zip
+          asset_name: MinecraftBox-MacosPortable(${{ github.ref }})
+          asset_content_type: application/zip
