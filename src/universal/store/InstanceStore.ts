@@ -22,8 +22,8 @@ export default class InstanceStore extends Store {
      */
 	public get all(): InstanceSave[] {
 		const instances = this.get("instances") as Array<InstanceSave>;
-		for (let i = 0; i < instances.length; i++) {
-			Object.setPrototypeOf(instances[i], InstanceSave.prototype);
+		for (let instance of instances) {
+			Object.setPrototypeOf(instance, InstanceSave.prototype);
 		}
 		return instances;
 	}
