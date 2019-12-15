@@ -25,6 +25,8 @@ jobs:
         with:
           name: windows-build
           path: dist/win-unpacked
+      - name: Create Zip archive from build
+        run: zip -r windows-portable.zip dist/win-unpacked
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1.0.0
@@ -32,7 +34,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release
+          release_name: ${{ github.ref }}
           draft: true
           prerelease: false
       - name: Upload Release Asset
