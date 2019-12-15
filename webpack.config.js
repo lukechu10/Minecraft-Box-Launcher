@@ -4,7 +4,7 @@ module.exports = {
 	devtool: "inline-source-map",
 	entry: "./src/renderer/StartupTasks.ts",
 	output: {
-		filename: "./dist/renderer.bundle.js",
+		filename: "./renderer.bundle.js",
 		libraryTarget: "window"
 	},
 	resolve: {
