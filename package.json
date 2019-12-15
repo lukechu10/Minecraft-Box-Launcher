@@ -76,8 +76,10 @@
 			"category": "public.app-category.games"
 		},
 		"files": [
-			"dist/js/**/*.js",
+			"dist/js/main/**/*.js",
+			"dist/js/universal/**/*.js",
 			"dist/views/**/*",
+			"dist/renderer.bundle.js",
 			"src/renderer/css/*.css",
 			"src/renderer/js/**/*.js"
 		]
