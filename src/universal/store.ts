@@ -1,6 +1,5 @@
-import Store = require("electron-store");
+import Store from "electron-store";
 import InstanceStore from "./store/InstanceStore";
-// import Auth from "@xmcl/auth";
 
 export namespace ApplicationStore {
 	export var instances: InstanceStore = new InstanceStore();
