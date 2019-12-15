@@ -17,6 +17,7 @@ import loginstatusTemplate from "./templates/loginStatus.pug";
 import renameModal from "./templates/modals/instances/rename.pug";
 import confirmDeleteModal from "./templates/modals/instances/confirmDelete.pug";
 import corruptedModal from "./templates/modals/instances/corrupted.pug";
+import savesModal from "./templates/modals/instances/saves.pug";
 
 import newInstanceModal from "./templates/modals/newInstance.pug";
 import { attachEvents } from "./controllers/NewInstanceWindow";
@@ -171,6 +172,16 @@ export namespace Render {
 			onDeny
 		}).modal("show");
 	}
+
+	/**
+	 * Show saves modal
+	 */
+	export function showSavesModal(name: string): void {
+		$("#modal-saves").replaceWith(savesModal({ name }));
+		$("#modal-saves").modal({
+			closable: false
+		}).modal("show");
+	}
 }
 // attach event handlers
 $(document).on("click", ".btn-install", e => {
@@ -231,4 +242,8 @@ $(document).on("click", ".btn-install", e => {
 	// open options window
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	Render.instanceOptions(name);
+}).on("click", ".btn-saves", e => {
+	// open saves window
+	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
+	Render.showSavesModal(name);
 });
