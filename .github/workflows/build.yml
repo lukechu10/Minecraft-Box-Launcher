@@ -23,7 +23,7 @@ jobs:
           path: dist/win-unpacked
   macos_build:
     name: MacOS Latest Build
-    runs-on: macOS-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 10
