@@ -77,7 +77,6 @@
 		},
 		"files": [
 			"dist/js/**/*.js",
-			"dist/templates/**/*",
 			"dist/views/**/*",
 			"src/renderer/css/*.css",
 			"src/renderer/js/**/*.js"
