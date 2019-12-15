@@ -141,7 +141,8 @@ export namespace Render {
 		$("#modal-login").modal({
 			onDeny: () => {
 				// TODO: show are you sure message
-			}
+			},
+			detachable: false
 		}).modal("show");
 	}
 
