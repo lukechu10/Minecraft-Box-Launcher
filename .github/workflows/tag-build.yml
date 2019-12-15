@@ -2,7 +2,6 @@ name: Build and publish artifacts to release
 
 on:
   create:
-  push:
     tags: 
       - v*
 
