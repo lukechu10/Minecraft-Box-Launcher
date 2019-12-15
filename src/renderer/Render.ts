@@ -35,7 +35,8 @@ export namespace Render {
 	 * Shows new instance window
 	 */
 	export function newInstance(): void {
-		$(newInstanceModal({})).modal({
+		$("#modal-newInstance").replaceWith(newInstanceModal({ name }));
+		$("#modal-newInstance").modal({
 			closable: false
 		}).modal("show");
 
@@ -54,8 +55,9 @@ export namespace Render {
 	 * @param opts arguments to pass to pugjs
 	 */
 	export function instanceConfirmDelete({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
+		$("#modal-confirmDelete").replaceWith(confirmDeleteModal({ name }));
 		// show modal
-		$(confirmDeleteModal({ name })).modal({
+		$("#modal-confirmDelete").modal({
 			closable: false,
 			onApprove,
 			onDeny
@@ -150,7 +152,8 @@ export namespace Render {
 	 * Show rename modal
 	 */
 	export function showRenameModal({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
-		$(renameModal({ name })).modal({
+		$("#modal-rename").replaceWith($(renameModal({ name })));
+		$("#modal-rename").modal({
 			closable: false,
 			onApprove,
 			onDeny
@@ -161,7 +164,8 @@ export namespace Render {
 	 * Show instance is corrupted modal
 	 */
 	export function showCorruptedModal({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
-		$(corruptedModal({ name })).modal({
+		$("#modal-corrupted").replaceWith(corruptedModal({ name }));
+		$("#modal-corrupted").modal({
 			closable: false,
 			onApprove,
 			onDeny

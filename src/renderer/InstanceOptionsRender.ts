@@ -58,7 +58,8 @@ function attachEvents(): void {
  * @param name name of instance
  */
 export function showOptionsForInstance(name: string): void {
-	$(optionsModal({ name })).modal({
+	$("#modal-options").replaceWith(optionsModal({ name }));
+	$("#modal-options").modal({
 		closable: false
 	}).modal("show");
 	// attach event handlers
