@@ -26,10 +26,10 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Use Node.js 10
+      - name: Use Node.js 12
         uses: actions/setup-node@v1
         with:
-          node-version: 10
+          node-version: 12
       - name: npm install
         run: npm install
       - name: Package application with electron-builder
