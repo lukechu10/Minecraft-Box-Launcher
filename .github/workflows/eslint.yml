@@ -1,4 +1,4 @@
-name: ESLint (Typescript)
+name: Lint using ESLint
 
 on:
   push:
@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: install node v10
+    - name: Use NodeJS 12
       uses: actions/setup-node@v1
       with:
-        node-version: 10
-    - name: npm install
+        node-version: 12
+    - name: Install dependencies (npm install)
       run: npm install
-    - name: eslint
+    - name: Lint (ESLint)
       uses: icrawl/action-eslint@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
