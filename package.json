@@ -82,7 +82,6 @@
 			"dist/renderer.bundle.js",
 			"src/renderer/css/*.css",
 			"src/renderer/js/**/*.js"
-		],
-		"asar": false
+		]
 	}
 }
