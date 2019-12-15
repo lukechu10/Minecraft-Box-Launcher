@@ -38,6 +38,8 @@ function attachEvents(): void {
 				}]
 			}
 		}
+	}).submit(event => {
+		event.preventDefault(); // default is page reload
 	});
 	// submit button
 	$("#btn-modalOptionsSave").on("click", (): boolean => {
