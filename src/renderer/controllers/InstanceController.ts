@@ -94,7 +94,7 @@ export namespace InstanceController {
 			consoleUtils.debug("Renaming instance", name, "to", newName);
 			i.name = newName;
 			ApplicationStore.instances.setInstance(oldName, i);
-			console.log(MinecraftSavePath(oldName), MinecraftSavePath(newName))
+			console.log(MinecraftSavePath(oldName), MinecraftSavePath(newName));
 			Render.instanceList();
 			return;
 		}
