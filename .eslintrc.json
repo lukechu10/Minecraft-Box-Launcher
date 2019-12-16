@@ -35,7 +35,8 @@
 		],
 		"semi": "off",
 		"@typescript-eslint/semi": "error",
-		"no-unused-vars": [
+		"no-unused-vars": "off",
+		"@typescript-eslint/no-unused-vars": [
 			"warn",
 			{
 				"vars": "local",
@@ -46,9 +47,11 @@
 		"camelcase": [
 			"warn",
 			{
-				"properties": "never"
+				"properties": "never",
+				"ignoreImports": true
 			}
 		],
+		"no-dupe-else-if": "error",
 		"no-trailing-spaces": [
 			"warn",
 			{
@@ -71,6 +74,19 @@
 		"no-inner-declarations": "off",
 		"eol-last": "error",
 		"prefer-arrow-callback": "warn",
-		"require-atomic-updates": "warn"
+		"require-atomic-updates": "warn",
+		"no-use-before-define": "error",
+		"comma-dangle": "error",
+		"no-unneeded-ternary": "warn",
+		"spaced-comment": "warn",
+		"arrow-spacing": [
+			"error",
+			{
+				"before": true,
+				"after": true
+			}
+		],
+		"prefer-const": "warn",
+		"space-before-blocks": "error"
 	}
 }
