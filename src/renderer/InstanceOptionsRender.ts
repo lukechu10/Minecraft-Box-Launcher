@@ -1,6 +1,6 @@
 import optionsModal from "./templates/modals/instances/options.pug";
 import { ApplicationStore } from "../universal/store";
-import { Render } from "./StartupTasks";
+import * as Render from "./Render";
 import { InstanceSave } from "../universal/store/InstanceSave";
 
 declare let instanceOptionsName: string;

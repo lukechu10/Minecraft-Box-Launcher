@@ -2,7 +2,7 @@ import { ApplicationStore } from "../universal/store";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 import { VersionsController } from "./controllers/VersionsController";
 import { InstanceController } from "./controllers/InstanceController";
-import { Render } from "./Render";
+import * as Render from "./Render";
 import * as consoleUtils from "../universal/consoleUtils";
 
 // startup tasks

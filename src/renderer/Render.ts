@@ -10,7 +10,6 @@ import { LaunchController } from "./controllers/LaunchController";
 import * as consoleUtils from "../universal/consoleUtils";
 
 // import templates
-import instancelistTemplate from "./templates/instanceList.pug";
 import loginstatusTemplate from "./templates/loginStatus.pug";
 
 // import instance modal templates
@@ -23,166 +22,159 @@ import newInstanceModal from "./templates/modals/newInstance.pug";
 import { attachEvents } from "./controllers/NewInstanceWindow";
 import * as InstanceOptionsController from "./InstanceOptionsRender";
 
-export namespace Render {
-	/**
-	 * Renders instance list on instance page
-	 */
-	export function instanceList(): void {
-		$("#instance-list").html(instancelistTemplate({ data: ApplicationStore.instances.all }));
-		$(".ui.dropdown").dropdown();
-		return;
-	}
-	/**
-	 * Shows new instance window
-	 */
-	export function newInstance(): void {
-		$("#modal-newInstance").replaceWith(newInstanceModal({ name }));
-		$("#modal-newInstance").modal({
-			closable: false
-		}).modal("show");
+export * from "./views/instances";
 
-		NewInstanceController.attachEvents(); // attach events
-	}
-	/**
-	 * Shows instance options modal
-	 * @param name name of instance
-	 */
-	export function instanceOptions(name: string): void {
-		InstanceOptionsController.showOptionsForInstance(name);
-	}
+/**
+ * Shows new instance window
+ */
+export function newInstance(): void {
+	$("#modal-newInstance").replaceWith(newInstanceModal({ name }));
+	$("#modal-newInstance").modal({
+		closable: false
+	}).modal("show");
 
-	/**
-	 * Renders and shows the confirm delete modal
-	 * @param opts arguments to pass to pugjs
-	 */
-	export function instanceConfirmDelete({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
-		$("#modal-confirmDelete").replaceWith(confirmDeleteModal({ name }));
-		// show modal
-		$("#modal-confirmDelete").modal({
-			closable: false,
-			onApprove,
-			onDeny
-		}).modal("show");
-	}
+	NewInstanceController.attachEvents(); // attach events
+}
+/**
+ * Shows instance options modal
+ * @param name name of instance
+ */
+export function instanceOptions(name: string): void {
+	InstanceOptionsController.showOptionsForInstance(name);
+}
 
-	/**
-	 * Show form on click if logged out
-	 */
-	function initiateLoginForm(): void {
-		// initiate form
-		$("#login-form").form({
-			fields: {
-				username: {
-					identifier: "username",
-					rules: [{
-						type: "email",
-						prompt: "Invalid email"
-					}]
-				},
-				password: {
-					identifier: "password",
-					type: "minLength[1]",
-					prompt: "Please enter your password"
-				}
+/**
+ * Renders and shows the confirm delete modal
+ * @param opts arguments to pass to pugjs
+ */
+export function instanceConfirmDelete({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
+	$("#modal-confirmDelete").replaceWith(confirmDeleteModal({ name }));
+	// show modal
+	$("#modal-confirmDelete").modal({
+		closable: false,
+		onApprove,
+		onDeny
+	}).modal("show");
+}
+
+/**
+ * Show form on click if logged out
+ */
+function initiateLoginForm(): void {
+	// initiate form
+	$("#login-form").form({
+		fields: {
+			username: {
+				identifier: "username",
+				rules: [{
+					type: "email",
+					prompt: "Invalid email"
+				}]
+			},
+			password: {
+				identifier: "password",
+				type: "minLength[1]",
+				prompt: "Please enter your password"
 			}
-		} as any);
-
-		// login button
-		$("#login-form").submit(async (event: JQuery.Event) => {
-			event.preventDefault();
-			$("#login-form").form("validate form");
-			if ($("#login-form").form("is valid")) {
-				try {
-					const username = $("#username-field").val() as string;
-					const password = $("#password-field").val() as string;
-					// send request to Yggsdrasil auth server
-					await AuthenticationController.login(username, password);
-					// login successfull
-					$("#modal-login").modal("hide");
-				}
-				catch (e) {
-					$("#login-errors-container").css("display", "block");
-					// if invalid credentials
-					if (e.statusCode == 403) {
-						$("#login-errors").text("Invalid username or password!");
-					}
-					else {
-						$("#login-errors").text("An unknown error occured: " + e);
-						consoleUtils.debug("An unknown error occured when trying to login user. Caught exception: ", e);
-					}
-				}
-			}
-			else {
-				$("#login-errors").text("Please fill out the form!");
-			}
-		});
-	}
-
-	/**
-	 * Updates the login status in the navigation
-	 */
-	export function updateLoginStatus(status: "login" | "logout"): void {
-		if (status == "logout") {
-			$("#login-status").html(loginstatusTemplate({ loggedIn: false }));
-			initiateLoginForm();
 		}
-		else if (status == "login") {
-			$("#login-status").html(loginstatusTemplate({ loggedIn: true, name: ApplicationStore.auth.get("selectedProfile").name }));
-			// user popup
-			$("#login-status").dropdown();
+	} as any);
+
+	// login button
+	$("#login-form").submit(async (event: JQuery.Event) => {
+		event.preventDefault();
+		$("#login-form").form("validate form");
+		if ($("#login-form").form("is valid")) {
+			try {
+				const username = $("#username-field").val() as string;
+				const password = $("#password-field").val() as string;
+				// send request to Yggsdrasil auth server
+				await AuthenticationController.login(username, password);
+				// login successfull
+				$("#modal-login").modal("hide");
+			}
+			catch (e) {
+				$("#login-errors-container").css("display", "block");
+				// if invalid credentials
+				if (e.statusCode == 403) {
+					$("#login-errors").text("Invalid username or password!");
+				}
+				else {
+					$("#login-errors").text("An unknown error occured: " + e);
+					consoleUtils.debug("An unknown error occured when trying to login user. Caught exception: ", e);
+				}
+			}
 		}
 		else {
-			throw `Option ${status} is not availible for argument status`;
+			$("#login-errors").text("Please fill out the form!");
 		}
-	}
+	});
+}
 
-	/**
-	 * Shows modal that appears over page
-	 */
-	export function showLoginModal(): void {
-		// TODO: allow option to customize error message on show (for session expired)
-		$("#modal-login").modal({
-			onDeny: () => {
-				// TODO: show are you sure message
-			},
-			detachable: false
-		}).modal("show");
+/**
+ * Updates the login status in the navigation
+ */
+export function updateLoginStatus(status: "login" | "logout"): void {
+	if (status == "logout") {
+		$("#login-status").html(loginstatusTemplate({ loggedIn: false }));
+		initiateLoginForm();
 	}
-
-	/**
-	 * Show rename modal
-	 */
-	export function showRenameModal({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
-		$("#modal-rename").replaceWith($(renameModal({ name })));
-		$("#modal-rename").modal({
-			closable: false,
-			onApprove,
-			onDeny
-		}).modal("show");
+	else if (status == "login") {
+		$("#login-status").html(loginstatusTemplate({ loggedIn: true, name: ApplicationStore.auth.get("selectedProfile").name }));
+		// user popup
+		$("#login-status").dropdown();
 	}
-
-	/**
-	 * Show instance is corrupted modal
-	 */
-	export function showCorruptedModal({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
-		$("#modal-corrupted").replaceWith(corruptedModal({ name }));
-		$("#modal-corrupted").modal({
-			closable: false,
-			onApprove,
-			onDeny
-		}).modal("show");
-	}
-
-	/**
-	 * Show saves modal
-	 */
-	export function showSavesModal(name: string): void {
-		$("#modal-saves").replaceWith(savesModal({ name }));
-		$("#modal-saves").modal({
-			closable: false
-		}).modal("show");
+	else {
+		throw `Option ${status} is not availible for argument status`;
 	}
 }
+
+/**
+ * Shows modal that appears over page
+ */
+export function showLoginModal(): void {
+	// TODO: allow option to customize error message on show (for session expired)
+	$("#modal-login").modal({
+		onDeny: () => {
+			// TODO: show are you sure message
+		},
+		detachable: false
+	}).modal("show");
+}
+
+/**
+ * Show rename modal
+ */
+export function showRenameModal({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
+	$("#modal-rename").replaceWith($(renameModal({ name })));
+	$("#modal-rename").modal({
+		closable: false,
+		onApprove,
+		onDeny
+	}).modal("show");
+}
+
+/**
+ * Show instance is corrupted modal
+ */
+export function showCorruptedModal({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
+	$("#modal-corrupted").replaceWith(corruptedModal({ name }));
+	$("#modal-corrupted").modal({
+		closable: false,
+		onApprove,
+		onDeny
+	}).modal("show");
+}
+
+/**
+ * Show saves modal
+ */
+export function showSavesModal(name: string): void {
+	$("#modal-saves").replaceWith(savesModal({ name }));
+	$("#modal-saves").modal({
+		closable: false
+	}).modal("show");
+}
+
 // attach event handlers
 $(document).on("click", ".btn-install", e => {
 	// install instance
@@ -209,7 +201,7 @@ $(document).on("click", ".btn-install", e => {
 	// delete instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	// show prompt
-	Render.instanceConfirmDelete({
+	instanceConfirmDelete({
 		name,
 		onApprove: () => {
 			// delete instance
@@ -223,7 +215,7 @@ $(document).on("click", ".btn-install", e => {
 }).on("click", ".btn-rename", e => {
 	// rename instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
-	Render.showRenameModal({
+	showRenameModal({
 		name,
 		onApprove: () => {
 			const find = ApplicationStore.instances.findFromName($("#input-rename").val() as string); // make sure an instance with this name does not already exist
@@ -241,9 +233,9 @@ $(document).on("click", ".btn-install", e => {
 }).on("click", ".btn-options", e => {
 	// open options window
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
-	Render.instanceOptions(name);
+	instanceOptions(name);
 }).on("click", ".btn-saves", e => {
 	// open saves window
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
-	Render.showSavesModal(name);
+	showSavesModal(name);
 });

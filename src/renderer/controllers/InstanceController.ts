@@ -1,7 +1,7 @@
 import { ApplicationStore } from "../../universal/store";
 import { InstanceSave } from "../../universal/store/InstanceSave";
 import * as consoleUtils from "../../universal/consoleUtils";
-import { Render } from "../Render";
+import * as Render from "../Render";
 
 import path from "path";
 import child_process from "child_process";
