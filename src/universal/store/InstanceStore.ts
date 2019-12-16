@@ -22,7 +22,7 @@ export default class InstanceStore extends Store {
 			},
 			schema: {
 				instances: {
-					type: "array",
+					type: "array"
 					// TODO: Improve schema to check for InstanceSave structure
 				}
 			}
@@ -33,7 +33,7 @@ export default class InstanceStore extends Store {
      */
 	public get all(): InstanceSave[] {
 		const instances = this.get("instances") as Array<InstanceSave>;
-		for (let instance of instances) {
+		for (const instance of instances) {
 			Object.setPrototypeOf(instance, InstanceSave.prototype);
 		}
 		return instances;

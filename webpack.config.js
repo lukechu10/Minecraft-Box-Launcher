@@ -26,5 +26,5 @@ module.exports = {
 			}
 		]
 	},
-	target: "electron-renderer",
+	target: "electron-renderer"
 };
