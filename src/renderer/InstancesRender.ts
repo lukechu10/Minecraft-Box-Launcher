@@ -25,7 +25,7 @@ export function instanceList(): void {
  * Renders and shows the confirm delete modal
  * @param opts arguments to pass to pugjs
  */
-export function instanceConfirmDelete({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
+export function showConfirmDelete({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
 	$("#modal-confirmDelete").replaceWith(confirmDeleteModal({ name }));
 	// show modal
 	$("#modal-confirmDelete").modal({
@@ -107,7 +107,7 @@ $(document).on("click", ".btn-install", e => {
 	// delete instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	// show prompt
-	instanceConfirmDelete({
+	showConfirmDelete({
 		name,
 		onApprove: () => {
 			// delete instance
