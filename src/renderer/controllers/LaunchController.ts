@@ -16,7 +16,7 @@ import { MinecraftFolder } from "@xmcl/util";
 import { ResolvedVersion, Version } from "@xmcl/version";
 
 import { remote } from "electron";
-import { Render } from "../Render";
+import * as Render from "../Render";
 const app = remote.app;
 
 export namespace LaunchController {

@@ -4,7 +4,7 @@ import { ApplicationStore } from "../../universal/store";
 import { Installer } from "@xmcl/installer";
 import { remote } from "electron";
 import { LaunchController } from "./LaunchController";
-import { Render } from "../StartupTasks";
+import * as Render from "../Render";
 
 function menuItem(version: Installer.VersionMeta): string {
 	return `<div class="item" data-value="${version.id}">
