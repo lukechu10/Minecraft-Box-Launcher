@@ -13,7 +13,7 @@ import loginstatusTemplate from "./templates/loginStatus.pug";
 import newInstanceModal from "./templates/modals/newInstance.pug";
 import { attachEvents } from "./controllers/NewInstanceWindow";
 
-export * from "./views/instances";
+export * from "./InstancesRender";
 
 /**
  * Shows new instance window

@@ -1,15 +1,15 @@
-import { ApplicationStore } from "../../universal/store";
-import { InstanceController } from "../controllers/InstanceController";
-import { LaunchController } from "../controllers/LaunchController";
-import * as InstanceOptionsController from "../InstanceOptionsRender"; // FIXME: should be wrapped in namespace
+import { ApplicationStore } from "../universal/store";
+import { InstanceController } from "./controllers/InstanceController";
+import { LaunchController } from "./controllers/LaunchController";
+import * as InstanceOptionsController from "./InstanceOptionsRender"; // FIXME: should be wrapped in namespace
 // import templates
-import instancelistTemplate from "../templates/instanceList.pug";
+import instancelistTemplate from "./templates/instanceList.pug";
 
 // import instance modal templates
-import renameModal from "../templates/modals/instances/rename.pug";
-import corruptedModal from "../templates/modals/instances/corrupted.pug";
-import savesModal from "../templates/modals/instances/saves.pug";
-import confirmDeleteModal from "../templates/modals/instances/confirmDelete.pug";
+import renameModal from "./templates/modals/instances/rename.pug";
+import corruptedModal from "./templates/modals/instances/corrupted.pug";
+import savesModal from "./templates/modals/instances/saves.pug";
+import confirmDeleteModal from "./templates/modals/instances/confirmDelete.pug";
 
 
 /**
