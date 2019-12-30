@@ -21,6 +21,7 @@
 	"plugins": [
 		"@typescript-eslint"
 	],
+	"ignorePatterns": [ "node_modules/", "src/renderer/js/semantic.min.js" ],
 	"rules": {
 		"indent": [
 			"warn",
