@@ -5,6 +5,8 @@ import { AuthenticationController } from "./controllers/AuthenticationController
 // TODO: remove workaround
 import * as NewInstanceController from "./controllers/NewInstanceWindow"; // attach event handlers
 
+import { ipcRenderer } from "electron";
+
 import * as consoleUtils from "../universal/consoleUtils";
 
 // import templates

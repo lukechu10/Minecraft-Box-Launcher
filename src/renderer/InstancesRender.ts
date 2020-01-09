@@ -102,7 +102,13 @@ $(document).on("click", ".btn-install", e => {
 	// launch instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
 	// launch by name
-	LaunchController.launch(name);
+	const instance = ApplicationStore.instances.findFromName(name);
+	if (instance !== undefined) {
+		instance.launch();
+		// last played should be updated, save to store
+		ApplicationStore.instances.setInstance(name, instance);
+	}
+	else throw Error("The instance requested does not exist");
 }).on("click", ".btn-delete", e => {
 	// delete instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
