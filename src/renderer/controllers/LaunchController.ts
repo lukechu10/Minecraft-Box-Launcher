@@ -7,7 +7,7 @@ import { InstanceSave } from "../../universal/store/InstanceSave";
 import { InstanceController } from "./InstanceController";
 import * as consoleUtils from "../../universal/consoleUtils";
 import path from "path";
-import child_process from "child_process";
+import child_process, { ChildProcess } from "child_process";
 
 import { Launcher } from "@xmcl/launch";
 import { ProfileService } from "@xmcl/profile-service";
@@ -22,20 +22,17 @@ const app = remote.app;
 export namespace LaunchController {
 	/**
 		 *
-		 * @param name of instance to launch
+		 * @param instance data associated with instance (does not have to be in `InstanceStore`)
 		 * @throws if an instance with `name` does not exist
 		 * @throws if user is not logged in
+		 * @returns a chil process that was spawned or `null` if fail
 		 */
-	export async function launch(name: string): Promise<void> {
-		const instance: InstanceSave | undefined = ApplicationStore.instances.findFromName(name); // get instance data from store
-		if (instance === undefined)
-			throw "An instance with this name does not exist";
-		else if (ApplicationStore.auth.get("loggedIn") == false) {
+	export async function launch(instance: InstanceSave): Promise<ChildProcess> {
+		if (ApplicationStore.auth.get("loggedIn") == false) {
 			// TODO: Show warning
 			throw "User is not logged in";
 		}
 		else {
-
 			const options: Launcher.Option & Launcher.PrecheckService = {
 				gamePath: InstanceController.MinecraftSavePath(instance.name),
 				resourcePath: InstanceController.MinecraftGamePath,
@@ -64,16 +61,12 @@ export namespace LaunchController {
 					},
 					onDeny: () => { }
 				});
-				return;
+				throw err;
 			}
 			const args: string[] = await Launcher.generateArguments(options); // get arguments from options
 			const spawnOptions = { cwd: options.gamePath, env: process.env, ...(options.extraExecOption || {}) };
-			child_process.spawn(args[0], args.slice(1), spawnOptions); // spawn java instance (args[0] should be "java" or java path from options.javaPath)
-
-			// update last played
-			instance.lastPlayed = new Date().toISOString();
-			ApplicationStore.instances.setInstance(instance.name, instance);
-			return;
+			const spawn = child_process.spawn(args[0], args.slice(1), spawnOptions); // spawn java instance (args[0] should be "java" or java path from options.javaPath)
+			return spawn;
 		}
 	}
 }
