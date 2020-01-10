@@ -3,7 +3,7 @@
  */
 
 import { ApplicationStore } from "../../universal/store";
-import { InstanceSave } from "../../universal/store/InstanceSave";
+import { InstanceData } from "../../universal/store/InstanceData";
 import { InstanceController } from "./InstanceController";
 import * as consoleUtils from "../../universal/consoleUtils";
 import path from "path";
@@ -27,7 +27,7 @@ export namespace LaunchController {
 		 * @throws if user is not logged in
 		 * @returns a chil process that was spawned or `null` if fail
 		 */
-	export async function launch(instance: InstanceSave): Promise<ChildProcess> {
+	export async function launch(instance: InstanceData): Promise<ChildProcess> {
 		if (ApplicationStore.auth.get("loggedIn") == false) {
 			// TODO: Show warning
 			throw "User is not logged in";
