@@ -1,5 +1,5 @@
 import optionsModal from "./templates/modals/instances/options.pug";
-import { ApplicationStore } from "./store"
+import { ApplicationStore } from "./store";
 import * as Render from "./Render";
 import { InstanceSave } from "./store/InstanceSave";
 

@@ -4,8 +4,8 @@ import { Installer } from "@xmcl/installer";
 import { MinecraftLocation, MinecraftFolder } from "@xmcl/util";
 
 import { remote, app as mainApp, App } from "electron";
-import { ChildProcess } from 'child_process';
-import { LaunchController } from '../../renderer/controllers/LaunchController';
+import { ChildProcess } from "child_process";
+import { LaunchController } from "../../renderer/controllers/LaunchController";
 import { InstanceData } from "./InstanceData";
 
 let app: App;

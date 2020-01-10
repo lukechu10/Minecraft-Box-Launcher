@@ -1,4 +1,4 @@
-import { ApplicationStore } from "../store"
+import { ApplicationStore } from "../store";
 
 import { Installer } from "@xmcl/installer";
 

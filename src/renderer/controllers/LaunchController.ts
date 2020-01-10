@@ -2,8 +2,8 @@
  * All launching logic is in this file
  */
 
-import { ApplicationStore } from "../store"
-import { InstanceData } from "../store/InstanceData"
+import { ApplicationStore } from "../store";
+import { InstanceData } from "../store/InstanceData";
 import { InstanceController } from "./InstanceController";
 import * as consoleUtils from "../../universal/consoleUtils";
 import path from "path";
