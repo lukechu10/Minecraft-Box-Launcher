@@ -1,6 +1,6 @@
 import { Auth } from "@xmcl/auth";
 
-import { ApplicationStore } from "../../universal/store";
+import { ApplicationStore } from "../store"
 import * as Render from "../Render";
 import * as consoleUtils from "../../universal/consoleUtils";
 

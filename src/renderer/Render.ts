@@ -1,4 +1,4 @@
-import { ApplicationStore } from "../universal/store";
+import { ApplicationStore } from "./store"
 import { InstanceController } from "./controllers/InstanceController";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 

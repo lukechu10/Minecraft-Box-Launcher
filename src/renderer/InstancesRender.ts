@@ -1,4 +1,4 @@
-import { ApplicationStore } from "../universal/store";
+import { ApplicationStore } from "./store"
 import { InstanceController } from "./controllers/InstanceController";
 import { LaunchController } from "./controllers/LaunchController";
 import * as InstanceOptionsController from "./InstanceOptionsRender"; // FIXME: should be wrapped in namespace
