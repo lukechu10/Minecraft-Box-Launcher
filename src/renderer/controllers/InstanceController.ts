@@ -1,5 +1,5 @@
-import { ApplicationStore } from "../../universal/store";
-import { InstanceSave } from "../../universal/store/InstanceSave";
+import { ApplicationStore } from "../store"
+import { InstanceSave } from "../store/InstanceSave"
 import * as consoleUtils from "../../universal/consoleUtils";
 import * as Render from "../Render";
 
