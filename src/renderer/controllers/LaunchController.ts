@@ -42,7 +42,6 @@ export namespace LaunchController {
 				gameProfile: await ProfileService.lookup((ApplicationStore.auth.store as Auth.Response).selectedProfile.name),
 				accessToken: (ApplicationStore.auth.store as Auth.Response).accessToken
 			};
-			consoleUtils.debug(`Launching instance ${name} with options: `, options);
 			// spawn game
 			// const proc = Launcher.launch(options);
 
@@ -65,6 +64,7 @@ export namespace LaunchController {
 			}
 			const args: string[] = await Launcher.generateArguments(options); // get arguments from options
 			const spawnOptions = { cwd: options.gamePath, env: process.env, ...(options.extraExecOption || {}) };
+			consoleUtils.debug(`Launching instance ${name} with options: `, options, "and env: ", spawnOptions);
 			const spawn = child_process.spawn(args[0], args.slice(1), spawnOptions); // spawn java instance (args[0] should be "java" or java path from options.javaPath)
 			return spawn;
 		}
