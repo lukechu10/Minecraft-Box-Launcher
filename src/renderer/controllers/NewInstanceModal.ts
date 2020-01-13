@@ -1,10 +1,7 @@
-import { InstanceSave } from "../../universal/store/InstanceSave";
-import * as consoleUtils from "../../universal/consoleUtils";
-import { ApplicationStore } from "../../universal/store";
+import { InstanceSave } from "../store/InstanceSave";
+import { ApplicationStore } from "../store";
 import { Installer } from "@xmcl/installer";
-import { remote } from "electron";
-import { LaunchController } from "./LaunchController";
-import { Render } from "../StartupTasks";
+import * as Render from "../Render";
 
 function menuItem(version: Installer.VersionMeta): string {
 	return `<div class="item" data-value="${version.id}">

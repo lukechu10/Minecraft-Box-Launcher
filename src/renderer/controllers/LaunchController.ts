@@ -2,12 +2,12 @@
  * All launching logic is in this file
  */
 
-import { ApplicationStore } from "../../universal/store";
-import { InstanceSave } from "../../universal/store/InstanceSave";
+import { ApplicationStore } from "../store";
+import { InstanceData } from "../store/InstanceData";
 import { InstanceController } from "./InstanceController";
 import * as consoleUtils from "../../universal/consoleUtils";
 import path from "path";
-import child_process from "child_process";
+import child_process, { ChildProcess } from "child_process";
 
 import { Launcher } from "@xmcl/launch";
 import { ProfileService } from "@xmcl/profile-service";
@@ -16,26 +16,23 @@ import { MinecraftFolder } from "@xmcl/util";
 import { ResolvedVersion, Version } from "@xmcl/version";
 
 import { remote } from "electron";
-import { Render } from "../Render";
+import * as Render from "../Render";
 const app = remote.app;
 
 export namespace LaunchController {
 	/**
 		 *
-		 * @param name of instance to launch
+		 * @param instance data associated with instance (does not have to be in `InstanceStore`)
 		 * @throws if an instance with `name` does not exist
 		 * @throws if user is not logged in
+		 * @returns a chil process that was spawned or `null` if fail
 		 */
-	export async function launch(name: string): Promise<void> {
-		const instance: InstanceSave | undefined = ApplicationStore.instances.findFromName(name); // get instance data from store
-		if (instance === undefined)
-			throw "An instance with this name does not exist";
-		else if (ApplicationStore.auth.get("loggedIn") == false) {
+	export async function launch(instance: InstanceData): Promise<ChildProcess> {
+		if (ApplicationStore.auth.get("loggedIn") == false) {
 			// TODO: Show warning
 			throw "User is not logged in";
 		}
 		else {
-
 			const options: Launcher.Option & Launcher.PrecheckService = {
 				gamePath: InstanceController.MinecraftSavePath(instance.name),
 				resourcePath: InstanceController.MinecraftGamePath,
@@ -45,7 +42,6 @@ export namespace LaunchController {
 				gameProfile: await ProfileService.lookup((ApplicationStore.auth.store as Auth.Response).selectedProfile.name),
 				accessToken: (ApplicationStore.auth.store as Auth.Response).accessToken
 			};
-			consoleUtils.debug(`Launching instance ${name} with options: `, options);
 			// spawn game
 			// const proc = Launcher.launch(options);
 
@@ -64,16 +60,13 @@ export namespace LaunchController {
 					},
 					onDeny: () => { }
 				});
-				return;
+				throw err;
 			}
 			const args: string[] = await Launcher.generateArguments(options); // get arguments from options
 			const spawnOptions = { cwd: options.gamePath, env: process.env, ...(options.extraExecOption || {}) };
-			child_process.spawn(args[0], args.slice(1), spawnOptions); // spawn java instance (args[0] should be "java" or java path from options.javaPath)
-
-			// update last played
-			instance.lastPlayed = new Date().toISOString();
-			ApplicationStore.instances.setInstance(instance.name, instance);
-			return;
+			consoleUtils.debug(`Launching instance ${name} with options: `, options, "and env: ", spawnOptions);
+			const spawn = child_process.spawn(args[0], args.slice(1), spawnOptions); // spawn java instance (args[0] should be "java" or java path from options.javaPath)
+			return spawn;
 		}
 	}
 }

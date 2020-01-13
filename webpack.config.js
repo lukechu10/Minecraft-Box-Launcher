@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
 	devtool: "inline-source-map",
@@ -26,5 +27,21 @@ module.exports = {
 			}
 		]
 	},
-	target: "electron-renderer",
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: path.resolve(__dirname, "src", "renderer", "views", "instances.pug"),
+			filename: path.resolve(__dirname, "dist", "views", "instances.html")
+		}),
+		new HtmlWebpackPlugin({
+			template: path.resolve(__dirname, "src", "renderer", "views", "news.pug"),
+			filename: path.resolve(__dirname, "dist", "views", "news.html")
+
+		}),
+		new HtmlWebpackPlugin({
+			template: path.resolve(__dirname, "src", "renderer", "views", "settings.pug"),
+			filename: path.resolve(__dirname, "dist", "views", "settings.html")
+
+		})
+	],
+	target: "electron-renderer"
 };
