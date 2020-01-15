@@ -4,12 +4,6 @@ block css
 	link(rel="stylesheet", href="../../src/renderer/css/instances.css")
 
 block js
-	script.
-		$(() => {
-			// render list
-			Render.instanceList();
-		});
-
 	//- script(src="../templates/instanceList.js")
 	//- script(src="../templates/instanceConfirmDelete.js")
 	//- script(src="../templates/instanceRename.js")
@@ -21,6 +15,10 @@ block content
 	.ui.raised.segment
 		.ui.divided.items#instance-list
 		//- render list
+	script.
+		// render list
+		Render.instanceList();
+		console.log("tests");
 
 block modals
 	.ui.modal#version-modal

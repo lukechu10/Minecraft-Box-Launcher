@@ -9,13 +9,21 @@ import Turbolinks from "turbolinks";
 
 Turbolinks.start();
 
-// startup tasks
-$(() => {
+// turbolinks events
+document.addEventListener("turbolinks:load", () => {
+	// remove cache to prevent js from loading twice
+	// FIXME: should work without clearing cache
+	Turbolinks.clearCache();
+	
+	// update login status
 	if (ApplicationStore.auth.get("loggedIn", false) == false) {
 		Render.updateLoginStatus("logout");
 	}
 	else Render.updateLoginStatus("login");
+});
 
+// startup tasks (on application start)
+$(() => {
 	// update versions
 	VersionsController.updateVersionMeta();
 
