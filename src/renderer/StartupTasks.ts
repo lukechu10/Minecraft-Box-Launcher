@@ -5,6 +5,10 @@ import { InstanceController } from "./controllers/InstanceController";
 import * as Render from "./Render";
 import * as consoleUtils from "../universal/consoleUtils";
 
+import Turbolinks from "turbolinks";
+
+Turbolinks.start();
+
 // startup tasks
 $(() => {
 	if (ApplicationStore.auth.get("loggedIn", false) == false) {
