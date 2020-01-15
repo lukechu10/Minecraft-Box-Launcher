@@ -30,16 +30,18 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "instances.pug"),
-			filename: path.resolve(__dirname, "dist", "views", "instances.html")
+			filename: path.resolve(__dirname, "dist", "views", "instances.html"),
+			inject: "head"
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "news.pug"),
-			filename: path.resolve(__dirname, "dist", "views", "news.html")
-
+			filename: path.resolve(__dirname, "dist", "views", "news.html"),
+			inject: "head"
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "settings.pug"),
-			filename: path.resolve(__dirname, "dist", "views", "settings.html")
+			filename: path.resolve(__dirname, "dist", "views", "settings.html"),
+			inject: "head"
 
 		})
 	],
