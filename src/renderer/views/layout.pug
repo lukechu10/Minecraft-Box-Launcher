@@ -9,7 +9,7 @@ html(lang="en")
 		// css
 		// semantic-ui
 		link(rel="stylesheet" href="../../src/renderer/css/global.css")
-		link(rel="stylesheet" href="../../src/renderer/css/semantic.min.css")
+		link(rel="stylesheet" href="../../semantic/dist/semantic.min.css")
 		block css
 		// js
 		// load modules
@@ -22,7 +22,7 @@ html(lang="en")
 			require("../js/renderer/StartupTasks");
 		//- script(src="../renderer.bundle.js")
 			
-		script(src='../../src/renderer/js/semantic.min.js' link-js-library)
+		script(src='../../semantic/dist/semantic.min.js' link-js-library)
 		block js
 	body
 		navbar.ui.menu.fixed.inverted(style="height: 45px;")

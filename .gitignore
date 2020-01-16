@@ -60,9 +60,8 @@ typings/
 # next.js build output
 .next
 
-# pug template output
-static/views/
-static/templates/
-
 # build output
 dist/
+
+# fomantic-ui
+semantic/dist/
