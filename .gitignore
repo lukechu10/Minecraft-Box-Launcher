@@ -64,4 +64,7 @@ typings/
 dist/
 
 # fomantic-ui
-semantic/dist/
+!/semantic/dist
+semantic/dist/*
+!/semantic/dist/*.min.js
+!/semantic/dist/*.min.css
