@@ -88,6 +88,7 @@
 			"src/renderer/js/**/*.js",
 			"semantic/dist/*.js",
 			"semantic/dist/*.css"
-		]
+		],
+		"asar": false
 	}
 }
