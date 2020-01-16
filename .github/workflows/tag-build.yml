@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 jobs:
-  windows_build:
+  windows_alternative:
     name: Windows Latest Build
     runs-on: windows-latest
     steps:
@@ -22,33 +22,10 @@ jobs:
       - name: Publish artificats
         uses: actions/upload-artifact@master
         with:
-          name: windows-build
+          name: windows-alternative
           path: dist/win-unpacked
-      - name: Create Zip archive
-        shell: powershell
-        run: Get-ChildItem -Path dist\win-unpacked | Compress-Archive -DestinationPath windows-portable.zip
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release
-          draft: true
-          prerelease: false
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: windows-portable.zip
-          asset_name: "Minecraft Box (WinPortable) ${{ github.ref }}.zip"
-          asset_content_type: application/zip
+          
   macos_build:
-    needs: [windows_build] # needs to wait for release to be created
     name: MacOS Latest Build
     runs-on: macos-latest
     steps:
@@ -64,18 +41,52 @@ jobs:
       - name: Publish artificats
         uses: actions/upload-artifact@master
         with:
-          name: macos-build
+          name: macos
           path: dist/mac
-      - name: Create Zip archive
-        shell: bash
-        run: zip -r macos-portable dist/mac
+
+  create_release:
+    name: Create Release
+    needs: [windows_alternative, macos_build] # wait for artifacts to be created
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v1.0.0
+        with:
+          # Artifact name
+          name: windows-alternative
+      - name: Download artifacts
+        uses: actions/download-artifact@v1.0.0
+        with:
+          # Artifact name
+          name: macos
+        # Create a new release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: true
+          prerelease: false
+        # upload windows alternative
       - name: Upload Release Asset
-        id: upload-release-asset 
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: macos-portable.zip
-          asset_name: MinecraftBox-MacosPortable(${{ github.ref }}).zip
+          asset_path: windows-alternative.zip
+          asset_name: "Minecraft Box (WinAlternative) ${{ github.ref }}.zip"
+          asset_content_type: application/zip
+      # upload macos
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: macos.zip
+          asset_name: "Minecraft Box (MacOS) ${{ github.ref }}.zip"
           asset_content_type: application/zip
