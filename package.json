@@ -85,7 +85,9 @@
 			"dist/views/**/*",
 			"dist/renderer.bundle.js",
 			"src/renderer/css/*.css",
-			"src/renderer/js/**/*.js"
+			"src/renderer/js/**/*.js",
+			"semantic/dist/*.js",
+			"semantic/dist/*.css"
 		]
 	}
 }
