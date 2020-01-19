@@ -3,7 +3,6 @@ import { AuthenticationController } from "./controllers/AuthenticationController
 import { VersionsController } from "./controllers/VersionsController";
 import { InstanceController } from "./controllers/InstanceController";
 import * as Render from "./Render";
-import * as consoleUtils from "../universal/consoleUtils";
 
 import Turbolinks from "turbolinks"; // TODO: replace with stable build once 5.3.0 has been release (for typescript)
 

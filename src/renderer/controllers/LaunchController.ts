@@ -6,7 +6,6 @@ import { ApplicationStore } from "../store";
 import { InstanceData } from "../store/InstanceData";
 import { InstanceController } from "./InstanceController";
 import * as consoleUtils from "../../universal/consoleUtils";
-import path from "path";
 import child_process, { ChildProcess } from "child_process";
 
 import { Launcher } from "@xmcl/launch";
@@ -15,9 +14,7 @@ import { Auth } from "@xmcl/auth";
 import { MinecraftFolder } from "@xmcl/util";
 import { ResolvedVersion, Version } from "@xmcl/version";
 
-import { remote } from "electron";
 import * as Render from "../Render";
-const app = remote.app;
 
 export namespace LaunchController {
 	/**

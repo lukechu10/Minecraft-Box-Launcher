@@ -1,14 +1,11 @@
 import { ApplicationStore } from "../store";
-import { InstanceSave } from "../store/InstanceSave";
 import * as consoleUtils from "../../universal/consoleUtils";
 import * as Render from "../Render";
 
-import path from "path";
 import child_process from "child_process";
-import fs from "fs-extra";
 
-import { Launcher } from "@xmcl/launch";
-import { Auth } from "@xmcl/auth";
+import path from "path";
+import fs from "fs-extra";
 
 import { remote } from "electron";
 const app = remote.app;

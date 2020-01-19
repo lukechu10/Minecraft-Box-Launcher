@@ -19,7 +19,7 @@ export default class GlobalSettingsStore extends Store<GlobalSettings> {
 		java: {
 			useBundledJava: true
 		}
-	}
+	};
 
 	public constructor() {
 		super({
