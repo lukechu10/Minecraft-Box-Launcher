@@ -1,11 +1,33 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const baseChunks = ["runtime", "vendors", "turbolinks", "startupTasks"];
+
 module.exports = {
 	devtool: "inline-source-map",
-	entry: "./src/renderer/StartupTasks.ts",
+	optimization: {
+		splitChunks: {
+			chunks: "all",
+			minChunks: 1,
+			cacheGroups: {
+				vendor: {
+					name: "vendors",
+					test: /node_modules/,
+					chunks: "initial",
+					enforce: true
+				}
+			}
+		},
+		runtimeChunk: {
+			name: "runtime"
+		}
+	},
+	entry: {
+		startupTasks: "./src/renderer/StartupTasks.ts",
+		turbolinks: "./src/renderer/turbolinks.ts"
+	},
 	output: {
-		filename: "./renderer.bundle.js",
+		filename: "[name].js",
 		libraryTarget: "window"
 	},
 	resolve: {
@@ -31,18 +53,22 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "instances.pug"),
 			filename: path.resolve(__dirname, "dist", "views", "instances.html"),
-			inject: "head"
+			inject: "head",
+			chunks: [
+				...baseChunks
+			]
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "news.pug"),
 			filename: path.resolve(__dirname, "dist", "views", "news.html"),
-			inject: "head"
+			inject: "head",
+			chunks: [...baseChunks]
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "settings.pug"),
 			filename: path.resolve(__dirname, "dist", "views", "settings.html"),
-			inject: "head"
-
+			inject: "head",
+			chunks: [...baseChunks]
 		})
 	],
 	target: "electron-renderer"
