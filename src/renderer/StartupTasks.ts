@@ -15,12 +15,12 @@ document.addEventListener("turbolinks:load", () => {
 	else Render.updateLoginStatus("login");
 });
 
-window.addEventListener("unhandledrejection", (event) => {
+function showErrorToast(message: string) {
 	// show toast with error message
 	// @ts-ignore
 	$("body").toast({
 		class: "error",
-		message: `<strong>An unexpected error occured</strong>:<br>${event.reason}`,
+		message: `<strong>An unexpected error occured</strong>:<br>${message}`,
 		displayTime: 0,
 		classActions: "top attached",
 		actions: [{
@@ -34,6 +34,13 @@ window.addEventListener("unhandledrejection", (event) => {
 			class: "orange"
 		}]
 	});
+}
+
+process.on("uncaughtException", err => {
+	showErrorToast(err.message);
+});
+window.addEventListener("unhandledrejection", event => {
+	showErrorToast(event.reason);
 });
 
 // startup tasks (on application start)
