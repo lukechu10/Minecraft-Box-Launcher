@@ -13,6 +13,7 @@ import { ProfileService } from "@xmcl/profile-service";
 import { Auth } from "@xmcl/auth";
 import { MinecraftFolder } from "@xmcl/util";
 import { ResolvedVersion, Version } from "@xmcl/version";
+import * as JavaInstall from "./JavaInstall";
 
 import * as Render from "../Render";
 
@@ -30,11 +31,23 @@ export namespace LaunchController {
 			throw "User is not logged in";
 		}
 		else {
+			let javaPath = ApplicationStore.GlobalSettings.store.java.externalJavaPath;
+			// check if using auto detect
+			if (javaPath === "") {
+				// check if installed
+				const info = await JavaInstall.checkInstalled();
+				if (info.length === 0) {
+					throw new Error("Java installation not detected");
+				}
+				else {
+					javaPath = info[0].path;
+				}
+			}
 			const options: Launcher.Option & Launcher.PrecheckService = {
 				gamePath: InstanceController.MinecraftSavePath(instance.name),
 				resourcePath: InstanceController.MinecraftGamePath,
 				version: await Version.parse(InstanceController.MinecraftGamePath, instance.id),
-				javaPath: "java", // TODO: Change to executable path if java is not in %PATH%
+				javaPath: javaPath,
 				launcherName: "Minecraft Box Launcher",
 				gameProfile: await ProfileService.lookup((ApplicationStore.auth.store as Auth.Response).selectedProfile.name),
 				accessToken: (ApplicationStore.auth.store as Auth.Response).accessToken

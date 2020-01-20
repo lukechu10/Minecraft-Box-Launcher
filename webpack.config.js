@@ -20,7 +20,8 @@ module.exports = {
 		},
 		runtimeChunk: {
 			name: "runtime"
-		}
+		},
+		flagIncludedChunks: true
 	},
 	entry: {
 		startupTasks: "./src/renderer/StartupTasks.ts",
@@ -61,12 +62,6 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "news.pug"),
 			filename: path.resolve(__dirname, "dist", "views", "news.html"),
-			inject: "head",
-			chunks: [...baseChunks]
-		}),
-		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, "src", "renderer", "views", "settings.pug"),
-			filename: path.resolve(__dirname, "dist", "views", "settings.html"),
 			inject: "head",
 			chunks: [...baseChunks]
 		})

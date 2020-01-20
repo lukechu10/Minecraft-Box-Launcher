@@ -5,3 +5,8 @@ body {
 .ui.modal {
     user-select: none !important;
 }
+
+/* fix FUI glitch */
+.ui.basic.modal .ui.form.inverted .ui.header {
+    color: white;
+}

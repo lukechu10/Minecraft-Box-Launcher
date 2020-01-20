@@ -16,6 +16,7 @@ import newInstanceModal from "./templates/modals/newInstance.pug";
 import { attachEvents } from "./controllers/NewInstanceModal";
 
 export * from "./InstancesRender";
+export * from "./controllers/SettingsModal";
 
 /**
  * Shows new instance window

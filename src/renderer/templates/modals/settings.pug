@@ -1,0 +1,11 @@
+.ui.basic.modal#modal-settings
+	.header Settings
+	.content
+		form.ui.form.inverted#form-settings
+			.ui.header Java
+			.field
+				label Java executable path (leave blank to detect automatically)
+				input(type="text" name="java-path" placeholder="Use Java in %PATH%" value=java.externalJavaPath)
+	.actions
+		.ui.inverted.primary.button.approve Save
+		.ui.inverted.red.button.cancel Cancel

@@ -4,7 +4,7 @@
         img(src=`https://minotar.net/avatar/${name}` alt="skin head"
             style="margin-left: 8px; width: 18px; vertical-align: middle")
     .menu
-        a.item(href="./settings.html") Settings
+        .item(onclick="Render.showSettingsModal()") Settings
         .item(onclick="AuthenticationController.logout()") Logout
 - else
     a#login-status-text(onclick="Render.showLoginModal()") Login
