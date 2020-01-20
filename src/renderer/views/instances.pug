@@ -11,7 +11,8 @@ block js
 
 block content
 	h1 Instances
-	.ui.button(onclick="Render.newInstance();") New Instance
+	.ui.primary.button(onclick="Render.newInstance();") New Instance
+	.ui.button.right.floated.green.inverted(onclick="Render.showSettingsModal()") Settings
 	.ui.raised.segment
 		.ui.divided.items#instance-list
 		//- render list

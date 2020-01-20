@@ -62,9 +62,11 @@ export namespace AuthenticationController {
 				}
 				catch (err) {
 					// user needs to login again
-					console.error(err);
-					logout();
-					Render.showLoginModal();
+					if (err != "TypeError: Failed to fetch") { // not offline
+						console.error(err);
+						logout();
+						Render.showLoginModal();
+					}
 				}
 			}
 		}
