@@ -11,7 +11,9 @@
 					.ui.grid
 						.twelve.wide.column
 							p.ui.header.text-instanceName= data[i].name
-							p.description #{data[i].clientType || "Vanilla"} #[strong= data[i].id] (#{data[i].type})
+							p.description
+							| #{data[i].clientType || "Vanilla"} #[strong #{data[i].id} #{data[i].type}]
+							| Last played: #[i #{data[i].lastPlayedStr}]
 						.four.wide.column
 							.ui.right.floated.buttons
 								- if(data[i].installed)
