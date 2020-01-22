@@ -34,6 +34,8 @@ function showErrorToast(message: string) {
 			class: "orange"
 		}]
 	});
+	// log error
+	console.error(message);
 }
 
 process.on("uncaughtException", err => {
