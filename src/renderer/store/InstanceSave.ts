@@ -8,7 +8,7 @@ import { ChildProcess } from "child_process";
 import { LaunchController } from "../../renderer/controllers/LaunchController";
 import { InstanceData } from "./InstanceData";
 
-import moment from "moment"
+import moment from "moment";
 
 let app: App;
 if (process && process.type == "renderer") {
