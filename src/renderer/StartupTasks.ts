@@ -34,15 +34,15 @@ function showErrorToast(message: string) {
 			class: "orange"
 		}]
 	});
-	// log error
-	console.error(message);
 }
 
 process.on("uncaughtException", err => {
 	showErrorToast(err.message);
+	console.error(err);
 });
 window.addEventListener("unhandledrejection", event => {
 	showErrorToast(event.reason);
+	console.error(event.reason);
 });
 
 // startup tasks (on application start)
