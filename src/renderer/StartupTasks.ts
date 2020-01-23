@@ -46,12 +46,20 @@ window.addEventListener("unhandledrejection", event => {
 });
 
 // startup tasks (on application start)
-$(() => {
+$(async () => {
 	// update versions
 	VersionsController.updateVersionMeta();
 
 	// update auth
-	AuthenticationController.refreshLogin();
+	try {	
+		await AuthenticationController.refreshLogin();
+	}
+	catch (err) {
+		if (err !== "User is not logged in. Cannot refresh auth.")
+			// pass on exception
+			throw err;
+			// else ignore
+	}
 });
 
 // export modules
