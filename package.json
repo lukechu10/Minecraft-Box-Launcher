@@ -85,7 +85,7 @@
 			"dist/js/main/**/*.js",
 			"dist/js/universal/**/*.js",
 			"dist/views/**/*",
-			"dist/renderer.bundle.js",
+			"dist/*.js",
 			"src/renderer/css/*.css",
 			"src/renderer/js/**/*.js",
 			"semantic/dist/*.js",
