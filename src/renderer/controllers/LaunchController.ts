@@ -48,6 +48,8 @@ export namespace LaunchController {
 				resourcePath: InstanceController.MinecraftGamePath,
 				version: await Version.parse(InstanceController.MinecraftGamePath, instance.id),
 				javaPath: javaPath,
+				minMemory: ApplicationStore.GlobalSettings.store.java.minMemory,
+				maxMemory: ApplicationStore.GlobalSettings.store.java.maxMemory,
 				launcherName: "Minecraft Box Launcher",
 				gameProfile: await ProfileService.lookup((ApplicationStore.auth.store as Auth.Response).selectedProfile.name),
 				accessToken: (ApplicationStore.auth.store as Auth.Response).accessToken

@@ -9,13 +9,17 @@ export interface GlobalSettings {
 		 * Path to java executable if not using bundled java
 		 */
 		externalJavaPath: string,
+		maxMemory: number,
+		minMemory: number
 	}
 }
 
 export default class GlobalSettingsStore extends Store<GlobalSettings> {
 	private static defaultSettings: GlobalSettings = {
 		java: {
-			externalJavaPath: ""
+			externalJavaPath: "",
+			maxMemory: 1024,
+			minMemory: 512
 		}
 	};
 
