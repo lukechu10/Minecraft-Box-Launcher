@@ -1,5 +1,3 @@
-import { Installer } from "@xmcl/installer";
-
 /**
  * InstanceSave without methods
  */

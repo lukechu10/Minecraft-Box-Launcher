@@ -1,0 +1,15 @@
+.ui.basic.modal#modal-settings
+	.header Settings
+	.content
+		form.ui.form.inverted#form-settings
+			.ui.header Java
+			.field
+				label Java executable path (leave blank to detect automatically)
+				input.ui.inverted.input(type="text" name="java-path" placeholder="Use Java in %PATH%" value=java.externalJavaPath)
+			.ui.warning.inverted.message(style="display: block;") Check how much RAM you have on your computer before allocating more RAM.
+			.field
+				label Java memory options (min and max in MB)
+				.ui.inverted.labeled.ticked.range.blue.slider#slider-java-memory
+	.actions
+		.ui.inverted.primary.button.approve Save
+		.ui.inverted.red.button.cancel Cancel

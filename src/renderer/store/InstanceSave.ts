@@ -8,6 +8,8 @@ import { ChildProcess } from "child_process";
 import { LaunchController } from "../../renderer/controllers/LaunchController";
 import { InstanceData } from "./InstanceData";
 
+import moment from "moment";
+
 let app: App;
 if (process && process.type == "renderer") {
 	app = remote.app;
@@ -78,5 +80,13 @@ export class InstanceSave implements InstanceData, Installer.VersionMeta {
 		// update last played
 		this.lastPlayed = new Date().toISOString();
 		return spawn;
+	}
+
+	/**
+	 * Get time since last played
+	 */
+	public get lastPlayedStr(): string {
+		return this.lastPlayed === "never" ? "never" :
+			moment(this.lastPlayed).fromNow();
 	}
 }

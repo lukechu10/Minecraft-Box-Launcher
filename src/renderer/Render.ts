@@ -1,11 +1,8 @@
 import { ApplicationStore } from "./store";
-import { InstanceController } from "./controllers/InstanceController";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 
 // TODO: remove workaround
 import * as NewInstanceController from "./controllers/NewInstanceModal"; // attach event handlers
-
-import { ipcRenderer } from "electron";
 
 import * as consoleUtils from "../universal/consoleUtils";
 
@@ -13,9 +10,9 @@ import * as consoleUtils from "../universal/consoleUtils";
 import loginstatusTemplate from "./templates/loginStatus.pug";
 
 import newInstanceModal from "./templates/modals/newInstance.pug";
-import { attachEvents } from "./controllers/NewInstanceModal";
 
 export * from "./InstancesRender";
+export * from "./controllers/SettingsModal";
 
 /**
  * Shows new instance window

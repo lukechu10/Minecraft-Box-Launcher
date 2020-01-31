@@ -49,7 +49,10 @@
 			"warn",
 			{
 				"properties": "never",
-				"ignoreImports": true
+				"ignoreImports": true,
+				"allow": [
+					"child_process"
+				]
 			}
 		],
 		"no-dupe-else-if": "error",

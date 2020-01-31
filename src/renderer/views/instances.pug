@@ -11,18 +11,12 @@ block js
 
 block content
 	h1 Instances
-	.ui.button(onclick="Render.newInstance();") New Instance
+	.ui.button.right.floated.green.inverted(onclick="Render.showSettingsModal()") Settings
+	.ui.primary.button(onclick="Render.newInstance();") New Instance
+	a(onclick="Render.instanceList();" style="margin-left: 10px;") Refresh list
 	.ui.raised.segment
 		.ui.divided.items#instance-list
 		//- render list
 	script.
 		// render list
 		Render.instanceList();
-
-block modals
-	.ui.modal#version-modal
-		.header New Instance
-		.scrolling.content
-			h3 Vanilla instances
-			.ui.negative.message #[strong Important:] Install functionality has not been implemented yet. Please check back later.
-			.ui.divided.relaxed.list#versions-list

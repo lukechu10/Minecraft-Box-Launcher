@@ -3,18 +3,11 @@ import { AuthenticationController } from "./controllers/AuthenticationController
 import { VersionsController } from "./controllers/VersionsController";
 import { InstanceController } from "./controllers/InstanceController";
 import * as Render from "./Render";
-import * as consoleUtils from "../universal/consoleUtils";
 
-import Turbolinks from "turbolinks"; // TODO: replace with stable build once 5.3.0 has been release (for typescript)
-
-Turbolinks.start();
+import { shell } from "electron";
 
 // turbolinks events
 document.addEventListener("turbolinks:load", () => {
-	// remove cache to prevent js from loading twice
-	// FIXME: should work without clearing cache
-	Turbolinks.clearCache();
-	
 	// update login status
 	if (ApplicationStore.auth.get("loggedIn", false) == false) {
 		Render.updateLoginStatus("logout");
@@ -22,13 +15,51 @@ document.addEventListener("turbolinks:load", () => {
 	else Render.updateLoginStatus("login");
 });
 
+function showErrorToast(message: string) {
+	// show toast with error message
+	// @ts-ignore
+	$("body").toast({
+		class: "error",
+		message: `<strong>An unexpected error occured</strong>:<br>${message}`,
+		displayTime: 0,
+		classActions: "top attached",
+		actions: [{
+			text: "Report issue",
+			class: "yellow",
+			click: () => {
+				shell.openExternal("https://github.com/lukechu10/Minecraft-Box-Launcher/issues/new/choose");
+			}
+		}, {
+			text: "Ignore",
+			class: "orange"
+		}]
+	});
+}
+
+process.on("uncaughtException", err => {
+	showErrorToast(err.message);
+	console.error(err);
+});
+window.addEventListener("unhandledrejection", event => {
+	showErrorToast(event.reason);
+	console.error(event.reason);
+});
+
 // startup tasks (on application start)
-$(() => {
+$(async () => {
 	// update versions
 	VersionsController.updateVersionMeta();
 
 	// update auth
-	AuthenticationController.refreshLogin();
+	try {
+		await AuthenticationController.refreshLogin();
+	}
+	catch (err) {
+		if (err !== "User is not logged in. Cannot refresh auth.")
+			// pass on exception
+			throw err;
+			// else ignore
+	}
 });
 
 // export modules

@@ -1,7 +1,9 @@
 import Store from "electron-store";
 import InstanceStore from "./store/InstanceStore";
+import GlobalSettingsStore from "./store/GlobalSettingsStore";
 
 export namespace ApplicationStore {
+	// TODO: rename exports to PascalCase
 	export var instances: InstanceStore = new InstanceStore();
 
 	export var installed: Store = new Store({
@@ -29,4 +31,9 @@ export namespace ApplicationStore {
 			versions: []
 		}
 	});
+
+	/**
+	 * Global settings
+	 */
+	export var GlobalSettings: GlobalSettingsStore = new GlobalSettingsStore();
 }
