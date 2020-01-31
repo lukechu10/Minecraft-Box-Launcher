@@ -51,7 +51,7 @@ $(async () => {
 	VersionsController.updateVersionMeta();
 
 	// update auth
-	try {	
+	try {
 		await AuthenticationController.refreshLogin();
 	}
 	catch (err) {
