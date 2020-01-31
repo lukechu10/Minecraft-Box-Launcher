@@ -1,6 +1,5 @@
 import { ApplicationStore } from "./store";
 import { InstanceController } from "./controllers/InstanceController";
-import { LaunchController } from "./controllers/LaunchController";
 import * as InstanceOptionsController from "./InstanceOptionsRender"; // FIXME: should be wrapped in namespace
 // import templates
 import instancelistTemplate from "./templates/instanceList.pug";
