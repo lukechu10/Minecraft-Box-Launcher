@@ -8,5 +8,6 @@
       "javascriptreact",
       "typescript",
       "typescriptreact"
-   ]
+   ],
+   "files.insertFinalNewline": true
 }
