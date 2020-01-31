@@ -8,7 +8,8 @@ const MainWindowOptions: Electron.BrowserWindowConstructorOptions = {
 	webPreferences: {
 		nodeIntegration: true,
 		sandbox: false
-	}
+	},
+	icon: path.join(__dirname, "./build/icon.png")
 };
 
 export class MainWindow extends BrowserWindow {
