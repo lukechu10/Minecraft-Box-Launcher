@@ -9,6 +9,44 @@
 
 The **Minecraft Box** is a modern Minecraft launcher, designed to provide integrations with multiple Minecraft services, configurations and thirs party software. The launcher is made with web technologies including electronJS.
 
+## Features
+Symbol	| Meaning
+-------	| -----------
+✔		| Availible in latest release / pre-release
+🔨		| Work in Progress
+🦄		| Planned
+- Core
+	- Create new game instances ✔
+	- Instances are isolated from each other and do not share saves, settings or mods ✔
+	- Official news feed from www.minecraft.net 🔨
+- Authentication
+	- Official Yggsdrasil Mojang Authentication ✔
+	- Offline Mojang Authentication 🔨
+	- Change skin inside launcher 🔨
+- Install
+	- Install vanilla releases, snapshots and historical versions ✔
+	- Reinstall corrupted versions ✔
+	- Install forge directly from launcher 🦄
+	- Install optifine directly from launcher 🦄
+- Launch
+	- Launch vanilla releases and snapshots ✔
+	- Launch historical versions 🦄
+	- Launch with forge 🦄
+	- Launch with optifine 🦄
+	- Custom jar 🔨
+	- Launch offline 🔨
+- Java configuration
+	- Custom java executable ✔
+	- Custom java max and min memory ✔
+	- Custom java arguments 🔨
+- Instance configuration and management
+	- Per-instance settings (seperate from global settings) 🔨
+	- World saves manager (view and install maps) 🔨
+	- Mods manager (quickly view and install forge mods) 🦄
+	- Install mod packs 🦄
+	- Minecraft settings viewer 🦄
+- Installed versions viewer (view which versions are installed and can be played) 🔨
+
 ## Contributing
 See [CONTRIBUTING.md](https://github.com/lukechu10/Minecraft-Box-Launcher/blob/master/.github/CONTRIBUTING.md) for more details
 
