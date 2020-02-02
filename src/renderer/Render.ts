@@ -1,13 +1,9 @@
-import { ApplicationStore } from "./store";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 
 // TODO: remove workaround
 import * as NewInstanceController from "./controllers/NewInstanceModal"; // attach event handlers
 
 import * as consoleUtils from "../universal/consoleUtils";
-
-// import templates
-import loginstatusTemplate from "./templates/loginStatus.pug";
 
 import newInstanceModal from "./templates/modals/newInstance.pug";
 
@@ -80,24 +76,6 @@ function initiateLoginForm(): void {
 }
 
 /**
- * Updates the login status in the navigation
- */
-export function updateLoginStatus(status: "login" | "logout"): void {
-	if (status == "logout") {
-		$("#login-status").html(loginstatusTemplate({ loggedIn: false }));
-		initiateLoginForm();
-	}
-	else if (status == "login") {
-		$("#login-status").html(loginstatusTemplate({ loggedIn: true, name: ApplicationStore.auth.get("selectedProfile").name }));
-		// user popup
-		$("#login-status").dropdown();
-	}
-	else {
-		throw `Option ${status} is not availible for argument status`;
-	}
-}
-
-/**
  * Shows modal that appears over page
  */
 export function showLoginModal(): void {
@@ -108,4 +86,6 @@ export function showLoginModal(): void {
 		},
 		detachable: false
 	}).modal("show");
+
+	initiateLoginForm();
 }

@@ -6,15 +6,6 @@ import * as Render from "./Render";
 
 import { shell } from "electron";
 
-// turbolinks events
-document.addEventListener("turbolinks:load", () => {
-	// update login status
-	if (ApplicationStore.auth.get("loggedIn", false) == false) {
-		Render.updateLoginStatus("logout");
-	}
-	else Render.updateLoginStatus("login");
-});
-
 function showErrorToast(message: string) {
 	// show toast with error message
 	// @ts-ignore
@@ -68,3 +59,4 @@ export { Render, ApplicationStore };
 export { AuthenticationController, InstanceController };
 
 export * from "./components/InstanceList";
+export * from "./components/UserStatus";

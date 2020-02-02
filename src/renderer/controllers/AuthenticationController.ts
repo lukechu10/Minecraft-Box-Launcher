@@ -15,7 +15,6 @@ export namespace AuthenticationController {
 		// save data to electron store
 		ApplicationStore.auth.set(authFromMojang);
 		ApplicationStore.auth.set("loggedIn", true);
-		Render.updateLoginStatus("login");
 		return authFromMojang;
 	}
 	/**
@@ -32,7 +31,6 @@ export namespace AuthenticationController {
 		// clear store
 		ApplicationStore.auth.clear();
 		ApplicationStore.auth.set("loggedIn", false);
-		Render.updateLoginStatus("logout");
 		return;
 	}
 	/**
