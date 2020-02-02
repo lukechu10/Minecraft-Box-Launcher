@@ -8,10 +8,12 @@ export default class UserStatus extends HTMLElement {
 	public constructor() {
 		super();
 
-		ApplicationStore.auth.onDidAnyChange(() => {
+		const changeCallback = () => {
 			console.log("Auth store changed, rendering user status");
 			this.render();
-		});
+		};
+		ApplicationStore.auth.onDidChange("selectedProfile.name", changeCallback);
+		ApplicationStore.auth.onDidChange("loggedIn", changeCallback);
 	}
 
 	public connectedCallback(): void {
