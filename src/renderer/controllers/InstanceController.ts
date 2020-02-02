@@ -1,6 +1,5 @@
 import { ApplicationStore } from "../store";
 import * as consoleUtils from "../../universal/consoleUtils";
-import * as Render from "../Render";
 
 import child_process from "child_process";
 
@@ -50,7 +49,6 @@ export namespace InstanceController {
 			// update instance in store
 			ApplicationStore.instances.setInstance(i.name, i);
 			console.log(`[DEBUG] Installation of ${i.name} finished.`);
-			Render.instanceList();
 			return;
 		}
 	}
@@ -72,7 +70,6 @@ export namespace InstanceController {
 				// delete the folder
 				await fs.remove(MinecraftSavePath(name));
 			}
-			Render.instanceList();
 			return;
 		}
 	}
@@ -92,7 +89,6 @@ export namespace InstanceController {
 			i.name = newName;
 			ApplicationStore.instances.setInstance(oldName, i);
 			console.log(MinecraftSavePath(oldName), MinecraftSavePath(newName));
-			Render.instanceList();
 			return;
 		}
 	}

@@ -8,16 +8,6 @@ import corruptedModal from "./templates/modals/instances/corrupted.pug";
 import savesModal from "./templates/modals/instances/saves.pug";
 import confirmDeleteModal from "./templates/modals/instances/confirmDelete.pug";
 
-
-/**
- * Renders instance list on instance page
- */
-export function instanceList(): void {
-	// @ts-ignore
-	// document.getElementsByTagName("instance-list")[0].render(); // FIXME: render does not exist on Element
-	return;
-}
-
 /**
  * Renders and shows the confirm delete modal
  * @param opts arguments to pass to pugjs
