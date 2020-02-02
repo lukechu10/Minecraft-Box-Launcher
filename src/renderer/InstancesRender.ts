@@ -1,8 +1,6 @@
 import { ApplicationStore } from "./store";
 import { InstanceController } from "./controllers/InstanceController";
 import * as InstanceOptionsController from "./InstanceOptionsRender"; // FIXME: should be wrapped in namespace
-// import templates
-import instancelistTemplate from "./templates/instanceList.pug";
 
 // import instance modal templates
 import renameModal from "./templates/modals/instances/rename.pug";
@@ -15,8 +13,8 @@ import confirmDeleteModal from "./templates/modals/instances/confirmDelete.pug";
  * Renders instance list on instance page
  */
 export function instanceList(): void {
-	$("#instance-list").html(instancelistTemplate({ data: ApplicationStore.instances.all }));
-	$(".ui.dropdown").dropdown();
+	// @ts-ignore
+	document.getElementsByTagName("instance-list")[0].render(); // FIXME: render does not exist on Element
 	return;
 }
 

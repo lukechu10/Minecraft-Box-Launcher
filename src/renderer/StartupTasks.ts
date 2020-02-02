@@ -66,3 +66,5 @@ $(async () => {
 export { Render, ApplicationStore };
 // export imported controllers to window
 export { AuthenticationController, InstanceController };
+
+export * from "./components/InstanceList";
