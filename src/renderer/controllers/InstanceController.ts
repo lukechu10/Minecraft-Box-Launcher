@@ -1,5 +1,4 @@
 import { ApplicationStore } from "../store";
-import * as consoleUtils from "../../universal/consoleUtils";
 
 import child_process from "child_process";
 
@@ -64,7 +63,7 @@ export namespace InstanceController {
 		const i = ApplicationStore.instances.findFromName(name);
 		if (!i) throw "An instance with this name does not exist";
 		else {
-			consoleUtils.debug("Removing instance", name);
+			console.log("Removing instance", name);
 			ApplicationStore.instances.deleteInstance(name);
 			if (deleteFolder) {
 				// delete the folder
@@ -85,7 +84,7 @@ export namespace InstanceController {
 		const i = ApplicationStore.instances.findFromName(oldName);
 		if (!i) throw "An instance with this name does not exist";
 		else {
-			consoleUtils.debug("Renaming instance", name, "to", newName);
+			console.log("Renaming instance", name, "to", newName);
 			i.name = newName;
 			ApplicationStore.instances.setInstance(oldName, i);
 			console.log(MinecraftSavePath(oldName), MinecraftSavePath(newName));

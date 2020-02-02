@@ -2,7 +2,6 @@ import { Auth } from "@xmcl/auth";
 
 import { ApplicationStore } from "../store";
 import * as Render from "../Render";
-import * as consoleUtils from "../../universal/consoleUtils";
 
 export namespace AuthenticationController {
 	/**
@@ -24,7 +23,7 @@ export namespace AuthenticationController {
 		// invalidate tokens
 		const accessToken: string = authData.accessToken;
 		const clientToken: string = authData.clientToken;
-		consoleUtils.debug("Invalidating access/client pair.");
+		console.log("Invalidating access/client pair.");
 		Auth.Yggdrasil.invalidate({ accessToken, clientToken });
 
 		// clear store
@@ -50,7 +49,7 @@ export namespace AuthenticationController {
 				try {
 					const newAuth: Auth.Response = await Auth.Yggdrasil.refresh({ accessToken, clientToken });
 
-					consoleUtils.debug("Refreshing auth. New auth value: ", newAuth);
+					console.log("Refreshing auth. New auth value: ", newAuth);
 					// save new auth to store
 					ApplicationStore.auth.set({ ...newAuth, loggedIn: true });
 				}

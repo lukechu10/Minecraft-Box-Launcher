@@ -3,8 +3,6 @@ import { AuthenticationController } from "./controllers/AuthenticationController
 // TODO: remove workaround
 import * as NewInstanceController from "./controllers/NewInstanceModal"; // attach event handlers
 
-import * as consoleUtils from "../universal/consoleUtils";
-
 import newInstanceModal from "./templates/modals/newInstance.pug";
 
 export * from "./InstancesRender";
@@ -65,7 +63,7 @@ function initiateLoginForm(): void {
 				}
 				else {
 					$("#login-errors").text("An unknown error occured: " + e);
-					consoleUtils.debug("An unknown error occured when trying to login user. Caught exception: ", e);
+					console.log("An unknown error occured when trying to login user. Caught exception: ", e);
 				}
 			}
 		}
