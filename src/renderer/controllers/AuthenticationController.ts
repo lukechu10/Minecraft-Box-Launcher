@@ -13,8 +13,7 @@ export namespace AuthenticationController {
 	export async function login(username: string, password: string): Promise<Auth.Response> {
 		const authFromMojang: Auth.Response = await Auth.Yggdrasil.login({ username, password }); // official login
 		// save data to electron store
-		ApplicationStore.auth.set(authFromMojang);
-		ApplicationStore.auth.set("loggedIn", true);
+		ApplicationStore.auth.set({ ...authFromMojang, loggedIn: true });
 		return authFromMojang;
 	}
 	/**
@@ -29,7 +28,6 @@ export namespace AuthenticationController {
 		Auth.Yggdrasil.invalidate({ accessToken, clientToken });
 
 		// clear store
-		ApplicationStore.auth.clear();
 		ApplicationStore.auth.set("loggedIn", false);
 		return;
 	}
@@ -54,9 +52,7 @@ export namespace AuthenticationController {
 
 					consoleUtils.debug("Refreshing auth. New auth value: ", newAuth);
 					// save new auth to store
-					ApplicationStore.auth.clear();
-					ApplicationStore.auth.set(newAuth);
-					ApplicationStore.auth.set("loggedIn", true);
+					ApplicationStore.auth.set({ ...newAuth, loggedIn: true });
 				}
 				catch (err) {
 					// user needs to login again
