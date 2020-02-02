@@ -1,12 +1,15 @@
 import instanceListTemplate from "../templates/instanceList.pug";
 import { ApplicationStore } from "../store";
 
-export default class InstanceList extends HTMLElement {
+export default class InstanceList extends HTMLDivElement {
 	public constructor() {
 		super();
 
 		// render list every time store changes
-		ApplicationStore.instances.onDidAnyChange(this.render); // FIXME: event not triggering
+		ApplicationStore.instances.onDidAnyChange(() => {
+			console.log("InstanceStore modified, rendering instance list");
+			this.render();
+		});
 	}
 
 	public render(): void {
@@ -19,4 +22,4 @@ export default class InstanceList extends HTMLElement {
 	}
 }
 
-customElements.define("instance-list", InstanceList);
+customElements.define("instance-list", InstanceList, { extends: "div" });

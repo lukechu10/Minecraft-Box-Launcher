@@ -14,7 +14,7 @@ import confirmDeleteModal from "./templates/modals/instances/confirmDelete.pug";
  */
 export function instanceList(): void {
 	// @ts-ignore
-	document.getElementsByTagName("instance-list")[0].render(); // FIXME: render does not exist on Element
+	// document.getElementsByTagName("instance-list")[0].render(); // FIXME: render does not exist on Element
 	return;
 }
 

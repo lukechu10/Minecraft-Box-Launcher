@@ -25,7 +25,8 @@ export default class InstanceStore extends Store {
 					type: "array"
 					// TODO: Improve schema to check for InstanceSave structure
 				}
-			}
+			},
+			watch: true
 		});
 	}
 	/**
