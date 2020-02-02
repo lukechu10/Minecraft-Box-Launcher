@@ -22,11 +22,6 @@ export default class InstanceList extends HTMLDivElement {
 	}
 
 	public render(): void {
-		// empty children
-		while (this.firstChild) {
-			this.firstChild.remove();
-		}
-
 		const instances = ApplicationStore.instances.all; // retreive instances
 
 		this.classList.add("ui", "raised", "segment");
@@ -46,8 +41,12 @@ export default class InstanceList extends HTMLDivElement {
 				itemsElem.appendChild(node);
 			}
 		}
-		this.appendChild(itemsElem);
+		// empty children
+		while (this.firstChild) {
+			this.firstChild.remove();
+		}
 
+		this.appendChild(itemsElem);
 	}
 
 	private connectedCallback(): void {
