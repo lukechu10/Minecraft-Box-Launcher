@@ -1,6 +1,7 @@
 import instanceListTemplate from "../templates/instanceList.pug";
 import { ApplicationStore } from "../store";
 import InstanceItem from './InstanceItem';
+import { remote } from 'electron';
 
 export default class InstanceList extends HTMLDivElement {
 	public constructor() {
@@ -11,6 +12,13 @@ export default class InstanceList extends HTMLDivElement {
 			console.log("InstanceStore modified, rendering instance list");
 			this.render();
 		});
+
+		// rerender list on interval to update last played
+		if(remote.getCurrentWindow().isFocused()) // do not update if not focused
+			setInterval(this.render, 60000); // every minute
+		
+		// rerender when window is focused
+		remote.getCurrentWindow().on("focus", this.render);
 	}
 
 	public render(): void {
