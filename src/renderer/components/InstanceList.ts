@@ -14,11 +14,16 @@ export default class InstanceList extends HTMLDivElement {
 		});
 
 		// rerender list on interval to update last played
-		if(remote.getCurrentWindow().isFocused()) // do not update if not focused
-			setInterval(this.render, 60000); // every minute
-		
+		// do not update if not focused
+		setInterval(() => {
+			if (remote.getCurrentWindow().isFocused())
+				this.render();
+		}, 60000); // every minute
+
 		// rerender when window is focused
-		remote.getCurrentWindow().on("focus", this.render);
+		window.addEventListener("focus", () => {
+			this.render();
+		});
 	}
 
 	public render(): void {
