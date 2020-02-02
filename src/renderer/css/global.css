@@ -2,6 +2,11 @@ body {
     user-select: none;
 }
 
+/* disable dragging links */
+a {
+    -webkit-user-drag: none;
+}
+
 .ui.modal {
     user-select: none !important;
 }
