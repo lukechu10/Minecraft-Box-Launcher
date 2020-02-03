@@ -39,8 +39,8 @@ export default class InstanceList extends HTMLDivElement {
 		}
 		else {
 			for (const instance of instances) {	// add InstanceItem nodes to dom
-				const node = new InstanceItem();
-				node.render(instance);
+				const node = new InstanceItem(instance);
+				node.render();
 				node.classList.add("item");
 				itemsElem.appendChild(node);
 			}
