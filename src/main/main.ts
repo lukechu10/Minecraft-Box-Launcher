@@ -27,6 +27,8 @@ function createWindow(): void {
 		// when you should delete the corresponding element.
 		WindowList.set("main", null);
 	});
+
+	WindowList.get("main")?.webContents.on("new-window", event => event.preventDefault());
 }
 
 const gotTheLock = app.requestSingleInstanceLock();
