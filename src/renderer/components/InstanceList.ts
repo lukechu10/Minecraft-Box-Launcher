@@ -1,7 +1,6 @@
-import instanceListTemplate from "../templates/instanceList.pug";
 import { ApplicationStore } from "../store";
-import InstanceItem from './InstanceItem';
-import { remote } from 'electron';
+import InstanceItem from "./InstanceItem";
+import { remote } from "electron";
 
 export default class InstanceList extends HTMLDivElement {
 	public constructor() {

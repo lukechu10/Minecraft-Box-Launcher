@@ -1,6 +1,6 @@
 import instanceItemTemplate from "../templates/InstanceItem.pug";
 import { ApplicationStore } from "../store";
-import { InstanceData } from '../store/InstanceData';
+import { InstanceData } from "../store/InstanceData";
 
 export default class InstanceItem extends HTMLDivElement {
 	public constructor() {
