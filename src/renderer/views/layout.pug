@@ -29,7 +29,8 @@ html(lang="en")
 		script(src='../../semantic/dist/semantic.min.js' link-js-library)
 		block js
 	body
-		navbar.ui.menu.fixed.inverted(style="height: 45px;")
+		//- FIXME: data-turbolinks-permanent not working
+		navbar.ui.menu.fixed.inverted#app-navbar(style="height: 45px;" data-turbolinks-permanent)
 			.item Minecraft Box
 			a.item(href="./instances.html") Instances
 			a.item(href="./news.html") News
