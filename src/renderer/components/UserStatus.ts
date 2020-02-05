@@ -7,13 +7,6 @@ import { ApplicationStore } from "../store";
 export default class UserStatus extends HTMLElement {
 	public constructor() {
 		super();
-
-		const changeCallback = () => {
-			console.log("Auth store changed, rendering user status");
-			this.render();
-		};
-		ApplicationStore.auth.onDidChange("selectedProfile.name", changeCallback);
-		ApplicationStore.auth.onDidChange("loggedIn", changeCallback);
 	}
 
 	public connectedCallback(): void {
@@ -33,3 +26,10 @@ export default class UserStatus extends HTMLElement {
 }
 
 customElements.define("user-status", UserStatus);
+
+const changeCallback = () => {
+	console.log("Auth store changed, rendering user status");
+	document.querySelector<UserStatus>("user-status")?.render();
+};
+ApplicationStore.auth.onDidChange("selectedProfile.name", changeCallback);
+ApplicationStore.auth.onDidChange("loggedIn", changeCallback);
