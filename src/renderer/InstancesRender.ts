@@ -1,5 +1,3 @@
-import { ApplicationStore } from "./store";
-
 // import instance modal templates
 import corruptedModal from "./templates/modals/instances/corrupted.pug";
 
@@ -14,17 +12,3 @@ export function showCorruptedModal({ name, onApprove, onDeny }: { name: string, 
 		onDeny
 	}).modal("show");
 }
-
-// attach event handlers
-$(document).on("click", ".btn-play", e => {
-	// launch instance
-	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
-	// launch by name
-	const instance = ApplicationStore.instances.findFromName(name);
-	if (instance !== undefined) {
-		instance.launch();
-		// last played should be updated, save to store
-		ApplicationStore.instances.setInstance(name, instance);
-	}
-	else throw Error("The instance requested does not exist");
-});

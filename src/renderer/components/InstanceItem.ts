@@ -1,3 +1,5 @@
+import { ChildProcess } from "child_process";
+
 import { ApplicationStore } from "../store";
 import { InstanceData } from "../store/InstanceData";
 import { InstanceController } from "../controllers/InstanceController";
@@ -45,6 +47,10 @@ export default class InstanceItem extends HTMLDivElement {
 		});
 		(this.getElementsByClassName("btn-reinstall")[0] as HTMLDivElement)?.addEventListener("click", () => {
 			this.install();
+		});
+
+		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement)?.addEventListener("click", () => {
+			this.play();
 		});
 	}
 
@@ -128,6 +134,19 @@ export default class InstanceItem extends HTMLDivElement {
 		btn.classList.add("gray", "disabled");
 		btn.id = "";
 		btn.textContent = "Installing...";
+	}
+
+	public async play(): Promise<ChildProcess> {
+		// FIXME: move logic here
+		// launch by name
+		const instance = ApplicationStore.instances.findFromName(this.instanceData.name);
+		if (instance !== undefined) {
+			const res = instance.launch();
+			// last played should be updated, save to store
+			await ApplicationStore.instances.setInstance(this.instanceData.name, instance);
+			return res;
+		}
+		else throw Error("The instance requested does not exist");
 	}
 }
 
