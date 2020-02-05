@@ -24,11 +24,14 @@ export default class InstanceItem extends HTMLDivElement {
 
 		// attach event handlers
 		(this.getElementsByClassName("btn-rename")[0] as HTMLDivElement).addEventListener("click", () => {
-			this.renameModal();
+			this.rename();
 		});
 	}
 
-	public renameModal(): void {
+	/**
+	 * Shows a rename modal and handles user input
+	 */
+	public rename(): void {
 		const renameModal = document.getElementById("modal-rename");
 		if (renameModal !== null) {
 			renameModal.outerHTML = renameModalTemplate({ name: this.instanceData?.name });
