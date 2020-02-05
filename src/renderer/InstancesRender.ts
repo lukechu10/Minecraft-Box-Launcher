@@ -1,38 +1,11 @@
 import { ApplicationStore } from "./store";
 import { InstanceController } from "./controllers/InstanceController";
-import * as InstanceOptionsController from "./InstanceOptionsRender"; // FIXME: should be wrapped in namespace
 
 // import instance modal templates
 import renameModal from "./templates/modals/instances/rename.pug";
 import corruptedModal from "./templates/modals/instances/corrupted.pug";
 import savesModal from "./templates/modals/instances/saves.pug";
 import confirmDeleteModal from "./templates/modals/instances/confirmDelete.pug";
-
-/**
- * Renders and shows the confirm delete modal
- * @param opts arguments to pass to pugjs
- */
-export function showConfirmDelete({ name, onApprove, onDeny }: { name: string, onApprove: () => false | void, onDeny: () => false | void }): void {
-	$("#modal-confirmDelete").replaceWith(confirmDeleteModal({ name }));
-	// show modal
-	$("#modal-confirmDelete").modal({
-		closable: false,
-		onApprove,
-		onDeny
-	}).modal("show");
-}
-
-
-/**
- * Show saves modal
- */
-export function showSavesModal(name: string): void {
-	$("#modal-saves").replaceWith(savesModal({ name }));
-	$("#modal-saves").modal({
-		closable: false
-	}).modal("show");
-}
-
 
 /**
  * Show instance is corrupted modal
@@ -45,15 +18,6 @@ export function showCorruptedModal({ name, onApprove, onDeny }: { name: string, 
 		onDeny
 	}).modal("show");
 }
-
-/**
- * Shows instance options modal
- * @param name name of instance
- */
-export function instanceOptions(name: string): void {
-	InstanceOptionsController.showOptionsForInstance(name);
-}
-
 
 // attach event handlers
 $(document).on("click", ".btn-install", e => {
@@ -71,7 +35,7 @@ $(document).on("click", ".btn-install", e => {
 	InstanceController.installByName(name);
 	// update text
 	// TODO: add as member to InstanceSave to save text when switching pages
-	$(`.btn-play[data-instance-name=${name}]`).text("Installing...").removeClass("green").attr("id", "").addClass(["gray", "disabled"]);
+	$(`.btn-play[data-instance-name="${name}"]`).text("Installing...").removeClass("green").attr("id", "").addClass(["gray", "disabled"]);
 }).on("click", ".btn-play", e => {
 	// launch instance
 	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
@@ -83,27 +47,4 @@ $(document).on("click", ".btn-install", e => {
 		ApplicationStore.instances.setInstance(name, instance);
 	}
 	else throw Error("The instance requested does not exist");
-}).on("click", ".btn-delete", e => {
-	// delete instance
-	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
-	// show prompt
-	showConfirmDelete({
-		name,
-		onApprove: () => {
-			// delete instance
-			const deleteFolder: boolean = $("#modal-confirmDelete input[name='deleteFolder']").is(":checked");
-			InstanceController.deleteInstance(name, deleteFolder);
-		},
-		onDeny: () => {
-			// close modal
-		}
-	});
-}).on("click", ".btn-options", e => {
-	// open options window
-	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
-	instanceOptions(name);
-}).on("click", ".btn-saves", e => {
-	// open saves window
-	const name: string = $(e.currentTarget).attr("data-instance-name") as string;
-	showSavesModal(name);
 });

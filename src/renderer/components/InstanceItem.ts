@@ -1,6 +1,7 @@
 import { ApplicationStore } from "../store";
 import { InstanceData } from "../store/InstanceData";
 import { InstanceController } from "../controllers/InstanceController";
+import * as InstanceOptionsController from "../InstanceOptionsRender"; // FIXME: should be wrapped in namespace
 
 // import instance modal templates
 import renameModalTemplate from "../templates/modals/instances/rename.pug";
@@ -26,6 +27,18 @@ export default class InstanceItem extends HTMLDivElement {
 		(this.getElementsByClassName("btn-rename")[0] as HTMLDivElement).addEventListener("click", () => {
 			this.rename();
 		});
+
+		(this.getElementsByClassName("btn-delete")[0] as HTMLDivElement).addEventListener("click", () => {
+			this.delete();
+		});
+
+		(this.getElementsByClassName("btn-saves")[0] as HTMLDivElement).addEventListener("click", () => {
+			this.saves();
+		});
+
+		(this.getElementsByClassName("btn-options")[0] as HTMLDivElement).addEventListener("click", () => {
+			this.options();
+		});
 	}
 
 	/**
@@ -34,7 +47,7 @@ export default class InstanceItem extends HTMLDivElement {
 	public rename(): void {
 		const renameModal = document.getElementById("modal-rename");
 		if (renameModal !== null) {
-			renameModal.outerHTML = renameModalTemplate({ name: this.instanceData?.name });
+			renameModal.outerHTML = renameModalTemplate({ name: this.instanceData.name });
 			$("#modal-rename").modal({
 				closable: false,
 				onApprove: () => {
@@ -44,8 +57,56 @@ export default class InstanceItem extends HTMLDivElement {
 						return false;
 					}
 					else
-						InstanceController.renameInstance(this.instanceData.name, $("#input-rename").val() as string);
+						InstanceController.renameInstance(this.instanceData.name, $("#input-rename").val() as string); // TODO: move all InstanceController logic to InstanceStore
 				}
+			}).modal("show");
+		}
+	}
+
+	/**
+	 * Shows a confirm delete modal and asks if user wishes to delete instance folder
+	 */
+	public delete(): void {
+		const deleteModal = document.getElementById("modal-confirmDelete");
+		if (deleteModal !== null) {
+			deleteModal.outerHTML = confirmDeleteModalTemplate({ name: this.instanceData.name });
+			$("#modal-confirmDelete").modal({
+				closable: false,
+				onApprove: () => {
+					// delete instance
+					const deleteFolder: boolean = $("#modal-confirmDelete input[name='deleteFolder']").is(":checked");
+					InstanceController.deleteInstance(this.instanceData.name, deleteFolder);
+				}
+			}).modal("show");
+		}
+	}
+
+	/**
+	 * Show saves modal for an instance
+	 */
+	public saves(): void {
+		const savesModal = document.getElementById("modal-saves");
+		if (savesModal !== null) {
+			savesModal.outerHTML = savesModalTemplate({ name: this.instanceData.name });
+			$("#modal-saves").modal({
+				closable: false
+			}).modal("show");
+		}
+	}
+
+	public options(): void {
+		InstanceOptionsController.showOptionsForInstance(this.instanceData.name);
+	}
+
+	/**
+	 * Shows a modal that display a warning to the user that the current instance is corrupted
+	 */
+	public alertCorrupted(): void {
+		const corruptedModal = document.getElementById("modal-corrupted");
+		if (corruptedModal !== null) {
+			corruptedModal.outerHTML = corruptedModalTemplate({ name: this.instanceData.name });
+			$("#modal-corrupted").modal({
+				closable: false
 			}).modal("show");
 		}
 	}
