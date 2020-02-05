@@ -1,5 +1,4 @@
 import { ApplicationStore } from "./store";
-import { InstanceController } from "./controllers/InstanceController";
 
 // import instance modal templates
 import corruptedModal from "./templates/modals/instances/corrupted.pug";
