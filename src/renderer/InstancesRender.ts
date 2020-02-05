@@ -2,10 +2,7 @@ import { ApplicationStore } from "./store";
 import { InstanceController } from "./controllers/InstanceController";
 
 // import instance modal templates
-import renameModal from "./templates/modals/instances/rename.pug";
 import corruptedModal from "./templates/modals/instances/corrupted.pug";
-import savesModal from "./templates/modals/instances/saves.pug";
-import confirmDeleteModal from "./templates/modals/instances/confirmDelete.pug";
 
 /**
  * Show instance is corrupted modal
