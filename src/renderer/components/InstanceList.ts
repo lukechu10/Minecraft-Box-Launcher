@@ -5,12 +5,6 @@ import { remote } from "electron";
 export default class InstanceList extends HTMLDivElement {
 	public constructor() {
 		super();
-
-		// render list every time store changes
-		ApplicationStore.instances.onDidAnyChange(() => {
-			console.log("InstanceStore modified, rendering instance list");
-			this.render();
-		});
 	}
 
 	public render(): void {
@@ -57,5 +51,11 @@ setInterval(() => {
 
 // rerender when window is focused
 window.addEventListener("focus", () => {
+	(document.querySelector("div[is='instance-list']") as InstanceList).render();
+});
+
+// render list every time store changes
+ApplicationStore.instances.onDidAnyChange(() => {
+	console.log("InstanceStore modified, rendering instance list");
 	(document.querySelector("div[is='instance-list']") as InstanceList).render();
 });
