@@ -12,10 +12,10 @@
 		.four.wide.column
 			.ui.right.floated.buttons
 				- if(data.installed)
-					.ui.green.button.btn-play(data-instance-name=data.name)
+					button.ui.green.button.btn-play.btn-play-install(data-instance-name=data.name)
 						| Play
 				- else
-					.ui.olive.button.btn-install(data-instance-name=data.name)
+					button.ui.olive.button.btn-install.btn-play-install(data-instance-name=data.name)
 						| Install
 				.ui.gray.floating.dropdown.button ▼
 					.menu

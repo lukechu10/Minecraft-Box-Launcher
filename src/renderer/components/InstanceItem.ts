@@ -39,6 +39,13 @@ export default class InstanceItem extends HTMLDivElement {
 		(this.getElementsByClassName("btn-options")[0] as HTMLDivElement).addEventListener("click", () => {
 			this.options();
 		});
+
+		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement)?.addEventListener("click", () => {
+			this.install();
+		});
+		(this.getElementsByClassName("btn-reinstall")[0] as HTMLDivElement)?.addEventListener("click", () => {
+			this.install();
+		});
 	}
 
 	/**
@@ -109,6 +116,18 @@ export default class InstanceItem extends HTMLDivElement {
 				closable: false
 			}).modal("show");
 		}
+	}
+
+	/**
+	 * Installs the instance
+	 */
+	public install(): void {
+		InstanceController.installByName(this.instanceData.name);
+		const btn = (this.getElementsByClassName("btn-play-install")[0] as HTMLButtonElement);
+		btn.classList.remove("olive", "green");
+		btn.classList.add("gray", "disabled");
+		btn.id = "";
+		btn.textContent = "Installing...";
 	}
 }
 
