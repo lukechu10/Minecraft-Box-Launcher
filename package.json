@@ -89,7 +89,8 @@
 			"src/renderer/css/*.css",
 			"src/renderer/js/**/*.js",
 			"semantic/dist/*.js",
-			"semantic/dist/*.css"
+			"semantic/dist/*.css",
+			"semantic/dist/fonts/*.woff2"
 		]
 	}
 }

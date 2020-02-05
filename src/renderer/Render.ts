@@ -1,13 +1,7 @@
-import { ApplicationStore } from "./store";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 
 // TODO: remove workaround
 import * as NewInstanceController from "./controllers/NewInstanceModal"; // attach event handlers
-
-import * as consoleUtils from "../universal/consoleUtils";
-
-// import templates
-import loginstatusTemplate from "./templates/loginStatus.pug";
 
 import newInstanceModal from "./templates/modals/newInstance.pug";
 
@@ -69,7 +63,7 @@ function initiateLoginForm(): void {
 				}
 				else {
 					$("#login-errors").text("An unknown error occured: " + e);
-					consoleUtils.debug("An unknown error occured when trying to login user. Caught exception: ", e);
+					console.log("An unknown error occured when trying to login user. Caught exception: ", e);
 				}
 			}
 		}
@@ -77,24 +71,6 @@ function initiateLoginForm(): void {
 			$("#login-errors").text("Please fill out the form!");
 		}
 	});
-}
-
-/**
- * Updates the login status in the navigation
- */
-export function updateLoginStatus(status: "login" | "logout"): void {
-	if (status == "logout") {
-		$("#login-status").html(loginstatusTemplate({ loggedIn: false }));
-		initiateLoginForm();
-	}
-	else if (status == "login") {
-		$("#login-status").html(loginstatusTemplate({ loggedIn: true, name: ApplicationStore.auth.get("selectedProfile").name }));
-		// user popup
-		$("#login-status").dropdown();
-	}
-	else {
-		throw `Option ${status} is not availible for argument status`;
-	}
 }
 
 /**
@@ -108,4 +84,6 @@ export function showLoginModal(): void {
 		},
 		detachable: false
 	}).modal("show");
+
+	initiateLoginForm();
 }

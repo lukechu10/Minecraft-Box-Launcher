@@ -1,6 +1,5 @@
 import optionsModal from "./templates/modals/instances/options.pug";
 import { ApplicationStore } from "./store";
-import * as Render from "./Render";
 import { InstanceSave } from "./store/InstanceSave";
 
 declare let instanceOptionsName: string;
@@ -48,7 +47,6 @@ function attachEvents(): void {
 		if ($form.form("is valid")) {
 			console.log(instanceOptionsName);
 			ApplicationStore.instances.setInstance(instanceOptionsName, instanceOptionsTemp); // update store
-			Render.instanceList(); // update instance list
 			return true;
 		}
 		else return false; // prevent close action

@@ -5,6 +5,11 @@ html(lang="en")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 		meta(http-equiv="X-UA-Compatible" content="ie=edge")
 		meta(name='turbolinks-cache-control' content='no-cache')
+		meta(http-equiv='Content-Security-Policy' content=`default-src 'self' https:;
+			script-src 'self' 'unsafe-inline' 'unsafe-eval';
+			style-src 'self' 'unsafe-inline' 'unsafe-eval';
+			font-src 'self' data:;
+			img-src 'self' data: https:`)
 
 		// css
 		// semantic-ui
@@ -25,13 +30,13 @@ html(lang="en")
 		script(src='../../semantic/dist/semantic.min.js' link-js-library)
 		block js
 	body
-		navbar.ui.menu.fixed.inverted(style="height: 45px;")
+		//- FIXME: data-turbolinks-permanent not working
+		navbar.ui.menu.fixed.inverted#app-navbar(style="height: 45px;" data-turbolinks-permanent)
 			.item Minecraft Box
 			a.item(href="./instances.html") Instances
 			a.item(href="./news.html") News
 			.right.menu
-				//- FIXME: Fix username and text position
-				.ui.item.dropdown#login-status
+				user-status
 
 		//- page content
 		.ui.container(style="padding-top: 50px;")

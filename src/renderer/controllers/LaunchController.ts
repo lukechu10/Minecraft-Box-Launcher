@@ -5,7 +5,6 @@
 import { ApplicationStore } from "../store";
 import { InstanceData } from "../store/InstanceData";
 import { InstanceController } from "./InstanceController";
-import * as consoleUtils from "../../universal/consoleUtils";
 import child_process, { ChildProcess } from "child_process";
 
 import { Launcher } from "@xmcl/launch";
@@ -76,7 +75,7 @@ export namespace LaunchController {
 			}
 			const args: string[] = await Launcher.generateArguments(options); // get arguments from options
 			const spawnOptions = { cwd: options.gamePath, env: process.env, ...(options.extraExecOption || {}) };
-			consoleUtils.debug(`Launching instance ${name} with options: `, options, "and env: ", spawnOptions);
+			console.log(`Launching instance ${name} with options: `, options, "and env: ", spawnOptions);
 			const spawn = child_process.spawn(args[0], args.slice(1), spawnOptions); // spawn java instance (args[0] should be "java" or java path from options.javaPath)
 			return spawn;
 		}

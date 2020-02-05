@@ -35,6 +35,7 @@ Symbol	| Meaning
 	- Launch with optifine 🦄
 	- Custom jar 🔨
 	- Launch offline 🔨
+	- View log output 🔨
 - Java configuration
 	- Custom java executable ✔
 	- Custom java max and min memory ✔

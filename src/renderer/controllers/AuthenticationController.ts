@@ -2,7 +2,6 @@ import { Auth } from "@xmcl/auth";
 
 import { ApplicationStore } from "../store";
 import * as Render from "../Render";
-import * as consoleUtils from "../../universal/consoleUtils";
 
 export namespace AuthenticationController {
 	/**
@@ -13,9 +12,7 @@ export namespace AuthenticationController {
 	export async function login(username: string, password: string): Promise<Auth.Response> {
 		const authFromMojang: Auth.Response = await Auth.Yggdrasil.login({ username, password }); // official login
 		// save data to electron store
-		ApplicationStore.auth.set(authFromMojang);
-		ApplicationStore.auth.set("loggedIn", true);
-		Render.updateLoginStatus("login");
+		ApplicationStore.auth.set({ ...authFromMojang, loggedIn: true });
 		return authFromMojang;
 	}
 	/**
@@ -26,13 +23,11 @@ export namespace AuthenticationController {
 		// invalidate tokens
 		const accessToken: string = authData.accessToken;
 		const clientToken: string = authData.clientToken;
-		consoleUtils.debug("Invalidating access/client pair.");
+		console.log("Invalidating access/client pair.");
 		Auth.Yggdrasil.invalidate({ accessToken, clientToken });
 
 		// clear store
-		ApplicationStore.auth.clear();
 		ApplicationStore.auth.set("loggedIn", false);
-		Render.updateLoginStatus("logout");
 		return;
 	}
 	/**
@@ -54,11 +49,9 @@ export namespace AuthenticationController {
 				try {
 					const newAuth: Auth.Response = await Auth.Yggdrasil.refresh({ accessToken, clientToken });
 
-					consoleUtils.debug("Refreshing auth. New auth value: ", newAuth);
+					console.log("Refreshing auth. New auth value: ", newAuth);
 					// save new auth to store
-					ApplicationStore.auth.clear();
-					ApplicationStore.auth.set(newAuth);
-					ApplicationStore.auth.set("loggedIn", true);
+					ApplicationStore.auth.set({ ...newAuth, loggedIn: true });
 				}
 				catch (err) {
 					// user needs to login again

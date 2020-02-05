@@ -1,7 +1,6 @@
 import { InstanceSave } from "../store/InstanceSave";
 import { ApplicationStore } from "../store";
 import { Installer } from "@xmcl/installer";
-import * as Render from "../Render";
 
 function menuItem(version: Installer.VersionMeta): string {
 	return `<div class="item" data-value="${version.id}">
@@ -125,8 +124,6 @@ export function attachEvents(): void {
 			ApplicationStore.instances.addInstance(tempInstance);
 			// close modal
 			$("#modal-newInstance").modal("hide");
-			// render instance list
-			Render.instanceList();
 		}
 	});
 }
