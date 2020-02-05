@@ -46,16 +46,16 @@ customElements.define("instance-list", InstanceList, { extends: "div" });
 // do not update if not focused
 setInterval(() => {
 	if (remote.getCurrentWindow().isFocused())
-		(document.querySelector("div[is='instance-list']") as InstanceList)?.render();
+		document.querySelector<InstanceList>("div[is='instance-list']")?.render();
 }, 60000); // every minute
 
 // rerender when window is focused
 window.addEventListener("focus", () => {
-	(document.querySelector("div[is='instance-list']") as InstanceList).render();
+	document.querySelector<InstanceList>("div[is='instance-list']")?.render();
 });
 
 // render list every time store changes
 ApplicationStore.instances.onDidAnyChange(() => {
 	console.log("InstanceStore modified, rendering instance list");
-	(document.querySelector("div[is='instance-list']") as InstanceList).render();
+	document.querySelector<InstanceList>("div[is='instance-list']")?.render();
 });
