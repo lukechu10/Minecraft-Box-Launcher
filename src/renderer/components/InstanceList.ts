@@ -11,18 +11,6 @@ export default class InstanceList extends HTMLDivElement {
 			console.log("InstanceStore modified, rendering instance list");
 			this.render();
 		});
-
-		// rerender list on interval to update last played
-		// do not update if not focused
-		setInterval(() => {
-			if (remote.getCurrentWindow().isFocused())
-				this.render();
-		}, 60000); // every minute
-
-		// rerender when window is focused
-		window.addEventListener("focus", () => {
-			this.render();
-		});
 	}
 
 	public render(): void {
@@ -59,3 +47,15 @@ export default class InstanceList extends HTMLDivElement {
 }
 
 customElements.define("instance-list", InstanceList, { extends: "div" });
+
+// rerender list on interval to update last played
+// do not update if not focused
+setInterval(() => {
+	if (remote.getCurrentWindow().isFocused())
+		(document.querySelector("div[is='instance-list']") as InstanceList)?.render();
+}, 60000); // every minute
+
+// rerender when window is focused
+window.addEventListener("focus", () => {
+	(document.querySelector("div[is='instance-list']") as InstanceList).render();
+});
