@@ -44,7 +44,6 @@ export default class InstanceStore extends Store {
      * @param item Instance to be added
      */
 	public addInstance(item: InstanceSave): void {
-		// TODO: check for name already exists
 		const result = this.all.find(obj => obj.name == item.name);
 		if (result !== undefined) throw Error("An instance with this name already exists!");
 		else this.set("instances", this.get("instances").concat(item));

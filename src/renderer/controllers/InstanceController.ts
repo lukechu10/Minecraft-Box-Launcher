@@ -1,7 +1,5 @@
 import { ApplicationStore } from "../store";
 
-import child_process from "child_process";
-
 import path from "path";
 import fs from "fs-extra";
 
@@ -22,16 +20,6 @@ export namespace InstanceController {
 	 * @param name name of instance
 	 */
 	export const MinecraftSavePath = (name: string) => { return path.join(app.getPath("userData"), "./instances/", name); };
-
-	// FIXME: Function not working correctly on windows
-	/**
-	 * Find where java is installed on local machine
-	 */
-	export function findJava(): string {
-		const spawn = child_process.spawnSync("which", ["java"]).stdout;
-		return spawn;
-	}
-
 
 	/**
 	 * Finds an instance and installs it

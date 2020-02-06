@@ -62,7 +62,6 @@ export namespace LaunchController {
 				await Launcher.ensureNative(minecraftFolder, options.version as ResolvedVersion, minecraftFolder.getNativesRoot((options.version as ResolvedVersion).id));
 			}
 			catch (err) {
-				// TODO: Show error modal
 				Render.showCorruptedModal({
 					name: instance.name, onApprove: () => {
 						InstanceController.installByName(instance.name);
