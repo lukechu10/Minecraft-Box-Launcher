@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 
 const baseChunks = ["runtime", "vendors", "turbolinks", "startupTasks"];
 
@@ -23,7 +24,34 @@ module.exports = (env, argv) => {
 				name: "runtime"
 			},
 			flagIncludedChunks: true,
-			usedExports: true
+			usedExports: true,
+			minimize: argv.mode === "production",
+			minimizer: [
+				new TerserPlugin({
+					terserOptions: {
+						compress: {
+							arrows: true,
+							arguments: true,
+							booleans: true,
+							ecma: "2016",
+							inline: true,
+							passes: 3,
+							unsafe_arrows: true,
+							toplevel: true,
+							drop_console: true
+						},
+						mangle: true,
+						topLevel: true,
+						keep_classnames: false,
+						keep_fnames: false,
+						safari10: false,
+						ie8: false,
+						output: {
+							beautify: false
+						}
+					}
+				})
+			]
 		},
 		entry: {
 			startupTasks: "./src/renderer/StartupTasks.ts",
