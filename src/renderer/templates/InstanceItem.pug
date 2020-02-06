@@ -15,11 +15,11 @@
 						| Install
 				.ui.gray.floating.dropdown.button ▼
 					.menu
-						.item.btn-rename Rename
+						.item.btn-rename #[i.fas.fa-pencil-alt.fa-fw] Rename
 						- if(data.installed)
-							.item.btn-reinstall(class=data.installed) Reinstall
+							.item.btn-reinstall(class=data.installed) #[i.fas.fa-redo.fa-fw] Reinstall
 						- else
-							.disabled.item Reinstall
-						.item.btn-options Options
-						.item.btn-saves Saves / Data
-						.red.inverted.item.btn-delete(style="color: red;") Delete
+							.disabled.item #[i.fas.fa-redo.fa-fw] Reinstall
+						.item.btn-options #[i.far.fa-edit.fa-fw] Options
+						.item.btn-saves #[i.far.fa-file-alt.fa-fw] Saves / Data
+						.red.inverted.item.btn-delete(style="color: red;") #[.far.fa-trash-alt.fa-fw] Delete
