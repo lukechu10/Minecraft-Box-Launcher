@@ -5,7 +5,6 @@ import * as NewInstanceController from "./controllers/NewInstanceModal"; // atta
 
 import newInstanceModal from "./templates/modals/newInstance.pug";
 
-export * from "./InstancesRender";
 export * from "./controllers/SettingsModal";
 
 /**

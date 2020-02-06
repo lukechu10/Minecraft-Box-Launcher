@@ -119,7 +119,10 @@ export default class InstanceItem extends HTMLDivElement {
 		if (corruptedModal !== null) {
 			corruptedModal.outerHTML = corruptedModalTemplate({ name: this.instanceData.name });
 			$("#modal-corrupted").modal({
-				closable: false
+				closable: false,
+				onApprove: () => {
+					this.install();
+				}
 			}).modal("show");
 		}
 	}
@@ -136,15 +139,25 @@ export default class InstanceItem extends HTMLDivElement {
 		btn.textContent = "Installing...";
 	}
 
-	public async play(): Promise<ChildProcess> {
+	public async play(): Promise<ChildProcess | null> {
 		// FIXME: move logic here
 		// launch by name
 		const instance = ApplicationStore.instances.findFromName(this.instanceData.name);
 		if (instance !== undefined) {
-			const res = instance.launch();
-			// last played should be updated, save to store
-			await ApplicationStore.instances.setInstance(this.instanceData.name, instance);
-			return res;
+			try {
+				const res = await instance.launch();
+				// last played should be updated, save to store
+				await ApplicationStore.instances.setInstance(this.instanceData.name, instance);
+				return res;
+			}
+			catch (err) {
+				if (err.type === "MissingLibs") {
+					// show corrupted modal
+					this.alertCorrupted();
+					return null;
+				}
+				else throw err; // pipe error
+			}
 		}
 		else throw Error("The instance requested does not exist");
 	}
