@@ -15,3 +15,8 @@ a {
 .ui.basic.modal .ui.form.inverted .ui.header {
     color: white;
 }
+
+/* font awesome right padding */
+.svg-inline--fa {
+    margin-right: 7px;
+}

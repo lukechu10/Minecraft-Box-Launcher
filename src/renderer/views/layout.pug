@@ -24,13 +24,17 @@ html(lang="en")
 			const { shell } = require('electron');
 			
 		script(src='../../semantic/dist/semantic.min.js' link-js-library)
+		script(src='../../src/renderer/assets/icons/regular.min.js' defer)
+		script(src='../../src/renderer/assets/icons/solid.min.js' defer)
+		script(src='../../src/renderer/assets/icons/fontawesome.min.js' defer)
+
 		block js
 	body
 		//- FIXME: data-turbolinks-permanent not working
 		navbar.ui.menu.fixed.inverted#app-navbar(style="height: 45px;" data-turbolinks-permanent)
 			.item Minecraft Box
-			a.item(href="./instances.html") Instances
-			a.item(href="./news.html") News
+			a.item(href="./instances.html") #[i.far.fa-list-alt] Instances
+			a.item(href="./news.html") #[i.far.fa-newspaper] News
 			.right.menu
 				user-status
 
