@@ -11,8 +11,8 @@ block js
 
 block content
 	h1 Instances
-	.ui.button.right.floated.green.inverted(onclick="Render.showSettingsModal()") #[i.fas.fa-sliders-h] Settings
-	.ui.primary.button(onclick="Render.newInstance();") #[i.fas.fa-plus] New Instance
+	.ui.button.right.floated.green.inverted(onclick="Render.showSettingsModal()") #[i.fas.fa-sliders-h.fa-fw] Settings
+	.ui.primary.button(onclick="Render.newInstance();") #[i.fas.fa-plus.fa-fw] New Instance
 	div(is="instance-list")
 		//- render list
 	script.

@@ -20,3 +20,13 @@ a {
 .svg-inline--fa {
     margin-right: 7px;
 }
+
+/* Keep icons from shifting layout */
+html.fa-events-icons-loading .fa-fw {
+  display: inline-block;
+  width: 1.28571429em;
+}
+
+html.fa-events-icons-loading .fa-fw::before {
+  content: "\00a0";
+}
