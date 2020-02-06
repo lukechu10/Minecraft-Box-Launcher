@@ -86,7 +86,8 @@
 			"dist/js/universal/**/*.js",
 			"dist/views/**/*",
 			"dist/*.js",
-			"src/renderer/assets/*.js",
+			"src/renderer/css/*.css",
+			"src/renderer/assets/**/*.js",	
 			"semantic/dist/*.js",
 			"semantic/dist/*.css",
 			"semantic/dist/fonts/*.woff2"
