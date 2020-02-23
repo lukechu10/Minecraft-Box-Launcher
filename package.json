@@ -36,7 +36,7 @@
 		"@types/fast-html-parser": "^1.0.0",
 		"@types/fs-extra": "^8.0.1",
 		"@types/got": "^9.6.9",
-		"@types/jquery": "^3.3.32",
+		"@types/jquery": "^3.3.33",
 		"@types/lodash": "^4.14.149",
 		"@types/semantic-ui": "^2.2.7",
 		"@types/uuid": "^3.4.7",
