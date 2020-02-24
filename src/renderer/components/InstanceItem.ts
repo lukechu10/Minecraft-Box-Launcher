@@ -15,9 +15,9 @@ import instanceItemTemplate from "../templates/InstanceItem.pug"; // important i
 export default class InstanceItem extends HTMLDivElement {
 	public instanceData: InstanceData;
 
-	public constructor(data: InstanceData) {
+	public constructor(data?: InstanceData) {
 		super();
-		this.instanceData = data;
+		this.instanceData = data as any;
 	}
 
 	public render(): void {
