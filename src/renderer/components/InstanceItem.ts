@@ -162,6 +162,13 @@ export default class InstanceItem extends HTMLDivElement {
 		}
 		else throw Error("The instance requested does not exist");
 	}
+
+	/**
+	 * Display info about instance in instance info segment
+	 */
+	public showInstanceInfo() {
+		
+	}
 }
 
 customElements.define("instance-item", InstanceItem, { extends: "div" });

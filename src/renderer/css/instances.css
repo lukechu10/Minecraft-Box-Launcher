@@ -1,7 +1,3 @@
-:root {
-	--instance-info-height: 100px;
-}
-
 .text-instanceName {
 	text-overflow: ellipsis;
 	margin-bottom: 0 !important;
@@ -9,17 +5,9 @@
 	white-space: nowrap;
 }
 
-#instance-info {
+#instance-info-segment {
 	position: fixed;
 	bottom: 0;
-	margin-bottom: 10px;
 	width: 100%;
-	height: var(--instance-info-height);
-}
-
-#no-instance-selected-msg {
-	text-align: center;
-	position: absolute;
-	top: 30%;
-	width: 100%;
+	border-top: 1px solid black;
 }

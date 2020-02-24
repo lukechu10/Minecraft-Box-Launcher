@@ -9,7 +9,8 @@ block content
 	.ui.primary.button(onclick="Render.newInstance();") #[i.fas.fa-plus.fa-fw] New Instance
 	div(is="instance-list")
 block outside
-	#instance-info
-		.ui.container(style="height: 100%;")
-			.ui.raised.segment(style="height: 100%;")
-				p#no-instance-selected-msg Select an instance from above to view and launch it
+	//- #instance-info
+	//- 	.ui.container(style="height: 100%;")
+	//- 		.ui.raised.segment(style="height: 100%;")
+	//- 			p#no-instance-selected-msg Select an instance from above to view and launch it
+	#instance-info-segment(is="instance-info-segment")
