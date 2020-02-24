@@ -52,6 +52,11 @@ export default class InstanceItem extends HTMLDivElement {
 		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement)?.addEventListener("click", () => {
 			this.play();
 		});
+
+		// show data in instance info segment
+		this.addEventListener("click", () => {
+			(document.getElementById("instance-info-segment") as any).render(this);
+		});
 	}
 
 	/**
@@ -167,7 +172,7 @@ export default class InstanceItem extends HTMLDivElement {
 	 * Display info about instance in instance info segment
 	 */
 	public showInstanceInfo() {
-		
+
 	}
 }
 

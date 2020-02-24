@@ -30,3 +30,7 @@ html.fa-events-icons-loading .fa-fw {
 html.fa-events-icons-loading .fa-fw::before {
   content: "\00a0";
 }
+
+#content {
+    height: 100%;
+}

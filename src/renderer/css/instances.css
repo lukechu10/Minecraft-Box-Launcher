@@ -1,3 +1,7 @@
+:root {
+	--instance-info-segment-height: 150px;
+}
+
 .text-instanceName {
 	text-overflow: ellipsis;
 	margin-bottom: 0 !important;
@@ -5,9 +9,26 @@
 	white-space: nowrap;
 }
 
+#content {
+	height: calc(100% - var(--instance-info-segment-height)) !important;
+}
+
+#instance-list-container {
+	margin-top: 10px;
+	margin-bottom: calc(var(--instance-info-segment-height) + 10px);
+}
+
+div[is="instance-list"] {
+	overflow-x: hidden;
+	overflow-y: auto;
+	width: inherit;
+}
+
 #instance-info-segment {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	border-top: 1px solid black;
+	height: var(--instance-info-segment-height);
+	border-top: 1px solid black; /* debug purposes */
+	background-color: white;
 }
