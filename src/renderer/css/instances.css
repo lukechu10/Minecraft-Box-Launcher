@@ -4,3 +4,11 @@
 	overflow: hidden;
 	white-space: nowrap;
 }
+
+#instance-info {
+	position: fixed;
+	bottom: 0;
+	margin-bottom: 10px;
+	width: 100%;
+	text-align: center;
+}
