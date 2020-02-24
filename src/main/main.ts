@@ -50,6 +50,8 @@ else {
 	});
 }
 
+app.allowRendererProcessReuse = true;
+
 // Quit when all windows are closed.
 app.on("window-all-closed", () => {
 	// On macOS it is common for applications and their menu bar
