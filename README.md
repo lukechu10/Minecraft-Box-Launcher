@@ -1,3 +1,5 @@
+<img src="https://user-images.githubusercontent.com/37006668/75309971-71791f00-5807-11ea-9073-cc447354324f.png" width="200px" />
+
 # The Minecraft Box
 <!-- Badges -->
 ![Dependencies status](https://david-dm.org/lukechu10/Minecraft-Box-Launcher.svg)
