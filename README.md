@@ -6,6 +6,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0dd47431ce3746c6a95ff909f68e67f7)](https://www.codacy.com/manual/lukechu10/Minecraft-Box-Launcher?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lukechu10/Minecraft-Box-Launcher&amp;utm_campaign=Badge_Grade)
 ![GitHub All Releases](https://img.shields.io/github/downloads/lukechu10/Minecraft-Box-Launcher/total)
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/lukechu10/Minecraft-Box-Launcher?label=latest%20pre-release)
+![GitHub Language](https://img.shields.io/github/languages/top/lukechu10/Minecraft-Box-Launcher?color=rgb%288%2C144%2C166%29)
 
 The **Minecraft Box** is a modern Minecraft launcher, designed to provide integrations with multiple Minecraft services, configurations and thirs party software. The launcher is made with web technologies including electronJS.
 
