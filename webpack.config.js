@@ -63,7 +63,7 @@ module.exports = (env, argv) => {
 		},
 		resolve: {
 			// Add `.ts` and `.tsx` as a resolvable extension.
-			extensions: [".ts", ".tsx", ".js"]
+			extensions: [".ts", ".tsx", ".js", ".json"]
 		},
 		module: {
 			rules: [
