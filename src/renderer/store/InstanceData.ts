@@ -3,8 +3,8 @@
  */
 export interface InstanceData {
 	/**
-		 * Name of instance
-		 */
+	 * Name of instance
+	 */
 	name: string;
 	/**
      * Instance version
