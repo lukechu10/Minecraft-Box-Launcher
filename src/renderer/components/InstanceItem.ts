@@ -25,6 +25,8 @@ export default class InstanceItem extends HTMLDivElement {
 		this.innerHTML = instanceItemTemplate({ data: this.instanceData }); // render template
 		$(this).find(".ui.dropdown").dropdown(); // attach FUI dropdown handler
 
+		(this.getElementsByClassName("ui right floated buttons")[0] as HTMLDivElement).addEventListener("click", event => event.stopPropagation()); // action buttons
+
 		// attach event handlers
 		(this.getElementsByClassName("btn-rename")[0] as HTMLDivElement).addEventListener("click", () => {
 			this.rename();
