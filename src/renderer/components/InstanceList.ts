@@ -10,7 +10,7 @@ export default class InstanceList extends HTMLDivElement {
 	public render(): void {
 		const instances = ApplicationStore.instances.all; // retreive instances
 
-		this.classList.add("ui", "raised", "segment");
+		this.classList.add("ui", "raised", "segment", "container");
 		const itemsElem = document.createElement("div");
 		itemsElem.classList.add("ui", "divided", "items");
 

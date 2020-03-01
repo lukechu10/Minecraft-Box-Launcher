@@ -1,26 +1,22 @@
-import InstanceItem from './InstanceItem';
+import InstanceItem from "./InstanceItem";
 
 import instanceInfoSegmentTemplate from "../templates/InstanceInfoSegment.pug";
 
-export default class InstanceInfoSegment extends HTMLDivElement {
+export default class InstanceInfoModal extends HTMLDivElement {
 	private instance: InstanceItem | null = null;
 	public constructor() {
 		super();
 	}
 
-	public connectedCallback(): void {
-		this.render(null);
-	}
+	public connectedCallback(): void { }
 
 	public render(instance: InstanceItem | null): void {
 		this.instance = instance;
 		if (this.instance !== null) {
 			this.innerHTML = instanceInfoSegmentTemplate({ hasSelection: true, ...this.instance.instanceData });
 		}
-		else {
-			this.innerHTML = instanceInfoSegmentTemplate({ hasSelection: false });
-		}
+		$(this).modal("show"); // show modal
 	}
 }
 
-customElements.define("instance-info-segment", InstanceInfoSegment, { extends: "div" });
+customElements.define("instance-info-modal", InstanceInfoModal, { extends: "div" });

@@ -55,7 +55,7 @@ export default class InstanceItem extends HTMLDivElement {
 
 		// show data in instance info segment
 		this.addEventListener("click", () => {
-			(document.getElementById("instance-info-segment") as any).render(this);
+			(document.getElementById("modal-info") as any).render(this);
 		});
 	}
 

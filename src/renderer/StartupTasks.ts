@@ -60,4 +60,4 @@ export { AuthenticationController, InstanceController };
 
 export * from "./components/InstanceList";
 export * from "./components/UserStatus";
-export * from "./components/InstanceInfoSegment";
+export * from "./components/InstanceInfoModal";
