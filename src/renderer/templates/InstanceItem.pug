@@ -6,7 +6,7 @@
 			| #{data.clientType || "Vanilla"} #[strong #{data.id} #{data.type}]
 			| Last played: #[i #{data.lastPlayedStr}]
 		.four.wide.column
-			.ui.right.floated.buttons
+			.ui.right.floated.buttons.btn-instance-actions(style="display: none;")
 				- if(data.installed)
 					button.ui.green.button.btn-play.btn-play-install
 						| Play

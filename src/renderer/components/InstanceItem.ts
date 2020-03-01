@@ -61,6 +61,19 @@ export default class InstanceItem extends HTMLDivElement {
 		this.addEventListener("click", () => {
 			(document.getElementById("modal-info") as any).render(this);
 		});
+
+		this.addEventListener("mouseenter", () => {
+			$(this.getElementsByClassName("btn-instance-actions")[0]).stop().fadeIn({
+				duration: 70,
+				queue: false
+			});
+		});
+		this.addEventListener("mouseleave", () => {
+			$(this.getElementsByClassName("btn-instance-actions")[0]).stop().fadeOut({
+				duration: 70,
+				queue: false
+			});
+		});
 	}
 
 	/**
