@@ -7,7 +7,7 @@ import { InstanceData } from "../store/InstanceData";
 import { InstanceController } from "./InstanceController";
 import child_process, { ChildProcess } from "child_process";
 
-import { launch, LaunchOption, LaunchPrecheck } from "@xmcl/core";
+import { launch, LaunchOption, ResolvedVersion, Version } from "@xmcl/core";
 import { ProfileService } from "@xmcl/profile-service";
 import { Auth } from "@xmcl/auth";
 import { MinecraftFolder } from "@xmcl/util";
@@ -21,7 +21,7 @@ export namespace LaunchController {
 		 * @throws if user is not logged in
 		 * @returns a child process that was spawned or `null` if fail
 		 */
-	export async function launch(instance: InstanceData): Promise<ChildProcess> {
+	export async function launchInstance(instance: InstanceData): Promise<ChildProcess> {
 		let javaPath = ApplicationStore.GlobalSettings.store.java.externalJavaPath;
 		// check if using auto detect
 		if (javaPath === "") {
@@ -34,7 +34,7 @@ export namespace LaunchController {
 				javaPath = info[0].path;
 			}
 		}
-		const options: LaunchOption & LaunchPrecheck = {
+		const options: LaunchOption = {
 			gamePath: InstanceController.MinecraftSavePath(instance.name),
 			resourcePath: InstanceController.MinecraftGamePath,
 			version: await Version.parse(InstanceController.MinecraftGamePath, instance.id),
@@ -42,6 +42,7 @@ export namespace LaunchController {
 			minMemory: ApplicationStore.GlobalSettings.store.java.minMemory,
 			maxMemory: ApplicationStore.GlobalSettings.store.java.maxMemory,
 			launcherName: "Minecraft Box Launcher",
+			launcherBrand: "mcbl",
 			gameProfile: await ProfileService.lookup((ApplicationStore.auth.store as Auth.Response).selectedProfile.name),
 			accessToken: (ApplicationStore.auth.store as Auth.Response).accessToken
 		};

@@ -16,7 +16,7 @@ else {
 	app = mainApp;
 }
 
-export class InstanceSave implements InstanceData, Installer.VersionMeta {
+export class InstanceSave implements InstanceData, Installer.Version {
 	/**
 		 * Name of instance
 		 */
@@ -50,7 +50,7 @@ export class InstanceSave implements InstanceData, Installer.VersionMeta {
 	/**
 	 * Create a save from VersionMeta
 	 */
-	public constructor(name: string, data: Installer.VersionMeta) {
+	public constructor(name: string, data: Installer.Version) {
 		this.name = name;
 		this.id = data.id;
 		this.type = data.type;
@@ -74,7 +74,7 @@ export class InstanceSave implements InstanceData, Installer.VersionMeta {
 	 * Launches this version
 	 */
 	public async launch(): Promise<ChildProcess> {
-		const spawn = LaunchController.launch(this);
+		const spawn = LaunchController.launchInstance(this);
 		// update last played
 		this.lastPlayed = new Date().toISOString();
 		return spawn;
