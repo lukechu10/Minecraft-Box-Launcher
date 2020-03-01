@@ -8,16 +8,18 @@ export default class InstanceList extends HTMLDivElement {
 	}
 
 	public render(): void {
+		// empty children
+		while (this.firstChild) {
+			this.firstChild.remove();
+		}
 		const instances = ApplicationStore.instances.all; // retreive instances
 
-		this.classList.add("ui", "raised", "segment", "container");
-		const itemsElem = document.createElement("div");
-		itemsElem.classList.add("ui", "divided", "items");
+		this.classList.add("ui", "middle", "aligned", "divided", "selection", "list", "container");
 
 		if (instances.length === 0) { // no instances, display message
 			const msgElem = document.createElement("p");
 			msgElem.textContent = "You don't have any instances yet. Create one to start playing. 😆";
-			itemsElem.appendChild(msgElem);
+			this.appendChild(msgElem);
 		}
 		else {
 			for (const instance of instances) {	// add InstanceItem nodes to dom
@@ -25,15 +27,9 @@ export default class InstanceList extends HTMLDivElement {
 				node.classList.add("instance-item");
 				node.render();
 				node.classList.add("item");
-				itemsElem.appendChild(node);
+				this.appendChild(node);
 			}
 		}
-		// empty children
-		while (this.firstChild) {
-			this.firstChild.remove();
-		}
-
-		this.appendChild(itemsElem);
 	}
 
 	private connectedCallback(): void {
