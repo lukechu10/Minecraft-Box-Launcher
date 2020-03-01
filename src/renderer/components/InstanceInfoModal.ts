@@ -35,15 +35,8 @@ export default class InstanceInfoModal extends HTMLDivElement {
 			this.instance?.options();
 		});
 
-		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement)?.addEventListener("click", () => {
-			this.instance?.install();
-		});
 		(this.getElementsByClassName("btn-reinstall")[0] as HTMLDivElement)?.addEventListener("click", () => {
 			this.instance?.install();
-		});
-
-		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement)?.addEventListener("click", () => {
-			this.instance?.play();
 		});
 	}
 }

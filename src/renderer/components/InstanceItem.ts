@@ -24,6 +24,7 @@ export default class InstanceItem extends HTMLDivElement {
 
 	public render(): void {
 		this.innerHTML = instanceItemTemplate({ data: { ...this.instanceData, lastPlayedStr: this.lastPlayedStr } }); // render template
+		(this.getElementsByClassName("btn-instance-actions")[0] as HTMLDivElement).addEventListener("click", e => { e.stopPropagation(); });
 		// show data in instance info segment
 		this.addEventListener("click", () => {
 			(document.getElementById("modal-info") as any).render(this);
@@ -40,6 +41,14 @@ export default class InstanceItem extends HTMLDivElement {
 				duration: 70,
 				queue: false
 			});
+		});
+
+		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement)?.addEventListener("click", () => {
+			this.install();
+		});
+
+		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement)?.addEventListener("click", () => {
+			this.play();
 		});
 	}
 
