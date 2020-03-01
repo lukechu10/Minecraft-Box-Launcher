@@ -12,3 +12,10 @@
     position: fixed;
     width: 100%;
 }
+.instance-item{
+	background-color: white;
+}
+.instance-item:hover {
+	background-color: rgb(236, 236, 236) !important;
+	transition: background-color 100ms ease-in !important;
+}
