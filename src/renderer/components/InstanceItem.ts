@@ -12,6 +12,8 @@ import savesModalTemplate from "../templates/modals/instances/saves.pug";
 import confirmDeleteModalTemplate from "../templates/modals/instances/confirmDelete.pug";
 import instanceItemTemplate from "../templates/InstanceItem.pug"; // important item template
 
+import moment from "moment";
+
 export default class InstanceItem extends HTMLDivElement {
 	public instanceData: InstanceData;
 
@@ -22,7 +24,7 @@ export default class InstanceItem extends HTMLDivElement {
 
 	public render(): void {
 		// this.instanceData = data;
-		this.innerHTML = instanceItemTemplate({ data: this.instanceData }); // render template
+		this.innerHTML = instanceItemTemplate({ data: { ...this.instanceData, lastPlayedStr: this.lastPlayedStr } }); // render template
 		$(this).find(".ui.dropdown").dropdown(); // attach FUI dropdown handler
 
 		(this.getElementsByClassName("ui right floated buttons")[0] as HTMLDivElement).addEventListener("click", event => event.stopPropagation()); // action buttons
@@ -175,6 +177,14 @@ export default class InstanceItem extends HTMLDivElement {
 	 */
 	public showInstanceInfo() {
 
+	}
+
+	/**
+	 * Get time since last played
+	 */
+	public get lastPlayedStr(): string {
+		return this.instanceData.lastPlayed === "never" ? "never" :
+			moment(this.instanceData.lastPlayed).fromNow();
 	}
 }
 

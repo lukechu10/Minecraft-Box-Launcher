@@ -13,7 +13,7 @@ export default class InstanceInfoModal extends HTMLDivElement {
 	public render(instance: InstanceItem | null): void {
 		this.instance = instance;
 		if (this.instance !== null) {
-			this.innerHTML = instanceInfoSegmentTemplate({ hasSelection: true, ...this.instance.instanceData });
+			this.innerHTML = instanceInfoSegmentTemplate({ hasSelection: true, ...this.instance.instanceData, lastPlayedStr: this.instance.lastPlayedStr });
 		}
 		$(this).modal("show"); // show modal
 	}

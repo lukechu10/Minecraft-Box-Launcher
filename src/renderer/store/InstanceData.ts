@@ -32,4 +32,5 @@ export interface InstanceData {
 	 */
 	installed: boolean;
 	time: string;
+	[key: string]: any;
 }
