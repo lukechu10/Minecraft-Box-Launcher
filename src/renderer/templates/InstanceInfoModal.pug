@@ -2,7 +2,12 @@
 .content
 	p #[strong Type]: #{clientType} #{type} #[strong Version]: #{id}
 	p #[strong Last played]: #{lastPlayedStr}
+	.ui.fluid.top.attached.buttons
+		button.ui.button.btn-rename #[i.fas.fa-pencil-alt.fa-fw] Rename
+		button.ui.button.btn-options #[i.far.fa-edit.fa-fw] Options
+		button.ui.button.btn-saves #[i.far.fa-file-alt.fa-fw] Saves / Data
+		button.ui.red.button.btn-delete #[.far.fa-trash-alt.fa-fw] Delete
 	- if (installed)
-		button.ui.green.huge.button.btn-play Play
+		button.ui.green.huge.fluid.bottom.attached.button.btn-play Play
 	-else
-		button.ui.olive.huge.button.btn-install Install
+		button.ui.olive.huge.fluid.bottom.attached.button.btn-install Install

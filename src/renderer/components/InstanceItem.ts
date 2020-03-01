@@ -23,40 +23,7 @@ export default class InstanceItem extends HTMLDivElement {
 	}
 
 	public render(): void {
-		// this.instanceData = data;
 		this.innerHTML = instanceItemTemplate({ data: { ...this.instanceData, lastPlayedStr: this.lastPlayedStr } }); // render template
-		$(this).find(".ui.dropdown").dropdown(); // attach FUI dropdown handler
-
-		(this.getElementsByClassName("ui right floated buttons")[0] as HTMLDivElement).addEventListener("click", event => event.stopPropagation()); // action buttons
-
-		// attach event handlers
-		(this.getElementsByClassName("btn-rename")[0] as HTMLDivElement).addEventListener("click", () => {
-			this.rename();
-		});
-
-		(this.getElementsByClassName("btn-delete")[0] as HTMLDivElement).addEventListener("click", () => {
-			this.delete();
-		});
-
-		(this.getElementsByClassName("btn-saves")[0] as HTMLDivElement).addEventListener("click", () => {
-			this.saves();
-		});
-
-		(this.getElementsByClassName("btn-options")[0] as HTMLDivElement).addEventListener("click", () => {
-			this.options();
-		});
-
-		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement)?.addEventListener("click", () => {
-			this.install();
-		});
-		(this.getElementsByClassName("btn-reinstall")[0] as HTMLDivElement)?.addEventListener("click", () => {
-			this.install();
-		});
-
-		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement)?.addEventListener("click", () => {
-			this.play();
-		});
-
 		// show data in instance info segment
 		this.addEventListener("click", () => {
 			(document.getElementById("modal-info") as any).render(this);
