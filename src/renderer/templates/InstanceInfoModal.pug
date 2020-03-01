@@ -2,4 +2,7 @@
 .content
 	p #[strong Type]: #{clientType} #{type} #[strong Version]: #{id}
 	p #[strong Last played]: #{lastPlayedStr}
-	button.ui.green.huge.button Play
+	- if (installed)
+		button.ui.green.huge.button.btn-play Play
+	-else
+		button.ui.olive.huge.button.btn-install Install

@@ -16,6 +16,8 @@ export default class InstanceInfoModal extends HTMLDivElement {
 			this.innerHTML = instanceInfoSegmentTemplate({ hasSelection: true, ...this.instance.instanceData, lastPlayedStr: this.instance.lastPlayedStr });
 		}
 		$(this).modal("show"); // show modal
+		// attach events
+		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement | undefined)?.addEventListener("click", () => { this.instance?.play(); });
 	}
 }
 
