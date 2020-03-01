@@ -1,6 +1,6 @@
 import InstanceItem from "./InstanceItem";
 
-import instanceInfoSegmentTemplate from "../templates/InstanceInfoSegment.pug";
+import instanceInfoSegmentTemplate from "../templates/InstanceInfoModal.pug";
 
 export default class InstanceInfoModal extends HTMLDivElement {
 	private instance: InstanceItem | null = null;
