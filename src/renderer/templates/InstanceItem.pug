@@ -1,7 +1,7 @@
 .content
 	.ui.grid
 		.thirteen.wide.column
-			p.ui.header.text-instanceName= data.name
+			p.ui.header.text-instanceName #{data.name} #[i(class=data.installed?"":"fas fa-download fa-fw" style="color: #b5cc18")]
 			p.description
 			| #{data.clientType || "Vanilla"} #[strong #{data.id} #{data.type}]
 			| Last played: #[i #{data.lastPlayedStr}]
