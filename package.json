@@ -95,6 +95,5 @@
 			"semantic/dist/*.css",
 			"semantic/dist/fonts/*.woff2"
 		]
-	},
-	"type": "module"
+	}
 }
