@@ -1,11 +1,11 @@
 .content
 	.ui.grid
-		.twelve.wide.column
+		.thirteen.wide.column
 			p.ui.header.text-instanceName= data.name
 			p.description
 			| #{data.clientType || "Vanilla"} #[strong #{data.id} #{data.type}]
 			| Last played: #[i #{data.lastPlayedStr}]
-		.four.wide.column
+		.three.wide.column
 			.ui.right.floated.buttons.btn-instance-actions(style="display: none;")
 				- if(data.installed)
 					button.ui.green.button.btn-play.btn-play-install
