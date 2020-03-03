@@ -16,6 +16,9 @@ else {
 	app = mainApp;
 }
 
+/**
+ * @deprecated Use `InstanceItem`
+ */
 export class InstanceSave implements InstanceData, Installer.Version {
 	/**
 		 * Name of instance
