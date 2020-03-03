@@ -1,7 +1,7 @@
 import path from "path";
 
 import { Installer } from "@xmcl/installer";
-import { MinecraftLocation, MinecraftFolder } from "@xmcl/util";
+import { MinecraftLocation, MinecraftFolder } from "@xmcl/core";
 
 import { remote, app as mainApp, App } from "electron";
 import { ChildProcess } from "child_process";

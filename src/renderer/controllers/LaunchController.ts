@@ -10,7 +10,7 @@ import child_process, { ChildProcess } from "child_process";
 import { launch, LaunchOption, ResolvedVersion, Version } from "@xmcl/core";
 import { ProfileService } from "@xmcl/profile-service";
 import { Auth } from "@xmcl/auth";
-import { MinecraftFolder } from "@xmcl/util";
+import { MinecraftFolder } from "@xmcl/core";
 import * as JavaInstall from "./JavaInstall";
 
 export namespace LaunchController {
