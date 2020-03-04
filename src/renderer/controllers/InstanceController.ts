@@ -15,11 +15,7 @@ export namespace InstanceController {
 	 * TODO: add possibility to customize directory
 	 */
 	export const MinecraftGamePath: string = path.join(app.getPath("userData"), "./game/");
-	/**
-	 * Returns the path for minecraft saves/logs/configs for a specific instance
-	 * @param name name of instance
-	 */
-	export const MinecraftSavePath = (name: string) => { return path.join(app.getPath("userData"), "./instances/", name); };
+	
 
 	/**
 	 * Finds an instance and installs it

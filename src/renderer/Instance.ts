@@ -17,6 +17,11 @@ const app = remote.app;
 export default class Instance implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
 	/**
+	 * Returns the path for minecraft saves/logs/configs for a specific instance
+	 * @param name name of instance
+	 */
+	public static readonly MinecraftSavePath = (name: string) => { return path.join(app.getPath("userData"), "./instances/", name); };
+	/**
 	 * Name of instance
 	 */
 	public name: string;
