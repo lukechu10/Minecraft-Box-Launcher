@@ -1,6 +1,7 @@
-import { InstanceSave } from "../store/InstanceSave";
+import Instance from "../Instance";
 import { ApplicationStore } from "../store";
 import { Installer } from "@xmcl/installer";
+import InstanceStore from '../store/InstanceStore';
 
 function menuItem(version: Installer.Version): string {
 	return `<div class="item" data-value="${version.id}">
@@ -66,7 +67,7 @@ export function attachEvents(): void {
 	if ($.fn.form.settings.rules !== undefined) {
 		$.fn.form.settings.rules.doesNotExist = (param): boolean => {
 			// Your validation condition goes here
-			const find = ApplicationStore.instances.findFromName(param);
+			const find = InstanceStore.findInstance(param);
 			console.log(find);
 			return param.length !== 0 && find === undefined;
 		};
@@ -115,13 +116,13 @@ export function attachEvents(): void {
 				.find((obj: Installer.Version) => {
 					return obj.id == form.form("get value", "instance-id");
 				});
-			const tempInstance = new InstanceSave(
-				form.form("get value", "instance-name"),
-				tempVersionMeta
-			);
+			const tempInstance = new Instance({
+				name: form.form("get value", "instance-name"),
+				...tempVersionMeta
+			});
 			console.log(tempInstance);
 			// create a new instance in InstanceStore
-			ApplicationStore.instances.addInstance(tempInstance);
+			InstanceStore.addInstance(tempInstance);
 			// close modal
 			$("#modal-newInstance").modal("hide");
 		}

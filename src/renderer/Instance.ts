@@ -54,6 +54,17 @@ export default class Instance implements InstanceData {
 	public time: string;
 	[key: string]: any;
 
+	public constructor(data: InstanceData) {
+		this.name = data.name;
+		this.id = data.id;
+		this.type = data.type;
+		this.clientType = data.clientType;
+		this.lastPlayed = data.lastPlayed;
+		this.releaseTime = data.releaseTime;
+		this.url = data.url;
+		this.installed = data.installed;
+		this.time = data.time;
+	}
 	/**
 	 * Save this instance to the instance store
 	 */
