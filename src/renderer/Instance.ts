@@ -12,6 +12,7 @@ import { Installer } from "@xmcl/installer";
 import path from "path";
 import { remote } from "electron";
 import { ChildProcess } from "child_process";
+import fs from "fs-extra";
 const app = remote.app;
 
 export default class Instance implements InstanceData {
@@ -88,7 +89,10 @@ export default class Instance implements InstanceData {
 		const res = await Installer.install("client", this, location);
 		this.installed = true;
 	}
-	public delete(): void {
+	public async delete(deleteFolder: boolean = false): Promise<void> {
 		InstanceStore.deleteInstance(this.name);
+		if (deleteFolder) {
+			await fs.remove(Instance.MinecraftSavePath(this.name));
+		}
 	}
 }

@@ -7,9 +7,7 @@ export namespace ApplicationStore {
 	export var installed: Store = new Store({
 		name: "installed",
 		defaults: {
-			installed: [
-
-			]
+			installed: []
 		}
 	});
 
