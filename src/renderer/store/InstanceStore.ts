@@ -39,6 +39,26 @@ class InstanceStore extends Store<{ instances: InstanceData[] }> {
 		const findRes = this.get("instances").find(obj => obj.name === name);
 		return findRes === undefined ? null : findRes;
 	}
+
+	/**
+	 * Replace instance with `name` by `instance`.
+	 * @param name name of instance
+	 * @param instance instance data
+	 */
+	public modifyInstance(name: string, instance: InstanceData): void {
+		const i = this.get("instances").findIndex(obj => obj.name === name);
+		const temp = this.get("instances");
+		temp[i] = instance;
+		this.set("instances", temp);
+	}
+
+	public deleteInstance(name: string): void {
+		let temp = this.get("instances");
+		const i = temp.findIndex(obj => obj.name === name);
+		if (i === -1) throw new Error("An instance with this name does not exist");
+		temp.splice(i, 1);
+		this.set("instances", temp);
+	}
 }
 
 export default new InstanceStore(); // singleton
