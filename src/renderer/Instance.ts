@@ -73,6 +73,7 @@ export default class Instance implements InstanceData {
 	}
 
 	public async launch(): Promise<ChildProcess> {
+		console.log(`Launching instance "${this.name}" with version "${this.id}".`);
 		let javaPath: string = ApplicationStore.GlobalSettings.store.java.externalJavaPath;
 		// check if using auto detect
 		if (javaPath === "") {
@@ -97,8 +98,10 @@ export default class Instance implements InstanceData {
 	}
 	public async install(): Promise<void> {
 		const location: MinecraftLocation = new MinecraftFolder(path.join(app.getPath("userData"), "./game/"));
+		console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
 		const res = await Installer.install("client", this, location);
 		this.installed = true;
+		console.log(`Successfully installed instance "${this.name}" with version "${this.id}`);
 	}
 	public async delete(deleteFolder: boolean = false): Promise<void> {
 		InstanceStore.deleteInstance(this.name);
