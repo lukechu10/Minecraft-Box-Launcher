@@ -68,8 +68,7 @@ export function attachEvents(): void {
 		$.fn.form.settings.rules.doesNotExist = (param): boolean => {
 			// Your validation condition goes here
 			const find = InstanceStore.findInstance(param);
-			console.log(find);
-			return param.length !== 0 && find === undefined;
+			return param.length !== 0 && find === null;
 		};
 	}
 

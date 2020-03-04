@@ -111,6 +111,6 @@ export default class Instance implements InstanceData {
 	 */
 	public get lastPlayedStr(): string {
 		return this.instance.lastPlayed === "never" ? "never" :
-			moment(this.instance.lastPlayed).fromNow();
+			moment(this.lastPlayed).fromNow();
 	}
 }
