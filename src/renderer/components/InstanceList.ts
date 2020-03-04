@@ -1,6 +1,8 @@
 import { ApplicationStore } from "../store";
 import InstanceItem from "./InstanceItem";
 import { remote } from "electron";
+import InstanceStore from '../store/InstanceStore';
+import Instance from '../Instance';
 
 export default class InstanceList extends HTMLDivElement {
 	public constructor() {
@@ -12,7 +14,7 @@ export default class InstanceList extends HTMLDivElement {
 		while (this.firstChild) {
 			this.firstChild.remove();
 		}
-		const instances = ApplicationStore.instances.all; // retreive instances
+		const instances = InstanceStore.get("instances"); // retreive instances
 
 		this.classList.add("ui", "middle", "aligned", "divided", "selection", "list", "container");
 
@@ -23,7 +25,7 @@ export default class InstanceList extends HTMLDivElement {
 		}
 		else {
 			for (const instance of instances) {	// add InstanceItem nodes to dom
-				const node = new InstanceItem(instance);
+				const node = new InstanceItem(new Instance(instance));
 				node.classList.add("instance-item");
 				node.render();
 				node.classList.add("item");
@@ -52,7 +54,7 @@ window.addEventListener("focus", () => {
 });
 
 // render list every time store changes
-ApplicationStore.instances.onDidAnyChange(() => {
+InstanceStore.onDidAnyChange(() => {
 	console.log("InstanceStore modified, rendering instance list");
 	document.querySelector<InstanceList>("div[is='instance-list']")?.render();
 });
