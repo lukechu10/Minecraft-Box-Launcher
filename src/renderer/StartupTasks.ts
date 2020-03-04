@@ -2,6 +2,7 @@ import { ApplicationStore } from "./store";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 import { VersionsController } from "./controllers/VersionsController";
 import { InstanceController } from "./controllers/InstanceController";
+import InstanceStore from "./store/InstanceStore";
 import * as Render from "./Render";
 
 import { shell } from "electron";
@@ -54,10 +55,10 @@ $(async () => {
 });
 
 // export modules
-export { Render, ApplicationStore };
+export { Render, ApplicationStore, InstanceStore };
 // export imported controllers to window
 export { AuthenticationController, InstanceController, VersionsController };
-
+	
 export * from "./components/InstanceList";
 export * from "./components/UserStatus";
 export * from "./components/InstanceInfoModal";
