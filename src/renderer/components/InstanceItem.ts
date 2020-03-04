@@ -23,7 +23,7 @@ export default class InstanceItem extends HTMLDivElement {
 	}
 
 	public render(): void {
-		this.innerHTML = instanceItemTemplate({ data: { ...this.instance, lastPlayedStr: this.lastPlayedStr } }); // render template
+		this.innerHTML = instanceItemTemplate({ data: { ...this.instance, lastPlayedStr: this.instance.lastPlayedStr } }); // render template
 		(this.getElementsByClassName("btn-instance-actions")[0] as HTMLDivElement).addEventListener("click", e => { e.stopPropagation(); });
 		// show data in instance info segment
 		this.addEventListener("click", () => {
@@ -169,14 +169,6 @@ export default class InstanceItem extends HTMLDivElement {
 	 */
 	public showInstanceInfo() {
 
-	}
-
-	/**
-	 * Get time since last played
-	 */
-	public get lastPlayedStr(): string {
-		return this.instance.lastPlayed === "never" ? "never" :
-			moment(this.instance.lastPlayed).fromNow();
 	}
 }
 

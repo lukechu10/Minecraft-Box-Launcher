@@ -7,7 +7,7 @@ import { scanLocalJava } from "@xmcl/java-installer";
 import { ProfileService } from "@xmcl/profile-service";
 import { Auth } from "@xmcl/auth";
 import { Installer } from "@xmcl/installer";
-
+import moment from "moment";
 
 import path from "path";
 import { remote } from "electron";
@@ -105,5 +105,12 @@ export default class Instance implements InstanceData {
 		if (deleteFolder) {
 			await fs.remove(Instance.MinecraftSavePath(this.name));
 		}
+	}
+	/**
+	 * Get time since last played
+	 */
+	public get lastPlayedStr(): string {
+		return this.instance.lastPlayed === "never" ? "never" :
+			moment(this.instance.lastPlayed).fromNow();
 	}
 }
