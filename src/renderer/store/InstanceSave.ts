@@ -1,7 +1,7 @@
 import path from "path";
 
 import { Installer } from "@xmcl/installer";
-import { MinecraftLocation, MinecraftFolder } from "@xmcl/util";
+import { MinecraftLocation, MinecraftFolder } from "@xmcl/core";
 
 import { remote, app as mainApp, App } from "electron";
 import { ChildProcess } from "child_process";
@@ -16,7 +16,7 @@ else {
 	app = mainApp;
 }
 
-export class InstanceSave implements InstanceData, Installer.VersionMeta {
+export class InstanceSave implements InstanceData, Installer.Version {
 	/**
 		 * Name of instance
 		 */
@@ -50,7 +50,7 @@ export class InstanceSave implements InstanceData, Installer.VersionMeta {
 	/**
 	 * Create a save from VersionMeta
 	 */
-	public constructor(name: string, data: Installer.VersionMeta) {
+	public constructor(name: string, data: Installer.Version) {
 		this.name = name;
 		this.id = data.id;
 		this.type = data.type;

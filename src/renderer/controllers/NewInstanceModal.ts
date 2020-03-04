@@ -2,7 +2,7 @@ import { InstanceSave } from "../store/InstanceSave";
 import { ApplicationStore } from "../store";
 import { Installer } from "@xmcl/installer";
 
-function menuItem(version: Installer.VersionMeta): string {
+function menuItem(version: Installer.Version): string {
 	return `<div class="item" data-value="${version.id}">
 	<div class="text" style="display:inline-block">${version.id}</div>
 	<div class="description">${version.releaseTime}</div>
@@ -17,7 +17,7 @@ function updateIdDropdown(val?: string): void {
 		// remove disable on #dropdown-id
 		$(".ui.dropdown#dropdown-id").removeClass("disabled");
 		// find list of instances
-		const versions = ApplicationStore.versionsMetaCache.get("versions") as Installer.VersionMeta[];
+		const versions = ApplicationStore.versionsMetaCache.get("versions") as Installer.Version[];
 		// append to dropdown
 		switch (val) {
 			case "vanilla-release":
@@ -112,7 +112,7 @@ export function attachEvents(): void {
 		if (form.form("is valid")) {
 			// create instance from form values
 			const tempVersionMeta = ApplicationStore.versionsMetaCache.get("versions")
-				.find((obj: Installer.VersionMeta) => {
+				.find((obj: Installer.Version) => {
 					return obj.id == form.form("get value", "instance-id");
 				});
 			const tempInstance = new InstanceSave(
