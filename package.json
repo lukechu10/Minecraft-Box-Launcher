@@ -46,7 +46,7 @@
 		"@xmcl/auth": "^1.0.4",
 		"@xmcl/core": "^2.0.2",
 		"@xmcl/installer": "^2.2.3",
-		"@xmcl/java-installer": "^0.1.1",
+		"@xmcl/java-installer": "^0.1.2",
 		"@xmcl/profile-service": "^1.0.3",
 		"devtron": "^1.4.0",
 		"electron": "^8.0.2",
