@@ -110,7 +110,7 @@ export default class Instance implements InstanceData {
 	 * Get time since last played
 	 */
 	public get lastPlayedStr(): string {
-		return this.instance.lastPlayed === "never" ? "never" :
+		return this.lastPlayed === "never" ? "never" :
 			moment(this.lastPlayed).fromNow();
 	}
 }
