@@ -12,7 +12,7 @@ import confirmDeleteModalTemplate from "../templates/modals/instances/confirmDel
 import instanceItemTemplate from "../templates/InstanceItem.pug"; // important item template
 
 import moment from "moment";
-import InstanceStore from '../store/InstanceStore';
+import InstanceStore from "../store/InstanceStore";
 
 export default class InstanceItem extends HTMLDivElement {
 	public instance: Instance;

@@ -53,7 +53,7 @@ class InstanceStore extends Store<{ instances: InstanceData[] }> {
 	}
 
 	public deleteInstance(name: string): void {
-		let temp = this.get("instances");
+		const temp = this.get("instances");
 		const i = temp.findIndex(obj => obj.name === name);
 		if (i === -1) throw new Error("An instance with this name does not exist");
 		temp.splice(i, 1);

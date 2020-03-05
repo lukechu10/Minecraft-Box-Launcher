@@ -1,8 +1,8 @@
 import { ApplicationStore } from "../store";
 import InstanceItem from "./InstanceItem";
 import { remote } from "electron";
-import InstanceStore from '../store/InstanceStore';
-import Instance from '../Instance';
+import InstanceStore from "../store/InstanceStore";
+import Instance from "../Instance";
 
 export default class InstanceList extends HTMLDivElement {
 	public constructor() {

@@ -1,7 +1,7 @@
 import Instance from "../Instance";
 import { ApplicationStore } from "../store";
 import { Installer } from "@xmcl/installer";
-import InstanceStore from '../store/InstanceStore';
+import InstanceStore from "../store/InstanceStore";
 
 function menuItem(version: Installer.Version): string {
 	return `<div class="item" data-value="${version.id}">

@@ -91,7 +91,7 @@ export default class Instance implements InstanceData {
 			maxMemory: ApplicationStore.GlobalSettings.store.java.maxMemory,
 			gameProfile: await lookupByName((ApplicationStore.auth.store as Authentication).selectedProfile.name),
 			accessToken: (ApplicationStore.auth.store as Authentication).accessToken
-		}
+		};
 		const proc = launch(options);
 		this.lastPlayed = new Date().toISOString();
 		return proc;
