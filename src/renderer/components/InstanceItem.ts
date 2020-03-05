@@ -140,7 +140,7 @@ export default class InstanceItem extends HTMLDivElement {
 		this.instance.syncToStore();
 		btn.classList.replace("gray", "green");
 		btn.classList.remove("disabled");
-		btn.textContent = "Launch";
+		btn.textContent = "Play";
 	}
 
 	public async play(): Promise<ChildProcess | null> {
