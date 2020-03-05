@@ -4,8 +4,8 @@ import { ApplicationStore } from "./store";
 
 import { LaunchOption, Version, ResolvedVersion, launch, MinecraftLocation, MinecraftFolder } from "@xmcl/core";
 import { scanLocalJava } from "@xmcl/java-installer";
-import { ProfileService } from "@xmcl/profile-service";
-import { Auth } from "@xmcl/auth";
+import { lookupByName } from "@xmcl/user";
+import { Authentication } from "@xmcl/user";
 import { Installer } from "@xmcl/installer";
 import moment from "moment";
 
@@ -89,8 +89,8 @@ export default class Instance implements InstanceData {
 			version: resolvedVersion,
 			minMemory: ApplicationStore.GlobalSettings.store.java.minMemory,
 			maxMemory: ApplicationStore.GlobalSettings.store.java.maxMemory,
-			gameProfile: await ProfileService.lookup((ApplicationStore.auth.store as Auth.Response).selectedProfile.name),
-			accessToken: (ApplicationStore.auth.store as Auth.Response).accessToken
+			gameProfile: await lookupByName((ApplicationStore.auth.store as Authentication).selectedProfile.name),
+			accessToken: (ApplicationStore.auth.store as Authentication).accessToken
 		}
 		const proc = launch(options);
 		this.lastPlayed = new Date().toISOString();
