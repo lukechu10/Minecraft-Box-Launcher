@@ -154,7 +154,7 @@ export default class InstanceItem extends HTMLDivElement {
 				return res;
 			}
 			catch (err) {
-				if (err.type === "MissingLibs") {
+				if (err.type === "MissingLibs" || err.error === "CorruptedVersionJson") {
 					// show corrupted modal
 					this.alertCorrupted();
 					return null;
