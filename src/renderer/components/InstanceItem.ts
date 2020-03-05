@@ -22,7 +22,8 @@ export default class InstanceItem extends HTMLDivElement {
 		this.instance = data as any;
 	}
 
-	public render(): void {
+	public render(newData?: Instance): void {
+		if (newData !== undefined) this.instance = newData;
 		this.innerHTML = instanceItemTemplate({ data: { ...this.instance, lastPlayedStr: this.instance.lastPlayedStr } }); // render template
 		(this.getElementsByClassName("btn-instance-actions")[0] as HTMLDivElement).addEventListener("click", e => { e.stopPropagation(); });
 		// show data in instance info segment
@@ -43,11 +44,11 @@ export default class InstanceItem extends HTMLDivElement {
 			});
 		});
 
-		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement)?.addEventListener("click", () => {
+		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement) ?.addEventListener("click", () => {
 			this.install();
 		});
 
-		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement)?.addEventListener("click", () => {
+		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement) ?.addEventListener("click", () => {
 			this.play();
 		});
 	}
@@ -138,9 +139,7 @@ export default class InstanceItem extends HTMLDivElement {
 		btn.textContent = "Installing...";
 		await this.instance.install();
 		this.instance.syncToStore();
-		btn.classList.replace("gray", "green");
-		btn.classList.remove("disabled");
-		btn.textContent = "Play";
+		this.render();
 	}
 
 	public async play(): Promise<ChildProcess | null> {
