@@ -103,6 +103,10 @@ export default class Instance implements InstanceData {
 		this.installed = true;
 		console.log(`Successfully installed instance "${this.name}" with version "${this.id}`);
 	}
+	/**
+	 * Deletes the instance. Note: do not call `syncToStore()` after as the store is automatically updated.
+	 * @param deleteFolder deletes the instance folder if value is `true`
+	 */
 	public async delete(deleteFolder: boolean = false): Promise<void> {
 		InstanceStore.deleteInstance(this.name);
 		if (deleteFolder) {
