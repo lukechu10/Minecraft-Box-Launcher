@@ -122,7 +122,7 @@ export default class InstanceItem extends HTMLDivElement {
 			$("#modal-corrupted").modal({
 				closable: false,
 				onApprove: () => {
-					this.install(true);
+					this.install();
 				}
 			}).modal("show");
 		}
@@ -131,14 +131,16 @@ export default class InstanceItem extends HTMLDivElement {
 	/**
 	 * Installs the instance
 	 */
-	public async install(renderOnFinish: boolean = false): Promise<void> {
+	public async install(): Promise<void> {
 		const btn = (this.getElementsByClassName("btn-play-install")[0] as HTMLButtonElement);
 		btn.classList.remove("olive", "green");
 		btn.classList.add("gray", "disabled");
-		btn.id = "";
 		btn.textContent = "Installing...";
 		await this.instance.install();
-		if (renderOnFinish) this.render(); // installation finished, render again
+		this.instance.syncToStore();
+		btn.classList.replace("gray", "green");
+		btn.classList.remove("disabled");
+		btn.textContent = "Launch";
 	}
 
 	public async play(): Promise<ChildProcess | null> {
