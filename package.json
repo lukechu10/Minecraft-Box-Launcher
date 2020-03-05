@@ -23,7 +23,8 @@
 		"pack:macos": "electron-builder --dir --macos",
 		"dist": "electron-builder",
 		"postinstall": "run-p build:*",
-		"preversion": "npm run eslint"
+		"preversion": "npm run eslint",
+		"madge": "madge ./src/renderer/StartupTasks.ts --webpack-config webpack.config.js  -c"
 	},
 	"keywords": [
 		"minecraft",
