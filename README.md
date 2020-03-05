@@ -26,6 +26,7 @@ Symbol	| Meaning
 	- Official Yggsdrasil Mojang Authentication ✔
 	- Offline Mojang Authentication 🔨
 	- Change skin inside launcher 🔨
+	- View previous skins 🦄
 - Install
 	- Install vanilla releases, snapshots and historical versions ✔
 	- Reinstall corrupted versions ✔
