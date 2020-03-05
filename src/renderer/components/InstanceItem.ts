@@ -1,8 +1,7 @@
 import { ChildProcess } from "child_process";
 
 import { ApplicationStore } from "../store";
-import { InstanceData } from "../store/InstanceData";
-import { InstanceController } from "../controllers/InstanceController";
+import Instance from "../Instance";
 import * as InstanceOptionsController from "../InstanceOptionsRender"; // FIXME: should be wrapped in namespace
 
 // import instance modal templates
@@ -13,17 +12,19 @@ import confirmDeleteModalTemplate from "../templates/modals/instances/confirmDel
 import instanceItemTemplate from "../templates/InstanceItem.pug"; // important item template
 
 import moment from "moment";
+import InstanceStore from "../store/InstanceStore";
 
 export default class InstanceItem extends HTMLDivElement {
-	public instanceData: InstanceData;
+	public instance: Instance;
 
-	public constructor(data?: InstanceData) {
+	public constructor(data?: Instance) {
 		super();
-		this.instanceData = data as any;
+		this.instance = data as any;
 	}
 
-	public render(): void {
-		this.innerHTML = instanceItemTemplate({ data: { ...this.instanceData, lastPlayedStr: this.lastPlayedStr } }); // render template
+	public render(newData?: Instance): void {
+		if (newData !== undefined) this.instance = newData;
+		this.innerHTML = instanceItemTemplate({ data: { ...this.instance, lastPlayedStr: this.instance.lastPlayedStr } }); // render template
 		(this.getElementsByClassName("btn-instance-actions")[0] as HTMLDivElement).addEventListener("click", e => { e.stopPropagation(); });
 		// show data in instance info segment
 		this.addEventListener("click", () => {
@@ -43,11 +44,11 @@ export default class InstanceItem extends HTMLDivElement {
 			});
 		});
 
-		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement)?.addEventListener("click", () => {
+		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement) ?.addEventListener("click", () => {
 			this.install();
 		});
 
-		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement)?.addEventListener("click", () => {
+		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement) ?.addEventListener("click", () => {
 			this.play();
 		});
 	}
@@ -58,17 +59,19 @@ export default class InstanceItem extends HTMLDivElement {
 	public rename(): void {
 		const renameModal = document.getElementById("modal-rename");
 		if (renameModal !== null) {
-			renameModal.outerHTML = renameModalTemplate({ name: this.instanceData.name });
+			renameModal.outerHTML = renameModalTemplate({ name: this.instance.name });
 			$("#modal-rename").modal({
 				closable: false,
 				onApprove: () => {
-					const find = ApplicationStore.instances.findFromName($("#input-rename").val() as string); // make sure an instance with this name does not already exist
+					const find = InstanceStore.findInstance($("#input-rename").val() as string); // make sure an instance with this name does not already exist
 					if (find !== undefined) {
 						alert("An instance with this name already exists"); // TODO: Change to modal to match rest of UI
 						return false;
 					}
-					else
-						InstanceController.renameInstance(this.instanceData.name, $("#input-rename").val() as string); // TODO: move all InstanceController logic to InstanceStore
+					else {
+						this.instance.name = $("#input-rename").val() as string;
+						this.instance.syncToStore();
+					}
 				}
 			}).modal("show");
 		}
@@ -80,13 +83,14 @@ export default class InstanceItem extends HTMLDivElement {
 	public delete(): void {
 		const deleteModal = document.getElementById("modal-confirmDelete");
 		if (deleteModal !== null) {
-			deleteModal.outerHTML = confirmDeleteModalTemplate({ name: this.instanceData.name });
+			deleteModal.outerHTML = confirmDeleteModalTemplate({ name: this.instance.name });
 			$("#modal-confirmDelete").modal({
 				closable: false,
 				onApprove: () => {
 					// delete instance
 					const deleteFolder: boolean = $("#modal-confirmDelete input[name='deleteFolder']").is(":checked");
-					InstanceController.deleteInstance(this.instanceData.name, deleteFolder);
+					// InstanceController.deleteInstance(this.instanceData.name, deleteFolder);
+					this.instance.delete(deleteFolder);
 				}
 			}).modal("show");
 		}
@@ -98,7 +102,7 @@ export default class InstanceItem extends HTMLDivElement {
 	public saves(): void {
 		const savesModal = document.getElementById("modal-saves");
 		if (savesModal !== null) {
-			savesModal.outerHTML = savesModalTemplate({ name: this.instanceData.name });
+			savesModal.outerHTML = savesModalTemplate({ name: this.instance.name });
 			$("#modal-saves").modal({
 				closable: false
 			}).modal("show");
@@ -106,7 +110,7 @@ export default class InstanceItem extends HTMLDivElement {
 	}
 
 	public options(): void {
-		InstanceOptionsController.showOptionsForInstance(this.instanceData.name);
+		InstanceOptionsController.showOptionsForInstance(this.instance.name);
 	}
 
 	/**
@@ -115,11 +119,11 @@ export default class InstanceItem extends HTMLDivElement {
 	public alertCorrupted(): void {
 		const corruptedModal = document.getElementById("modal-corrupted");
 		if (corruptedModal !== null) {
-			corruptedModal.outerHTML = corruptedModalTemplate({ name: this.instanceData.name });
+			corruptedModal.outerHTML = corruptedModalTemplate({ name: this.instance.name });
 			$("#modal-corrupted").modal({
 				closable: false,
 				onApprove: () => {
-					this.install(true);
+					this.install();
 				}
 			}).modal("show");
 		}
@@ -128,29 +132,29 @@ export default class InstanceItem extends HTMLDivElement {
 	/**
 	 * Installs the instance
 	 */
-	public async install(renderOnFinish: boolean = false): Promise<void> {
+	public async install(): Promise<void> {
 		const btn = (this.getElementsByClassName("btn-play-install")[0] as HTMLButtonElement);
 		btn.classList.remove("olive", "green");
 		btn.classList.add("gray", "disabled");
-		btn.id = "";
 		btn.textContent = "Installing...";
-		await InstanceController.installByName(this.instanceData.name);
-		if (renderOnFinish) this.render(); // installation finished, render again
+		await this.instance.install();
+		this.instance.syncToStore();
+		this.render();
 	}
 
 	public async play(): Promise<ChildProcess | null> {
 		// FIXME: move logic here
 		// launch by name
-		const instance = ApplicationStore.instances.findFromName(this.instanceData.name);
+		const instance = InstanceStore.findInstance(this.instance.name);
 		if (instance !== undefined) {
 			try {
-				const res = await instance.launch();
+				const res = await this.instance.launch();
 				// last played should be updated, save to store
-				await ApplicationStore.instances.setInstance(this.instanceData.name, instance);
+				this.instance.syncToStore();
 				return res;
 			}
 			catch (err) {
-				if (err.type === "MissingLibs") {
+				if (err.type === "MissingLibs" || err.error === "CorruptedVersionJson") {
 					// show corrupted modal
 					this.alertCorrupted();
 					return null;
@@ -166,14 +170,6 @@ export default class InstanceItem extends HTMLDivElement {
 	 */
 	public showInstanceInfo() {
 
-	}
-
-	/**
-	 * Get time since last played
-	 */
-	public get lastPlayedStr(): string {
-		return this.instanceData.lastPlayed === "never" ? "never" :
-			moment(this.instanceData.lastPlayed).fromNow();
 	}
 }
 

@@ -1,9 +1,10 @@
 import optionsModal from "./templates/modals/instances/options.pug";
 import { ApplicationStore } from "./store";
-import { InstanceSave } from "./store/InstanceSave";
+import { InstanceStore } from "./StartupTasks";
+import { InstanceData } from "./store/InstanceData";
 
 declare let instanceOptionsName: string;
-declare let instanceOptionsTemp: InstanceSave;
+declare let instanceOptionsTemp: InstanceData;
 
 /**
  * Event handlers for options modal
@@ -17,7 +18,7 @@ function attachEvents(): void {
 	if ($.fn.form.settings.rules !== undefined) {
 		$.fn.form.settings.rules.doesNotExist = (param): boolean => {
 			// Your validation condition goes here
-			const find = ApplicationStore.instances.findFromName(param);
+			const find = InstanceStore.findInstance(param);
 			console.log(find);
 			return param.length !== 0 && find === undefined;
 		};
@@ -46,7 +47,7 @@ function attachEvents(): void {
 		$form.form("validate form");
 		if ($form.form("is valid")) {
 			console.log(instanceOptionsName);
-			ApplicationStore.instances.setInstance(instanceOptionsName, instanceOptionsTemp); // update store
+			InstanceStore.modifyInstance(instanceOptionsName, instanceOptionsTemp); // update store
 			return true;
 		}
 		else return false; // prevent close action

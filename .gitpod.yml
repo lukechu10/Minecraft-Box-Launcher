@@ -9,6 +9,7 @@ ports:
   - port: 35900
 
 tasks:
+  - before: nvm install 12 && nvm alias default 12
   - init: npm install
   - command: npm run dev:gitpod
   - command: npm run build-watch
