@@ -32,7 +32,8 @@ export default class Info extends HTMLDivElement {
 		});
 
 		(this.getElementsByClassName("btn-options")[0] as HTMLDivElement).addEventListener("click", () => {
-			this.instance ?.options();
+			// this.instance ?.options();
+			this.instance ?.showModal("options");
 		});
 
 		(this.getElementsByClassName("btn-reinstall")[0] as HTMLDivElement) ?.addEventListener("click", () => {

@@ -18,7 +18,7 @@ import { ChildProcess } from "child_process";
 import fs from "fs-extra";
 const app = remote.app;
 
-type ModalType = "info";
+type ModalType = "info" | "options";
 export default class Instance implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
 	/**
@@ -130,6 +130,9 @@ export default class Instance implements InstanceData {
 			case "info":
 				// InstanceModal.Info.render(this);
 				(document.getElementById("modal-info") as InstanceModal.Info).render(this);
+				break;
+			case "options":
+				(document.getElementById("modal-options") as InstanceModal.Options).render(this);
 				break;
 			default:
 				throw Error("Not a valid modal");

@@ -2,7 +2,6 @@ import { ChildProcess } from "child_process";
 
 import { ApplicationStore } from "../store";
 import Instance from "../Instance";
-import * as InstanceOptionsController from "../InstanceOptionsRender"; // FIXME: should be wrapped in namespace
 
 // import instance modal templates
 import renameModalTemplate from "../templates/modals/instances/rename.pug";
@@ -107,10 +106,6 @@ export default class InstanceItem extends HTMLDivElement {
 				closable: false
 			}).modal("show");
 		}
-	}
-
-	public options(): void {
-		InstanceOptionsController.showOptionsForInstance(this.instance.name);
 	}
 
 	/**
