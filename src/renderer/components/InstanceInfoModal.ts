@@ -1,7 +1,7 @@
 import InstanceItem from "./InstanceItem";
 import Instance from "../Instance";
 
-import instanceInfoSegmentTemplate from "../templates/InstanceInfoModal.pug";
+import instanceInfoModalTemplate from "../templates/InstanceInfoModal.pug";
 
 export default class InstanceInfoModal extends HTMLDivElement {
 	private instance: Instance | null = null;
@@ -14,7 +14,7 @@ export default class InstanceInfoModal extends HTMLDivElement {
 	public render(instance: Instance | null): void {
 		this.instance = instance;
 		if (this.instance !== null) {
-			this.innerHTML = instanceInfoSegmentTemplate({ hasSelection: true, ...this.instance, lastPlayedStr: this.instance.lastPlayedStr });
+			this.innerHTML = instanceInfoModalTemplate({ hasSelection: true, ...this.instance, lastPlayedStr: this.instance.lastPlayedStr });
 		}
 		$(this).modal("show"); // show modal
 		// attach events
