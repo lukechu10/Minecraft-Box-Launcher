@@ -11,8 +11,9 @@ export default class InstanceInfoModal extends HTMLDivElement {
 
 	public connectedCallback(): void { }
 
-	public render(instance: Instance | null): void {
+	public render(instance: Instance): void {
 		this.instance = instance;
+		console.log(instance)
 		if (this.instance !== null) {
 			this.innerHTML = instanceInfoModalTemplate({ hasSelection: true, ...this.instance, lastPlayedStr: this.instance.lastPlayedStr });
 		}
