@@ -13,6 +13,7 @@ import instanceItemTemplate from "../templates/InstanceItem.pug"; // important i
 
 import moment from "moment";
 import InstanceStore from "../store/InstanceStore";
+import InstanceInfoModal from "./InstanceInfoModal";
 
 export default class InstanceItem extends HTMLDivElement {
 	public instance: Instance;
@@ -28,7 +29,7 @@ export default class InstanceItem extends HTMLDivElement {
 		(this.getElementsByClassName("btn-instance-actions")[0] as HTMLDivElement).addEventListener("click", e => { e.stopPropagation(); });
 		// show data in instance info segment
 		this.addEventListener("click", () => {
-			(document.getElementById("modal-info") as any).render(this);
+			(document.getElementById("modal-info") as InstanceInfoModal).render(this.instance);
 		});
 
 		this.addEventListener("mouseenter", () => {
@@ -163,13 +164,6 @@ export default class InstanceItem extends HTMLDivElement {
 			}
 		}
 		else throw Error("The instance requested does not exist");
-	}
-
-	/**
-	 * Display info about instance in instance info segment
-	 */
-	public showInstanceInfo() {
-
 	}
 }
 

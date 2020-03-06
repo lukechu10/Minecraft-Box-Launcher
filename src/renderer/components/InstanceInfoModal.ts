@@ -12,7 +12,7 @@ export default class InstanceInfoModal extends HTMLDivElement {
 	public connectedCallback(): void { }
 
 	public render(instance: Instance): void {
-		this.instance = { ...instance }.instance; // remove dom element functions
+		this.instance = instance; // remove dom element functions
 		if (this.instance !== null) {
 			this.innerHTML = instanceInfoModalTemplate({ hasSelection: true, ...this.instance, lastPlayedStr: this.instance.lastPlayedStr });
 		}
