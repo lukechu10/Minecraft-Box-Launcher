@@ -13,7 +13,6 @@ import instanceItemTemplate from "../templates/InstanceItem.pug"; // important i
 
 import moment from "moment";
 import InstanceStore from "../store/InstanceStore";
-import InstanceInfoModal from "./InstanceInfoModal";
 
 export default class InstanceItem extends HTMLDivElement {
 	public instance: Instance;
@@ -29,7 +28,7 @@ export default class InstanceItem extends HTMLDivElement {
 		(this.getElementsByClassName("btn-instance-actions")[0] as HTMLDivElement).addEventListener("click", e => { e.stopPropagation(); });
 		// show data in instance info segment
 		this.addEventListener("click", () => {
-			(document.getElementById("modal-info") as InstanceInfoModal).render(this.instance);
+			this.instance.showModal("info");
 		});
 
 		this.addEventListener("mouseenter", () => {
