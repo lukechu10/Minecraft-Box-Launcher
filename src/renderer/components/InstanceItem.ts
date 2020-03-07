@@ -53,30 +53,6 @@ export default class InstanceItem extends HTMLDivElement {
 	}
 
 	/**
-	 * Shows a rename modal and handles user input
-	 */
-	public rename(): void {
-		const renameModal = document.getElementById("modal-rename");
-		if (renameModal !== null) {
-			renameModal.outerHTML = renameModalTemplate({ name: this.instance.name });
-			$("#modal-rename").modal({
-				closable: false,
-				onApprove: () => {
-					const find = InstanceStore.findInstance($("#input-rename").val() as string); // make sure an instance with this name does not already exist
-					if (find !== undefined) {
-						alert("An instance with this name already exists"); // TODO: Change to modal to match rest of UI
-						return false;
-					}
-					else {
-						this.instance.name = $("#input-rename").val() as string;
-						this.instance.syncToStore();
-					}
-				}
-			}).modal("show");
-		}
-	}
-
-	/**
 	 * Shows a confirm delete modal and asks if user wishes to delete instance folder
 	 */
 	public delete(): void {

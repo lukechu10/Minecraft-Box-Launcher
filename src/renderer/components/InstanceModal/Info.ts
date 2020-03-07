@@ -20,7 +20,7 @@ export default class Info extends HTMLDivElement {
 		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement | undefined) ?.addEventListener("click", () => { this.instance ?.play(); });
 
 		(this.getElementsByClassName("btn-rename")[0] as HTMLDivElement).addEventListener("click", () => {
-			this.instance ?.rename();
+			this.instance ?.showModal("rename");
 		});
 
 		(this.getElementsByClassName("btn-delete")[0] as HTMLDivElement).addEventListener("click", () => {
