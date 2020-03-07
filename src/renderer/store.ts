@@ -1,5 +1,4 @@
 import Store from "electron-store";
-import InstanceStore from "./store/InstanceStore";
 import GlobalSettingsStore from "./store/GlobalSettingsStore";
 
 export namespace ApplicationStore {

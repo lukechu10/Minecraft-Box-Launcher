@@ -1,4 +1,3 @@
-import { ApplicationStore } from "../store";
 import InstanceItem from "./InstanceItem";
 import { remote } from "electron";
 import InstanceStore from "../store/InstanceStore";

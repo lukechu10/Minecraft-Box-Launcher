@@ -1,6 +1,5 @@
 import { ChildProcess } from "child_process";
 
-import { ApplicationStore } from "../store";
 import Instance from "../Instance";
 import * as InstanceOptionsController from "../InstanceOptionsRender"; // FIXME: should be wrapped in namespace
 
@@ -11,7 +10,6 @@ import savesModalTemplate from "../templates/modals/instances/saves.pug";
 import confirmDeleteModalTemplate from "../templates/modals/instances/confirmDelete.pug";
 import instanceItemTemplate from "../templates/InstanceItem.pug"; // important item template
 
-import moment from "moment";
 import InstanceStore from "../store/InstanceStore";
 
 export default class InstanceItem extends HTMLDivElement {

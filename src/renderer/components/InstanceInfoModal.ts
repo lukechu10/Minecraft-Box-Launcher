@@ -1,4 +1,3 @@
-import InstanceItem from "./InstanceItem";
 import Instance from "../Instance";
 
 import instanceInfoModalTemplate from "../templates/InstanceInfoModal.pug";
