@@ -100,12 +100,13 @@ export default class Instance implements InstanceData {
 		this.lastPlayed = new Date().toISOString();
 		return proc;
 	}
-	public async install(): Promise<void> {
+	public async install(): Promise<ResolvedVersion> {
 		const location: MinecraftLocation = new MinecraftFolder(path.join(app.getPath("userData"), "./game/"));
 		console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
 		const res = await Installer.install("client", this, location);
 		this.installed = true;
 		console.log(`Successfully installed instance "${this.name}" with version "${this.id}`);
+		return res;
 	}
 	/**
 	 * Deletes the instance. Note: do not call `syncToStore()` after as the store is automatically updated.
