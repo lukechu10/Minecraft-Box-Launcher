@@ -79,7 +79,6 @@
 		"v8-compile-cache": "^2.1.0"
 	},
 	"browser": {
-		"decompress-response": true,
 		"electron": false
 	},
 	"build": {

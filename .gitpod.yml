@@ -4,9 +4,11 @@ image:
 # List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/43_config_ports/
 ports:
   - port: 5900
+    onOpen: ignore
   - port: 6080
     onOpen: notify
   - port: 35900
+    onOpen: ignore
 
 tasks:
   - before: nvm install 12 && nvm alias default 12

@@ -69,10 +69,10 @@ html(lang="en")
 										button.ui.tiny.cancel.button.inverted.red Continue without logging in
 		//- These are just placeholders that will be replaced with content when modal is loaded
 		.ui.modal#modal-newInstance
-		.ui.modal#modal-rename
-		.ui.modal#modal-options
-		.ui.modal#modal-saves
+		.ui.modal#modal-rename(is="instance-rename-modal")
+		.ui.modal#modal-options(is="instance-options-modal")
+		.ui.modal#modal-saves(is="instance-saves-modal")
 		.ui.modal#modal-info(is="instance-info-modal")
 		.ui.basic.modal#modal-corrupted
-		.ui.basic.modal#modal-confirmDelete
+		.ui.basic.modal#modal-confirmDelete(is="instance-delete-modal")
 		.ui.basic.modal#modal-settings

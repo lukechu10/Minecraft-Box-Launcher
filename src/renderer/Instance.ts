@@ -2,6 +2,9 @@ import { InstanceData } from "./store/InstanceData";
 import InstanceStore from "./store/InstanceStore";
 import { ApplicationStore } from "./store";
 
+import "./components/InstanceModal"; // add elements to custom elements registry
+import * as InstanceModal from "./components/InstanceModal";
+
 import { LaunchOption, Version, ResolvedVersion, launch, MinecraftLocation, MinecraftFolder } from "@xmcl/core";
 import { scanLocalJava } from "@xmcl/java-installer";
 import { lookupByName } from "@xmcl/user";
@@ -15,6 +18,7 @@ import { ChildProcess } from "child_process";
 import fs from "fs-extra";
 const app = remote.app;
 
+type ModalType = "info" | "options" | "rename" | "saves" | "delete";
 export default class Instance implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
 	/**
@@ -119,5 +123,28 @@ export default class Instance implements InstanceData {
 	public get lastPlayedStr(): string {
 		return this.lastPlayed === "never" ? "never" :
 			moment(this.lastPlayed).fromNow();
+	}
+
+	public showModal(modal: ModalType): void {
+		switch (modal) {
+			case "info":
+				// InstanceModal.Info.render(this);
+				(document.getElementById("modal-info") as InstanceModal.Info).render(this);
+				break;
+			case "options":
+				(document.getElementById("modal-options") as InstanceModal.Options).render(this);
+				break;
+			case "rename":
+				(document.getElementById("modal-rename") as InstanceModal.Rename).render(this);
+				break;
+			case "saves":
+				(document.getElementById("modal-saves") as InstanceModal.Saves).render(this);
+				break;
+			case "delete":
+				(document.getElementById("modal-confirmDelete") as InstanceModal.Saves).render(this);
+				break;
+			default:
+				throw Error("Not a valid modal");
+		}
 	}
 }
