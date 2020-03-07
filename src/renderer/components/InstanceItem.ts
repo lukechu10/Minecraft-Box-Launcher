@@ -1,16 +1,12 @@
 import { ChildProcess } from "child_process";
 
-import { ApplicationStore } from "../store";
 import Instance from "../Instance";
 
 // import instance modal templates
-import renameModalTemplate from "../templates/modals/instances/rename.pug";
 import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug";
-import savesModalTemplate from "../templates/modals/instances/saves.pug";
 import confirmDeleteModalTemplate from "../templates/modals/instances/confirmDelete.pug";
 import instanceItemTemplate from "../templates/InstanceItem.pug"; // important item template
 
-import moment from "moment";
 import InstanceStore from "../store/InstanceStore";
 
 export default class InstanceItem extends HTMLDivElement {
@@ -67,19 +63,6 @@ export default class InstanceItem extends HTMLDivElement {
 					// InstanceController.deleteInstance(this.instanceData.name, deleteFolder);
 					this.instance.delete(deleteFolder);
 				}
-			}).modal("show");
-		}
-	}
-
-	/**
-	 * Show saves modal for an instance
-	 */
-	public saves(): void {
-		const savesModal = document.getElementById("modal-saves");
-		if (savesModal !== null) {
-			savesModal.outerHTML = savesModalTemplate({ name: this.instance.name });
-			$("#modal-saves").modal({
-				closable: false
 			}).modal("show");
 		}
 	}
