@@ -1,7 +1,6 @@
 import Instance from "../../Instance";
 import instanceOptionsModalTemplate from "../../templates/modals/instances/Options.pug";
 import InstanceStore from "../../store/InstanceStore";
-import { InstanceData } from "../../store/InstanceData";
 
 export default class Options extends HTMLDivElement {
 	private instance: Instance | null = null;

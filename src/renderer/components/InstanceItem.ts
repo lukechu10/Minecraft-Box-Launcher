@@ -4,7 +4,6 @@ import Instance from "../Instance";
 
 // import instance modal templates
 import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug";
-import confirmDeleteModalTemplate from "../templates/modals/instances/confirmDelete.pug";
 import instanceItemTemplate from "../templates/InstanceItem.pug"; // important item template
 
 import InstanceStore from "../store/InstanceStore";
