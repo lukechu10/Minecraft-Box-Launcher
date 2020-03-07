@@ -49,25 +49,6 @@ export default class InstanceItem extends HTMLDivElement {
 	}
 
 	/**
-	 * Shows a confirm delete modal and asks if user wishes to delete instance folder
-	 */
-	public delete(): void {
-		const deleteModal = document.getElementById("modal-confirmDelete");
-		if (deleteModal !== null) {
-			deleteModal.outerHTML = confirmDeleteModalTemplate({ name: this.instance.name });
-			$("#modal-confirmDelete").modal({
-				closable: false,
-				onApprove: () => {
-					// delete instance
-					const deleteFolder: boolean = $("#modal-confirmDelete input[name='deleteFolder']").is(":checked");
-					// InstanceController.deleteInstance(this.instanceData.name, deleteFolder);
-					this.instance.delete(deleteFolder);
-				}
-			}).modal("show");
-		}
-	}
-
-	/**
 	 * Shows a modal that display a warning to the user that the current instance is corrupted
 	 */
 	public alertCorrupted(): void {

@@ -24,7 +24,7 @@ export default class Info extends HTMLDivElement {
 		});
 
 		(this.getElementsByClassName("btn-delete")[0] as HTMLDivElement).addEventListener("click", () => {
-			this.instance?.delete();
+			this.instance?.showModal("delete");
 		});
 
 		(this.getElementsByClassName("btn-saves")[0] as HTMLDivElement).addEventListener("click", () => {
