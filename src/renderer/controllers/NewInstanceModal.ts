@@ -1,8 +1,9 @@
-import { InstanceSave } from "../store/InstanceSave";
+import Instance from "../Instance";
 import { ApplicationStore } from "../store";
 import { Installer } from "@xmcl/installer";
+import InstanceStore from "../store/InstanceStore";
 
-function menuItem(version: Installer.VersionMeta): string {
+function menuItem(version: Installer.Version): string {
 	return `<div class="item" data-value="${version.id}">
 	<div class="text" style="display:inline-block">${version.id}</div>
 	<div class="description">${version.releaseTime}</div>
@@ -17,7 +18,7 @@ function updateIdDropdown(val?: string): void {
 		// remove disable on #dropdown-id
 		$(".ui.dropdown#dropdown-id").removeClass("disabled");
 		// find list of instances
-		const versions = ApplicationStore.versionsMetaCache.get("versions") as Installer.VersionMeta[];
+		const versions = ApplicationStore.versionsMetaCache.get("versions") as Installer.Version[];
 		// append to dropdown
 		switch (val) {
 			case "vanilla-release":
@@ -66,9 +67,8 @@ export function attachEvents(): void {
 	if ($.fn.form.settings.rules !== undefined) {
 		$.fn.form.settings.rules.doesNotExist = (param): boolean => {
 			// Your validation condition goes here
-			const find = ApplicationStore.instances.findFromName(param);
-			console.log(find);
-			return param.length !== 0 && find === undefined;
+			const find = InstanceStore.findInstance(param);
+			return param.length !== 0 && find === null;
 		};
 	}
 
@@ -112,16 +112,16 @@ export function attachEvents(): void {
 		if (form.form("is valid")) {
 			// create instance from form values
 			const tempVersionMeta = ApplicationStore.versionsMetaCache.get("versions")
-				.find((obj: Installer.VersionMeta) => {
+				.find((obj: Installer.Version) => {
 					return obj.id == form.form("get value", "instance-id");
 				});
-			const tempInstance = new InstanceSave(
-				form.form("get value", "instance-name"),
-				tempVersionMeta
-			);
+			const tempInstance = new Instance({
+				name: form.form("get value", "instance-name"),
+				...tempVersionMeta
+			});
 			console.log(tempInstance);
 			// create a new instance in InstanceStore
-			ApplicationStore.instances.addInstance(tempInstance);
+			InstanceStore.addInstance(tempInstance);
 			// close modal
 			$("#modal-newInstance").modal("hide");
 		}
