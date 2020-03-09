@@ -1,7 +1,10 @@
+import { Version } from "@xmcl/core";
+import { Installer } from "@xmcl/installer";
+
 /**
  * InstanceSave without methods
  */
-export interface InstanceData {
+export interface InstanceData extends Installer.Version {
 	/**
 	 * Name of instance
 	 */
