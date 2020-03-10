@@ -1,0 +1,21 @@
+.header Login
+.content
+	.ui.centered.grid
+		.row
+			.twelve.wide.column
+				//- error messages
+				.ui.tertiary.inverted.red.segment#login-errors-container(style="display:none;")
+					p#login-errors
+				//- login form
+				form.ui.form.segment.error#login-form(onSubmit="return false;")
+					.field
+						label Mojang Email
+						input(type="text" name="username" placeholder="Email")#username-field
+					.field
+						label Password (#[a(tabindex="-1" onclick="shell.openExternal('https://my.minecraft.net/en-us/password/forgot/')") Forgot your password?])
+						input(type="password" name="password" placeholder="Password")#password-field
+					button(type="submit").ui.fluid.button.positive#login-btn Login
+					.ui.horizontal.divider or
+					.actions
+						center
+							button.ui.tiny.cancel.button.inverted.red Continue without logging in

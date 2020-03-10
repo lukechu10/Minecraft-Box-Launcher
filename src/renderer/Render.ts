@@ -2,6 +2,7 @@ import { AuthenticationController } from "./controllers/AuthenticationController
 
 import "./components/NewInstanceModal";
 import NewInstanceModal from "./components/NewInstanceModal";
+import { AuthModal } from "./components/AuthModal";
 
 export * from "./controllers/SettingsModal";
 
@@ -76,13 +77,5 @@ function initiateLoginForm(): void {
  * Shows modal that appears over page
  */
 export function showLoginModal(): void {
-	// TODO: allow option to customize error message on show (for session expired)
-	$("#modal-login").modal({
-		onDeny: () => {
-			// TODO: show are you sure message
-		},
-		detachable: false
-	}).modal("show");
-
-	initiateLoginForm();
+	(document.getElementById("modal-login") as AuthModal).render();
 }
