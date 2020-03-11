@@ -1,5 +1,6 @@
 import { InstanceData } from "./store/InstanceData";
 import { ApplicationStore } from "./store";
+import InstanceStore from "./store/InstanceStore";
 import AuthStore from "./store/AuthStore";
 
 import "./components/InstanceModal"; // add elements to custom elements registry
