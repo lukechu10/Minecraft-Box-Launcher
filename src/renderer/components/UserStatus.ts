@@ -1,5 +1,5 @@
 import userStatusTemplate from "../templates/UserStatus.pug";
-import { ApplicationStore } from "../store";
+import AuthStore from "../store/AuthStore";
 
 /**
  * Custom element for user status in menu bar
@@ -16,11 +16,11 @@ export default class UserStatus extends HTMLElement {
 	public render(): void {
 		this.classList.add("item", "ui", "dropdown");
 
-		const authData = ApplicationStore.auth.store; // get data from store
+		const authData = AuthStore.store; // get data from store
 		if (!authData.loggedIn)
 			this.innerHTML = userStatusTemplate({ loggedIn: false });
 		else
-			this.innerHTML = userStatusTemplate({ loggedIn: true, name: ApplicationStore.auth.get("selectedProfile").name });
+			this.innerHTML = userStatusTemplate({ loggedIn: true, name: authData.selectedProfile.name });
 		$(this).dropdown();
 	}
 }
@@ -31,5 +31,6 @@ const changeCallback = () => {
 	console.log("Auth store changed, rendering user status");
 	document.querySelector<UserStatus>("user-status")?.render();
 };
-ApplicationStore.auth.onDidChange("selectedProfile.name", changeCallback);
-ApplicationStore.auth.onDidChange("loggedIn", changeCallback);
+// @ts-ignore
+AuthStore.onDidChange("selectedProfile.name", changeCallback);
+AuthStore.onDidChange("loggedIn", changeCallback);
