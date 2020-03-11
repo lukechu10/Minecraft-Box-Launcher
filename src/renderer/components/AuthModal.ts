@@ -1,6 +1,7 @@
 import { Authentication } from "@xmcl/user";
 import authModalTemplate from "../templates/AuthModal.pug";
 import { AuthenticationController } from "../controllers/AuthenticationController"; // TODO: temp, remove dep
+import AuthStore from "../store/AuthStore";
 
 export class AuthModal extends HTMLDivElement {
 	public constructor() {
@@ -68,9 +69,23 @@ export class AuthModal extends HTMLDivElement {
 	/**
 	 * Returns the auth from user login or `null` if canceled
 	 */
-	public waitForAuth(): Authentication | null {
-		this.render();
-		return null;
+	public async waitForAuth(): Promise<Authentication | null> {
+		return new Promise((resolve, reject) => {
+			this.innerHTML = authModalTemplate();
+			$(this).modal({
+				closable: false,
+				detachable: false,
+				onHidden: () => {
+					console.log("ac");
+					if (AuthStore.store.loggedIn) {
+						resolve(AuthStore.store);
+					}
+					else resolve(null);
+				}
+			}).modal("show");
+			this.attachEvents();
+			resolve(null);
+		});
 	}
 }
 
