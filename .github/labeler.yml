@@ -1,0 +1,11 @@
+main-process:
+  - src/main/**/*
+renderer-process:
+  - src/renderer/**/*
+components:
+  - src/renderer/components/**/*
+templates:
+  - src/renderer/templates/**/*
+  - src/renderer/views/**/*
+css:
+  - src/renderer/css/**/*
