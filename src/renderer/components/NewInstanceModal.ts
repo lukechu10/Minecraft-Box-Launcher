@@ -1,4 +1,3 @@
-import Instance from "../Instance";
 import newInstanceModalTemplate from "../templates/NewInstanceModal.pug";
 import { InstanceData } from "../store/InstanceData";
 import { ApplicationStore } from "../store";
@@ -27,7 +26,7 @@ export default class NewInstanceModal extends HTMLDivElement {
 			$form.form("validate form");
 			if ($form.form("is valid")) {
 				// create new instance from input values
-				let tmpInstance: InstanceData = {
+				const tmpInstance: InstanceData = {
 					name: $form.form("get value", "instance-name"),
 					...this.getVersionMeta($form.form("get value", "instance-id")) as Installer.Version,
 					lastPlayed: "never",

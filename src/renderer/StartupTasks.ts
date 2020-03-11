@@ -5,6 +5,8 @@ import InstanceStore from "./store/InstanceStore";
 import * as Render from "./Render";
 import { showErrorToast } from "./util";
 
+import "./components/AuthModal";
+
 process.on("uncaughtException", err => {
 	showErrorToast(err.message);
 	console.error(err);
@@ -27,7 +29,7 @@ $(async () => {
 		if (err !== "User is not logged in. Cannot refresh auth.")
 			// pass on exception
 			throw err;
-			// else ignore
+		// else ignore
 	}
 });
 
@@ -35,6 +37,6 @@ $(async () => {
 export { Render, ApplicationStore, InstanceStore };
 // export imported controllers to window
 export { AuthenticationController, VersionsController };
-	
+
 export * from "./components/InstanceList";
 export * from "./components/UserStatus";

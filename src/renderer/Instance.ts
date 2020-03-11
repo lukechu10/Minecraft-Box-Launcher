@@ -1,6 +1,7 @@
 import { InstanceData } from "./store/InstanceData";
-import InstanceStore from "./store/InstanceStore";
 import { ApplicationStore } from "./store";
+import InstanceStore from "./store/InstanceStore";
+import AuthStore from "./store/AuthStore";
 
 import "./components/InstanceModal"; // add elements to custom elements registry
 import * as InstanceModal from "./components/InstanceModal";
@@ -8,7 +9,6 @@ import * as InstanceModal from "./components/InstanceModal";
 import { LaunchOption, Version, ResolvedVersion, launch, MinecraftLocation, MinecraftFolder } from "@xmcl/core";
 import { scanLocalJava } from "@xmcl/java-installer";
 import { lookupByName } from "@xmcl/user";
-import { Authentication } from "@xmcl/user";
 import { Installer } from "@xmcl/installer";
 import moment from "moment";
 
@@ -78,27 +78,32 @@ export default class Instance implements InstanceData {
 
 	public async launch(): Promise<ChildProcess> {
 		console.log(`Launching instance "${this.name}" with version "${this.id}".`);
-		let javaPath: string = ApplicationStore.GlobalSettings.store.java.externalJavaPath;
-		// check if using auto detect
-		if (javaPath === "") {
-			// check if installed
-			const info = await scanLocalJava([]);
-			if (info.length === 0) throw new Error("Java installation not detected");
-			else javaPath = info[0].path;
+		if (!AuthStore.store.loggedIn) {
+			throw new Error("User not logged in");
 		}
-		const resolvedVersion: ResolvedVersion = await Version.parse(Instance.MINECRAFT_PATH, this.id);
-		const options: LaunchOption = {
-			gamePath: Instance.MINECRAFT_PATH,
-			javaPath,
-			version: resolvedVersion,
-			minMemory: ApplicationStore.GlobalSettings.store.java.minMemory,
-			maxMemory: ApplicationStore.GlobalSettings.store.java.maxMemory,
-			gameProfile: await lookupByName((ApplicationStore.auth.store as Authentication).selectedProfile.name),
-			accessToken: (ApplicationStore.auth.store as Authentication).accessToken
-		};
-		const proc = launch(options);
-		this.lastPlayed = new Date().toISOString();
-		return proc;
+		else {
+			let javaPath: string = ApplicationStore.GlobalSettings.store.java.externalJavaPath;
+			// check if using auto detect
+			if (javaPath === "") {
+				// check if installed
+				const info = await scanLocalJava([]);
+				if (info.length === 0) throw new Error("Java installation not detected");
+				else javaPath = info[0].path;
+			}
+			const resolvedVersion: ResolvedVersion = await Version.parse(Instance.MINECRAFT_PATH, this.id);
+			const options: LaunchOption = {
+				gamePath: Instance.MINECRAFT_PATH,
+				javaPath,
+				version: resolvedVersion,
+				minMemory: ApplicationStore.GlobalSettings.store.java.minMemory,
+				maxMemory: ApplicationStore.GlobalSettings.store.java.maxMemory,
+				gameProfile: await lookupByName(AuthStore.store.selectedProfile.name),
+				accessToken: AuthStore.store.accessToken
+			};
+			const proc = launch(options);
+			this.lastPlayed = new Date().toISOString();
+			return proc;
+		}
 	}
 	public async install(): Promise<ResolvedVersion> {
 		const location: MinecraftLocation = new MinecraftFolder(path.join(app.getPath("userData"), "./game/"));

@@ -1,4 +1,3 @@
-import { Version } from "@xmcl/core";
 import { Installer } from "@xmcl/installer";
 
 /**
