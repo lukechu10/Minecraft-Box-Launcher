@@ -10,13 +10,6 @@ export namespace ApplicationStore {
 		}
 	});
 
-	export var auth: Store = new Store({
-		name: "auth",
-		defaults: {
-			loggedIn: false
-		}
-	});
-
 	/**
 	 * Cached versions meta
 	 */

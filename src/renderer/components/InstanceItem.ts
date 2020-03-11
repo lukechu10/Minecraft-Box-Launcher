@@ -7,6 +7,7 @@ import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug"
 import instanceItemTemplate from "../templates/InstanceItem.pug"; // important item template
 
 import InstanceStore from "../store/InstanceStore";
+import { AuthModal } from "./AuthModal";
 
 export default class InstanceItem extends HTMLDivElement {
 	public instance: Instance;
@@ -92,6 +93,14 @@ export default class InstanceItem extends HTMLDivElement {
 					// show corrupted modal
 					this.alertCorrupted();
 					return null;
+				}
+				if (err.message === "User not logged in") {
+					const authRes = (document.getElementById("modal-auth") as AuthModal).waitForAuth();
+					if (authRes !== null) {
+						// attempt to launch again
+						return await this.play();
+					}
+					else return null;
 				}
 				else throw err; // pipe error
 			}
