@@ -1,5 +1,4 @@
 import { InstanceData } from "./store/InstanceData";
-import InstanceStore from "./store/InstanceStore";
 import { ApplicationStore } from "./store";
 import AuthStore from "./store/AuthStore";
 
@@ -9,7 +8,6 @@ import * as InstanceModal from "./components/InstanceModal";
 import { LaunchOption, Version, ResolvedVersion, launch, MinecraftLocation, MinecraftFolder } from "@xmcl/core";
 import { scanLocalJava } from "@xmcl/java-installer";
 import { lookupByName } from "@xmcl/user";
-import { Authentication } from "@xmcl/user";
 import { Installer } from "@xmcl/installer";
 import moment from "moment";
 

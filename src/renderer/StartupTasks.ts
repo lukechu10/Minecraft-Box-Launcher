@@ -5,7 +5,6 @@ import InstanceStore from "./store/InstanceStore";
 import * as Render from "./Render";
 import { showErrorToast } from "./util";
 
-import { AuthModal } from "./components/AuthModal";
 import "./components/AuthModal";
 
 process.on("uncaughtException", err => {

@@ -29,7 +29,7 @@ export namespace AuthenticationController {
 
 			// clear store
 			AuthStore.set("loggedIn", false);
-		}	
+		}
 		return;
 	}
 	/**

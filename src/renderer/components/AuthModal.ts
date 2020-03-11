@@ -84,7 +84,7 @@ export class AuthModal extends HTMLDivElement {
 				}
 			}).modal("show");
 			this.attachEvents();
-			resolve(null);
+			reject(null); // error
 		});
 	}
 }
