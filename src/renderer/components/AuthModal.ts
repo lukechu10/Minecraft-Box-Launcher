@@ -15,6 +15,29 @@ export class AuthModal extends HTMLDivElement {
 			detachable: false
 		}).modal("show");
 		this.attachEvents();
+		if (message !== undefined) this.setErrorMessage(message);
+	}
+	/**
+	 * Returns the auth from user login or `null` if canceled
+	 */
+	public async waitForAuth(message?: string): Promise<Authentication | null> {
+		if (message !== undefined) this.setErrorMessage(message);
+		return new Promise((resolve, reject) => {
+			this.innerHTML = authModalTemplate();
+			$(this).modal({
+				closable: false,
+				detachable: false,
+				onHidden: () => {
+					console.log("ac");
+					if (AuthStore.store.loggedIn) {
+						resolve(AuthStore.store);
+					}
+					else resolve(null);
+				}
+			}).modal("show");
+			this.attachEvents();
+			reject(null); // error
+		});
 	}
 	private attachEvents(): void {
 		// initiate form
@@ -49,43 +72,31 @@ export class AuthModal extends HTMLDivElement {
 					$("#modal-login").modal("hide");
 				}
 				catch (e) {
-					$("#login-errors-container").css("display", "block");
-					// if invalid credentials
-					if (e.statusCode == 403) {
-						$("#login-errors").text("Invalid username or password!");
+					if (e.statusCode == 403) { // invalid credentials
+						this.setErrorMessage("Invalid username or password! Please try again.");
 					}
 					else {
-						$("#login-errors").text("An unknown error occured: " + e);
+						this.setErrorMessage(`An unknown error occured: ${e}`);
 						console.log("An unknown error occured when trying to login user. Caught exception: ", e);
 					}
 				}
 			}
 			else {
-				$("#login-errors-container").css("display", "block");
-				$("#login-errors").text("Please fill out the form!");
+				this.setErrorMessage("Please fill out the form!");
 			}
 		});
 	}
 	/**
-	 * Returns the auth from user login or `null` if canceled
+	 * @param message message to be set in the error message box or hide if `null`.
 	 */
-	public async waitForAuth(): Promise<Authentication | null> {
-		return new Promise((resolve, reject) => {
-			this.innerHTML = authModalTemplate();
-			$(this).modal({
-				closable: false,
-				detachable: false,
-				onHidden: () => {
-					console.log("ac");
-					if (AuthStore.store.loggedIn) {
-						resolve(AuthStore.store);
-					}
-					else resolve(null);
-				}
-			}).modal("show");
-			this.attachEvents();
-			reject(null); // error
-		});
+	private setErrorMessage(message: string | null) {
+		if (message !== null) {
+			(document.getElementById("login-errors-container") as HTMLDivElement).style.display = "block";
+			(document.getElementById("login-errors") as HTMLDivElement).textContent = message;
+		}
+		else {
+			(document.getElementById("login-errors-container") as HTMLDivElement).style.display = "none";
+		}
 	}
 }
 
