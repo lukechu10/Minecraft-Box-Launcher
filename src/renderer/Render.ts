@@ -1,22 +1,22 @@
 import { AuthenticationController } from "./controllers/AuthenticationController";
 
-// TODO: remove workaround
-import * as NewInstanceController from "./controllers/NewInstanceModal"; // attach event handlers
-
-import newInstanceModal from "./templates/modals/newInstance.pug";
+import "./components/NewInstanceModal";
+import NewInstanceModal from "./components/NewInstanceModal";
 
 export * from "./controllers/SettingsModal";
 
 /**
  * Shows new instance window
+ * @deprecated
  */
 export function newInstance(): void {
-	$("#modal-newInstance").replaceWith(newInstanceModal({ name }));
-	$("#modal-newInstance").modal({
-		closable: false
-	}).modal("show");
+	// $("#modal-newInstance").replaceWith(newInstanceModal({ name }));
+	// $("#modal-newInstance").modal({
+	// 	closable: false
+	// }).modal("show");
 
-	NewInstanceController.attachEvents(); // attach events
+	// NewInstanceController.attachEvents(); // attach events
+	(document.getElementById("modal-newInstance") as NewInstanceModal).render();
 }
 
 /**
