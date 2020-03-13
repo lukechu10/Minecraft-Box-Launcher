@@ -25,12 +25,9 @@ describe("Application launch", function () {
 		}
 	});
 
-	it("shows an initial window", () => {
-		return app.client.getWindowCount().then((count) => {
-			assert.strictEqual(count, 1);
-			// Please note that getWindowCount() will return 2 if `dev tools` are opened.
-			// assert.equal(count, 2)
-		});
+	it("shows an initial window", async () => {
+		const n = await app.client.getWindowCount();
+		return assert.strictEqual(n, 1);
 	});
 
 	it("has the correct title", async () => {
