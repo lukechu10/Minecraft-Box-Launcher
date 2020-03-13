@@ -1,13 +1,13 @@
 {
-   "typescript.tsdk": "node_modules/typescript/lib",
-   "editor.detectIndentation": true,
-   "editor.insertSpaces": false,
-   "editor.tabSize": 4,
-   "eslint.validate": [
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact"
-   ],
-   "files.insertFinalNewline": true
+	"editor.detectIndentation": true,
+	"editor.insertSpaces": false,
+	"editor.tabSize": 4,
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	],
+	"files.insertFinalNewline": true,
+	"typescript.preferences.quoteStyle": "double",
 }
