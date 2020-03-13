@@ -10,8 +10,8 @@ jobs:
     - uses: actions/checkout@v1
     - name: Use NodeJS 12
       uses: actions/setup-node@v1
-          with:
-            node-version: 12
+      with:
+        node-version: 12
     - name: npm install
       run: npm install
     - name: Run tests and generate coverage with mocha and nyc
