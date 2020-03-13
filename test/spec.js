@@ -35,8 +35,20 @@ describe('Application launch', function() {
 		return assert.strictEqual(title, "Minecraft Box");
 	});
 
-	it('does not have the developer tools open', async () => {
+	it("does not have the developer tools open", async () => {
 		const devToolsAreOpen = await app.client.waitUntilWindowLoaded().browserWindow.isDevToolsOpened();
-		return assert.equal(devToolsAreOpen, false);
+		return assert.strictEqual(devToolsAreOpen, false);
+	});
+
+	it("shows the instance page", async () => {
+		await app.client.waitUntilWindowLoaded();
+		const text = await app.client.getText("#content div h1");
+		return assert.strictEqual(text, "Instances");
+	});
+
+	it("has no instances in the instance list", async () => {
+		await app.client.waitUntilWindowLoaded();
+		const list = await app.client.$$("div[is='instance-list] .instance-item");
+		return assert.strictEqual(list.length, 0);
 	});
 });
