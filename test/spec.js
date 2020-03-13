@@ -16,11 +16,11 @@ const app = new Application({
 describe("Application launch", function () {
 	this.timeout(10000);
 
-	beforeEach(() => {
+	beforeEach(async () => {
 		return app.start();
 	});
 
-	afterEach(() => {
+	afterEach(async () => {
 		if (app && app.isRunning()) {
 			return app.stop();
 		}
