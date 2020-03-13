@@ -6,10 +6,13 @@ const path = require('path');
 
 const app = new Application({
 	path: electronPath,
-	args: [path.join(__dirname, "..", "dist/js/main", "main.js"), "--dev", "--no-sandbox"],
+	args: [
+		path.join(__dirname, "..", "dist/js/main", "main.js"),
+		process.env.GITPOD_HOST === "https://gitpod.io" ? "--no-sandbox" : "" // run without sandboxing if using gitpod
+	]
 });
 
-describe('Application launch', function() {
+describe('Application launch', function () {
 	this.timeout(10000);
 
 	beforeEach(() => {
