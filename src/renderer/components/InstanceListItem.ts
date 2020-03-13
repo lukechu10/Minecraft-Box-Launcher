@@ -9,7 +9,7 @@ import instanceItemTemplate from "../templates/InstanceItem.pug"; // important i
 import InstanceStore from "../store/InstanceStore";
 import { AuthModal } from "./AuthModal";
 
-export default class InstanceItem extends HTMLDivElement {
+export default class InstanceListItem extends HTMLDivElement {
 	public instance: Instance;
 
 	public constructor(data?: Instance) {
@@ -109,4 +109,4 @@ export default class InstanceItem extends HTMLDivElement {
 	}
 }
 
-customElements.define("instance-item", InstanceItem, { extends: "div" });
+customElements.define("instance-item", InstanceListItem, { extends: "div" });

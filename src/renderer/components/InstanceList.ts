@@ -1,4 +1,4 @@
-import InstanceItem from "./InstanceItem";
+import InstanceListItem from "./InstanceListItem";
 import { remote } from "electron";
 import InstanceStore from "../store/InstanceStore";
 import Instance from "../Instance";
@@ -24,7 +24,7 @@ export default class InstanceList extends HTMLDivElement {
 		}
 		else {
 			for (const instance of instances) {	// add InstanceItem nodes to dom
-				const node = new InstanceItem(new Instance(instance));
+				const node = new InstanceListItem(new Instance(instance));
 				node.classList.add("instance-item");
 				node.render();
 				node.classList.add("item");
