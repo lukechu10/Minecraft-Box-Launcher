@@ -25,10 +25,13 @@ All the commands are specified in `package.json` if you don't mind working with 
 
 When developing the app, use `npm run build-watch` to watch for file changes.
 
-## Testing out the app
+## Launching the app
 If you are using Visual Studio Code, just use the keybinding **F5** or **Ctrl+F5** without debugging to launch the app. If you are using Gitpod or any other IDE, just use the command: `npm dev`. (**Note:** There is an issue with `npm dev` on gitpod so use the command `npm run dev:gitpod` instead). Starting the app this way also enables developer tools so use **Ctrl+Shift+I** or the context menu to open dev tools. 
 
 If you wish to see how the application would look like in production, use the command `npm start` instead (use `npm run start:gitpod` if using Gitpod)
+
+## Testing
+Before checking in your changes, please make sure your changes pass testing. You can do so by running `npm run test`. Also make sure your changes conform to the coding styles of this project. You can do so by running `npm run eslint` or `npm run eslint:fix` to attempt to fix problems automatically.
 
 ## Submitting changes
 Please send a GitHub Pull Request to Minecraft-Box-Launcher with a clear list of what you've done (read more about pull requests). Please follow our coding conventions (below) and make sure all of your commits are atomic (one feature per commit).
