@@ -12,7 +12,7 @@ const app = new Application({
 	],
 	chromeDriverArgs: ["--remote-debugging-port=12209"]
 });
-
+console.log(app)
 describe("Application launch", function () {
 	this.timeout(10000);
 
