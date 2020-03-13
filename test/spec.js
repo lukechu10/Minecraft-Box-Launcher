@@ -9,7 +9,8 @@ const app = new Application({
 	args: [
 		path.join(__dirname, "..", "dist/js/main", "main.js"),
 		process.env.GITPOD_HOST === "https://gitpod.io" ? "--no-sandbox" : "" // run without sandboxing if using gitpod
-	]
+	],
+	chromeDriverArgs: ["--remote-debugging-port=12209"]
 });
 
 describe("Application launch", function () {
