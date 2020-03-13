@@ -4,31 +4,39 @@ import "v8-compile-cache";
 import { app, Menu, BrowserWindow } from "electron";
 
 import debug from "electron-debug";
-
-import { MainWindow } from "./MainWindow";
+import path from "path";
 
 debug({
 	showDevTools: false
 });
-
-const WindowList: Map<string, BrowserWindow | null> = new Map();
+let mainWindow: BrowserWindow | null;
 
 if (!process.argv.includes("--dev")) // show application menu only if flag --dev is passed as 3rd argument
 	Menu.setApplicationMenu(null); // only show menu in dev
 
 function createWindow(): void {
 	// Create the browser window.
-	WindowList.set("main", new MainWindow());
+	mainWindow = new BrowserWindow({
+		width: 800,
+		height: 600,
+		title: "Minecraft Box",
+		webPreferences: {
+			nodeIntegration: true,
+			sandbox: false
+		},
+		icon: path.join(__dirname, "./build/icon.png")
+	});
+	mainWindow.loadFile(path.join(__dirname, "../../views/", "instances.html"));
 
 	// Emitted when the window is closed.
-	WindowList.get("main")?.on("closed", () => {
+	mainWindow?.on("closed", () => {
 		// Dereference the window object, usually you would store windows
 		// in an array if your app supports multi windows, this is the time
 		// when you should delete the corresponding element.
-		WindowList.set("main", null);
+		mainWindow = null;
 	});
 
-	WindowList.get("main")?.webContents.on("new-window", event => event.preventDefault());
+	mainWindow?.webContents.on("new-window", event => event.preventDefault());
 }
 
 const gotTheLock = app.requestSingleInstanceLock();
@@ -38,8 +46,8 @@ if (!gotTheLock) {
 else {
 	app.on("second-instance", () => {
 		// Someone tried to run a second instance, we should focus our window.
-		if (WindowList.get("main")?.isMinimized()) WindowList.get("main")?.restore();
-		WindowList.get("main")?.focus();
+		if (mainWindow?.isMinimized()) mainWindow?.restore();
+		mainWindow?.focus();
 	});
 
 	// This method will be called when Electron has finished
@@ -62,5 +70,5 @@ app.on("window-all-closed", () => {
 app.on("activate", () => {
 	// On macOS it's common to re-create a window in the app when the
 	// dock icon is clicked and there are no other windows open.
-	if (WindowList.get("main") === null) createWindow();
+	if (mainWindow === null) createWindow();
 });
