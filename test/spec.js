@@ -1,8 +1,8 @@
 "use-strict";
-const Application = require('spectron').Application;
-const assert = require('assert');
-const electronPath = require('electron'); // Require Electron from the binaries included in node_modules.
-const path = require('path');
+const Application = require("spectron").Application;
+const assert = require("assert");
+const electronPath = require("electron"); // Require Electron from the binaries included in node_modules.
+const path = require("path");
 
 const app = new Application({
 	path: electronPath,
@@ -12,7 +12,7 @@ const app = new Application({
 	]
 });
 
-describe('Application launch', function () {
+describe("Application launch", function () {
 	this.timeout(10000);
 
 	beforeEach(() => {
