@@ -9,6 +9,8 @@ ports:
     onOpen: notify
   - port: 35900
     onOpen: ignore
+  - port: 9515 # spectron
+    onOpen: ignore
 
 tasks:
   - before: nvm install 12 && nvm alias default 12

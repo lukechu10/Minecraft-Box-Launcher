@@ -9,7 +9,7 @@
 		"dev": "electron . --dev",
 		"start:gitpod": "electron --no-sandbox .",
 		"dev:gitpod": "electron . --dev --no-sandbox",
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"test": "mocha",
 		"build": "run-p build:*",
 		"build-watch": "run-p build-watch:*",
 		"build-watch:ts": "tsc -p tsconfig.json --watch",
