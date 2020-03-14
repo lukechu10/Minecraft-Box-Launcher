@@ -24,7 +24,7 @@ export default class Rename extends HTMLDivElement {
 				else {
 					if (this.instance !== null) {
 						this.instance.name = $("#input-rename").val() as string;
-						this.instance.syncToStore();
+						this.instance.syncToStoreRename(this.oldName);
 					}
 				}
 			}
