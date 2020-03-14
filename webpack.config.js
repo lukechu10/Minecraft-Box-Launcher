@@ -112,6 +112,24 @@ module.exports = [
 	_.defaults({
 		name: "coverage",
 		devtool: "inline-source-map",
-		mode: "development"
+		mode: "development",
+		module: {
+			rules: [
+				// all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
+				{
+					test: /\.tsx?$/,
+					include: path.resolve(__dirname, "src"),
+					loader: [
+						"coverage-istanbul-loader",
+						"ts-loader"
+					]
+				},
+				{
+					test: /\.pug/,
+					include: path.resolve(__dirname, "src", "renderer"),
+					loader: "pug-loader"
+				}
+			]
+		},
 	}, baseConfig),
 ];
