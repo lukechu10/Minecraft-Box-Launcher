@@ -33,6 +33,18 @@ export default class InstanceList extends HTMLDivElement {
 		}
 	}
 
+	/**
+	 * Same to `render()` but without destroying child nodes. This should only be used if the number of instances do not change.
+	 */
+	public refresh(): void {
+		const instances = InstanceStore.get("instances");
+		if (instances.length !== 0) {
+			for (let i = 0; i < this.children.length; i++) {
+				(this.children[i] as InstanceListItem).render(new Instance(instances[i]));
+			}
+		}
+	}
+
 	private connectedCallback(): void {
 		this.render();
 	}
@@ -44,12 +56,12 @@ customElements.define("instance-list", InstanceList, { extends: "div" });
 // do not update if not focused
 setInterval(() => {
 	if (remote.getCurrentWindow().isFocused())
-		document.querySelector<InstanceList>("div[is='instance-list']")?.render();
+		document.querySelector<InstanceList>("div[is='instance-list']")?.refresh();
 }, 60000); // every minute
 
 // rerender when window is focused
 window.addEventListener("focus", () => {
-	document.querySelector<InstanceList>("div[is='instance-list']")?.render();
+	document.querySelector<InstanceList>("div[is='instance-list']")?.refresh();
 });
 
 // render list every time store changes
