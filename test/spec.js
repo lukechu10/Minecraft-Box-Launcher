@@ -75,7 +75,7 @@ describe("Application launch", function () {
 		return res;
 	});
 
-	it.only("shows the settings modal", async () => {
+	it("shows the settings modal", async () => {
 		await app.client.waitUntilWindowLoaded();
 		await app.client.$("#content").$("div.ui.right.button").click();
 		const res = await app.client.waitForVisible("#modal-settings", 1000);
