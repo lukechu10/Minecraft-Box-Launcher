@@ -67,4 +67,18 @@ describe("Application launch", function () {
 		const list = await app.client.$$("div[is='instance-list] .instance-item");
 		return assert.strictEqual(list.length, 0);
 	});
+
+	it("shows the new instance modal", async () => {
+		await app.client.waitUntilWindowLoaded();
+		await app.client.$("#content").$("div.ui.primary.button").click();
+		const res = await app.client.waitForVisible("#modal-newInstance", 1000);
+		return res;
+	});
+
+	it.only("shows the settings modal", async () => {
+		await app.client.waitUntilWindowLoaded();
+		await app.client.$("#content").$("div.ui.right.button").click();
+		const res = await app.client.waitForVisible("#modal-settings", 1000);
+		return res;
+	});
 });
