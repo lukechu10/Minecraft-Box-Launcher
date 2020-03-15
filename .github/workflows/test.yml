@@ -14,6 +14,8 @@ jobs:
         node-version: 12
     - name: npm install
       run: npm install
+    - name: Instrument renderer files with webpack
+      run: npx webpack --config-name=coverage
     - name: Run tests and generate coverage with mocha and nyc
       run: xvfb-run --auto-servernum npm run coverage
     - name: Upload coverage to Coveralls

@@ -47,6 +47,7 @@ class InstanceStore extends Store<{ instances: InstanceData[] }> {
 	 */
 	public modifyInstance(name: string, instance: InstanceData): void {
 		const i = this.get("instances").findIndex(obj => obj.name === name);
+		if (i === -1) throw new Error("An instance with this name does not exist");
 		const temp = this.get("instances");
 		temp[i] = instance;
 		this.set("instances", temp);

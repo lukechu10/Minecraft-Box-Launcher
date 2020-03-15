@@ -76,6 +76,14 @@ export default class Instance implements InstanceData {
 		InstanceStore.modifyInstance(this.name, this);
 	}
 
+	/**
+	 * Same as `syncToStore()` except for renaming the instance
+	 * @param oldName name before rename. Remember to save it somewhere.
+	 */
+	public syncToStoreRename(oldName: string): void {
+		InstanceStore.modifyInstance(oldName, this);
+	}
+
 	public async launch(): Promise<ChildProcess> {
 		console.log(`Launching instance "${this.name}" with version "${this.id}".`);
 		if (!AuthStore.store.loggedIn) {

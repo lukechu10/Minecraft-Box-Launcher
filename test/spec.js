@@ -3,6 +3,9 @@ const Application = require("spectron").Application;
 const assert = require("assert");
 const electronPath = require("electron"); // Require Electron from the binaries included in node_modules.
 const path = require("path");
+const uuid = require("uuid");
+const _ = require("lodash");
+const fs = require("fs-extra");
 
 const app = new Application({
 	path: electronPath,
@@ -21,6 +24,18 @@ describe("Application launch", function () {
 	});
 
 	afterEach(async () => {
+		// get coverage report from window.__coverage__
+		await app.client.waitUntilWindowLoaded();
+		const coverageReport = (await app.client.execute(() => window.__coverage__)).value;
+		if (coverageReport && !_.isEmpty(coverageReport)) {
+			const NYC_OUTPUT_BASE = path.resolve(".nyc_output")
+			await fs.mkdirp(NYC_OUTPUT_BASE);
+			const NYC_OUTPUT_DEST = path.resolve(NYC_OUTPUT_BASE, `${uuid.v4()}.json`)
+			fs.writeFileSync(NYC_OUTPUT_DEST, JSON.stringify(coverageReport), {
+				encoding: 'utf8'
+			})
+		}
+
 		if (app && app.isRunning()) {
 			return app.stop();
 		}
