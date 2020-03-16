@@ -6,23 +6,19 @@ import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
 import fs from "fs-extra";
 
-// Path to Electron
-let electronPath = path.join(__dirname, "..", "node_modules", ".bin", "electron");
-if (process.platform === "win32") electronPath += ".cmd";
-
 const app = new Application({
-	path: electronPath,
+	path: require("electron") as unknown as string,
 	args: [
 		path.join(__dirname, "..", "dist/js/main", "main.js"),
 		process.env.GITPOD_HOST === "https://gitpod.io" ? "--no-sandbox" : "" // run without sandboxing if using gitpod
 	],
-	chromeDriverArgs: ["--remote-debugging-port=12209"]
+	chromeDriverArgs: ["remote-debugging-port=9222"]
 });
 
 describe("Application launch", function () {
 	this.timeout(30000);
 
-	beforeEach(async () => {
+	beforeEach(() => {
 		return app.start();
 	});
 
