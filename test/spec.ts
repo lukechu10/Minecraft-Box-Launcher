@@ -1,11 +1,14 @@
 "use-strict";
-const Application = require("spectron").Application;
-const assert = require("assert");
-const electronPath = require("electron"); // Require Electron from the binaries included in node_modules.
-const path = require("path");
-const uuid = require("uuid");
-const _ = require("lodash");
-const fs = require("fs-extra");
+import { Application } from "spectron";
+import assert from "assert";
+import path from "path";
+import uuid from "uuid";
+import _ from "lodash";
+import fs from "fs-extra";
+
+// Path to Electron
+let electronPath = path.join(__dirname, "..", "node_modules", ".bin", "electron");
+if (process.platform === "win32") electronPath += ".cmd";
 
 const app = new Application({
 	path: electronPath,
@@ -26,9 +29,9 @@ describe("Application launch", function () {
 	afterEach(async () => {
 		// get coverage report from window.__coverage__
 		await app.client.waitUntilWindowLoaded();
-		const coverageReport = (await app.client.execute(() => window.__coverage__)).value;
+		const coverageReport = (await app.client.execute(() => (window as any).__coverage__)).value;
 		if (coverageReport && !_.isEmpty(coverageReport)) {
-			const NYC_OUTPUT_BASE = path.resolve(".nyc_output")
+			const NYC_OUTPUT_BASE = path.resolve(".nyc_output");
 			await fs.mkdirp(NYC_OUTPUT_BASE);
 			const NYC_OUTPUT_DEST = path.resolve(NYC_OUTPUT_BASE, `${uuid.v4()}.json`);
 			fs.writeFileSync(NYC_OUTPUT_DEST, JSON.stringify(coverageReport), {
@@ -47,13 +50,9 @@ describe("Application launch", function () {
 	});
 
 	it("has the correct title", async () => {
-		const title = await app.client.waitUntilWindowLoaded().browserWindow.getTitle();
+		await app.client.waitUntilWindowLoaded();
+		const title = app.browserWindow.getTitle();
 		return assert.strictEqual(title, "Minecraft Box");
-	});
-
-	it("does not have the developer tools open", async () => {
-		const devToolsAreOpen = await app.client.waitUntilWindowLoaded().browserWindow.isDevToolsOpened();
-		return assert.strictEqual(devToolsAreOpen, false);
 	});
 
 	it("shows the instance page", async () => {
@@ -64,7 +63,7 @@ describe("Application launch", function () {
 
 	it("has no instances in the instance list", async () => {
 		await app.client.waitUntilWindowLoaded();
-		const list = await app.client.$$("div[is='instance-list] .instance-item");
+		const list = await app.client.$$("div[is='instance-list'] .instance-item");
 		return assert.strictEqual(list.length, 0);
 	});
 
