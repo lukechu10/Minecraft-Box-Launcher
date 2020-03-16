@@ -2,7 +2,7 @@
 import { Application } from "spectron";
 import assert from "assert";
 import path from "path";
-import uuid from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
 import fs from "fs-extra";
 
@@ -33,7 +33,7 @@ describe("Application launch", function () {
 		if (coverageReport && !_.isEmpty(coverageReport)) {
 			const NYC_OUTPUT_BASE = path.resolve(".nyc_output");
 			await fs.mkdirp(NYC_OUTPUT_BASE);
-			const NYC_OUTPUT_DEST = path.resolve(NYC_OUTPUT_BASE, `${uuid.v4()}.json`);
+			const NYC_OUTPUT_DEST = path.resolve(NYC_OUTPUT_BASE, `${uuidv4()}.json`);
 			fs.writeFileSync(NYC_OUTPUT_DEST, JSON.stringify(coverageReport), {
 				encoding: "utf8"
 			});
