@@ -35,6 +35,7 @@
 	"license": " GPL-3.0-or-later",
 	"devDependencies": {
 		"@types/bytebuffer": "^5.0.40",
+		"@types/chai": "^4.2.11",
 		"@types/fast-html-parser": "^1.0.0",
 		"@types/fs-extra": "^8.1.0",
 		"@types/got": "^9.6.9",
