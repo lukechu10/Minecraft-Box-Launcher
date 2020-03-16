@@ -47,7 +47,7 @@ describe("Application launch", function () {
 
 	it("has the correct title", async () => {
 		await app.client.waitUntilWindowLoaded();
-		const title = app.browserWindow.getTitle();
+		const title = await app.browserWindow.getTitle();
 		return assert.strictEqual(title, "Minecraft Box");
 	});
 
@@ -80,7 +80,7 @@ describe("Application launch", function () {
 	it("shows the login modal", async () => {
 		await app.client.waitUntilWindowLoaded();
 		await app.client.$("#login-status-text").click();
-		const res = await app.client.waitForVisible("#modal-auth");
+		const res = await app.client.waitForVisible("#modal-login");
 		return res;
 	});
 });
