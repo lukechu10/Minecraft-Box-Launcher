@@ -80,4 +80,11 @@ describe("Application launch", function () {
 		const res = await app.client.waitForVisible("#modal-settings", 1000);
 		return res;
 	});
+
+	it("shows the login modal", async () => {
+		await app.client.waitUntilWindowLoaded();
+		await app.client.$("#login-status-text").click();
+		const res = await app.client.waitForVisible("#modal-auth");
+		return res;
+	});
 });
