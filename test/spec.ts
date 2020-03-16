@@ -67,7 +67,7 @@ describe("Application launch", function () {
 	it("shows the settings modal", async () => {
 		await app.client.waitUntilWindowLoaded();
 		await app.client.$("#content").$("div.ui.right.button").click();
-		const res = await app.client.waitForVisible("#modal-settings:not(.animating)", 1000);
+		const res = await app.client.waitForVisible("#modal-settings:not(.animating)", 2000);
 		return res;
 	});
 
@@ -82,10 +82,10 @@ describe("Application launch", function () {
 		it("can create new instances from the instance modal", async () => {
 			await app.client.waitUntilWindowLoaded();
 			await app.client.$("#content").$("div.ui.primary.button").click();
-			const res = await app.client.waitForVisible("#modal-newInstance:not(.animating)", 1000);
+			const res = await app.client.waitForVisible("#modal-newInstance:not(.animating)", 2000);
 			expect(res).to.be.equal(true); // make sure modal appears
 			await app.client.$("#submit-newInstanceForm").click(); // attempt to create empty instance
-			const isError = await app.client.$("#modal-newInstance").waitForExist(".ui.form.error", 1000);
+			const isError = await app.client.$("#modal-newInstance").waitForExist(".ui.form.error", 2000);
 			expect(isError).to.equal(true);
 		});
 	});
