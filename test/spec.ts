@@ -5,6 +5,7 @@ import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
 import fs from "fs-extra";
+import { expect } from "chai";
 
 const app = new Application({
 	path: require("electron") as unknown as string,
@@ -63,24 +64,29 @@ describe("Application launch", function () {
 		return assert.strictEqual(list.length, 0);
 	});
 
-	it("shows the new instance modal", async () => {
-		await app.client.waitUntilWindowLoaded();
-		await app.client.$("#content").$("div.ui.primary.button").click();
-		const res = await app.client.waitForVisible("#modal-newInstance", 1000);
-		return res;
-	});
-
 	it("shows the settings modal", async () => {
 		await app.client.waitUntilWindowLoaded();
 		await app.client.$("#content").$("div.ui.right.button").click();
-		const res = await app.client.waitForVisible("#modal-settings", 1000);
+		const res = await app.client.waitForVisible("#modal-settings:not(.animating)", 1000);
 		return res;
 	});
 
 	it("shows the login modal", async () => {
 		await app.client.waitUntilWindowLoaded();
 		await app.client.$("#login-status-text").click();
-		const res = await app.client.waitForVisible("#modal-login");
+		const res = await app.client.waitForVisible("#modal-login:not(.animating)");
 		return res;
+	});
+
+	describe("Instance management", () => {
+		it("can create new instances from the instance modal", async () => {
+			await app.client.waitUntilWindowLoaded();
+			await app.client.$("#content").$("div.ui.primary.button").click();
+			const res = await app.client.waitForVisible("#modal-newInstance:not(.animating)", 1000);
+			expect(res).to.be.equal(true); // make sure modal appears
+			await app.client.$("#submit-newInstanceForm").click(); // attempt to create empty instance
+			const isError = await app.client.$("#modal-newInstance").waitForExist(".ui.form.error", 1000);
+			expect(isError).to.equal(true);
+		});
 	});
 });
