@@ -16,7 +16,7 @@ const app = new Application({
 	chromeDriverArgs: ["remote-debugging-port=9222"]
 });
 
-describe("Application launch", function () {
+describe("Application window", function () {
 	this.timeout(30000);
 
 	beforeEach(() => {
@@ -78,8 +78,8 @@ describe("Application launch", function () {
 		return res;
 	});
 
-	describe("Instance management", () => {
-		it("can create new instances from the instance modal", async () => {
+	describe.only("Instance management", () => {
+		async function fillOutInstanceForm() {
 			await app.client.waitUntilWindowLoaded();
 			await app.client.$("#content").$("div.ui.primary.button").click();
 			const res = await app.client.waitForVisible("#modal-newInstance:not(.animating)", 2000);
@@ -112,6 +112,44 @@ describe("Application launch", function () {
 			const instanceList = app.client.$("div[is='instance-list']");
 			const items = await instanceList.$$(".instance-item");
 			expect(items).to.have.lengthOf(1); // 1 instance
+			expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.be.equal("Test instance"); // check instance title (set in form)
+		}
+
+		async function openInstanceInfoModal() {
+			await fillOutInstanceForm();
+			await app.client.$("div[is='instance-list'").$(".instance-item .ui.grid .thirteen.wide.column").click();
+			await app.client.waitForVisible("#modal-info:not(.animating)", 2000);
+		}
+		it("can create new instances from the instance modal", async () => {
+			await fillOutInstanceForm();
+		});
+
+		it("can show the instance info modal", async () => {
+			await openInstanceInfoModal();
+		});
+
+		it("can show the instance rename modal", async () => {
+			await openInstanceInfoModal();
+			await app.client.$(".btn-rename").click();
+			await app.client.waitForVisible("#modal-rename:not(.animating)");
+		});
+
+		it("can show the instance options modal", async () => {
+			await openInstanceInfoModal();
+			await app.client.$(".btn-options").click();
+			await app.client.waitForVisible("#modal-options:not(.animating)");
+		});
+
+		it("can show the instance saves modal", async () => {
+			await openInstanceInfoModal();
+			await app.client.$(".btn-saves").click();
+			await app.client.waitForVisible("#modal-saves:not(.animating)");
+		});
+
+		it("can show the instance confirm delete modal", async () => {
+			await openInstanceInfoModal();
+			await app.client.$(".btn-delete").click();
+			await app.client.waitForVisible("#modal-confirmDelete:not(.animating)");
 		});
 	});
 });
