@@ -78,7 +78,7 @@ describe("Application launch", function () {
 		return res;
 	});
 
-	describe("Instance management", () => {
+	describe.only("Instance management", () => {
 		it("can create new instances from the instance modal", async () => {
 			await app.client.waitUntilWindowLoaded();
 			await app.client.$("#content").$("div.ui.primary.button").click();
@@ -87,6 +87,31 @@ describe("Application launch", function () {
 			await app.client.$("#submit-newInstanceForm").click(); // attempt to create empty instance
 			const isError = await app.client.$("#modal-newInstance").waitForExist(".ui.form.error", 2000);
 			expect(isError).to.equal(true);
+
+			// fill out form
+			const form = app.client.$("#form-newInstance");
+			await form.$("input[name='instance-name']").setValue("Test instance");
+			// select instance type
+			await form.$("#dropdown-type").click();
+			await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000);
+			await form.$("#dropdown-type .menu .item").click(); // select first option (vanilla release)
+			await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000, true);
+			// select instance version
+			await form.waitForExist("#dropdown-id:not(.disabled)");
+			await form.$("#dropdown-id").click();
+			await form.$("#dropdown-id").waitForVisible(".menu:not(.animating)", 2000);
+			await form.$("#dropdown-id .menu .item").click(); // select first option (latest vanilla release)
+			await form.$("#dropdown-id").waitForVisible(".menu:not(.animating)", 2000, true);
+
+			// click on create instance button
+			await form.$("#submit-newInstanceForm").click();
+
+			// wait for modal to close
+			await app.client.$("#modal-newInstance").waitForVisible(2000, true);
+			// check if new item has been added to instance list
+			const instanceList = app.client.$("div[is='instance-list']");
+			const items = await instanceList.$$(".instance-item");
+			expect(items).to.have.lengthOf(1); // 1 instance
 		});
 	});
 });
