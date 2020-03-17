@@ -152,7 +152,7 @@ describe("Application window", function () {
 			await app.client.waitForVisible("#modal-confirmDelete:not(.animating)", 2000);
 		});
 
-		it.only("can rename an instance with the rename modal", async () => {
+		it("can rename an instance with the rename modal", async () => {
 			await openInstanceInfoModal();
 			await app.client.$(".btn-rename").click();
 			await app.client.waitForVisible("#modal-rename:not(.animating)", 2000);
