@@ -78,7 +78,7 @@ describe("Application window", function () {
 		return res;
 	});
 
-	describe.only("Instance management", () => {
+	describe("Instance management", () => {
 		async function fillOutInstanceForm() {
 			await app.client.waitUntilWindowLoaded();
 			await app.client.$("#content").$("div.ui.primary.button").click();
