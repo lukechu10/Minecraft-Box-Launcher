@@ -131,25 +131,37 @@ describe("Application window", function () {
 		it("can show the instance rename modal", async () => {
 			await openInstanceInfoModal();
 			await app.client.$(".btn-rename").click();
-			await app.client.waitForVisible("#modal-rename:not(.animating)");
+			await app.client.waitForVisible("#modal-rename:not(.animating)", 2000);
 		});
 
 		it("can show the instance options modal", async () => {
 			await openInstanceInfoModal();
 			await app.client.$(".btn-options").click();
-			await app.client.waitForVisible("#modal-options:not(.animating)");
+			await app.client.waitForVisible("#modal-options:not(.animating)", 2000);
 		});
 
 		it("can show the instance saves modal", async () => {
 			await openInstanceInfoModal();
 			await app.client.$(".btn-saves").click();
-			await app.client.waitForVisible("#modal-saves:not(.animating)");
+			await app.client.waitForVisible("#modal-saves:not(.animating)", 2000);
 		});
 
 		it("can show the instance confirm delete modal", async () => {
 			await openInstanceInfoModal();
 			await app.client.$(".btn-delete").click();
-			await app.client.waitForVisible("#modal-confirmDelete:not(.animating)");
+			await app.client.waitForVisible("#modal-confirmDelete:not(.animating)", 2000);
+		});
+
+		it.only("can rename an instance with the rename modal", async () => {
+			await openInstanceInfoModal();
+			await app.client.$(".btn-rename").click();
+			await app.client.waitForVisible("#modal-rename:not(.animating)", 2000);
+			await app.client.$("#input-rename").setValue("Test instance 2"); // rename modal
+			await app.client.$("#modal-rename").$(".ui.approve.button").click();
+			await app.client.waitForVisible("#modal-rename:not(.animating)", 2000, true);
+			// check that instance name in instance list changed
+			const instanceList = app.client.$("div[is='instance-list']");
+			expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.be.equal("Test instance 2");
 		});
 	});
 });
