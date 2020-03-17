@@ -78,7 +78,7 @@ describe("Application launch", function () {
 		return res;
 	});
 
-	describe.only("Instance management", () => {
+	describe("Instance management", () => {
 		it("can create new instances from the instance modal", async () => {
 			await app.client.waitUntilWindowLoaded();
 			await app.client.$("#content").$("div.ui.primary.button").click();
