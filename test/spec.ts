@@ -43,39 +43,42 @@ describe("Application window", function () {
 
 	it("shows an initial window", async () => {
 		const n = await app.client.getWindowCount();
-		return assert.strictEqual(n, 1);
+		expect(n).to.be.a("number");
+		expect(n).to.equal(1);
 	});
 
 	it("has the correct title", async () => {
 		await app.client.waitUntilWindowLoaded();
 		const title = await app.browserWindow.getTitle();
-		return assert.strictEqual(title, "Minecraft Box");
+		expect(title).to.be.a("string");
+		expect(title).to.equal("Minecraft Box");
 	});
 
 	it("shows the instance page", async () => {
 		await app.client.waitUntilWindowLoaded();
 		const text = await app.client.getText("#content div h1");
-		return assert.strictEqual(text, "Instances");
+		expect(text).to.be.a("string");
+		expect(text).to.equal("Instances");
 	});
 
 	it("has no instances in the instance list", async () => {
 		await app.client.waitUntilWindowLoaded();
 		const list = await app.client.$$("div[is='instance-list'] .instance-item");
-		return assert.strictEqual(list.length, 0);
+		expect(list).to.have.lengthOf(0);
 	});
 
 	it("shows the settings modal", async () => {
 		await app.client.waitUntilWindowLoaded();
 		await app.client.$("#content").$("div.ui.right.button").click();
 		const res = await app.client.waitForVisible("#modal-settings:not(.animating)", 2000);
-		return res;
+		expect(res).to.equal(true);
 	});
 
 	it("shows the login modal", async () => {
 		await app.client.waitUntilWindowLoaded();
 		await app.client.$("#login-status-text").click();
 		const res = await app.client.waitForVisible("#modal-login:not(.animating)");
-		return res;
+		expect(res).to.equal(true);
 	});
 
 	describe("Instance management", () => {
