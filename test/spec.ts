@@ -152,6 +152,29 @@ describe("Application window", function () {
 			await app.client.waitForVisible("#modal-confirmDelete:not(.animating)", 2000);
 		});
 
+		it("can delete an instance via instance confirm delete modal", async () => {
+			await openInstanceInfoModal();
+			await app.client.$(".btn-delete").click();
+			await app.client.waitForVisible("#modal-confirmDelete:not(.animating)", 2000);
+			await app.client.$("#modal-confirmDelete").$(".ui.button.red").click();
+			await app.client.waitForVisible("#modal-confirmDelete:not(.animating)", 2000, true);
+			// make sure there are no more instances in instance list
+			const list = await app.client.$$("div[is='instance-list'] .instance-item");
+			expect(list).to.have.lengthOf(0);
+		});
+
+		it("can delete an instance via instance confirm delete modal without deleting folder", async () => {
+			await openInstanceInfoModal();
+			await app.client.$(".btn-delete").click();
+			await app.client.waitForVisible("#modal-confirmDelete:not(.animating)", 2000);
+			await app.client.$("#modal-confirmDelete").$(".ui.button.red").click();
+			await app.client.$("#modal-confirmDelete").$("input[name='deleteFolder']").click();
+			await app.client.waitForVisible("#modal-confirmDelete:not(.animating)", 2000, true);
+			// make sure there are no more instances in instance list
+			const list = await app.client.$$("div[is='instance-list'] .instance-item");
+			expect(list).to.have.lengthOf(0);
+		});
+
 		it("can rename an instance with the rename modal", async () => {
 			await openInstanceInfoModal();
 			await app.client.$(".btn-rename").click();
