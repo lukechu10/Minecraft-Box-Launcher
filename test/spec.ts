@@ -1,6 +1,5 @@
 "use-strict";
 import { Application } from "spectron";
-import assert from "assert";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import _ from "lodash";
@@ -185,6 +184,19 @@ describe("Application window", function () {
 			await app.client.$("#input-rename").setValue("Test instance 2"); // rename modal
 			await app.client.$("#modal-rename").$(".ui.approve.button").click();
 			await app.client.waitForVisible("#modal-rename:not(.animating)", 2000, true);
+			// check that instance name in instance list changed
+			const instanceList = app.client.$("div[is='instance-list']");
+			expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.be.equal("Test instance 2");
+		});
+
+		it("can rename an instance with the options modal", async () => {
+			await openInstanceInfoModal();
+			await app.client.$(".btn-options").click();
+			await app.client.waitForVisible("#modal-options:not(.animating)", 2000);
+			await app.client.$("#modal-options").$("input[name='instance-name']").setValue("Test instance 2"); // options modal
+			await app.client.$("#modal-options").waitForExist("#btn-modalOptionsSave:not(.disabled)", 500); // wait for save button to become clickable
+			await app.client.$("div#btn-modalOptionsSave").click();
+			await app.client.waitForVisible("#modal-options:not(.animating)", 2000, true);
 			// check that instance name in instance list changed
 			const instanceList = app.client.$("div[is='instance-list']");
 			expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.be.equal("Test instance 2");
