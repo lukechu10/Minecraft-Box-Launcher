@@ -16,7 +16,7 @@ const app = new Application({
 });
 
 describe("Application window", function () {
-	this.timeout(30000);
+	this.timeout(40000);
 
 	beforeEach(() => {
 		return app.start();
@@ -200,6 +200,19 @@ describe("Application window", function () {
 			// check that instance name in instance list changed
 			const instanceList = app.client.$("div[is='instance-list']");
 			expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.be.equal("Test instance 2");
+		});
+
+		describe("Install and Launch", () => {
+			it("can install latest release", async () => {
+				await fillOutInstanceForm();
+				const instanceList = app.client.$("div[is='instance-list']");
+				const instanceItem = instanceList.$(".instance-item");
+				await app.client.execute(() => {
+					(window as any).$(".instance-item")[0].install();
+				});
+				// wait for play button
+				await instanceItem.waitForExist(".btn-play", 20000); // 20 secs
+			});
 		});
 	});
 });
