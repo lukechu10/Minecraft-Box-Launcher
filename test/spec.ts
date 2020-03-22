@@ -203,7 +203,7 @@ describe("Application window", function () {
 		});
 
 		describe("Install and Launch", () => {
-			it("can install latest release", async () => {
+			it.skip("can install latest release", async () => {
 				await fillOutInstanceForm();
 				const instanceList = app.client.$("div[is='instance-list']");
 				const instanceItem = instanceList.$(".instance-item");
