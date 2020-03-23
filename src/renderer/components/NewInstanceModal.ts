@@ -3,6 +3,7 @@ import { InstanceData } from "../store/InstanceData";
 import { ApplicationStore } from "../store";
 import { Installer } from "@xmcl/installer";
 import InstanceListStore from "../store/InstanceListStore";
+import Instance from "../Instance";
 
 export default class NewInstanceModal extends HTMLDivElement {
 	public constructor() {
@@ -34,7 +35,8 @@ export default class NewInstanceModal extends HTMLDivElement {
 					clientType: "vanilla"
 				};
 				// save instance to store
-				InstanceListStore.addInstance(tmpInstance);
+				InstanceListStore.instances.push(new Instance(tmpInstance));
+				InstanceListStore.syncToStore(); // save to store
 				$(this).modal("hide"); // close modal
 			}
 		});
