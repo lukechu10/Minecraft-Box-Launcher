@@ -34,7 +34,7 @@ $(async () => {
 });
 
 // export modules
-export { Render, ApplicationStore, InstanceListStore as InstanceStore };
+export { Render, ApplicationStore, InstanceListStore };
 // export imported controllers to window
 export { AuthenticationController, VersionsController };
 

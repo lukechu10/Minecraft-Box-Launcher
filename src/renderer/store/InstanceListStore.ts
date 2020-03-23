@@ -1,8 +1,9 @@
 import Store from "electron-store";
 import { InstanceData } from "./InstanceData";
+import Instance from "../Instance";
 
 class InstanceListStore {
-	private store: Store<{ instances: InstanceData[] }>;
+	public store: Store<{ instances: InstanceData[] }>;
 	public constructor() {
 		this.store = new Store<{ instances: InstanceData[] }>({
 			name: "instances",
@@ -18,6 +19,19 @@ class InstanceListStore {
 			},
 			watch: true
 		});
+
+		// get initial data from store
+		const instanceDataList: InstanceData[] = this.store.get("instances");
+		this.instances = instanceDataList.map<Instance>(instance => new Instance(instance));
+	}
+
+	public instances: Instance[] = [];
+
+	/**
+	 * Save data to store
+	 */
+	public syncToStore() {
+		this.store.set("instances", this.instances); // Instance prototype should be removed when syncing to store
 	}
 
 	/**

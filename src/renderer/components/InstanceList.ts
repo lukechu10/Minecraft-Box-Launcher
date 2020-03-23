@@ -13,7 +13,7 @@ export default class InstanceList extends HTMLDivElement {
 		while (this.firstChild) {
 			this.firstChild.remove();
 		}
-		const instances = InstanceListStore.get("instances"); // retreive instances
+		const instances = InstanceListStore.instances; // retreive instances
 
 		this.classList.add("ui", "middle", "aligned", "divided", "selection", "list", "container");
 
@@ -37,7 +37,7 @@ export default class InstanceList extends HTMLDivElement {
 	 * Same to `render()` but without destroying child nodes. This should only be used if the number of instances do not change.
 	 */
 	public refresh(): void {
-		const instances = InstanceListStore.get("instances");
+		const instances = InstanceListStore.instances;
 		if (instances.length !== 0) {
 			for (let i = 0; i < this.children.length; i++) {
 				(this.children[i] as InstanceListItem).render(new Instance(instances[i]));
@@ -65,7 +65,7 @@ window.addEventListener("focus", () => {
 });
 
 // render list every time store changes
-InstanceListStore.onDidAnyChange(() => {
+InstanceListStore.store.onDidAnyChange(() => {
 	console.log("InstanceStore modified, rendering instance list");
 	document.querySelector<InstanceList>("div[is='instance-list']")?.render();
 });

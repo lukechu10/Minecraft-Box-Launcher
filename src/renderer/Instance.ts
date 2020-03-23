@@ -71,6 +71,7 @@ export default class Instance implements InstanceData {
 	}
 	/**
 	 * Save this instance to the instance store
+	 * @deprecated
 	 */
 	public syncToStore(): void {
 		InstanceListStore.modifyInstance(this.name, this);
@@ -79,6 +80,7 @@ export default class Instance implements InstanceData {
 	/**
 	 * Same as `syncToStore()` except for renaming the instance
 	 * @param oldName name before rename. Remember to save it somewhere.
+	 * @deprecated
 	 */
 	public syncToStoreRename(oldName: string): void {
 		InstanceListStore.modifyInstance(oldName, this);
