@@ -1,7 +1,7 @@
 import Store from "electron-store";
 import { InstanceData } from "./InstanceData";
 
-class InstanceStore extends Store<{ instances: InstanceData[] }> {
+class InstanceListStore extends Store<{ instances: InstanceData[] }> {
 	public constructor() {
 		super({
 			name: "instances",
@@ -62,4 +62,4 @@ class InstanceStore extends Store<{ instances: InstanceData[] }> {
 	}
 }
 
-export default new InstanceStore(); // singleton
+export default new InstanceListStore(); // singleton

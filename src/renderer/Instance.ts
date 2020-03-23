@@ -1,6 +1,6 @@
 import { InstanceData } from "./store/InstanceData";
 import { ApplicationStore } from "./store";
-import InstanceStore from "./store/InstanceStore";
+import InstanceListStore from "./store/InstanceListStore";
 import AuthStore from "./store/AuthStore";
 
 import "./components/InstanceModal"; // add elements to custom elements registry
@@ -73,7 +73,7 @@ export default class Instance implements InstanceData {
 	 * Save this instance to the instance store
 	 */
 	public syncToStore(): void {
-		InstanceStore.modifyInstance(this.name, this);
+		InstanceListStore.modifyInstance(this.name, this);
 	}
 
 	/**
@@ -81,7 +81,7 @@ export default class Instance implements InstanceData {
 	 * @param oldName name before rename. Remember to save it somewhere.
 	 */
 	public syncToStoreRename(oldName: string): void {
-		InstanceStore.modifyInstance(oldName, this);
+		InstanceListStore.modifyInstance(oldName, this);
 	}
 
 	public async launch(): Promise<ChildProcess> {
@@ -126,7 +126,7 @@ export default class Instance implements InstanceData {
 	 * @param deleteFolder deletes the instance folder if value is `true`
 	 */
 	public async delete(deleteFolder: boolean = false): Promise<void> {
-		InstanceStore.deleteInstance(this.name);
+		InstanceListStore.deleteInstance(this.name);
 		if (deleteFolder) {
 			await fs.remove(Instance.MinecraftSavePath(this.name));
 		}

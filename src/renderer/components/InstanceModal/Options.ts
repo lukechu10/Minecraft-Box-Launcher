@@ -1,6 +1,6 @@
 import Instance from "../../Instance";
 import instanceOptionsModalTemplate from "../../templates/modals/instances/Options.pug";
-import InstanceStore from "../../store/InstanceStore";
+import InstanceListStore from "../../store/InstanceListStore";
 
 export default class Options extends HTMLDivElement {
 	private instance: Instance | null = null;
@@ -31,7 +31,7 @@ export default class Options extends HTMLDivElement {
 
 		if ($.fn.form.settings.rules !== undefined) {
 			$.fn.form.settings.rules.doesNotExist = (param): boolean => {
-				const find = InstanceStore.findInstance(param);
+				const find = InstanceListStore.findInstance(param);
 				return param.length === 0 || find === null;
 			};
 		}
@@ -58,7 +58,7 @@ export default class Options extends HTMLDivElement {
 			const $form = $("#form-options");
 			$form.form("validate form");
 			if ($form.form("is valid") && this.instance !== null) {
-				InstanceStore.modifyInstance(this.oldName, this.instance); // update store
+				InstanceListStore.modifyInstance(this.oldName, this.instance); // update store
 				return true;
 			}
 			else return false; // prevent close action

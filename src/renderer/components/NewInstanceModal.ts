@@ -2,7 +2,7 @@ import newInstanceModalTemplate from "../templates/NewInstanceModal.pug";
 import { InstanceData } from "../store/InstanceData";
 import { ApplicationStore } from "../store";
 import { Installer } from "@xmcl/installer";
-import InstanceStore from "../store/InstanceStore";
+import InstanceListStore from "../store/InstanceListStore";
 
 export default class NewInstanceModal extends HTMLDivElement {
 	public constructor() {
@@ -34,14 +34,14 @@ export default class NewInstanceModal extends HTMLDivElement {
 					clientType: "vanilla"
 				};
 				// save instance to store
-				InstanceStore.addInstance(tmpInstance);
+				InstanceListStore.addInstance(tmpInstance);
 				$(this).modal("hide"); // close modal
 			}
 		});
 
 		if ($.fn.form.settings.rules !== undefined) {
 			$.fn.form.settings.rules.doesNotExist = (param): boolean => {
-				const find = InstanceStore.findInstance(param);
+				const find = InstanceListStore.findInstance(param);
 				return param.length !== 0 && find === null;
 			};
 		}

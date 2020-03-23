@@ -6,7 +6,7 @@ import Instance from "../Instance";
 import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug";
 import instanceItemTemplate from "../templates/InstanceItem.pug"; // important item template
 
-import InstanceStore from "../store/InstanceStore";
+import InstanceListStore from "../store/InstanceListStore";
 import { AuthModal } from "./AuthModal";
 
 export default class InstanceListItem extends HTMLDivElement {
@@ -80,7 +80,7 @@ export default class InstanceListItem extends HTMLDivElement {
 	public async play(): Promise<ChildProcess | null> {
 		// FIXME: move logic here
 		// launch by name
-		const instance = InstanceStore.findInstance(this.instance.name);
+		const instance = InstanceListStore.findInstance(this.instance.name);
 		if (instance !== undefined) {
 			try {
 				const res = await this.instance.launch();

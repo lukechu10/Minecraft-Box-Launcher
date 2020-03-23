@@ -1,7 +1,7 @@
 import { ApplicationStore } from "./store";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 import { VersionsController } from "./controllers/VersionsController";
-import InstanceStore from "./store/InstanceStore";
+import InstanceListStore from "./store/InstanceListStore";
 import * as Render from "./Render";
 import { showErrorToast } from "./util";
 
@@ -34,7 +34,7 @@ $(async () => {
 });
 
 // export modules
-export { Render, ApplicationStore, InstanceStore };
+export { Render, ApplicationStore, InstanceListStore as InstanceStore };
 // export imported controllers to window
 export { AuthenticationController, VersionsController };
 
