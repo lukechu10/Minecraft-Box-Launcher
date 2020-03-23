@@ -80,7 +80,7 @@ export default class InstanceListItem extends HTMLDivElement {
 	public async play(): Promise<ChildProcess | null> {
 		// FIXME: move logic here
 		// launch by name
-		const instance = InstanceListStore.findInstance(this.instance.name);
+		const instance = InstanceListStore.findInstanceName(this.instance.name);
 		if (instance !== undefined) {
 			try {
 				const res = await this.instance.launch();

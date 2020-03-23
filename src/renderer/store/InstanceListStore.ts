@@ -39,7 +39,7 @@ class InstanceListStore {
 	 * @param name name of instance
 	 * @returns value of instance of `null` if no instance matching name exists
 	 */
-	public findInstance(name: string): InstanceData | null {
+	public findInstanceName(name: string): InstanceData | null {
 		const findRes = this.store.get("instances").find(obj => obj.name === name);
 		return findRes === undefined ? null : findRes;
 	}

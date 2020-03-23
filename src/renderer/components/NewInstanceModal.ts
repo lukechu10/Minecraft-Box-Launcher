@@ -46,7 +46,7 @@ export default class NewInstanceModal extends HTMLDivElement {
 
 		if ($.fn.form.settings.rules !== undefined) {
 			$.fn.form.settings.rules.doesNotExist = (param): boolean => {
-				const find = InstanceListStore.findInstance(param);
+				const find = InstanceListStore.findInstanceName(param);
 				return param.length !== 0 && find === null;
 			};
 		}
