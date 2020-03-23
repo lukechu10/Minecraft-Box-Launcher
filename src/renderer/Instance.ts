@@ -69,22 +69,6 @@ export default class Instance implements InstanceData {
 		this.installed = data.installed;
 		this.time = data.time;
 	}
-	/**
-	 * Save this instance to the instance store
-	 * @deprecated
-	 */
-	public syncToStore(): void {
-		InstanceListStore.modifyInstance(this.name, this);
-	}
-
-	/**
-	 * Same as `syncToStore()` except for renaming the instance
-	 * @param oldName name before rename. Remember to save it somewhere.
-	 * @deprecated
-	 */
-	public syncToStoreRename(oldName: string): void {
-		InstanceListStore.modifyInstance(oldName, this);
-	}
 
 	public async launch(): Promise<ChildProcess> {
 		console.log(`Launching instance "${this.name}" with version "${this.id}".`);
