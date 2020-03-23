@@ -9,6 +9,10 @@ export interface InstanceData extends Installer.Version {
 	 */
 	name: string;
 	/**
+	 * UUID v4 to identify the instance
+	 */
+	uuid: string;
+	/**
      * Instance version
      */
 	id: string;

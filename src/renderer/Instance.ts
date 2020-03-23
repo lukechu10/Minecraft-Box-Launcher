@@ -31,6 +31,10 @@ export default class Instance implements InstanceData {
 	 */
 	public name: string;
 	/**
+	 * UUID v4 to identify the instance
+	 */
+	public uuid: string;
+	/**
      * Instance version
      */
 	public id: string;
@@ -60,6 +64,7 @@ export default class Instance implements InstanceData {
 
 	public constructor(data: InstanceData) {
 		this.name = data.name;
+		this.uuid = data.uuid;
 		this.id = data.id;
 		this.type = data.type;
 		this.clientType = data.clientType;

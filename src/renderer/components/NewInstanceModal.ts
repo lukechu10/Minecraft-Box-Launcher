@@ -5,6 +5,8 @@ import { Installer } from "@xmcl/installer";
 import InstanceListStore from "../store/InstanceListStore";
 import Instance from "../Instance";
 
+import { v4 as uuidv4 } from "uuid";
+
 export default class NewInstanceModal extends HTMLDivElement {
 	public constructor() {
 		super();
@@ -32,7 +34,8 @@ export default class NewInstanceModal extends HTMLDivElement {
 					...this.getVersionMeta($form.form("get value", "instance-id")) as Installer.Version,
 					lastPlayed: "never",
 					installed: false,
-					clientType: "vanilla"
+					clientType: "vanilla",
+					uuid: uuidv4()
 				};
 				// save instance to store
 				InstanceListStore.instances.push(new Instance(tmpInstance));
