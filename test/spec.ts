@@ -120,7 +120,7 @@ describe("Application window", function () {
 	});
 
 	describe("Instance management", () => {
-		async function fillOutInstanceForm() {
+		async function fillOutInstanceForm(name: string = "Test instance") {
 			await app.client.waitUntilWindowLoaded();
 			await app.client.$("#content").$("div.ui.primary.button").click();
 			const res = await app.client.waitForVisible("#modal-newInstance:not(.animating)", 2000);
@@ -131,7 +131,7 @@ describe("Application window", function () {
 
 			// fill out form
 			const form = app.client.$("#form-newInstance");
-			await form.$("input[name='instance-name']").setValue("Test instance");
+			await form.$("input[name='instance-name']").setValue(name);
 			// select instance type
 			await form.$("#dropdown-type").click();
 			await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000);
@@ -147,13 +147,17 @@ describe("Application window", function () {
 			// click on create instance button
 			await form.$("#submit-newInstanceForm").click();
 
+			// check for no errors
+			const errorForm = await app.client.$("#modal-newInstance").$$(".ui.form.error");
+			expect(errorForm).to.have.lengthOf(0, "Error creating new instance");
+
 			// wait for modal to close
 			await app.client.$("#modal-newInstance").waitForVisible(2000, true);
 			// check if new item has been added to instance list
 			const instanceList = app.client.$("div[is='instance-list']");
 			const items = await instanceList.$$(".instance-item");
 			expect(items).to.have.lengthOf(1); // 1 instance
-			expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.be.equal("Test instance"); // check instance title (set in form)
+			expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.equal(name); // check instance title (set in form)
 		}
 
 		async function openInstanceInfoModal() {
@@ -161,8 +165,35 @@ describe("Application window", function () {
 			await app.client.$("div[is='instance-list'").$(".instance-item .ui.grid .thirteen.wide.column").click();
 			await app.client.waitForVisible("#modal-info:not(.animating)", 2000);
 		}
+
 		it("can create new instances from the instance modal", async () => {
 			await fillOutInstanceForm();
+		});
+
+		it("can not create two instances with same name", async () => {
+			await fillOutInstanceForm("Test 1");
+			// fill out second form
+			await app.client.$("#content").$("div.ui.primary.button").click();
+			await app.client.waitForVisible("#modal-newInstance:not(.animating)", 2000);
+			// fill out form
+			const form = app.client.$("#form-newInstance");
+			await form.$("input[name='instance-name']").setValue("Test 1");
+			// select instance type
+			await form.$("#dropdown-type").click();
+			await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000);
+			await form.$("#dropdown-type .menu .item").click(); // select first option (vanilla release)
+			await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000, true);
+			// select instance version
+			await form.waitForExist("#dropdown-id:not(.disabled)");
+			await form.$("#dropdown-id").click();
+			await form.$("#dropdown-id").waitForVisible(".menu:not(.animating)", 2000);
+			await form.$("#dropdown-id .menu .item").click(); // select first option (latest vanilla release)
+			await form.$("#dropdown-id").waitForVisible(".menu:not(.animating)", 2000, true);
+			// click on create instance button
+			await form.$("#submit-newInstanceForm").click();
+			// check for no errors
+			const errorForm = await app.client.$("#modal-newInstance").$$(".ui.form.error");
+			expect(errorForm).to.have.lengthOf(1, "Can create multiple instances with same name");
 		});
 
 		it("can show the instance info modal", async () => {
