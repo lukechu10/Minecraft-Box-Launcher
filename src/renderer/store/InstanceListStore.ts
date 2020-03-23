@@ -60,12 +60,10 @@ class InstanceListStore {
 	 * @param name name of instance
 	 * @param instance instance data
 	 */
-	public modifyInstance(name: string, instance: InstanceData): void {
-		const i = this.store.get("instances").findIndex(obj => obj.name === name);
+	public modifyInstance(name: string, instance: Instance): void {
+		const i = this.instances.findIndex(obj => obj.name === name);
 		if (i === -1) throw new Error("An instance with this name does not exist");
-		const temp = this.store.get("instances");
-		temp[i] = instance;
-		this.store.set("instances", temp);
+		this.instances[i] = instance;
 	}
 
 	public deleteInstance(name: string): void {
