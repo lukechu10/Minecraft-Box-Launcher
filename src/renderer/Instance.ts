@@ -7,7 +7,7 @@ import "./components/InstanceModal"; // add elements to custom elements registry
 import * as InstanceModal from "./components/InstanceModal";
 
 import { LaunchOption, Version, ResolvedVersion, launch, MinecraftLocation, MinecraftFolder } from "@xmcl/core";
-import { scanLocalJava } from "@xmcl/java-installer";
+import { scanLocalJava } from "@xmcl/installer/java";
 import { lookupByName } from "@xmcl/user";
 import { Installer } from "@xmcl/installer";
 import moment from "moment";
