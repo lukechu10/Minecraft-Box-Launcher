@@ -35,17 +35,6 @@ class InstanceListStore {
 	}
 
 	/**
-	 * Add a new instance to the store
-	 * @param item Instance to be added
-	 * @throws {Error} if instance already exists
-	 */
-	public addInstance(item: InstanceData): void {
-		const findRes = this.store.get("instances").find(obj => obj.name == item.name);
-		if (findRes !== undefined) throw Error("An instance with this name already exists!");
-		else this.store.set("instances", this.store.get("instances").concat(item)); // add instance to instances array
-	}
-
-	/**
 	 * Attempts to find an instance by name
 	 * @param name name of instance
 	 * @returns value of instance of `null` if no instance matching name exists
