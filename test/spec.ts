@@ -73,11 +73,50 @@ describe("Application window", function () {
 		expect(res).to.equal(true);
 	});
 
-	it("shows the login modal", async () => {
-		await app.client.waitUntilWindowLoaded();
-		await app.client.$("#login-status-text").click();
-		const res = await app.client.waitForVisible("#modal-login:not(.animating)");
-		expect(res).to.equal(true);
+	describe("Authentication", () => {
+		describe("Authentication modal", () => {
+			it("shows the login modal", async () => {
+				await app.client.waitUntilWindowLoaded();
+				await app.client.$("#login-status-text").click();
+				const res = await app.client.waitForVisible("#modal-login:not(.animating)");
+				expect(res).to.equal(true);
+			});
+
+			it("should display error if no input", async () => {
+				await app.client.waitUntilWindowLoaded();
+				await app.client.$("#login-status-text").click();
+				const res = await app.client.waitForVisible("#modal-login:not(.animating)");
+				expect(res).to.equal(true);
+				await app.client.$("#login-btn").click(); // click on submit button
+				await app.client.waitForText("#login-errors-container", 1000);
+				expect(await app.client.$("#login-errors-container").getText()).to.equal("Please fill out the form!");
+			});
+
+			it.skip("should not submit if invalid email", async () => {
+				await app.client.waitUntilWindowLoaded();
+				await app.client.$("#login-status-text").click();
+				const res = await app.client.waitForVisible("#modal-login:not(.animating)");
+				expect(res).to.equal(true);
+				await app.client.$("#username-field").setValue("test@test.com"); // fill out username field
+				await app.client.$("#login-btn").click(); // click on submit button
+				await app.client.waitForText("#login-errors-container", 1000);
+				expect(await app.client.$("#login-errors-container").getText()).to.equal("Please fill out the form!");
+			});
+
+			it("should display invalid email / password error", async () => {
+				await app.client.waitUntilWindowLoaded();
+				await app.client.$("#login-status-text").click();
+				const res = await app.client.waitForVisible("#modal-login:not(.animating)");
+				expect(res).to.equal(true);
+				// fill out form
+				await app.client.$("#username-field").setValue("test@test.com");
+				await app.client.$("#password-field").setValue("test");
+				await app.client.$("#login-btn").click(); // click on submit button
+				// wait for error message to appear
+				await app.client.waitForText("#login-errors-container", 1000);
+				expect(await app.client.$("#login-errors-container").getText()).to.equal("Invalid username or password! Please try again.");
+			});
+		});
 	});
 
 	describe("Instance management", () => {
