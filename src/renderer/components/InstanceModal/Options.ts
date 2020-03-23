@@ -59,6 +59,7 @@ export default class Options extends HTMLDivElement {
 			$form.form("validate form");
 			if ($form.form("is valid") && this.instance !== null) {
 				InstanceListStore.modifyInstance(this.oldName, this.instance); // update store
+				InstanceListStore.syncToStore();
 				return true;
 			}
 			else return false; // prevent close action
