@@ -20,7 +20,7 @@ export default class UserStatus extends HTMLElement {
 		if (!authData.loggedIn)
 			this.innerHTML = userStatusTemplate({ loggedIn: false });
 		else
-			this.innerHTML = userStatusTemplate({ loggedIn: true, uuid: authData.selectedProfile.id });
+			this.innerHTML = userStatusTemplate({ loggedIn: true, ...authData.selectedProfile });
 		$(this).dropdown();
 	}
 }
