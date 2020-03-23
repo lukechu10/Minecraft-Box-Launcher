@@ -14,7 +14,7 @@ export default class InstanceListItem extends HTMLDivElement {
 
 	public constructor(data?: Instance) {
 		super();
-		this.instance = data as any;
+		this.instance = data as Instance;
 	}
 
 	public render(newData?: Instance): void {
