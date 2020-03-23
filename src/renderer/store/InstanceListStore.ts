@@ -67,11 +67,9 @@ class InstanceListStore {
 	}
 
 	public deleteInstance(name: string): void {
-		const temp = this.store.get("instances");
-		const i = temp.findIndex(obj => obj.name === name);
+		const i = this.instances.findIndex(obj => obj.name === name);
 		if (i === -1) throw new Error("An instance with this name does not exist");
-		temp.splice(i, 1);
-		this.store.set("instances", temp);
+		this.instances.splice(i, 1);
 	}
 }
 

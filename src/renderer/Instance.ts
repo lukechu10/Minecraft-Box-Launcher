@@ -132,6 +132,7 @@ export default class Instance implements InstanceData {
 		if (deleteFolder) {
 			await fs.remove(Instance.MinecraftSavePath(this.name));
 		}
+		InstanceListStore.syncToStore();
 	}
 	/**
 	 * Get time since last played
