@@ -106,5 +106,12 @@
 			"semantic/dist/*.css",
 			"semantic/dist/fonts/*.woff2"
 		]
+	},
+	"madge": {
+		"detectiveOptions": {
+			"ts": {
+				"skipTypeImports": true
+			}
+		}
 	}
 }
