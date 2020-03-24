@@ -37,6 +37,10 @@ export interface InstanceData extends Installer.Version {
 	 * Version binaires are completely installed
 	 */
 	installed: boolean;
+	/**
+	 * Is instance currently being installed
+	 */
+	isInstalling: boolean;
 	time: string;
 	[key: string]: any;
 }

@@ -17,12 +17,21 @@ class InstanceListStore {
 					// TODO: Improve schema to check for InstanceSave structure
 				}
 			},
-			watch: true
+			watch: true,
+			serialize: obj => JSON.stringify(obj, (key, value) => {
+				// remove isInstalling field
+				if (key === "isInstalling") return undefined;
+				else return value;
+			})
 		});
 
 		// get initial data from store
 		const instanceDataList: InstanceData[] = this.store.get("instances");
-		this.instances = instanceDataList.map<Instance>(instance => new Instance(instance));
+		// add isInstalling field and add Instance prototype
+		this.instances = instanceDataList.map<Instance>(instance => new Instance({
+			...instance,
+			isInstalling: false
+		}));
 	}
 
 	public instances: Instance[] = [];

@@ -59,6 +59,10 @@ export default class Instance implements InstanceData {
 	 * Version binaires are completely installed
 	 */
 	public installed: boolean;
+	/**
+	 * Is instance currently being installed
+	 */
+	public isInstalling: boolean;
 	public time: string;
 	[key: string]: any;
 
@@ -72,6 +76,7 @@ export default class Instance implements InstanceData {
 		this.releaseTime = data.releaseTime;
 		this.url = data.url;
 		this.installed = data.installed;
+		this.isInstalling = data.isInstalling;
 		this.time = data.time;
 	}
 
