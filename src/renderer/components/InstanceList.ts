@@ -1,6 +1,6 @@
 import InstanceListItem from "./InstanceListItem";
 import { remote } from "electron";
-import InstanceStore from "../store/InstanceStore";
+import InstanceListStore from "../store/InstanceListStore";
 import Instance from "../Instance";
 
 export default class InstanceList extends HTMLDivElement {
@@ -13,7 +13,7 @@ export default class InstanceList extends HTMLDivElement {
 		while (this.firstChild) {
 			this.firstChild.remove();
 		}
-		const instances = InstanceStore.get("instances"); // retreive instances
+		const instances = InstanceListStore.instances; // retreive instances
 
 		this.classList.add("ui", "middle", "aligned", "divided", "selection", "list", "container");
 
@@ -24,7 +24,7 @@ export default class InstanceList extends HTMLDivElement {
 		}
 		else {
 			for (const instance of instances) {	// add InstanceItem nodes to dom
-				const node = new InstanceListItem(new Instance(instance));
+				const node = new InstanceListItem(instance);
 				node.classList.add("instance-item");
 				node.render();
 				node.classList.add("item");
@@ -37,7 +37,7 @@ export default class InstanceList extends HTMLDivElement {
 	 * Same to `render()` but without destroying child nodes. This should only be used if the number of instances do not change.
 	 */
 	public refresh(): void {
-		const instances = InstanceStore.get("instances");
+		const instances = InstanceListStore.instances;
 		if (instances.length !== 0) {
 			for (let i = 0; i < this.children.length; i++) {
 				(this.children[i] as InstanceListItem).render(new Instance(instances[i]));
@@ -65,7 +65,7 @@ window.addEventListener("focus", () => {
 });
 
 // render list every time store changes
-InstanceStore.onDidAnyChange(() => {
+InstanceListStore.store.onDidAnyChange(() => {
 	console.log("InstanceStore modified, rendering instance list");
 	document.querySelector<InstanceList>("div[is='instance-list']")?.render();
 });

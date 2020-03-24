@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import { shell } from "electron";
 
 export function showErrorToast(message: string) {

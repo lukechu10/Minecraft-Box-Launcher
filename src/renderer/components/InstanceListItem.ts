@@ -4,9 +4,9 @@ import Instance from "../Instance";
 
 // import instance modal templates
 import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug";
-import instanceItemTemplate from "../templates/InstanceItem.pug"; // important item template
+import instanceItemTemplate from "../templates/InstanceListItem.pug"; // important item template
 
-import InstanceStore from "../store/InstanceStore";
+import InstanceListStore from "../store/InstanceListStore";
 import { AuthModal } from "./AuthModal";
 
 export default class InstanceListItem extends HTMLDivElement {
@@ -14,7 +14,7 @@ export default class InstanceListItem extends HTMLDivElement {
 
 	public constructor(data?: Instance) {
 		super();
-		this.instance = data as any;
+		this.instance = data as Instance;
 	}
 
 	public render(newData?: Instance): void {
@@ -80,7 +80,7 @@ export default class InstanceListItem extends HTMLDivElement {
 	public async play(): Promise<ChildProcess | null> {
 		// FIXME: move logic here
 		// launch by name
-		const instance = InstanceStore.findInstance(this.instance.name);
+		const instance = InstanceListStore.findInstanceName(this.instance.name);
 		if (instance !== undefined) {
 			try {
 				const res = await this.instance.launch();

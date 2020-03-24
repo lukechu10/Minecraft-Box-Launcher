@@ -9,6 +9,10 @@ export interface InstanceData extends Installer.Version {
 	 */
 	name: string;
 	/**
+	 * UUID v4 to identify the instance
+	 */
+	uuid: string;
+	/**
      * Instance version
      */
 	id: string;
@@ -33,6 +37,10 @@ export interface InstanceData extends Installer.Version {
 	 * Version binaires are completely installed
 	 */
 	installed: boolean;
+	/**
+	 * Is instance currently being installed
+	 */
+	isInstalling: boolean;
 	time: string;
 	[key: string]: any;
 }

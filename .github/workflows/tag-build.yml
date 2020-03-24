@@ -15,6 +15,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      - name: "Restore npm cache"
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: npm install
         run: npm install
       - name: Package application with electron-builder
@@ -34,6 +45,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
+      - name: Restore npm cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - name: npm install
         run: npm install
       - name: Package application with electron-builder
@@ -47,7 +65,7 @@ jobs:
   create_release:
     name: Create Release
     needs: [windows_alternative, macos_build] # wait for artifacts to be created
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - name: Download artifacts (Windows Alternative)
         uses: actions/download-artifact@v1.0.0

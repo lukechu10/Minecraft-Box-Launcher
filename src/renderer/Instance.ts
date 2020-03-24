@@ -1,6 +1,6 @@
 import { InstanceData } from "./store/InstanceData";
 import { ApplicationStore } from "./store";
-import InstanceStore from "./store/InstanceStore";
+import InstanceListStore from "./store/InstanceListStore";
 import AuthStore from "./store/AuthStore";
 
 import "./components/InstanceModal"; // add elements to custom elements registry
@@ -31,6 +31,10 @@ export default class Instance implements InstanceData {
 	 */
 	public name: string;
 	/**
+	 * UUID v4 to identify the instance
+	 */
+	public uuid: string;
+	/**
      * Instance version
      */
 	public id: string;
@@ -55,11 +59,16 @@ export default class Instance implements InstanceData {
 	 * Version binaires are completely installed
 	 */
 	public installed: boolean;
+	/**
+	 * Is instance currently being installed
+	 */
+	public isInstalling: boolean;
 	public time: string;
 	[key: string]: any;
 
 	public constructor(data: InstanceData) {
 		this.name = data.name;
+		this.uuid = data.uuid;
 		this.id = data.id;
 		this.type = data.type;
 		this.clientType = data.clientType;
@@ -67,21 +76,8 @@ export default class Instance implements InstanceData {
 		this.releaseTime = data.releaseTime;
 		this.url = data.url;
 		this.installed = data.installed;
+		this.isInstalling = data.isInstalling;
 		this.time = data.time;
-	}
-	/**
-	 * Save this instance to the instance store
-	 */
-	public syncToStore(): void {
-		InstanceStore.modifyInstance(this.name, this);
-	}
-
-	/**
-	 * Same as `syncToStore()` except for renaming the instance
-	 * @param oldName name before rename. Remember to save it somewhere.
-	 */
-	public syncToStoreRename(oldName: string): void {
-		InstanceStore.modifyInstance(oldName, this);
 	}
 
 	public async launch(): Promise<ChildProcess> {
@@ -114,10 +110,12 @@ export default class Instance implements InstanceData {
 		}
 	}
 	public async install(): Promise<ResolvedVersion> {
+		this.isInstalling = true;
 		const location: MinecraftLocation = new MinecraftFolder(path.join(app.getPath("userData"), "./game/"));
 		console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
 		const res = await Installer.install("client", this, location);
 		this.installed = true;
+		this.isInstalling = false;
 		console.log(`Successfully installed instance "${this.name}" with version "${this.id}`);
 		return res;
 	}
@@ -126,10 +124,11 @@ export default class Instance implements InstanceData {
 	 * @param deleteFolder deletes the instance folder if value is `true`
 	 */
 	public async delete(deleteFolder: boolean = false): Promise<void> {
-		InstanceStore.deleteInstance(this.name);
+		InstanceListStore.deleteInstance(this.name);
 		if (deleteFolder) {
 			await fs.remove(Instance.MinecraftSavePath(this.name));
 		}
+		InstanceListStore.syncToStore();
 	}
 	/**
 	 * Get time since last played

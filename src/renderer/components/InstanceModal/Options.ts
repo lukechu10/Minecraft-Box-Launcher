@@ -1,17 +1,17 @@
 import Instance from "../../Instance";
 import instanceOptionsModalTemplate from "../../templates/modals/instances/Options.pug";
-import InstanceStore from "../../store/InstanceStore";
+import InstanceListStore from "../../store/InstanceListStore";
 
 export default class Options extends HTMLDivElement {
+	private instanceRef: Instance | null = null;
 	private instance: Instance | null = null;
-	private oldName: string = "";
 	public constructor() {
 		super();
 	}
 	public connectedCallback(): void { }
 	public render(instance: Instance): void {
+		this.instanceRef = instance;
 		this.instance = Object.assign({}, instance); // deep copy
-		this.oldName = instance.name;
 		this.innerHTML = instanceOptionsModalTemplate(this.instance);
 		$(this).modal("show");
 		this.attachEvents();
@@ -31,7 +31,7 @@ export default class Options extends HTMLDivElement {
 
 		if ($.fn.form.settings.rules !== undefined) {
 			$.fn.form.settings.rules.doesNotExist = (param): boolean => {
-				const find = InstanceStore.findInstance(param);
+				const find = InstanceListStore.findInstanceName(param);
 				return param.length === 0 || find === null;
 			};
 		}
@@ -58,7 +58,8 @@ export default class Options extends HTMLDivElement {
 			const $form = $("#form-options");
 			$form.form("validate form");
 			if ($form.form("is valid") && this.instance !== null) {
-				InstanceStore.modifyInstance(this.oldName, this.instance); // update store
+				Object.assign(this.instanceRef, this.instance); // update store
+				InstanceListStore.syncToStore();
 				return true;
 			}
 			else return false; // prevent close action
