@@ -53,17 +53,6 @@ class InstanceListStore {
 		return findRes === undefined ? null : findRes;
 	}
 
-	/**
-	 * Replace instance with `name` by `instance`.
-	 * @param name name of instance
-	 * @param instance instance data
-	 */
-	public modifyInstance(name: string, instance: Instance): void {
-		const i = this.instances.findIndex(obj => obj.name === name);
-		if (i === -1) throw new Error("An instance with this name does not exist");
-		this.instances[i] = instance;
-	}
-
 	public deleteInstance(name: string): void {
 		const i = this.instances.findIndex(obj => obj.name === name);
 		if (i === -1) throw new Error("An instance with this name does not exist");
