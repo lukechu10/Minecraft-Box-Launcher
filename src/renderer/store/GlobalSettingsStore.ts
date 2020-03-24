@@ -30,8 +30,4 @@ export default class GlobalSettingsStore extends Store<GlobalSettings> {
 			defaults: GlobalSettingsStore.defaultSettings
 		});
 	}
-
-	public get allSettings(): GlobalSettings {
-		return this.store;
-	}
 }
