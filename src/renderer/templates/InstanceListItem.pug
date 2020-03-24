@@ -7,9 +7,9 @@
 			| Last played: #[i #{data.lastPlayedStr}]
 		.three.wide.column
 			.ui.right.floated.buttons.btn-instance-actions(style="display: none;")
-				- if(data.installed)
-					button.ui.green.button.btn-play.btn-play-install
-						| Play
+				- if(data.isInstalling)
+					button.ui.disabled.gray Installing...
+				- else if(data.installed)
+					button.ui.green.button.btn-play.btn-play-install Play
 				- else
-					button.ui.olive.button.btn-install.btn-play-install
-						| Install
+					button.ui.olive.button.btn-install.btn-play-install Install
