@@ -34,3 +34,10 @@ html.fa-events-icons-loading .fa-fw::before {
 #content {
     height: 100%;
 }
+
+#task-progress {
+    position: fixed;
+    width: 100%;
+    height: fit-content;
+    bottom: 3px;
+}
