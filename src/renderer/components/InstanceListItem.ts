@@ -4,7 +4,7 @@ import Instance from "../Instance";
 
 // import instance modal templates
 import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug";
-import instanceItemTemplate from "../templates/InstanceItem.pug"; // important item template
+import instanceItemTemplate from "../templates/InstanceListItem.pug"; // important item template
 
 import InstanceListStore from "../store/InstanceListStore";
 import { AuthModal } from "./AuthModal";
