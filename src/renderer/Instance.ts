@@ -121,7 +121,7 @@ export default class Instance implements InstanceData {
 
 			const installTask: Task<ResolvedVersion> = Installer.installTask("client", this, location);
 			const taskProgress: TaskProgress | null = document.getElementById("task-progress") as TaskProgress;
-			const runtime = taskProgress?.addInstallTask(installTask);
+			const runtime = taskProgress?.addInstallTask(installTask, this.name);
 
 			runtime.on("finish", (res, state) => {
 				if (state.path === "install") {

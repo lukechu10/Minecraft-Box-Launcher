@@ -19,7 +19,7 @@ export default class TaskProgress extends HTMLDivElement {
 		$(this.$progress()).progress();
 	}
 
-	public addInstallTask(task: Task<ResolvedVersion>): TaskRuntime<Task.State> {
+	public addInstallTask(task: Task<ResolvedVersion>, instanceName: string): TaskRuntime<Task.State> {
 		const runtime = Task.createRuntime();
 		let rootTask: Task.State;
 
@@ -40,7 +40,7 @@ export default class TaskProgress extends HTMLDivElement {
 			}
 			else {
 				console.log(taskState.path);
-				this.updateUIMessage(`Installing... (Path: ${taskState.path})`);
+				this.updateUIMessage(`Installing instance ${instanceName}... (Path: ${taskState.path})`);
 			}
 		});
 
