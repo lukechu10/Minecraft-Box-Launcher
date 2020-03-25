@@ -21,7 +21,7 @@ import fs from "fs-extra";
 import TaskProgress from "./components/TaskProgress";
 const app = remote.app;
 
-type ModalType = "info" | "options" | "rename" | "saves" | "delete";
+type ModalType = "options" | "rename" | "saves" | "delete";
 export default class Instance implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
 	/**
@@ -159,10 +159,6 @@ export default class Instance implements InstanceData {
 
 	public showModal(modal: ModalType): void {
 		switch (modal) {
-			case "info":
-				// InstanceModal.Info.render(this);
-				(document.getElementById("modal-info") as InstanceModal.Info).render(this);
-				break;
 			case "options":
 				(document.getElementById("modal-options") as InstanceModal.Options).render(this);
 				break;

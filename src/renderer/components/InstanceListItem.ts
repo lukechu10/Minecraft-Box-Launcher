@@ -2,6 +2,8 @@ import { ChildProcess } from "child_process";
 
 import Instance from "../Instance";
 
+import * as InstanceModal from "./InstanceModal";
+
 // import instance modal templates
 import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug";
 import instanceItemTemplate from "../templates/InstanceListItem.pug"; // important item template
@@ -23,7 +25,7 @@ export default class InstanceListItem extends HTMLDivElement {
 		(this.getElementsByClassName("btn-instance-actions")[0] as HTMLDivElement).addEventListener("click", e => { e.stopPropagation(); });
 		// show data in instance info segment
 		this.addEventListener("click", () => {
-			this.instance.showModal("info");
+			(document.getElementById("modal-info") as InstanceModal.Info).render(this);
 		});
 
 		this.addEventListener("mouseenter", () => {
@@ -39,11 +41,11 @@ export default class InstanceListItem extends HTMLDivElement {
 			});
 		});
 
-		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement) ?.addEventListener("click", () => {
+		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement)?.addEventListener("click", () => {
 			this.install();
 		});
 
-		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement) ?.addEventListener("click", () => {
+		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement)?.addEventListener("click", () => {
 			this.play();
 		});
 	}

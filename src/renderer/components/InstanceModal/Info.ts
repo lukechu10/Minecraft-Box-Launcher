@@ -1,23 +1,28 @@
 import Instance from "../../Instance";
+import type InstanceListItem from "../InstanceListItem";
 
 import instanceInfoModalTemplate from "../../templates/InstanceInfoModal.pug";
 
 export default class Info extends HTMLDivElement {
 	private instance: Instance | null = null;
+	private instanceItem: InstanceListItem | null = null;
 	public constructor() {
 		super();
 	}
 
 	public connectedCallback(): void { }
 
-	public render(instance: Instance): void {
-		this.instance = instance; // remove dom element functions
+	public render(instanceItem: InstanceListItem): void {
+		this.instance = instanceItem.instance; // remove dom element functions
+		this.instanceItem = instanceItem;
 		if (this.instance !== null) {
 			this.innerHTML = instanceInfoModalTemplate({ hasSelection: true, ...this.instance, lastPlayedStr: this.instance.lastPlayedStr });
 		}
 		$(this).modal("show"); // show modal
 		// attach events
-		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement | undefined)?.addEventListener("click", () => { this.instance?.play(); });
+		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement | undefined)?.addEventListener("click", () => {
+			this.instanceItem?.play();
+		});
 
 		(this.getElementsByClassName("btn-rename")[0] as HTMLDivElement).addEventListener("click", () => {
 			this.instance?.showModal("rename");
@@ -36,8 +41,8 @@ export default class Info extends HTMLDivElement {
 			this.instance?.showModal("options");
 		});
 
-		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement)?.addEventListener("click", () => {
-			this.instance?.install();
+		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement | undefined)?.addEventListener("click", () => {
+			this.instanceItem?.install();
 		});
 	}
 }
