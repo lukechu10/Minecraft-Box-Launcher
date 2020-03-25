@@ -47,7 +47,6 @@ export default class TaskProgress extends HTMLDivElement {
 	}
 
 	private updateUIError(err: any) {
-		console.log($(this.$progress()));
 		// @ts-ignore FIXME: Fomantic UI
 		$(this.$progress()).progress("set error", `Error: ${err.toString()}`);
 	}
