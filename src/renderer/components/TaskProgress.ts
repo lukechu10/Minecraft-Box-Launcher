@@ -60,7 +60,7 @@ export default class TaskProgress extends HTMLDivElement {
 
 	private updateUIProgress(task: Task.State, progress: number, total?: number): void {
 		if (total !== undefined)
-			$(this.$progress()).progress("set percent", progress / total);
+			$(this.$progress()).progress("set percent", progress / total * 100);
 	}
 
 	private updateUIMessage(msg: string): void {
