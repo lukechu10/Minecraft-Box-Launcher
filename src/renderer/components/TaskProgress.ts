@@ -32,8 +32,9 @@ export default class TaskProgress extends HTMLDivElement {
 			}
 		});
 
+		let prevMessage: string; // prevent updating the dom when unnecessary
 		runtime.on("update", ({ progress, total, message }, taskState) => {
-			let path = taskState.path;
+			const path = taskState.path;
 			if (path === "install") {
 				this.updateUIProgress(taskState, progress, total);
 				console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
@@ -49,7 +50,10 @@ export default class TaskProgress extends HTMLDivElement {
 					else if (pathSplit[2] === "installLibraries")
 						message += " (Installing libraries)";
 				}
-				this.updateUIMessage(message);
+				if (prevMessage !== message) {
+					this.updateUIMessage(message);
+					prevMessage = message;
+				}
 			}
 		});
 
