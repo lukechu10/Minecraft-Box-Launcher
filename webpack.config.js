@@ -130,6 +130,6 @@ module.exports = [
 					loader: "pug-loader"
 				}
 			]
-		},
-	}, baseConfig),
+		}
+	}, baseConfig)
 ];
