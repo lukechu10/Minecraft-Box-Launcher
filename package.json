@@ -112,7 +112,8 @@
 	"madge": {
 		"detectiveOptions": {
 			"ts": {
-				"skipTypeImports": true
+				"skipTypeImports": true,
+				"mixedImports": true
 			}
 		}
 	}
