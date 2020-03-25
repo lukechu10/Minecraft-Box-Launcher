@@ -22,13 +22,12 @@ export class AuthModal extends HTMLDivElement {
 	 */
 	public async waitForAuth(message?: string): Promise<Authentication | null> {
 		if (message !== undefined) this.setErrorMessage(message);
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve) => {
 			this.innerHTML = authModalTemplate();
 			$(this).modal({
 				closable: false,
 				detachable: false,
 				onHidden: () => {
-					console.log("ac");
 					if (AuthStore.store.loggedIn) {
 						resolve(AuthStore.store);
 					}
@@ -36,7 +35,7 @@ export class AuthModal extends HTMLDivElement {
 				}
 			}).modal("show");
 			this.attachEvents();
-			reject(null); // error
+			resolve(null); // error
 		});
 	}
 	private attachEvents(): void {

@@ -76,10 +76,9 @@ export default class InstanceListItem extends HTMLDivElement {
 			await this.instance.install();
 			InstanceListStore.syncToStore();
 		}
-		catch {
-			
+		finally {
+			this.render();
 		}
-		this.render();
 	}
 
 	public async play(): Promise<ChildProcess | null> {
@@ -90,7 +89,7 @@ export default class InstanceListItem extends HTMLDivElement {
 			try {
 				const res = await this.instance.launch();
 				// last played should be updated, save to store
-				this.instance.syncToStore();
+				InstanceListStore.syncToStore();
 				return res;
 			}
 			catch (err) {
@@ -100,7 +99,7 @@ export default class InstanceListItem extends HTMLDivElement {
 					return null;
 				}
 				if (err.message === "User not logged in") {
-					const authRes = (document.getElementById("modal-auth") as AuthModal).waitForAuth();
+					const authRes = await (document.getElementById("modal-login") as AuthModal).waitForAuth();
 					if (authRes !== null) {
 						// attempt to launch again
 						return await this.play();
