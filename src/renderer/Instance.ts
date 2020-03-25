@@ -10,12 +10,15 @@ import { LaunchOption, Version, ResolvedVersion, launch, MinecraftLocation, Mine
 import { scanLocalJava } from "@xmcl/installer/java";
 import { lookupByName } from "@xmcl/user";
 import { Installer } from "@xmcl/installer";
+import { Task, TaskRuntime } from "@xmcl/task";
+
 import moment from "moment";
 
 import path from "path";
 import { remote } from "electron";
 import { ChildProcess } from "child_process";
 import fs from "fs-extra";
+import TaskProgress from "./components/TaskProgress";
 const app = remote.app;
 
 type ModalType = "info" | "options" | "rename" | "saves" | "delete";
@@ -109,15 +112,24 @@ export default class Instance implements InstanceData {
 			return proc;
 		}
 	}
-	public async install(): Promise<ResolvedVersion> {
-		this.isInstalling = true;
-		const location: MinecraftLocation = new MinecraftFolder(path.join(app.getPath("userData"), "./game/"));
-		console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
-		const res = await Installer.install("client", this, location);
-		this.installed = true;
-		this.isInstalling = false;
-		console.log(`Successfully installed instance "${this.name}" with version "${this.id}`);
-		return res;
+	public install(): Promise<TaskRuntime<Task.State>> {
+		return new Promise((resolve) => {
+			this.isInstalling = true;
+			const location: MinecraftLocation = new MinecraftFolder(path.join(app.getPath("userData"), "./game/"));
+			console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
+			// const res = await Installer.install("client", this, location);
+
+			const installTask: Task<ResolvedVersion> = Installer.installTask("client", this, location);
+			const taskProgress: TaskProgress | null = document.getElementById("task-progress") as TaskProgress;
+			const runtime = taskProgress?.addInstallTask(installTask);
+
+			runtime.on("finish", () => {
+				this.installed = true;
+				this.isInstalling = false;
+				console.log(`Successfully installed instance "${this.name}" with version "${this.id}`);
+				resolve(runtime);
+			});
+		});
 	}
 	/**
 	 * Deletes the instance. Note: do not call `syncToStore()` after as the store is automatically updated.
