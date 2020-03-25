@@ -39,7 +39,17 @@ export default class TaskProgress extends HTMLDivElement {
 				console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
 			}
 			else {
-				this.updateUIMessage(`Installing instance ${instanceName}... (Path: ${taskState.path})`);
+				let message: string = `Installing instance ${instanceName}`;
+				const pathSplit = path.split(".");
+				if (pathSplit[1] === "installVersion")
+					message += " (Installing version)";
+				else if (pathSplit[1] === "installDependencies") {
+					if (pathSplit[2] === "installAssets")
+						message += " (Installing assets)";
+					else if (pathSplit[2] === "installLibraries")
+						message += " (Installing libraries)";
+				}
+				this.updateUIMessage(message);
 			}
 		});
 
