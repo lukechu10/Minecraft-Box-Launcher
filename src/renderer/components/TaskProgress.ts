@@ -16,15 +16,16 @@ export default class TaskProgress extends HTMLDivElement {
 
 	public render(): void {
 		this.innerHTML = taskProgressTemplate();
-		$(this.$progress).progress();
+		$(this.$progress()).progress();
 	}
 
-	public addInstallTask(task: Task<ResolvedVersion>): void {
+	public addInstallTask(task: Task<ResolvedVersion>): TaskRuntime<Task.State> {
 		const runtime = Task.createRuntime();
 		let rootTask: Task.State;
 
 		runtime.on("execute", (task, parentTask) => {
-			if (parentTask) {
+			if (!parentTask) {
+				console.log("Install task started");
 				rootTask = task;
 			}
 		});
@@ -32,23 +33,28 @@ export default class TaskProgress extends HTMLDivElement {
 		runtime.on("update", ({ progress, total, message }, taskState) => {
 			let path = taskState.path;
 			this.updateUIProgress(taskState, progress, total);
+			console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
 		});
 
 		runtime.on("fail", error => {
 			this.updateUIError(error);
+			console.error("Install task error:", error);
 		});
 
 		const handle = runtime.submit(task);
+
+		return runtime;
 	}
 
 	private updateUIError(err: any) {
-		// @ts-ignore FIXME: Fomantic UI feature
-		$(this.$progress).progress("set error", err.toString());
+		console.log($(this.$progress()));
+		// @ts-ignore FIXME: Fomantic UI
+		$(this.$progress()).progress("set error", `Error: ${err.toString()}`);
 	}
 
 	private updateUIProgress(task: Task.State, progress: number, total?: number) {
 		if (total !== undefined)
-			$(this.$progress).progress("set percent", progress / total);
+			$(this.$progress()).progress("set percent", progress / total);
 	}
 }
 
