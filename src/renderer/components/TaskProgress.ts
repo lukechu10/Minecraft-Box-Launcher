@@ -39,7 +39,6 @@ export default class TaskProgress extends HTMLDivElement {
 				console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
 			}
 			else {
-				console.log(taskState.path);
 				this.updateUIMessage(`Installing instance ${instanceName}... (Path: ${taskState.path})`);
 			}
 		});
