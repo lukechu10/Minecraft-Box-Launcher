@@ -11,7 +11,8 @@ export default class TaskProgress extends HTMLDivElement {
 	}
 
 	public connectedCallback(): void {
-		this.render();
+		if (!this.hasChildNodes())
+			this.render();
 	}
 
 	public render(): void {
