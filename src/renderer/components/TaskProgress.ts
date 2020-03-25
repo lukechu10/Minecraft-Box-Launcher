@@ -23,6 +23,8 @@ export default class TaskProgress extends HTMLDivElement {
 		const runtime = Task.createRuntime();
 		let rootTask: Task.State;
 
+		const handle = runtime.submit(task);
+
 		runtime.on("execute", (task, parentTask) => {
 			if (!parentTask) {
 				console.log("Install task started");
@@ -38,17 +40,16 @@ export default class TaskProgress extends HTMLDivElement {
 
 		runtime.on("fail", error => {
 			this.updateUIError(error);
+			if (!handle.isCancelled) handle.cancel();
 			console.error("Install task error:", error);
 		});
-
-		const handle = runtime.submit(task);
 
 		return runtime;
 	}
 
 	private updateUIError(err: any) {
 		// @ts-ignore FIXME: Fomantic UI
-		$(this.$progress()).progress("set error", `Error: ${err.toString()}`);
+		$(this.$progress()).progress("set error", err.toString());
 	}
 
 	private updateUIProgress(task: Task.State, progress: number, total?: number) {

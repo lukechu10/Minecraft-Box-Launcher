@@ -72,8 +72,13 @@ export default class InstanceListItem extends HTMLDivElement {
 		btn.classList.remove("olive", "green");
 		btn.classList.add("gray", "disabled");
 		btn.textContent = "Installing...";
-		await this.instance.install();
-		InstanceListStore.syncToStore();
+		try {
+			await this.instance.install();
+			InstanceListStore.syncToStore();
+		}
+		catch {
+			
+		}
 		this.render();
 	}
 
