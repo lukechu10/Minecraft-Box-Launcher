@@ -82,6 +82,7 @@
 	"dependencies": {
 		"electron-debug": "^3.0.1",
 		"electron-store": "^5.1.1",
+		"got": "^10.7.0",
 		"jquery": "^3.4.1",
 		"lodash": "^4.17.15",
 		"tslib": "^1.11.1",

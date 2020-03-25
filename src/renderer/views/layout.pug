@@ -39,11 +39,12 @@ html(lang="en")
 				user-status
 
 		//- page content
-		.ui.container#content(style="padding-top: 50px")
+		.ui.container#content(style="padding-top: 50px" data-turbolinks-permanent=true)
 			block content
 		block outside
 
-		div#task-progress(is="task-progress")
+		#task-progress-container(data-turbolinks-permanent=true)
+			#task-progress(is="task-progress")
 
 		//- modals
 		block modals

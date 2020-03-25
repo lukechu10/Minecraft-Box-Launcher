@@ -115,7 +115,7 @@ export default class Instance implements InstanceData {
 	public install(): Promise<TaskRuntime<Task.State>> {
 		return new Promise((resolve, reject) => {
 			this.isInstalling = true;
-			const location: MinecraftLocation = new MinecraftFolder(path.join(app.getPath("userData"), "./game/"));
+			const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));
 			console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
 			// const res = await Installer.install("client", this, location);
 
@@ -123,11 +123,13 @@ export default class Instance implements InstanceData {
 			const taskProgress: TaskProgress | null = document.getElementById("task-progress") as TaskProgress;
 			const runtime = taskProgress?.addInstallTask(installTask);
 
-			runtime.on("finish", () => {
-				this.installed = true;
-				this.isInstalling = false;
-				console.log(`Successfully installed instance "${this.name}" with version "${this.id}`);
-				resolve(runtime);
+			runtime.on("finish", (res, state) => {
+				if (state.path === "install") {
+					this.installed = true;
+					this.isInstalling = false;
+					console.log(`Successfully installed instance "${this.name}" with version "${this.id}`);
+					resolve(runtime);
+				}
 			});
 
 			runtime.on("fail", err => {
