@@ -59,29 +59,11 @@ export default class TaskProgress extends HTMLDivElement {
 			}
 		});
 
-		let prevMessage: string; // prevent updating the dom when unnecessary
 		runtime.on("update", ({ progress, total, message }, taskState) => {
 			if (rootNode === taskState) {
 				this.updateUIProgress(taskState, progress, total);
 				console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
 			}
-			// let msgStr: string = `Installing instance ${instanceName}`;
-			// const pathSplit = taskState.path.split(".");
-			// if (pathSplit[1] === "installVersion")
-			// 	msgStr += " (Installing version) ";
-			// else if (pathSplit[1] === "installDependencies") {
-			// 	if (pathSplit[2] === "installAssets")
-			// 		msgStr += " (Installing assets) ";
-			// 	else if (pathSplit[2] === "installLibraries")
-			// 		msgStr += " (Installing libraries) ";
-			// }
-			// if (message !== undefined)
-			// 	// msgStr += message + " ";
-			// 	// only update if task being rendered is the top task in map
-			// 	if (this.tasks.keys().next().value === task && prevMessage !== msgStr) {
-			// 		this.updateUIMessage(msgStr, message);
-			// 		prevMessage = msgStr;
-			// 	}
 			this.updateUIMessage(message);
 
 		});
