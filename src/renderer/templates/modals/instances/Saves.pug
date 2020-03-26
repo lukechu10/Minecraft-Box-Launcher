@@ -11,8 +11,13 @@
 					th Size
 					th Version
 			tbody
-	.ui.tab.segment(data-tab="servers")
-		.ui.message.error
-			| Not implemented yet!
+	.ui.tab.segment(data-tab="servers" is="saves-tab-server")
+		table.ui.celled.table
+			thead
+				tr
+					th Server name
+					th IP Address
+			tbody
+			tfoot
 .actions
 	button.ui.primary.approve.button Close
