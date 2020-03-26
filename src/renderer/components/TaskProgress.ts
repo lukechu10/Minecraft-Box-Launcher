@@ -110,8 +110,10 @@ export default class TaskProgress extends HTMLDivElement {
 	 * @param fileName name of file being downloaded
 	 */
 	private updateUIMessage(fileName?: string, percent?: number): void {
-		const msg = `File: ${fileName ?? "loading..."} `;
-		$(this.$progress()).progress("set label", msg);
+		if (fileName !== undefined) {
+			const msg = `File: ${fileName} `;
+			$(this.$progress()).progress("set label", msg);
+		}
 		// set right label
 		const rightLabel = document.querySelector<HTMLDivElement>("#progress-label-right");
 		if (rightLabel !== null)
