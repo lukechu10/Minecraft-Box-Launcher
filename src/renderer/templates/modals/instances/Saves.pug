@@ -1,11 +1,18 @@
-.header Worlds
+.header Data
 .content
-	table.ui.celled.table
-		thead
-			tr
-				th World Name
-				th Size
-				th Version
-		tbody
+	.ui.top.attached.tabular.menu
+		a.item(data-tab="worlds") Worlds
+		a.item(data-tab="servers") Servers
+	.ui.bottom.attached.tab.segment(data-tab="worlds")
+		table.ui.celled.table
+			thead
+				tr
+					th World Name
+					th Size
+					th Version
+			tbody
+	.ui.bottom.attached.tab.segment(data-tab="servers")
+		.ui.message.error
+			| Not implemented yet!
 .actions
 	button.ui.primary.approve.button Close

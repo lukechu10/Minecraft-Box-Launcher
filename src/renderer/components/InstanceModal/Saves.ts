@@ -14,6 +14,8 @@ export default class Saves extends HTMLDivElement {
 		$(this).modal({
 			closable: false
 		}).modal("show");
+
+		$(this).find(".menu .item").tab();
 	}
 }
 
