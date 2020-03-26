@@ -20,6 +20,7 @@ export default class Saves extends HTMLDivElement {
 
 		$(this).find(".menu .item").tab({
 			onLoad: (tabPath) => {
+				console.log("render")
 				if (tabPath === "servers") this.querySelector<SavesTabServer>(".ui.tab[is='saves-tab-server']")?.render();
 			}
 		});
