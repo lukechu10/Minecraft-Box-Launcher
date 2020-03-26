@@ -16,7 +16,7 @@ const app = new Application({
 });
 
 describe("Application window", function () {
-	this.timeout(100000);
+	this.timeout(1000000);
 
 	beforeEach(() => {
 		return app.start();
@@ -279,7 +279,7 @@ describe("Application window", function () {
 					(window as any).$(".instance-item")[0].install();
 				});
 				// wait for play button
-				await app.client.waitForExist(".btn-play", 100000);
+				await app.client.waitForExist(".btn-play", 1000000);
 			});
 		});
 	});
