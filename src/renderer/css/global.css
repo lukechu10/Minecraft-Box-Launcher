@@ -34,3 +34,27 @@ html.fa-events-icons-loading .fa-fw::before {
 #content {
     height: 100%;
 }
+
+#task-progress {
+    position: fixed;
+    width: 100%;
+    height: fit-content;
+    bottom: 3px;
+}
+
+#progress-label-right {
+    text-align: right;
+    position: absolute;
+    width: 100%;
+    font-size: 1em;
+    top: 100%;
+    right: auto;
+    left: 0;
+    bottom: auto;
+    color: rgba(0,0,0,.87);
+    font-weight: 700;
+    text-shadow: none;
+    margin-top: .2em;
+    -webkit-transition: color .4s ease;
+    transition: color .4s ease;
+}

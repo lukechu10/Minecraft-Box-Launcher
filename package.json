@@ -49,6 +49,7 @@
 		"@typescript-eslint/parser": "^2.25.0",
 		"@xmcl/core": "^2.0.7",
 		"@xmcl/installer": "^2.6.3",
+		"@xmcl/task": "^2.1.5",
 		"@xmcl/user": "^2.1.2",
 		"chai": "^4.2.0",
 		"coverage-istanbul-loader": "^3.0.3",
@@ -81,6 +82,7 @@
 	"dependencies": {
 		"electron-debug": "^3.0.1",
 		"electron-store": "^5.1.1",
+		"got": "^10.7.0",
 		"jquery": "^3.4.1",
 		"lodash": "^4.17.15",
 		"tslib": "^1.11.1",
@@ -106,5 +108,13 @@
 			"semantic/dist/*.css",
 			"semantic/dist/fonts/*.woff2"
 		]
+	},
+	"madge": {
+		"detectiveOptions": {
+			"ts": {
+				"skipTypeImports": true,
+				"mixedImports": true
+			}
+		}
 	}
 }

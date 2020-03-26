@@ -40,7 +40,7 @@ export default class InstanceList extends HTMLDivElement {
 		const instances = InstanceListStore.instances;
 		if (instances.length !== 0) {
 			for (let i = 0; i < this.children.length; i++) {
-				(this.children[i] as InstanceListItem).render(new Instance(instances[i]));
+				(this.children[i] as InstanceListItem).render(instances[i]);
 			}
 		}
 	}

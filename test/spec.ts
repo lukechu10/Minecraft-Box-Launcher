@@ -16,7 +16,7 @@ const app = new Application({
 });
 
 describe("Application window", function () {
-	this.timeout(40000);
+	this.timeout(1000000);
 
 	beforeEach(() => {
 		return app.start();
@@ -273,15 +273,13 @@ describe("Application window", function () {
 		});
 
 		describe("Install and Launch", () => {
-			it.skip("can install latest release", async () => {
+			it("can install latest release", async () => {
 				await fillOutInstanceForm();
-				const instanceList = app.client.$("div[is='instance-list']");
-				const instanceItem = instanceList.$(".instance-item");
 				await app.client.execute(() => {
 					(window as any).$(".instance-item")[0].install();
 				});
 				// wait for play button
-				await instanceItem.waitForExist(".btn-play", 20000); // 20 secs
+				await app.client.waitForExist(".btn-play", 1000000);
 			});
 		});
 	});

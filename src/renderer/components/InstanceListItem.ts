@@ -2,6 +2,8 @@ import { ChildProcess } from "child_process";
 
 import Instance from "../Instance";
 
+import * as InstanceModal from "./InstanceModal";
+
 // import instance modal templates
 import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug";
 import instanceItemTemplate from "../templates/InstanceListItem.pug"; // important item template
@@ -23,7 +25,7 @@ export default class InstanceListItem extends HTMLDivElement {
 		(this.getElementsByClassName("btn-instance-actions")[0] as HTMLDivElement).addEventListener("click", e => { e.stopPropagation(); });
 		// show data in instance info segment
 		this.addEventListener("click", () => {
-			this.instance.showModal("info");
+			(document.getElementById("modal-info") as InstanceModal.Info).render(this);
 		});
 
 		this.addEventListener("mouseenter", () => {
@@ -39,11 +41,11 @@ export default class InstanceListItem extends HTMLDivElement {
 			});
 		});
 
-		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement) ?.addEventListener("click", () => {
+		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement)?.addEventListener("click", () => {
 			this.install();
 		});
 
-		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement) ?.addEventListener("click", () => {
+		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement)?.addEventListener("click", () => {
 			this.play();
 		});
 	}
@@ -72,9 +74,13 @@ export default class InstanceListItem extends HTMLDivElement {
 		btn.classList.remove("olive", "green");
 		btn.classList.add("gray", "disabled");
 		btn.textContent = "Installing...";
-		await this.instance.install();
-		this.instance.syncToStore();
-		this.render();
+		try {
+			await this.instance.install();
+			InstanceListStore.syncToStore();
+		}
+		finally {
+			this.render();
+		}
 	}
 
 	public async play(): Promise<ChildProcess | null> {
@@ -85,7 +91,7 @@ export default class InstanceListItem extends HTMLDivElement {
 			try {
 				const res = await this.instance.launch();
 				// last played should be updated, save to store
-				this.instance.syncToStore();
+				InstanceListStore.syncToStore();
 				return res;
 			}
 			catch (err) {
@@ -95,7 +101,7 @@ export default class InstanceListItem extends HTMLDivElement {
 					return null;
 				}
 				if (err.message === "User not logged in") {
-					const authRes = (document.getElementById("modal-auth") as AuthModal).waitForAuth();
+					const authRes = await (document.getElementById("modal-login") as AuthModal).waitForAuth();
 					if (authRes !== null) {
 						// attempt to launch again
 						return await this.play();

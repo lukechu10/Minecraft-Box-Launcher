@@ -66,7 +66,11 @@ const baseConfig = {
 			name: "runtime"
 		}
 	},
-	target: "electron-renderer"
+	target: "electron-renderer",
+	externals: {
+		"@xmcl/installer": "commonjs2 @xmcl/installer",
+		"got": "commonjs2 got"
+	}
 };
 
 module.exports = [
@@ -130,6 +134,6 @@ module.exports = [
 					loader: "pug-loader"
 				}
 			]
-		},
-	}, baseConfig),
+		}
+	}, baseConfig)
 ];
