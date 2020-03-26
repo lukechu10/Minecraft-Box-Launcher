@@ -59,14 +59,13 @@ export default class TaskProgress extends HTMLDivElement {
 
 		let prevMessage: string; // prevent updating the dom when unnecessary
 		runtime.on("update", ({ progress, total, message }, taskState) => {
-			const path = taskState.path;
-			if (path === "install") {
+			if (rootNode === taskState) {
 				this.updateUIProgress(taskState, progress, total);
 				console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
 			}
 			else {
 				let message: string = `Installing instance ${instanceName}`;
-				const pathSplit = path.split(".");
+				const pathSplit = taskState.path.split(".");
 				if (pathSplit[1] === "installVersion")
 					message += " (Installing version) ";
 				else if (pathSplit[1] === "installDependencies") {
@@ -75,7 +74,7 @@ export default class TaskProgress extends HTMLDivElement {
 					else if (pathSplit[2] === "installLibraries")
 						message += " (Installing libraries) ";
 				}
-				
+
 				// only update if task being rendered is the top task in map
 				if (this.tasks.keys().next().value === task && prevMessage !== message) {
 					this.updateUIMessage(message);
