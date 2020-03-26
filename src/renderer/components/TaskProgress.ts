@@ -65,25 +65,25 @@ export default class TaskProgress extends HTMLDivElement {
 				this.updateUIProgress(taskState, progress, total);
 				console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
 			}
-			else {
-				let msgStr: string = `Installing instance ${instanceName}`;
-				const pathSplit = taskState.path.split(".");
-				if (pathSplit[1] === "installVersion")
-					msgStr += " (Installing version) ";
-				else if (pathSplit[1] === "installDependencies") {
-					if (pathSplit[2] === "installAssets")
-						msgStr += " (Installing assets) ";
-					else if (pathSplit[2] === "installLibraries")
-						msgStr += " (Installing libraries) ";
-				}
-				if (message !== undefined)
-					msgStr += message + " ";
-				// only update if task being rendered is the top task in map
-				if (this.tasks.keys().next().value === task && prevMessage !== msgStr) {
-					this.updateUIMessage(msgStr);
-					prevMessage = msgStr;
-				}
-			}
+			// let msgStr: string = `Installing instance ${instanceName}`;
+			// const pathSplit = taskState.path.split(".");
+			// if (pathSplit[1] === "installVersion")
+			// 	msgStr += " (Installing version) ";
+			// else if (pathSplit[1] === "installDependencies") {
+			// 	if (pathSplit[2] === "installAssets")
+			// 		msgStr += " (Installing assets) ";
+			// 	else if (pathSplit[2] === "installLibraries")
+			// 		msgStr += " (Installing libraries) ";
+			// }
+			// if (message !== undefined)
+			// 	// msgStr += message + " ";
+			// 	// only update if task being rendered is the top task in map
+			// 	if (this.tasks.keys().next().value === task && prevMessage !== msgStr) {
+			// 		this.updateUIMessage(msgStr, message);
+			// 		prevMessage = msgStr;
+			// 	}
+			this.updateUIMessage(message);
+
 		});
 
 		runtime.on("fail", error => {
@@ -113,9 +113,15 @@ export default class TaskProgress extends HTMLDivElement {
 			$(this.$progress()).progress("set percent", progress / total * 100);
 	}
 
-	private updateUIMessage(msg: string): void {
-		if (this.tasks.size > 1) msg += `(${this.tasks.size - 1} more task${this.tasks.size > 2 ? "s" : ""} in progress) `;
+	private updateUIMessage(fileName?: string): void {
+		let msg = `File: ${fileName ?? "loading..."} `;
 		$(this.$progress()).progress("set label", msg);
+		// set right label
+		const rightLabel = document.querySelector<HTMLDivElement>("#progress-label-right");
+		if (rightLabel !== null)
+			if (this.tasks.size > 1)
+				rightLabel.textContent =
+					`(${this.tasks.size - 1} more task${this.tasks.size > 2 ? "s" : ""} in progress) `;
 	}
 }
 
