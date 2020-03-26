@@ -113,7 +113,7 @@ describe("Application window", function () {
 				await app.client.$("#password-field").setValue("test");
 				await app.client.$("#login-btn").click(); // click on submit button
 				// wait for error message to appear
-				await app.client.waitForText("#login-errors-container", 1000);
+				await app.client.waitForText("#login-errors-container", 2000);
 				expect(await app.client.$("#login-errors-container").getText()).to.equal("Invalid username or password! Please try again.");
 			});
 		});
