@@ -39,7 +39,9 @@ export default class TaskProgress extends HTMLDivElement {
 
 	public render(): void {
 		this.innerHTML = taskProgressTemplate();
-		$(this.$progress()).progress();
+		$(this.$progress()).progress({
+			label: "percent"
+		});
 		this.style.visibility = "hidden";
 	}
 
@@ -64,24 +66,24 @@ export default class TaskProgress extends HTMLDivElement {
 				console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
 			}
 			else {
-				let message: string = `Installing instance ${instanceName}`;
+				let msgStr: string = `Installing instance ${instanceName}`;
 				const pathSplit = taskState.path.split(".");
 				if (pathSplit[1] === "installVersion")
-					message += " (Installing version) ";
+					msgStr += " (Installing version) ";
 				else if (pathSplit[1] === "installDependencies") {
 					if (pathSplit[2] === "installAssets")
-						message += " (Installing assets) ";
+						msgStr += " (Installing assets) ";
 					else if (pathSplit[2] === "installLibraries")
-						message += " (Installing libraries) ";
+						msgStr += " (Installing libraries) ";
 				}
-
+				if (message !== undefined)
+					msgStr += message + " ";
 				// only update if task being rendered is the top task in map
-				if (this.tasks.keys().next().value === task && prevMessage !== message) {
-					this.updateUIMessage(message);
-					prevMessage = message;
+				if (this.tasks.keys().next().value === task && prevMessage !== msgStr) {
+					this.updateUIMessage(msgStr);
+					prevMessage = msgStr;
 				}
 			}
-
 		});
 
 		runtime.on("fail", error => {
