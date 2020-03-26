@@ -1,9 +1,9 @@
 .header Data
 .content
-	.ui.top.attached.tabular.menu
+	.ui.secondary.menu
 		a.item(data-tab="worlds") Worlds
 		a.item(data-tab="servers") Servers
-	.ui.bottom.attached.tab.segment(data-tab="worlds")
+	.ui.tab.segment(data-tab="worlds")
 		table.ui.celled.table
 			thead
 				tr
@@ -11,7 +11,7 @@
 					th Size
 					th Version
 			tbody
-	.ui.bottom.attached.tab.segment(data-tab="servers")
+	.ui.tab.segment(data-tab="servers")
 		.ui.message.error
 			| Not implemented yet!
 .actions
