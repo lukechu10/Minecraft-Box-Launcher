@@ -59,29 +59,30 @@ export default class TaskProgress extends HTMLDivElement {
 
 		let prevMessage: string; // prevent updating the dom when unnecessary
 		runtime.on("update", ({ progress, total, message }, taskState) => {
-			if (this.tasks.keys().next().value === task) { // only update if task being rendered is the top task in map
-				const path = taskState.path;
-				if (path === "install") {
-					this.updateUIProgress(taskState, progress, total);
-					console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
+			const path = taskState.path;
+			if (path === "install") {
+				this.updateUIProgress(taskState, progress, total);
+				console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
+			}
+			else {
+				let message: string = `Installing instance ${instanceName}`;
+				const pathSplit = path.split(".");
+				if (pathSplit[1] === "installVersion")
+					message += " (Installing version) ";
+				else if (pathSplit[1] === "installDependencies") {
+					if (pathSplit[2] === "installAssets")
+						message += " (Installing assets) ";
+					else if (pathSplit[2] === "installLibraries")
+						message += " (Installing libraries) ";
 				}
-				else {
-					let message: string = `Installing instance ${instanceName}`;
-					const pathSplit = path.split(".");
-					if (pathSplit[1] === "installVersion")
-						message += " (Installing version)";
-					else if (pathSplit[1] === "installDependencies") {
-						if (pathSplit[2] === "installAssets")
-							message += " (Installing assets)";
-						else if (pathSplit[2] === "installLibraries")
-							message += " (Installing libraries)";
-					}
-					if (prevMessage !== message) {
-						this.updateUIMessage(message);
-						prevMessage = message;
-					}
+				
+				// only update if task being rendered is the top task in map
+				if (this.tasks.keys().next().value === task && prevMessage !== message) {
+					this.updateUIMessage(message);
+					prevMessage = message;
 				}
 			}
+
 		});
 
 		runtime.on("fail", error => {
@@ -112,6 +113,7 @@ export default class TaskProgress extends HTMLDivElement {
 	}
 
 	private updateUIMessage(msg: string): void {
+		if (this.tasks.size > 1) msg += `(${this.tasks.size - 1} more task${this.tasks.size > 2 ? "s" : ""} in progress) `;
 		$(this.$progress()).progress("set label", msg);
 	}
 }
