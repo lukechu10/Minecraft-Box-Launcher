@@ -63,8 +63,16 @@ export default class TaskProgress extends HTMLDivElement {
 			if (rootNode === taskState) {
 				console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
 			}
-			if (task === this.tasks.keys().next().value) // if task currently being rendered
-				this.updateUIMessage(progress, total, message);
+			if (task === this.tasks.keys().next().value) {// if task currently being rendered
+				let curPercent: number;
+				if (total !== undefined) {
+					curPercent = Math.floor(progress / total * 100);
+					this.updateUIMessage(curPercent, message);
+				}
+				else { // set progress to pulsulating indeterminate effect
+					this.updateUIMessage(-1, message);
+				}
+			}
 
 		});
 
@@ -93,7 +101,12 @@ export default class TaskProgress extends HTMLDivElement {
 		$(this.$progress()).progress("set error", err.toString());
 	}
 
-	private updateUIMessage(progress: number, total?: number, fileName?: string): void {
+	/**
+	 * Update progress bar message
+	 * @param percent percentage of task finished. Pass `-1` for indeterminate pulsulating effect
+	 * @param fileName name of file being downloaded
+	 */
+	private updateUIMessage(percent?: number, fileName?: string): void {
 		const msg = `File: ${fileName ?? "loading..."} `;
 		$(this.$progress()).progress("set label", msg);
 		// set right label
@@ -102,8 +115,14 @@ export default class TaskProgress extends HTMLDivElement {
 			if (this.tasks.size > 1)
 				rightLabel.textContent =
 					`(${this.tasks.size - 1} more task${this.tasks.size > 2 ? "s" : ""} in progress) `;
-		if (total !== undefined)
-			$(this.$progress()).progress("set percent", progress / total * 100);
+			else
+				rightLabel.textContent = "";
+		if (percent !== undefined) {
+			$(this.$progress()).progress("set percent", percent);
+			this.$progress().classList.remove("indeterminate");
+		}
+		else if (percent === -1)
+			this.$progress().classList.add("indeterminate");
 	}
 
 	private updateUISuccess(instanceName: string) {
