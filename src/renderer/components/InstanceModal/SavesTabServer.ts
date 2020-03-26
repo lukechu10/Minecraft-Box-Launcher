@@ -38,7 +38,7 @@ export default class SavesTabServer extends HTMLDivElement {
 					const ipNode: HTMLTableCellElement = document.createElement("td");
 					ipNode.textContent = info.ip;
 					rowNode.appendChild(ipNode);
-					this.getElementsByTagName("tbody")[0].appendChild(rowNode);
+					tbody.appendChild(rowNode);
 				}
 			}
 			else {
