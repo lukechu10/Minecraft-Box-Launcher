@@ -6,18 +6,23 @@ import { ResolvedVersion } from "@xmcl/core";
 export default class TaskProgress extends HTMLDivElement {
 	private $progress = () => this.getElementsByClassName("ui progress")[0];
 
-	private renderedTask: Task<ResolvedVersion> | null = null;
-	private taskCount: number = 0;
-	private incrementTaskCount(): void {
-		this.taskCount++;
-		if (this.taskCount === 1) {
+	/*
+	iterable returns tasks in order of insertion.
+	1st task is always the task that is rendered
+	*/
+	private tasks: Map<Task<Object>, TaskRuntime> = new Map();
+
+	private addTask(task: Task<Object>, runtime: TaskRuntime<Task.State>) {
+		this.tasks.set(task, runtime);
+		if (this.tasks.size === 1) {
 			// only 1 task in queue means there were no tasks before
 			$(this).transition("fly up in");
 		}
 	}
-	private decrementTaskCount(): void {
-		this.taskCount--;
-		if (this.taskCount === 0) {
+
+	private removeTask(task: Task<Object>) {
+		this.tasks.delete(task);
+		if (this.tasks.size === 0) {
 			// hide progress bar
 			$(this).transition("fly up out");
 		}
@@ -47,16 +52,14 @@ export default class TaskProgress extends HTMLDivElement {
 		runtime.on("execute", (node, parentTask) => {
 			if (!parentTask) {
 				console.log("Install task started");
-				this.incrementTaskCount();
 				rootNode = node;
-				if (this.renderedTask === null)
-					this.renderedTask = task;
+				this.addTask(task, runtime);
 			}
 		});
 
 		let prevMessage: string; // prevent updating the dom when unnecessary
 		runtime.on("update", ({ progress, total, message }, taskState) => {
-			if (this.renderedTask === task) { // only update if task being rendered is current task
+			if (this.tasks.keys().next().value === task) { // only update if task being rendered is the top task in map
 				const path = taskState.path;
 				if (path === "install") {
 					this.updateUIProgress(taskState, progress, total);
@@ -86,13 +89,13 @@ export default class TaskProgress extends HTMLDivElement {
 			if (!handle.isCancelled) handle.cancel();
 			console.error("Install task error:", error);
 			// show error for a 5 seconds
-			setTimeout(() => { this.decrementTaskCount(); this.renderedTask = null; }, 5000);
+			setTimeout(() => { this.removeTask(task); }, 5000);
 		});
 
 		runtime.on("finish", (res, state) => {
 			if (state.path === "install")
 				// show success for 5 seconds or 1.5 second if another task pending
-				setTimeout(() => { this.decrementTaskCount(); this.renderedTask = null; }, this.taskCount > 1 ? 1500 : 5000);
+				setTimeout(() => { this.removeTask(task); }, this.tasks.size > 1 ? 1500 : 5000);
 		});
 
 		return runtime;
