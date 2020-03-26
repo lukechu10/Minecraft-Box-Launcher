@@ -42,7 +42,7 @@ export default class TaskProgress extends HTMLDivElement {
 		const runtime = Task.createRuntime();
 		let rootNode: Task.State;
 
-		const handle = runtime.submit(task);
+		const handle: TaskHandle<ResolvedVersion, Task.State> = runtime.submit(task);
 
 		runtime.on("execute", (node, parentTask) => {
 			if (!parentTask) {
