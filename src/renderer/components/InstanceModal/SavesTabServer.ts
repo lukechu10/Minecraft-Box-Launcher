@@ -14,9 +14,15 @@ export default class SavesTabServer extends HTMLDivElement {
 	public setInstance(instance: Instance): void { this.instance = instance; }
 
 	public async render(): Promise<void> {
+		const tbody = this.getElementsByTagName("tbody")[0];
+		// remove all children
+		while (tbody.firstChild) {
+			tbody.firstChild.remove();
+		}
 		if (this.instance !== null) {
+			this.getElementsByClassName("dimmer")[0].classList.add("active");
 			const serverDatPath = path.join(Instance.MinecraftSavePath(this.instance.name), "servers.dat");
-			if (await fs.pathExists(serverDatPath)) {
+			if (fs.pathExistsSync(serverDatPath)) {
 				const serverDatBuffer: Buffer = fs.readFileSync(serverDatPath);
 				const infos: ServerInfo[] = await readInfo(serverDatBuffer);
 				for (const info of infos) {
@@ -32,12 +38,14 @@ export default class SavesTabServer extends HTMLDivElement {
 				}
 			}
 			else {
+				console.log("B")
 				// display no servers added message
 				const errorNode: HTMLDivElement = document.createElement("div");
 				errorNode.classList.add("ui", "error", "message", "bottom", "attached");
 				errorNode.textContent = "You have not created any servers yet! Start playing to see your saved servers.";
 				this.getElementsByTagName("table")[0].parentNode?.appendChild(errorNode);
 			}
+			this.getElementsByClassName("dimmer")[0].classList.remove("active");
 		}
 	}
 }

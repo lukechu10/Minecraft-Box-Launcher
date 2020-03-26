@@ -12,12 +12,15 @@
 					th Version
 			tbody
 	.ui.tab.segment(data-tab="servers" is="saves-tab-server")
-		table.ui.celled.table
-			thead
-				tr
-					th Server name
-					th IP Address
-			tbody
-			tfoot
+		.dimmable
+			.ui.inverted.dimmer
+				.ui.loader
+			table.ui.celled.table
+				thead
+					tr
+						th Server name
+						th IP Address
+				tbody
+				tfoot
 .actions
 	button.ui.primary.approve.button Close
