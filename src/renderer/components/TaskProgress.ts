@@ -64,16 +64,18 @@ export default class TaskProgress extends HTMLDivElement {
 				console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
 			}
 			if (task === this.tasks.keys().next().value) {// if task currently being rendered
-				let curPercent: number;
-				if (total !== undefined) {
-					curPercent = Math.floor(progress / total * 100);
-					this.updateUIMessage(curPercent, message);
+				if (taskState.path === "install.installDependencies.installAssets") {
+					let curPercent: number;
+					if (total !== undefined) {
+						curPercent = Math.floor(progress / total * 100);
+						this.updateUIMessage(message, curPercent);
+					}
+					else { // set progress to pulsulating indeterminate effect
+						this.updateUIMessage(message, -1);
+					}
 				}
-				else { // set progress to pulsulating indeterminate effect
-					this.updateUIMessage(-1, message);
-				}
+				else this.updateUIMessage(message);
 			}
-
 		});
 
 		runtime.on("fail", error => {
@@ -101,12 +103,13 @@ export default class TaskProgress extends HTMLDivElement {
 		$(this.$progress()).progress("set error", err.toString());
 	}
 
+	private prevProgress: number = 0;
 	/**
 	 * Update progress bar message
 	 * @param percent percentage of task finished. Pass `-1` for indeterminate pulsulating effect
 	 * @param fileName name of file being downloaded
 	 */
-	private updateUIMessage(percent?: number, fileName?: string): void {
+	private updateUIMessage(fileName?: string, percent?: number): void {
 		const msg = `File: ${fileName ?? "loading..."} `;
 		$(this.$progress()).progress("set label", msg);
 		// set right label
@@ -117,12 +120,14 @@ export default class TaskProgress extends HTMLDivElement {
 					`(${this.tasks.size - 1} more task${this.tasks.size > 2 ? "s" : ""} in progress) `;
 			else
 				rightLabel.textContent = "";
-		if (percent !== undefined) {
-			$(this.$progress()).progress("set percent", percent);
-			this.$progress().classList.remove("indeterminate");
-		}
-		else if (percent === -1)
+		
+		if (percent === -1)
 			this.$progress().classList.add("indeterminate");
+		else if (percent !== undefined) {
+			this.$progress().classList.remove("indeterminate");
+			$(this.$progress()).progress("set percent", percent);
+			this.prevProgress = percent;
+		}
 	}
 
 	private updateUISuccess(instanceName: string) {
