@@ -19,6 +19,10 @@ export default class SavesTabServer extends HTMLDivElement {
 		while (tbody.firstChild) {
 			tbody.firstChild.remove();
 		}
+		// remove all error messages
+		const errMsgs = this.getElementsByClassName("error message");
+		Array.from(errMsgs).forEach(elem => { elem.remove(); });
+
 		if (this.instance !== null) {
 			this.getElementsByClassName("dimmer")[0].classList.add("active");
 			const serverDatPath = path.join(Instance.MinecraftSavePath(this.instance.name), "servers.dat");
