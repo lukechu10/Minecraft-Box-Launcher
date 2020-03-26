@@ -77,9 +77,11 @@ export default class TaskProgress extends HTMLDivElement {
 		});
 
 		runtime.on("finish", (res, state) => {
-			if (state.path === "install")
+			if (state.path === "install") {
+				this.updateUISuccess(instanceName);
 				// show success for 5 seconds or 1.5 second if another task pending
 				setTimeout(() => { this.removeTask(task); }, this.tasks.size > 1 ? 1500 : 5000);
+			}
 		});
 
 		return runtime;
@@ -104,6 +106,11 @@ export default class TaskProgress extends HTMLDivElement {
 			if (this.tasks.size > 1)
 				rightLabel.textContent =
 					`(${this.tasks.size - 1} more task${this.tasks.size > 2 ? "s" : ""} in progress) `;
+	}
+
+	private updateUISuccess(instanceName: string) {
+		// @ts-ignore FIXME: Fomantic UI
+		$(this.$progress()).progress("set success", `Successfully installed instance ${instanceName}`);
 	}
 }
 
