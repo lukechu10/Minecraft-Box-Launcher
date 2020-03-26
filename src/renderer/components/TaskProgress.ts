@@ -61,10 +61,10 @@ export default class TaskProgress extends HTMLDivElement {
 
 		runtime.on("update", ({ progress, total, message }, taskState) => {
 			if (rootNode === taskState) {
-				this.updateUIProgress(taskState, progress, total);
 				console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
 			}
-			this.updateUIMessage(message);
+			if (task === this.tasks.keys().next().value) // if task currently being rendered
+				this.updateUIMessage(progress, total, message);
 
 		});
 
@@ -78,7 +78,8 @@ export default class TaskProgress extends HTMLDivElement {
 
 		runtime.on("finish", (res, state) => {
 			if (state.path === "install") {
-				this.updateUISuccess(instanceName);
+				if (task === this.tasks.keys().next().value) // if task currently being rendered
+					this.updateUISuccess(instanceName);
 				// show success for 5 seconds or 1.5 second if another task pending
 				setTimeout(() => { this.removeTask(task); }, this.tasks.size > 1 ? 1500 : 5000);
 			}
@@ -92,12 +93,7 @@ export default class TaskProgress extends HTMLDivElement {
 		$(this.$progress()).progress("set error", err.toString());
 	}
 
-	private updateUIProgress(task: Task.State, progress: number, total?: number): void {
-		if (total !== undefined)
-			$(this.$progress()).progress("set percent", progress / total * 100);
-	}
-
-	private updateUIMessage(fileName?: string): void {
+	private updateUIMessage(progress: number, total?: number, fileName?: string): void {
 		const msg = `File: ${fileName ?? "loading..."} `;
 		$(this.$progress()).progress("set label", msg);
 		// set right label
@@ -106,6 +102,8 @@ export default class TaskProgress extends HTMLDivElement {
 			if (this.tasks.size > 1)
 				rightLabel.textContent =
 					`(${this.tasks.size - 1} more task${this.tasks.size > 2 ? "s" : ""} in progress) `;
+		if (total !== undefined)
+			$(this.$progress()).progress("set percent", progress / total * 100);
 	}
 
 	private updateUISuccess(instanceName: string) {
