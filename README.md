@@ -31,6 +31,7 @@ Symbol	| Meaning
 - Install
 	- Install vanilla releases, snapshots and historical versions ✔
 	- Reinstall corrupted versions ✔
+	- Can show installation progress ✔
 	- Install forge directly from launcher 🦄
 	- Install optifine directly from launcher 🦄
 - Launch
