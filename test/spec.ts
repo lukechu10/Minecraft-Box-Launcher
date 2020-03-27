@@ -212,10 +212,20 @@ describe("Application window", function () {
 			await app.client.waitForVisible("#modal-options:not(.animating)", 2000);
 		});
 
-		it("can show the instance saves modal", async () => {
-			await openInstanceInfoModal();
-			await app.client.$(".btn-saves").click();
-			await app.client.waitForVisible("#modal-saves:not(.animating)", 2000);
+		describe("Saves modal", async () => {
+			it("can show the instance saves modal", async () => {
+				await openInstanceInfoModal();
+				await app.client.$(".btn-saves").click();
+				await app.client.waitForVisible("#modal-saves:not(.animating)", 2000);
+			});
+
+			it("can show the servers tab", async () => {
+				await openInstanceInfoModal();
+				await app.client.$(".btn-saves").click();
+				await app.client.waitForVisible("#modal-saves:not(.animating)", 2000);
+				await app.client.$("#modal-saves").$(".menu .item[data-tab='servers']").click();
+				await app.client.$("#modal-saves").waitForVisible(".tab.segment[data-tab='servers'", 500);
+			});
 		});
 
 		it("can show the instance confirm delete modal", async () => {
