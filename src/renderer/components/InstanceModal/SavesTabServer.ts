@@ -3,8 +3,11 @@ import fs from "fs-extra";
 import path from "path";
 import Instance from "../../Instance";
 
+import { queryStatus, Status, QueryOptions } from "@xmcl/client";
+
 export default class SavesTabServer extends HTMLDivElement {
 	private instance: Instance | null = null;
+	private servers: ServerInfo[] = [];
 	public constructor() {
 		super();
 	}
@@ -40,6 +43,8 @@ export default class SavesTabServer extends HTMLDivElement {
 					rowNode.appendChild(ipNode);
 					tbody.appendChild(rowNode);
 				}
+				this.servers = infos; // save servers to element state
+				this.pingAllServers(); // get server status
 			}
 			else {
 				// display no servers added message
@@ -49,6 +54,18 @@ export default class SavesTabServer extends HTMLDivElement {
 				this.getElementsByTagName("table")[0].parentNode?.appendChild(errorNode);
 			}
 			this.getElementsByClassName("dimmer")[0].classList.remove("active");
+		}
+	}
+
+	private async pingAllServers(): Promise<void> {
+		for (const server of this.servers) {
+			// ping server
+			const rawStatusJson: Status = await queryStatus({ host: server.ip }, {
+				timeout: 8000,
+				retryTimes: 2,
+				protocol: 578
+			});
+			console.log(rawStatusJson);
 		}
 	}
 }
