@@ -26,8 +26,8 @@ export default class SavesTabServer extends HTMLDivElement {
 		if (this.instance !== null) {
 			this.getElementsByClassName("dimmer")[0].classList.add("active");
 			const serverDatPath = path.join(Instance.MinecraftSavePath(this.instance.name), "servers.dat");
-			if (fs.pathExistsSync(serverDatPath)) {
-				const serverDatBuffer: Buffer = fs.readFileSync(serverDatPath);
+			if (await fs.pathExists(serverDatPath)) {
+				const serverDatBuffer: Buffer = await fs.readFile(serverDatPath);
 				const infos: ServerInfo[] = await readInfo(serverDatBuffer);
 				for (const info of infos) {
 					// add to table
