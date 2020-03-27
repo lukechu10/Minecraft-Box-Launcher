@@ -42,7 +42,6 @@ export default class SavesTabServer extends HTMLDivElement {
 				}
 			}
 			else {
-				console.log("B")
 				// display no servers added message
 				const errorNode: HTMLDivElement = document.createElement("div");
 				errorNode.classList.add("ui", "error", "message", "bottom", "attached");
