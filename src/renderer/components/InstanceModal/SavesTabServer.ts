@@ -76,6 +76,7 @@ export default class SavesTabServer extends HTMLDivElement {
 				// set error
 				console.warn("Error while pinging server:\n", e);
 				statusElements[i].textContent = "Error";
+				statusElements[i].classList.add("error");
 			}
 		}
 	}
