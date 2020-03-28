@@ -5,7 +5,7 @@ import { Installer } from "@xmcl/installer";
 import InstanceListStore from "../store/InstanceListStore";
 import Instance from "../Instance";
 
-import { v4 as uuidv4 } from "uuid";
+import uuidv4 from "uuid/v4";
 
 export default class NewInstanceModal extends HTMLDivElement {
 	public constructor() {
