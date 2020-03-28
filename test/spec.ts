@@ -224,7 +224,7 @@ describe("Application window", function () {
 				await app.client.$(".btn-saves").click();
 				await app.client.waitForVisible("#modal-saves:not(.animating)", 2000);
 				await app.client.$("#modal-saves").$(".menu .item[data-tab='servers']").click();
-				await app.client.$("#modal-saves").waitForVisible(".tab.segment[data-tab='servers'", 500);
+				await app.client.$("#modal-saves").waitForVisible(".tab.segment[data-tab='servers']", 500);
 			});
 		});
 
