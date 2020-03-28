@@ -226,6 +226,16 @@ describe("Application window", function () {
 				await app.client.$("#modal-saves").$(".menu .item[data-tab='servers']").click();
 				await app.client.$("#modal-saves").waitForVisible(".tab.segment[data-tab='servers']", 500);
 			});
+
+			it("should not have any sevrers in server list", async () => {
+				await openInstanceInfoModal();
+				await app.client.$(".btn-saves").click();
+				await app.client.waitForVisible("#modal-saves:not(.animating)", 2000);
+				await app.client.$("#modal-saves").$(".menu .item[data-tab='servers']").click();
+				await app.client.$("#modal-saves").waitForVisible(".tab.segment[data-tab='servers']", 500);
+				expect(await app.client.$("#modal-saves").$(".tab.segment[data-tab='servers']").$("tbody").$$("tr")).to.have.lengthOf(0);
+				expect(await app.client.$("#modal-saves").$(".tab.segment[data-tab='servers']").$(".ui.error.message").getText()).to.equal("You have not created any servers yet! Start playing to see your saved servers."); // should show error message
+			});
 		});
 
 		it("can show the instance confirm delete modal", async () => {
