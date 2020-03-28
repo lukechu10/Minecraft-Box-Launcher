@@ -69,8 +69,9 @@ export default class SavesTabServer extends HTMLDivElement {
 		for (let i = 0; i < this.servers.length; i++) {
 			// ping server
 			try {
-				const rawStatusJson: Status = await queryStatus({ host: this.servers[i].ip }, {
-					timeout: 8000,
+				const serverData = { host: this.servers[i].ip };
+				const rawStatusJson: Status = await queryStatus(serverData, {
+					timeout: 4000,
 					protocol: 578
 				});
 				statusElements[i].textContent = `${rawStatusJson.players.online} / ${rawStatusJson.players.max}`;
