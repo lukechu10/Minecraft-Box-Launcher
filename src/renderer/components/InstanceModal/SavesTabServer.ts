@@ -41,6 +41,10 @@ export default class SavesTabServer extends HTMLDivElement {
 					const ipNode: HTMLTableCellElement = document.createElement("td");
 					ipNode.textContent = info.ip;
 					rowNode.appendChild(ipNode);
+					const statusNode: HTMLTableCellElement = document.createElement("td");
+					statusNode.classList.add("server-status-cell");
+					statusNode.textContent = "Pinging...";
+					rowNode.appendChild(statusNode);
 					tbody.appendChild(rowNode);
 				}
 				this.servers = infos; // save servers to element state
@@ -58,14 +62,21 @@ export default class SavesTabServer extends HTMLDivElement {
 	}
 
 	private async pingAllServers(): Promise<void> {
-		for (const server of this.servers) {
+		const statusElements = this.querySelectorAll<HTMLTableCellElement>(".server-status-cell"); // 3rd row in server list
+		for (let i = 0; i < this.servers.length; i++) {
 			// ping server
-			const rawStatusJson: Status = await queryStatus({ host: server.ip }, {
-				timeout: 8000,
-				retryTimes: 2,
-				protocol: 578
-			});
-			console.log(rawStatusJson);
+			try {
+				const rawStatusJson: Status = await queryStatus({ host: this.servers[i].ip }, {
+					timeout: 8000,
+					protocol: 578
+				});
+				statusElements[i].textContent = `${rawStatusJson.players.online} / ${rawStatusJson.players.max}`;
+			}
+			catch(e) {
+				// set error
+				console.warn("Error while pinging server:\n", e);
+				statusElements[i].textContent = "Error";
+			}
 		}
 	}
 }
