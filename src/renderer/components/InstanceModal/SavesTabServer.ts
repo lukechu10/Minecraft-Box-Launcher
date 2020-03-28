@@ -12,11 +12,14 @@ export default class SavesTabServer extends HTMLDivElement {
 		super();
 	}
 
-	public connectedCallback(): void { }
+	public connectedCallback(): void {
+		(this.getElementsByClassName("ui basic button")[0] as HTMLButtonElement).onclick = () => { this.render(); };
+	}
 
 	public setInstance(instance: Instance): void { this.instance = instance; }
 
 	public async render(): Promise<void> {
+		this.servers = []; // clear server list
 		const tbody = this.getElementsByTagName("tbody")[0];
 		// remove all children
 		while (tbody.firstChild) {
@@ -72,7 +75,7 @@ export default class SavesTabServer extends HTMLDivElement {
 				});
 				statusElements[i].textContent = `${rawStatusJson.players.online} / ${rawStatusJson.players.max}`;
 			}
-			catch(e) {
+			catch (e) {
 				// set error
 				console.warn("Error while pinging server:\n", e);
 				statusElements[i].textContent = "Error";
