@@ -1,7 +1,7 @@
 "use-strict";
 import { Application } from "spectron";
 import path from "path";
-import { v4 as uuidv4 } from "uuid";
+import uuidv4 from "uuid/v4";
 import _ from "lodash";
 import fs from "fs-extra";
 import { expect } from "chai";
