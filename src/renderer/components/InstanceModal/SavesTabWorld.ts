@@ -3,6 +3,7 @@ import { deserialize } from "@xmcl/nbt";
 import fs from "fs-extra";
 import path from "path";
 import Instance from "../../Instance";
+import moment from "moment";
 
 async function readWorlds(savePath: string): Promise<object[]> {
 	const worlds: object[] = [];
@@ -59,9 +60,10 @@ export default class SavesTabWorld extends HTMLDivElement {
 					const nameNode: HTMLTableCellElement = document.createElement("td");
 					nameNode.textContent = world.LevelName;
 					rowNode.appendChild(nameNode);
-					const lastPlayed: HTMLTableCellElement = document.createElement("td");
-					lastPlayed.textContent = new Date(world.LastPlayed.toNumber()).toDateString();
-					rowNode.appendChild(lastPlayed);
+					const lastPlayedNode: HTMLTableCellElement = document.createElement("td");
+					const lastPlayed = moment(world.LastPlayed.toNumber());
+					lastPlayedNode.textContent = `${lastPlayed.calendar()} (${lastPlayed.fromNow()})`;
+					rowNode.appendChild(lastPlayedNode);
 					const versionNode: HTMLTableCellElement = document.createElement("td");
 					versionNode.textContent = world.Version.Name;
 					rowNode.appendChild(versionNode);
