@@ -19,14 +19,13 @@ export default class Saves extends HTMLDivElement {
 
 		this.querySelector<SavesTabServer>(".ui.tab[is='saves-tab-server']")?.setInstance(instance);
 		this.querySelector<SavesTabWorld>(".ui.tab[is='saves-tab-world']")?.setInstance(instance);
-		
+
 		$(this).modal({
 			closable: false
 		}).modal("show");
 
 		$(this).find(".menu .item").tab({
 			onLoad: (tabPath) => {
-				console.log("load")
 				if (tabPath === "servers") this.querySelector<SavesTabServer>(".ui.tab[is='saves-tab-server']")?.render();
 				else if (tabPath === "worlds") this.querySelector<SavesTabWorld>(".ui.tab[is='saves-tab-world']")?.render();
 			}
