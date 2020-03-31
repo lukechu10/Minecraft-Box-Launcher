@@ -3,12 +3,13 @@
 	.ui.secondary.menu
 		a.item(data-tab="worlds") Worlds
 		a.item(data-tab="servers") Servers
-	.ui.tab.segment(data-tab="worlds")
+	.ui.tab.segment(data-tab="worlds" is="saves-tab-world")
+		button.ui.basic.button Refresh
 		table.ui.celled.table
 			thead
 				tr
 					th World Name
-					th Size
+					th Last Played
 					th Version
 			tbody
 	.ui.tab.segment(data-tab="servers" is="saves-tab-server")
