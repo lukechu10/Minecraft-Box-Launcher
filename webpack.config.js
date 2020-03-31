@@ -70,7 +70,8 @@ const baseConfig = {
 	externals: {
 		"@xmcl/installer": "commonjs2 @xmcl/installer",
 		"@xmcl/client": "commonjs2 @xmcl/client",
-		"got": "commonjs2 got"
+		"got": "commonjs2 got",
+		"uuid": "commonjs2 uuid"
 	}
 };
 
