@@ -26,9 +26,10 @@ export default class Instance implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
 	/**
 	 * Returns the path for minecraft saves/logs/configs for a specific instance
-	 * @param name name of instance
 	 */
-	public static readonly MinecraftSavePath = (name: string) => { return path.join(app.getPath("userData"), "./instances/", name); };
+	public get savePath(): string {
+		return path.join(app.getPath("userData"), "./instances/", this.name);
+	}
 	/**
 	 * Name of instance
 	 */
@@ -99,7 +100,8 @@ export default class Instance implements InstanceData {
 			}
 			const resolvedVersion: ResolvedVersion = await Version.parse(Instance.MINECRAFT_PATH, this.id);
 			const options: LaunchOption = {
-				gamePath: Instance.MINECRAFT_PATH,
+				gamePath: this.savePath,
+				resourcePath: Instance.MINECRAFT_PATH,
 				javaPath,
 				version: resolvedVersion,
 				minMemory: ApplicationStore.GlobalSettings.store.java.minMemory,
@@ -145,7 +147,7 @@ export default class Instance implements InstanceData {
 	public async delete(deleteFolder: boolean = false): Promise<void> {
 		InstanceListStore.deleteInstance(this.name);
 		if (deleteFolder) {
-			await fs.remove(Instance.MinecraftSavePath(this.name));
+			await fs.remove(this.savePath);
 		}
 		InstanceListStore.syncToStore();
 	}

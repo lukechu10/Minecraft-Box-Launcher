@@ -48,7 +48,7 @@
 		"@typescript-eslint/eslint-plugin": "^2.25.0",
 		"@typescript-eslint/parser": "^2.25.0",
 		"@xmcl/core": "^2.1.0",
-		"@xmcl/installer": "^2.6.4",
+		"@xmcl/server-info": "^2.0.1",
 		"@xmcl/task": "^2.1.5",
 		"@xmcl/user": "^2.1.2",
 		"chai": "^4.2.0",
@@ -79,6 +79,8 @@
 		"type": "git"
 	},
 	"dependencies": {
+		"@xmcl/client": "^2.0.3",
+		"@xmcl/installer": "^2.6.3",
 		"electron-debug": "^3.0.1",
 		"electron-store": "^5.1.1",
 		"got": "^10.7.0",

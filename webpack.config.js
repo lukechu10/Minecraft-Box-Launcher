@@ -69,7 +69,9 @@ const baseConfig = {
 	target: "electron-renderer",
 	externals: {
 		"@xmcl/installer": "commonjs2 @xmcl/installer",
-		"got": "commonjs2 got"
+		"@xmcl/client": "commonjs2 @xmcl/client",
+		"got": "commonjs2 got",
+		"uuid": "commonjs2 uuid"
 	}
 };
 

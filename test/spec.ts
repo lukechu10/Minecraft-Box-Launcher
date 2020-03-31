@@ -212,10 +212,51 @@ describe("Application window", function () {
 			await app.client.waitForVisible("#modal-options:not(.animating)", 2000);
 		});
 
-		it("can show the instance saves modal", async () => {
-			await openInstanceInfoModal();
-			await app.client.$(".btn-saves").click();
-			await app.client.waitForVisible("#modal-saves:not(.animating)", 2000);
+		describe("Saves modal", async () => {
+			it("can show the instance saves modal", async () => {
+				await openInstanceInfoModal();
+				await app.client.$(".btn-saves").click();
+				await app.client.waitForVisible("#modal-saves:not(.animating)", 2000);
+			});
+
+			it("can show the servers tab", async () => {
+				await openInstanceInfoModal();
+				await app.client.$(".btn-saves").click();
+				await app.client.waitForVisible("#modal-saves:not(.animating)", 2000);
+				await app.client.$("#modal-saves").$(".menu .item[data-tab='servers']").click();
+				await app.client.$("#modal-saves").waitForVisible(".tab.segment[data-tab='servers']", 500);
+			});
+
+			it("should not have any servers in server list", async () => {
+				await openInstanceInfoModal();
+				await app.client.$(".btn-saves").click();
+				await app.client.waitForVisible("#modal-saves:not(.animating)", 2000);
+				await app.client.$("#modal-saves").$(".menu .item[data-tab='servers']").click();
+				await app.client.$("#modal-saves").waitForVisible(".tab.segment[data-tab='servers']", 500);
+				expect(await app.client.$("#modal-saves").$(".tab.segment[data-tab='servers']").$("tbody").$$("tr")).to.have.lengthOf(0);
+				expect(await app.client.$("#modal-saves").$(".tab.segment[data-tab='servers']").$(".ui.error.message").getText()).to.equal("You have not created any servers yet! Start playing to see your saved servers."); // should show error message
+			});
+
+			it("should show saved servers", async () => {
+				await openInstanceInfoModal();
+				// add mock servers.dat to instance folder
+				const userDataPath = (await app.client.execute(() => window.require("electron").remote.app.getPath("userData"))).value;
+				const instanceDir = path.join(userDataPath, "instances", "Test instance");
+				await fs.mkdirp(instanceDir);
+				await fs.copyFile(path.resolve("./test/mock/servers.dat"), path.join(instanceDir, "servers.dat"));
+
+				await app.client.$(".btn-saves").click();
+				await app.client.waitForVisible("#modal-saves:not(.animating)", 2000);
+				await app.client.$("#modal-saves").$(".menu .item[data-tab='servers']").click();
+				await app.client.$("#modal-saves").waitForVisible(".tab.segment[data-tab='servers']", 500);
+				expect(await app.client.$("#modal-saves").$(".tab.segment[data-tab='servers']").$("tbody").$$("tr")).to.have.lengthOf(1);
+				const tableBody = app.client.$("#modal-saves").$(".tab.segment[data-tab='servers']").$("tbody");
+				const tableCols = tableBody.$("tr").$$("td");
+				expect(await tableCols).to.have.lengthOf(3);
+				// @ts-ignore
+				expect(await (tableCols).getText()).to.equal("Hypixel mc.hypixel.net Pinging..."); // table row
+				await app.client.waitUntil(async () => await app.client.$(".server-status-cell").getText() !== "Pinging...", 6000);
+			});
 		});
 
 		it("can show the instance confirm delete modal", async () => {
