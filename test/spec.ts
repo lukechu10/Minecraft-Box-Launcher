@@ -227,7 +227,7 @@ describe("Application window", function () {
 				await app.client.$("#modal-saves").waitForVisible(".tab.segment[data-tab='servers']", 500);
 			});
 
-			it("should not have any sevrers in server list", async () => {
+			it("should not have any servers in server list", async () => {
 				await openInstanceInfoModal();
 				await app.client.$(".btn-saves").click();
 				await app.client.waitForVisible("#modal-saves:not(.animating)", 2000);
