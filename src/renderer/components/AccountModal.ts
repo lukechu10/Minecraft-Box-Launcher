@@ -6,10 +6,7 @@ export default class AccountModal extends HTMLDivElement {
 		super();
 	}
 
-	public connectedCallback(): void {
-		// attach handler
-		document.getElementById("account-modal-link")?.addEventListener("click", () => { this.render(); });
-	}
+	public connectedCallback(): void { }
 
 	public render(): void {
 		console.log(AuthStore.store);
@@ -20,4 +17,9 @@ export default class AccountModal extends HTMLDivElement {
 	}
 }
 
+$(() => {
+	document.getElementById("account-modal-link")?.addEventListener("click", () => { 
+		(document.getElementById("modal-account") as AccountModal | null)?.render();
+	});
+});
 customElements.define("modal-account", AccountModal, { extends: "div" });
