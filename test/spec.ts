@@ -327,7 +327,7 @@ describe("Application window", function () {
 				await app.client.waitForExist(".btn-play", 1000000);
 			});
 
-			it.only("can install latest snapshot", async () => {
+			it("can install latest snapshot", async () => {
 				await fillOutInstanceForm("Test instance", "snapshot");
 				await app.client.execute(() => {
 					(window as any).$(".instance-item")[0].install();
