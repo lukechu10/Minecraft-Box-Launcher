@@ -9,12 +9,8 @@ export namespace VersionsController {
 	 */
 	export async function updateVersionMeta(): Promise<Installer.VersionList | null> {
 		const versionsMeta = await Installer.getVersionList();
-		if (!versionsMeta)
-			return null;
-		else {
-			// save to electron store
-			ApplicationStore.versionsMetaCache.set(versionsMeta);
-			return versionsMeta;
-		}
+		// save to electron store
+		ApplicationStore.versionsMetaCache.set(versionsMeta);
+		return versionsMeta;
 	}
 }
