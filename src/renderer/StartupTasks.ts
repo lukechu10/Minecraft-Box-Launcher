@@ -41,3 +41,4 @@ export { AuthenticationController, VersionsController };
 export * from "./components/InstanceList";
 export * from "./components/UserStatus";
 export * from "./components/TaskProgress";
+export * from "./components/AccountModal";
