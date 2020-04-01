@@ -120,7 +120,7 @@ describe("Application window", function () {
 	});
 
 	describe("Instance management", () => {
-		async function fillOutInstanceForm(name: string = "Test instance") {
+		async function fillOutInstanceForm(name: string = "Test instance", type: string = "release") {
 			await app.client.waitUntilWindowLoaded();
 			await app.client.$("#content").$("div.ui.primary.button").click();
 			const res = await app.client.waitForVisible("#modal-newInstance:not(.animating)", 2000);
@@ -135,7 +135,11 @@ describe("Application window", function () {
 			// select instance type
 			await form.$("#dropdown-type").click();
 			await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000);
-			await form.$("#dropdown-type .menu .item").click(); // select first option (vanilla release)
+			if (type === "release")
+				await form.$("#dropdown-type .menu .item[data-value='vanilla-release']").click(); // select first option (vanilla release)
+			else if (type === "snapshot")
+				await form.$("#dropdown-type .menu .item[data-value='vanilla-snapshot']").click(); // select second (vanilla snapshot)
+
 			await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000, true);
 			// select instance version
 			await form.waitForExist("#dropdown-id:not(.disabled)");
@@ -316,6 +320,15 @@ describe("Application window", function () {
 		describe("Install and Launch", () => {
 			it("can install latest release", async () => {
 				await fillOutInstanceForm();
+				await app.client.execute(() => {
+					(window as any).$(".instance-item")[0].install();
+				});
+				// wait for play button
+				await app.client.waitForExist(".btn-play", 1000000);
+			});
+
+			it.only("can install latest snapshot", async () => {
+				await fillOutInstanceForm("Test instance", "snapshot");
 				await app.client.execute(() => {
 					(window as any).$(".instance-item")[0].install();
 				});
