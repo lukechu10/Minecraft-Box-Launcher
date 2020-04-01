@@ -80,7 +80,7 @@
 	},
 	"dependencies": {
 		"@xmcl/client": "^2.0.4",
-		"@xmcl/installer": "^2.6.3",
+		"@xmcl/installer": "^2.6.5",
 		"electron-debug": "^3.0.1",
 		"electron-store": "^5.1.1",
 		"got": "^10.7.0",
