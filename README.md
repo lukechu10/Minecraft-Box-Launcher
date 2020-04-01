@@ -48,7 +48,8 @@ Symbol	| Meaning
 	- Custom java arguments 🔨
 - Instance configuration and management
 	- Per-instance settings (seperate from global settings) 🔨
-	- World saves manager (view and install maps) 🔨
+	- World saves manager (view and install maps) ✔ (partially)
+	- Server manager ✔ (partially)
 	- Mods manager (quickly view and install forge mods) 🦄
 	- Install mod packs 🦄
 	- Minecraft settings viewer 🦄
