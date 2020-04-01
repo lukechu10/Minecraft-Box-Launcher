@@ -8,7 +8,7 @@
 					.header(style="display: inline-block;") #{selectedProfile.name}
 					.description (UUID: #[span(style="user-select: all;") #{selectedProfile.id}])
 				.right.floated.content
-					.ui.right.floated.red.button(onclick="AuthenticationController.logout()") #[i.fas.fa-sign-out-alt] Logout
+					button.ui.right.floated.red.button(onclick="AuthenticationController.logout()") #[i.fas.fa-sign-out-alt] Logout
 	- else
 		p You are not logged in
 		.ui.button(onclick="Render.showLoginModal()") Login
