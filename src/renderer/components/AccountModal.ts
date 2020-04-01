@@ -14,7 +14,9 @@ export default class AccountModal extends HTMLDivElement {
 	public render(): void {
 		console.log(AuthStore.store);
 		this.innerHTML = accountModalTemplate(AuthStore.store);
-		$(this).modal("show");
+		$(this).modal({
+			allowMultiple: false
+		}).modal("show");
 	}
 }
 
