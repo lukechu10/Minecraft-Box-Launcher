@@ -125,15 +125,19 @@ module.exports = [
 				{
 					test: /\.tsx?$/,
 					include: path.resolve(__dirname, "src"),
-					loader: [
-						"coverage-istanbul-loader",
-						"ts-loader"
-					],
-					options: {
-						compilerOptions: {
-							removeComments: false
+					use: [
+						{
+							loader: "coverage-istanbul-loader"
+						},
+						{
+							loader: "ts-loader",
+							options: {
+								compilerOptions: {
+									removeComments: false
+								}
+							}
 						}
-					}
+					]
 				},
 				{
 					test: /\.pug/,
