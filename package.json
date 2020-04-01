@@ -48,7 +48,7 @@
 		"@typescript-eslint/eslint-plugin": "^2.26.0",
 		"@typescript-eslint/parser": "^2.26.0",
 		"@xmcl/core": "^2.1.0",
-		"@xmcl/server-info": "^2.0.1",
+		"@xmcl/server-info": "^2.0.2",
 		"@xmcl/task": "^2.1.5",
 		"@xmcl/user": "^2.1.2",
 		"chai": "^4.2.0",
