@@ -73,7 +73,7 @@ describe("Application window", function () {
 		expect(res).to.equal(true);
 	});
 
-	describe("Authentication", () => {
+	describe.skip("Authentication", () => {
 		describe("Authentication modal", () => {
 			it("shows the login modal", async () => {
 				await app.client.waitUntilWindowLoaded();
