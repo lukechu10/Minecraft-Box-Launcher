@@ -329,7 +329,7 @@ describe("Application window", function () {
 				// wait for play button
 				await app.client.waitForExist(".btn-play", 1000000);
 				expect(await app.client.$("div#task-progress").$(".label").getText()).to.equal("Successfully installed instance Test instance"); // make sure task progress shows current message
-				await app.client.waitForExist("div#task-progress.hidden", 6000);
+				await app.client.waitForExist("div#task-progress.hidden", 10000);
 			});
 
 			it("can install latest snapshot", async () => {
