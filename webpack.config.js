@@ -32,6 +32,12 @@ const baseConfig = {
 			filename: path.resolve(__dirname, "dist", "views", "news.html"),
 			inject: "head",
 			chunks: [...baseChunks]
+		}),
+		new HtmlWebpackPlugin({
+			template: path.resolve(__dirname, "src", "renderer", "views", "home.pug"),
+			filename: path.resolve(__dirname, "dist", "views", "home.html"),
+			inject: "head",
+			chunks: [...baseChunks]
 		})
 	],
 	module: {
