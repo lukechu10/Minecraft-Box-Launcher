@@ -139,6 +139,8 @@ describe("Application window", function () {
 				await form.$("#dropdown-type .menu .item[data-value='vanilla-release']").click(); // select first option (vanilla release)
 			else if (type === "snapshot")
 				await form.$("#dropdown-type .menu .item[data-value='vanilla-snapshot']").click(); // select second (vanilla snapshot)
+			else if (type === "historical")
+				await form.$("#dropdown-type .menu .item[data-value='vanilla-historical']").click(); // select third (vanilla historical)
 
 			await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000, true);
 			// select instance version
@@ -329,6 +331,15 @@ describe("Application window", function () {
 
 			it("can install latest snapshot", async () => {
 				await fillOutInstanceForm("Test instance", "snapshot");
+				await app.client.execute(() => {
+					(window as any).$(".instance-item")[0].install();
+				});
+				// wait for play button
+				await app.client.waitForExist(".btn-play", 1000000);
+			});
+
+			it("can install historical versions", async () => {
+				await fillOutInstanceForm("Test instance", "historical");
 				await app.client.execute(() => {
 					(window as any).$(".instance-item")[0].install();
 				});
