@@ -73,20 +73,29 @@ describe("Application window", function () {
 		expect(res).to.equal(true);
 	});
 
-	describe.skip("Authentication", () => {
+	describe("Authentication", () => {
 		describe("Authentication modal", () => {
-			it("shows the login modal", async () => {
+			it("shows the account modal", async () => {
 				await app.client.waitUntilWindowLoaded();
-				await app.client.$("#login-status-text").click();
-				const res = await app.client.waitForVisible("#modal-login:not(.animating)");
+				await app.client.$("#account-modal-link").click();
+				const res = await app.client.waitForVisible("#modal-account:not(.animating)");
 				expect(res).to.equal(true);
+			});
+
+			it("can show the login modal", async () => {
+				await app.client.waitUntilWindowLoaded();
+				await app.client.$("#account-modal-link").click();
+				await app.client.waitForVisible("#modal-account:not(.animating)");
+				await app.client.$("#modal-account").click(".content .ui.button");
+				await app.client.waitForVisible("#modal-login:not(.animating)");
 			});
 
 			it("should display error if no input", async () => {
 				await app.client.waitUntilWindowLoaded();
-				await app.client.$("#login-status-text").click();
-				const res = await app.client.waitForVisible("#modal-login:not(.animating)");
-				expect(res).to.equal(true);
+				await app.client.$("#account-modal-link").click();
+				await app.client.waitForVisible("#modal-account:not(.animating)");
+				await app.client.$("#modal-account").click(".content .ui.button");
+				await app.client.waitForVisible("#modal-login:not(.animating)");
 				await app.client.$("#login-btn").click(); // click on submit button
 				await app.client.waitForText("#login-errors-container", 1000);
 				expect(await app.client.$("#login-errors-container").getText()).to.equal("Please fill out the form!");
@@ -94,9 +103,10 @@ describe("Application window", function () {
 
 			it.skip("should not submit if invalid email", async () => {
 				await app.client.waitUntilWindowLoaded();
-				await app.client.$("#login-status-text").click();
-				const res = await app.client.waitForVisible("#modal-login:not(.animating)");
-				expect(res).to.equal(true);
+				await app.client.$("#account-modal-link").click();
+				await app.client.waitForVisible("#modal-account:not(.animating)");
+				await app.client.$("#modal-account").click(".content .ui.button");
+				await app.client.waitForVisible("#modal-login:not(.animating)");
 				await app.client.$("#username-field").setValue("test@test.com"); // fill out username field
 				await app.client.$("#login-btn").click(); // click on submit button
 				await app.client.waitForText("#login-errors-container", 1000);
@@ -105,9 +115,10 @@ describe("Application window", function () {
 
 			it("should display invalid email / password error", async () => {
 				await app.client.waitUntilWindowLoaded();
-				await app.client.$("#login-status-text").click();
-				const res = await app.client.waitForVisible("#modal-login:not(.animating)");
-				expect(res).to.equal(true);
+				await app.client.$("#account-modal-link").click();
+				await app.client.waitForVisible("#modal-account:not(.animating)");
+				await app.client.$("#modal-account").click(".content .ui.button");
+				await app.client.waitForVisible("#modal-login:not(.animating)");
 				// fill out form
 				await app.client.$("#username-field").setValue("test@test.com");
 				await app.client.$("#password-field").setValue("test");
