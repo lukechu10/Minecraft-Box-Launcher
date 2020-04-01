@@ -9,7 +9,6 @@ export default class AccountModal extends HTMLDivElement {
 	public connectedCallback(): void { }
 
 	public render(): void {
-		console.log(AuthStore.store);
 		this.innerHTML = accountModalTemplate(AuthStore.store);
 		$(this).modal({
 			allowMultiple: false
@@ -28,7 +27,7 @@ $(() => {
 });
 
 const changeCallback = () => {
-	console.log("Auth store changed, rendering user status");
+	console.log("Auth store changed, rendering account modal");
 	document.querySelector<AccountModal>("#modal-account")?.refresh();
 };
 // @ts-ignore
