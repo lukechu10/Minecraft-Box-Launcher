@@ -57,8 +57,9 @@ export class AuthModal extends HTMLDivElement {
 		} as any);
 
 		// login button
-		$("#login-form").submit(async (event: JQuery.Event) => {
+		$("#login-form").on("submit", async (event: JQuery.Event) => {
 			event.preventDefault();
+			event.stopImmediatePropagation();
 			$("#login-form").form("validate form");
 			if ($("#login-form").form("is valid")) {
 				try {
