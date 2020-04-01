@@ -103,7 +103,6 @@ export default class TaskProgress extends HTMLDivElement {
 		$(this.$progress()).progress("set error", err.toString());
 	}
 
-	private prevProgress: number = 0;
 	/**
 	 * Update progress bar message
 	 * @param percent percentage of task finished. Pass `-1` for indeterminate pulsulating effect
@@ -128,7 +127,6 @@ export default class TaskProgress extends HTMLDivElement {
 		else if (percent !== undefined) {
 			this.$progress().classList.remove("indeterminate");
 			$(this.$progress()).progress("set percent", percent);
-			this.prevProgress = percent;
 		}
 	}
 
