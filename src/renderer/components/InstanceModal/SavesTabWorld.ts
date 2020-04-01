@@ -61,11 +61,11 @@ export default class SavesTabWorld extends HTMLDivElement {
 					nameNode.textContent = world.LevelName;
 					rowNode.appendChild(nameNode);
 					const lastPlayedNode: HTMLTableCellElement = document.createElement("td");
-					const lastPlayed = moment(world.LastPlayed.toNumber());
+					const lastPlayed = moment(world.LastPlayed?.toNumber());
 					lastPlayedNode.textContent = `${lastPlayed.calendar()} (${lastPlayed.fromNow()})`;
 					rowNode.appendChild(lastPlayedNode);
 					const versionNode: HTMLTableCellElement = document.createElement("td");
-					versionNode.textContent = world.Version.Name;
+					versionNode.textContent = world.Version?.Name ?? "Unknown";
 					rowNode.appendChild(versionNode);
 					tbody.appendChild(rowNode);
 				}
