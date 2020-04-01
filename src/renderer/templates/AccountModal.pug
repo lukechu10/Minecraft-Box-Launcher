@@ -1,1 +1,13 @@
 .header Account
+.content
+	- if(loggedIn)
+		.ui.large.list
+			.item
+				img.ui.avatar.image(src=`https://minotar.net/avatar/${selectedProfile.id}` alt="skin head")
+				.content
+					.header(style="display: inline-block;") #{selectedProfile.name}
+					.description (UUID: #[span(style="user-select: all;") #{selectedProfile.id}])
+				.right.floated.content
+					.ui.right.floated.red.button #[i.fas.fa-sign-out-alt] Logout
+	- else
+		p You are not logged in

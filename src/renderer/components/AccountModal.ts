@@ -1,4 +1,5 @@
 import accountModalTemplate from "../templates/AccountModal.pug";
+import AuthStore from "../store/AuthStore";
 
 export default class AccountModal extends HTMLDivElement {
 	public constructor() {
@@ -11,7 +12,8 @@ export default class AccountModal extends HTMLDivElement {
 	}
 
 	public render(): void {
-		this.innerHTML = accountModalTemplate();
+		console.log(AuthStore.store);
+		this.innerHTML = accountModalTemplate(AuthStore.store);
 		$(this).modal("show");
 	}
 }
