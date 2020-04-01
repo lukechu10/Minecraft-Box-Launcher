@@ -325,8 +325,11 @@ describe("Application window", function () {
 				await app.client.execute(() => {
 					(window as any).$(".instance-item")[0].install();
 				});
+				expect(await app.client.waitForExist("div#task-progress.visible", 2000)).to.be.true;
 				// wait for play button
 				await app.client.waitForExist(".btn-play", 1000000);
+				expect(await app.client.$("div#task-progress").$(".label").getText()).to.equal("Successfully installed instance Test instance"); // make sure task progress shows current message
+				await app.client.waitForExist("div#task-progress.hidden", 6000);
 			});
 
 			it("can install latest snapshot", async () => {
