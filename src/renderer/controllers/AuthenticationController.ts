@@ -13,6 +13,14 @@ export namespace AuthenticationController {
 		const authFromMojang: Authentication = await uLogin({ username, password }); // official login
 		// save data to electron store
 		AuthStore.set({ ...authFromMojang, loggedIn: true });
+
+		// show toast message
+		// @ts-ignore
+		$("body").toast({
+			title: "Success",
+			message: `Logged in as ${authFromMojang.selectedProfile.name}`,
+			showImage: `https://minotar.net/avatar/${authFromMojang.selectedProfile.id}`
+		});
 		return authFromMojang;
 	}
 	/**
