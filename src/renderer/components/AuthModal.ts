@@ -11,8 +11,7 @@ export class AuthModal extends HTMLDivElement {
 	public render(message?: string): void {
 		this.innerHTML = authModalTemplate();
 		$(this).modal({
-			closable: false,
-			detachable: false
+			closable: false
 		}).modal("show");
 		this.attachEvents();
 		if (message !== undefined) this.setErrorMessage(message);
