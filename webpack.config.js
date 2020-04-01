@@ -128,7 +128,12 @@ module.exports = [
 					loader: [
 						"coverage-istanbul-loader",
 						"ts-loader"
-					]
+					],
+					options: {
+						compilerOptions: {
+							removeComments: false
+						}
+					}
 				},
 				{
 					test: /\.pug/,
