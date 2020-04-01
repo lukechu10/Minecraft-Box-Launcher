@@ -14,14 +14,16 @@ export default class UserStatus extends HTMLElement {
 	}
 
 	public render(): void {
-		this.classList.add("item", "ui", "dropdown");
+		if (!this.hasChildNodes()) {
+			this.classList.add("item", "ui", "dropdown");
 
-		const authData = AuthStore.store; // get data from store
-		if (!authData.loggedIn)
-			this.innerHTML = userStatusTemplate({ loggedIn: false });
-		else
-			this.innerHTML = userStatusTemplate({ loggedIn: true, ...authData.selectedProfile });
-		$(this).dropdown();
+			const authData = AuthStore.store; // get data from store
+			if (!authData.loggedIn)
+				this.innerHTML = userStatusTemplate({ loggedIn: false });
+			else
+				this.innerHTML = userStatusTemplate({ loggedIn: true, ...authData.selectedProfile });
+			$(this).dropdown();
+		}
 	}
 }
 
