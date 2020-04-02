@@ -1,13 +1,14 @@
 extend layout
 
+block css
+	link(rel="stylesheet" href="../../src/renderer/css/home.css")
+
 block content
 	div
 		h1 Home
 		.ui.stackable.grid
 			.ten.wide.column
-				.ui.segment
-					h5.ui.header My Recent Instances
-					a.ui.top.right.attached.primary.label(href="./instances.html") Show more
+				home-instances(style="display: block;").ui.segment
 			.six.wide.column
 				.ui.segment
 					h5.ui.header My Account
