@@ -8,7 +8,8 @@ const baseChunks = ["runtime", "vendors", "turbolinks", "startupTasks"];
 const baseConfig = {
 	entry: {
 		startupTasks: "./src/renderer/StartupTasks.ts",
-		turbolinks: "./src/renderer/turbolinks.ts"
+		turbolinks: "./src/renderer/turbolinks.ts",
+		home: "./src/renderer/HomeEntry.ts"
 	},
 	output: {
 		filename: "[name].js",
@@ -37,7 +38,7 @@ const baseConfig = {
 			template: path.resolve(__dirname, "src", "renderer", "views", "home.pug"),
 			filename: path.resolve(__dirname, "dist", "views", "home.html"),
 			inject: "head",
-			chunks: [...baseChunks]
+			chunks: [...baseChunks, "home"]
 		})
 	],
 	module: {
