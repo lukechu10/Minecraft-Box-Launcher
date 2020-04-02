@@ -24,6 +24,9 @@ $(() => {
 	document.getElementById("account-modal-link")?.addEventListener("click", () => {
 		(document.getElementById("modal-account") as AccountModal | null)?.render();
 	});
+	$(document).on("click", "#account-modal-link-home", () => {
+		(document.getElementById("modal-account") as AccountModal | null)?.render();
+	});
 });
 
 const changeCallback = () => {
