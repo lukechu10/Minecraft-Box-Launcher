@@ -22,7 +22,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
     - name: Install dependencies (npm install)
-      run: npm install
+      run: npm ci
     - name: Lint (ESLint)
       uses: icrawl/action-eslint@v1
       env:
