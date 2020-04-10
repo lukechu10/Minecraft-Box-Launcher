@@ -2,5 +2,8 @@ h5.ui.header Last Played
 a.ui.top.right.attached.primary.label(href="./instances.html") View all
 
 .ui.segment#last-played-instance(style="margin-top: 0 !important;")
-	span #[strong #{instance.name}] (#{instance.id} #{instance.type})
-	.meta Last played: #{instance.lastPlayedStr}
+	- if (!noInstance)
+		span #[strong #{instance.name}] (#{instance.id} #{instance.type})
+		.meta Last played: #{instance.lastPlayedStr}
+	- else
+		span No instance created yet.
