@@ -54,6 +54,11 @@ Symbol	| Meaning
 	- Install mod packs 🦄
 	- Minecraft settings viewer 🦄
 - Installed versions viewer (view which versions are installed and can be played) 🔨
+- UI
+	- Dashboard with widget system 🔨
+		- Last played instance ✔
+		- Mojang Account ✔
+		- Hypixel related stats 🦄
 
 ## Contributing
 See [CONTRIBUTING.md](https://github.com/lukechu10/Minecraft-Box-Launcher/blob/master/.github/CONTRIBUTING.md) for more details
