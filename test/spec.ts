@@ -362,4 +362,14 @@ describe("Application window", function () {
 			});
 		});
 	});
+
+	describe.only("Home Dashboard", () => {
+		it("can show home dashboard page", async () => {
+			await app.client.waitUntilWindowLoaded();
+			await app.client.$("navbar").$("a.item[href='./home.html']").click();
+			const text = await app.client.getText("#content div h1");
+			expect(text).to.be.a("string");
+			expect(text).to.equal("Home");
+		});
+	});
 });
