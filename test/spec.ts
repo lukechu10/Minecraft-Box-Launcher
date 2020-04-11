@@ -363,7 +363,7 @@ describe("Application window", function () {
 		});
 	});
 
-	describe.only("Home Dashboard", () => {
+	describe("Home Dashboard", () => {
 		it("can show home dashboard page", async () => {
 			await app.client.waitUntilWindowLoaded();
 			await app.client.$("navbar").$("a.item[href='./home.html']").click();
