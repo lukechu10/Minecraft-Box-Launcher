@@ -14,7 +14,17 @@ class Instances extends HTMLElement {
 	}
 
 	public render(): void {
-		const instance: Instance | undefined = InstanceListStore.instances[0];
+		const list = InstanceListStore.instances;
+		let instance: Instance | undefined;
+		// find last played instance
+		for(const item of list) {
+			const date1 = new Date(item.lastPlayed).getTime();
+			const date2 = instance && new Date(instance?.lastPlayed).getTime() || NaN;
+			if(instance === undefined || isNaN(date2) || date1 > date2) {
+				instance = item;
+			}
+		}
+
 		if (instance !== undefined) {
 			this.innerHTML = template({ instance, noInstance: false });
 			document.getElementById("last-played-instance")?.addEventListener("click", () => {
