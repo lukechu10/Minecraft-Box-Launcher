@@ -11,8 +11,7 @@ export class AuthModal extends HTMLDivElement {
 	public render(message?: string): void {
 		this.innerHTML = authModalTemplate();
 		$(this).modal({
-			closable: false,
-			detachable: false
+			closable: false
 		}).modal("show");
 		this.attachEvents();
 		if (message !== undefined) this.setErrorMessage(message);
@@ -58,8 +57,9 @@ export class AuthModal extends HTMLDivElement {
 		} as any);
 
 		// login button
-		$("#login-form").submit(async (event: JQuery.Event) => {
+		$("#login-form").on("submit", async (event: JQuery.Event) => {
 			event.preventDefault();
+			event.stopPropagation();
 			$("#login-form").form("validate form");
 			if ($("#login-form").form("is valid")) {
 				try {

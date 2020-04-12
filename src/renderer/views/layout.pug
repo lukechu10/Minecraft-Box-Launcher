@@ -23,20 +23,20 @@ html(lang="en")
 			const jQuery = window.$ = require('jquery');
 			const { shell } = require('electron');
 			
-		script(src='../../semantic/dist/semantic.min.js' link-js-library)
+		script(src='../../semantic/dist/semantic.min.js')
 		script(src='../../src/renderer/assets/icons/regular.min.js' defer)
 		script(src='../../src/renderer/assets/icons/solid.min.js' defer)
 		script(src='../../src/renderer/assets/icons/fontawesome.min.js' defer)
 
 		block js
 	body
-		//- FIXME: data-turbolinks-permanent not working
-		navbar.ui.menu.fixed.inverted#app-navbar(style="height: 45px;" data-turbolinks-permanent)
-			.item Minecraft Box
-			a.item(href="./instances.html") #[i.far.fa-list-alt] Instances
-			a.item(href="./news.html") #[i.far.fa-newspaper] News
-			.right.menu
-				user-status
+		navbar.ui.fixed.four.item.menu#app-navbar(style="height: 45px;" data-turbolinks-permanent)
+			a.item(href="./home.html" tabindex=-1) #[i.fas.fa-home] Home
+			a.item(href="./instances.html" tabindex=-1) #[i.far.fa-list-alt] Instances
+			a.item(href="./news.html" tabindex=-1) #[i.far.fa-newspaper] News
+			a.item#account-modal-link(tabindex=-1) #[i.far.fa-user] Account
+			//- .right.menu
+			//- 	user-status
 
 		//- page content
 		.ui.container#content(style="padding-top: 50px")
@@ -50,6 +50,7 @@ html(lang="en")
 		block modals
 		//- These are just placeholders that will be replaced with content when modal is loaded
 		.ui.modal#modal-login(is="modal-auth")
+		.ui.modal#modal-account(is="modal-account")
 		.ui.modal#modal-newInstance(is="modal-new-instance")
 		.ui.modal#modal-rename(is="instance-rename-modal")
 		.ui.modal#modal-options(is="instance-options-modal")

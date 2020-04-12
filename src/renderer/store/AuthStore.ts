@@ -2,7 +2,7 @@ import { Authentication } from "@xmcl/user";
 
 import Store from "electron-store";
 
-interface AuthStoreData extends Authentication{
+interface AuthStoreData extends Authentication {
 	loggedIn: true,
 }
 
