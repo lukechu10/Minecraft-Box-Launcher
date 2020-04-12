@@ -15,6 +15,58 @@ const app = new Application({
 	chromeDriverArgs: ["remote-debugging-port=9222"]
 });
 
+async function fillOutInstanceForm(name: string = "Test instance", type: string = "release") {
+	await app.client.waitUntilWindowLoaded();
+	await app.client.$("#content").$("div.ui.primary.button").click();
+	const res = await app.client.waitForVisible("#modal-newInstance:not(.animating)", 2000);
+	expect(res).to.be.equal(true); // make sure modal appears
+	await app.client.$("#submit-newInstanceForm").click(); // attempt to create empty instance
+	const isError = await app.client.$("#modal-newInstance").waitForExist(".ui.form.error", 2000);
+	expect(isError).to.equal(true);
+
+	// fill out form
+	const form = app.client.$("#form-newInstance");
+	await form.$("input[name='instance-name']").setValue(name);
+	// select instance type
+	await form.$("#dropdown-type").click();
+	await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000);
+	if (type === "release")
+		await form.$("#dropdown-type .menu .item[data-value='vanilla-release']").click(); // select first option (vanilla release)
+	else if (type === "snapshot")
+		await form.$("#dropdown-type .menu .item[data-value='vanilla-snapshot']").click(); // select second (vanilla snapshot)
+	else if (type === "historical")
+		await form.$("#dropdown-type .menu .item[data-value='vanilla-historical']").click(); // select third (vanilla historical)
+
+	await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000, true);
+	// select instance version
+	await form.waitForExist("#dropdown-id:not(.disabled)");
+	await form.$("#dropdown-id").click();
+	await form.$("#dropdown-id").waitForVisible(".menu:not(.animating)", 2000);
+	await form.$("#dropdown-id .menu .item").click(); // select first option (latest vanilla release)
+	await form.$("#dropdown-id").waitForVisible(".menu:not(.animating)", 2000, true);
+
+	// click on create instance button
+	await form.$("#submit-newInstanceForm").click();
+
+	// check for no errors
+	const errorForm = await app.client.$("#modal-newInstance").$$(".ui.form.error");
+	expect(errorForm).to.have.lengthOf(0, "Error creating new instance");
+
+	// wait for modal to close
+	await app.client.$("#modal-newInstance").waitForVisible(2000, true);
+	// check if new item has been added to instance list
+	const instanceList = app.client.$("div[is='instance-list']");
+	const items = await instanceList.$$(".instance-item");
+	expect(items).to.have.lengthOf(1); // 1 instance
+	expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.equal(name); // check instance title (set in form)
+}
+
+async function openInstanceInfoModal() {
+	await fillOutInstanceForm();
+	await app.client.$("div[is='instance-list'").$(".instance-item .ui.grid .thirteen.wide.column").click();
+	await app.client.waitForVisible("#modal-info:not(.animating)", 2000);
+}
+
 describe("Application window", function () {
 	this.timeout(1000000);
 
@@ -131,58 +183,6 @@ describe("Application window", function () {
 	});
 
 	describe("Instance management", () => {
-		async function fillOutInstanceForm(name: string = "Test instance", type: string = "release") {
-			await app.client.waitUntilWindowLoaded();
-			await app.client.$("#content").$("div.ui.primary.button").click();
-			const res = await app.client.waitForVisible("#modal-newInstance:not(.animating)", 2000);
-			expect(res).to.be.equal(true); // make sure modal appears
-			await app.client.$("#submit-newInstanceForm").click(); // attempt to create empty instance
-			const isError = await app.client.$("#modal-newInstance").waitForExist(".ui.form.error", 2000);
-			expect(isError).to.equal(true);
-
-			// fill out form
-			const form = app.client.$("#form-newInstance");
-			await form.$("input[name='instance-name']").setValue(name);
-			// select instance type
-			await form.$("#dropdown-type").click();
-			await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000);
-			if (type === "release")
-				await form.$("#dropdown-type .menu .item[data-value='vanilla-release']").click(); // select first option (vanilla release)
-			else if (type === "snapshot")
-				await form.$("#dropdown-type .menu .item[data-value='vanilla-snapshot']").click(); // select second (vanilla snapshot)
-			else if (type === "historical")
-				await form.$("#dropdown-type .menu .item[data-value='vanilla-historical']").click(); // select third (vanilla historical)
-
-			await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000, true);
-			// select instance version
-			await form.waitForExist("#dropdown-id:not(.disabled)");
-			await form.$("#dropdown-id").click();
-			await form.$("#dropdown-id").waitForVisible(".menu:not(.animating)", 2000);
-			await form.$("#dropdown-id .menu .item").click(); // select first option (latest vanilla release)
-			await form.$("#dropdown-id").waitForVisible(".menu:not(.animating)", 2000, true);
-
-			// click on create instance button
-			await form.$("#submit-newInstanceForm").click();
-
-			// check for no errors
-			const errorForm = await app.client.$("#modal-newInstance").$$(".ui.form.error");
-			expect(errorForm).to.have.lengthOf(0, "Error creating new instance");
-
-			// wait for modal to close
-			await app.client.$("#modal-newInstance").waitForVisible(2000, true);
-			// check if new item has been added to instance list
-			const instanceList = app.client.$("div[is='instance-list']");
-			const items = await instanceList.$$(".instance-item");
-			expect(items).to.have.lengthOf(1); // 1 instance
-			expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.equal(name); // check instance title (set in form)
-		}
-
-		async function openInstanceInfoModal() {
-			await fillOutInstanceForm();
-			await app.client.$("div[is='instance-list'").$(".instance-item .ui.grid .thirteen.wide.column").click();
-			await app.client.waitForVisible("#modal-info:not(.animating)", 2000);
-		}
-
 		it("can create new instances from the instance modal", async () => {
 			await fillOutInstanceForm();
 		});
@@ -370,6 +370,27 @@ describe("Application window", function () {
 			const text = await app.client.getText("#content div h1");
 			expect(text).to.be.a("string");
 			expect(text).to.equal("Home");
+		});
+
+		it("can show latest instance played", async () => {
+			await fillOutInstanceForm("Test instance home");
+			await app.client.$("navbar").$("a.item[href='./home.html']").click();
+			await app.client.waitForExist("#last-played-instance");
+			const instanceName = await app.client.getText("#last-played-instance").$("span").getText("strong");
+			expect(instanceName).to.be.a("string");
+			expect(instanceName).to.equal("Test instance home");
+			const instanceLastPlayed = await app.client.getText("#last-played-instance").getText(".meta");
+			expect(instanceLastPlayed).to.be.a("string");
+			expect(instanceLastPlayed).to.equal("Last played: never");
+		});
+
+		it("can show instance info modal from instance last played view", async () => {
+			await fillOutInstanceForm("Test instance home");
+			await app.client.$("navbar").$("a.item[href='./home.html']").click();
+			await app.client.waitForExist("#last-played-instance");
+			await app.client.click("#last-played-instance");
+
+			await app.client.waitForVisible("#modal-info:not(.animating)", 2000);
 		});
 	});
 });
