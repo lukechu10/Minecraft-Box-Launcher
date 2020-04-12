@@ -63,7 +63,7 @@ async function fillOutInstanceForm(name: string = "Test instance", type: string 
 
 async function openInstanceInfoModal() {
 	await fillOutInstanceForm();
-	await app.client.$("div[is='instance-list'").$(".instance-item .ui.grid .thirteen.wide.column").click();
+	await app.client.$("div[is='instance-list']").$(".instance-item .ui.grid .thirteen.wide.column").click();
 	await app.client.waitForVisible("#modal-info:not(.animating)", 2000);
 }
 
