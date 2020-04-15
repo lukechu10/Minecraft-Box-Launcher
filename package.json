@@ -38,7 +38,7 @@
 		"@types/chai": "^4.2.11",
 		"@types/fast-html-parser": "^1.0.0",
 		"@types/fs-extra": "^8.1.0",
-		"@types/got": "^9.6.9",
+		"@types/got": "^9.6.10",
 		"@types/jquery": "^3.3.34",
 		"@types/lodash": "^4.14.149",
 		"@types/mocha": "^7.0.2",
