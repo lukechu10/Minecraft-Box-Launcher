@@ -131,6 +131,11 @@ module.exports = [
 					options: {
 						transpileOnly: true
 					}
+				},
+				{
+					test: /\.pug/,
+					include: path.resolve(__dirname, "src", "renderer"),
+					loader: "pug-loader"
 				}
 			]
 		}
