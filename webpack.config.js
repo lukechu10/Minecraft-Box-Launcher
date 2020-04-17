@@ -120,7 +120,20 @@ module.exports = [
 				})
 			]
 		},
-		mode: "production"
+		mode: "production",
+		module: {
+			rules: [
+				// all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
+				{
+					test: /\.tsx?$/,
+					include: path.resolve(__dirname, "src"),
+					loader: "ts-loader",
+					options: {
+						transpileOnly: true
+					}
+				}
+			]
+		}
 	}, baseConfig),
 	_.defaults({
 		name: "coverage",
