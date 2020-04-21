@@ -4,14 +4,12 @@ import InstanceListStore from "../../store/InstanceListStore";
 
 export default class Rename extends HTMLDivElement {
 	private instance: Instance | null = null;
-	private oldName: string = "";
 	public constructor() {
 		super();
 	}
 	public connectedCallback(): void { }
 	public render(instance: Instance): void {
 		this.instance = instance;
-		this.oldName = instance.name;
 		this.innerHTML = instanceRenameModalTemplate(this.instance);
 		$(this).modal({
 			closable: false,
