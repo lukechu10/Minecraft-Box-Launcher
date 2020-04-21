@@ -1,4 +1,4 @@
-import { scanLocalJava, JavaInfo } from "@xmcl/installer/java"; // TODO: remove package from package.json once feature has been released to master
+import { scanLocalJava, JavaInfo } from "@xmcl/installer/java";
 
 /**
  * Find installed java path
