@@ -1,16 +1,35 @@
 import Instance from "../../Instance";
-import instanceRenameModalTemplate from "../../templates/modals/instances/Rename.pug";
+// import instanceRenameModalTemplate from "../../templates/modals/instances/Rename.pug";
 import InstanceListStore from "../../store/InstanceListStore";
+import { LitElement, customElement, property, html } from "lit-element";
 
-export default class Rename extends HTMLDivElement {
-	private instance: Instance | null = null;
-	public constructor() {
-		super();
+@customElement("instance-rename-modal")
+export default class Rename extends LitElement {
+	createRenderRoot(): this { return this; }
+
+	@property({ type: Object }) instance: Instance | null = null;
+
+	public render() {
+		return html`
+			<div class="header">Rename</div>
+			<div class="content">
+				<p>Enter a new name for instance ${this.instance?.name}</p>
+				<div class="ui fluid input">
+					<input id="input-rename" type="text" name="newName" placeholder="New Name" value=${this.instance?.name ?? ""}>
+				</div>
+			</div>
+			<div class="actions">
+				<button class="ui button cancel blue">Cancel</button>
+				<button class="ui button approve inverted green">Rename</button>
+			</div>
+		`;
 	}
-	public connectedCallback(): void { }
-	public render(instance: Instance): void {
-		this.instance = instance;
-		this.innerHTML = instanceRenameModalTemplate(this.instance);
+
+	public showModal(instance: Instance | null): void {
+		if (this.instance !== instance)
+			this.instance = instance; // set new active instance
+		else
+			this.requestUpdate(); // update template with new data from instance
 		$(this).modal({
 			closable: false,
 			onApprove: () => {
@@ -29,5 +48,3 @@ export default class Rename extends HTMLDivElement {
 		}).modal("show");
 	}
 }
-
-customElements.define("instance-rename-modal", Rename, { extends: "div" });
