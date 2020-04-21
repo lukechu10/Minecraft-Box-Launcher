@@ -47,9 +47,6 @@ $(() => {
 	document.getElementById("account-modal-link")?.addEventListener("click", () => {
 		(document.getElementsByTagName("modal-account")[0] as AccountModal | null)?.showModal();
 	});
-	document.getElementById("account-modal-link-home")?.addEventListener("click", () => {
-		(document.getElementsByTagName("modal-account")[0] as AccountModal | null)?.showModal();
-	});
 });
 
 const changeCallback = () => {

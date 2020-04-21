@@ -16,7 +16,7 @@ class Account extends HTMLElement {
 		this.innerHTML = template(AuthStore.store);
 
 		document.getElementById("account-modal-link-home")?.addEventListener("click", () => {
-			(document.getElementById("modal-account") as AccountModal | null)?.render();
+			(document.getElementById("modal-account") as AccountModal | null)?.showModal();
 		});
 	}
 }

@@ -392,5 +392,15 @@ describe("Application window", function () {
 
 			await app.client.waitForVisible("#modal-info:not(.animating)", 2000);
 		});
+
+		it("can show account modal from account widget", async () => {
+			await app.client.waitUntilWindowLoaded();
+			await app.client.$("navbar").$("a.item[href='./home.html']").click();
+			await app.client.waitForExist("#account-modal-link-home");
+			await app.client.click("#account-modal-link-home");
+
+			const res = await app.client.waitForVisible("#modal-account:not(.animating)");
+			expect(res).to.equal(true);
+		});
 	});
 });
