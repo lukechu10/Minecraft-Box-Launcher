@@ -9,7 +9,7 @@ export default class Rename extends LitElement {
 	@property({ type: Object }) public instance: Instance | null = null;
 	@property({ type: Boolean }) private isError: boolean = false;
 
-	public render() {
+	protected render() {
 		return html`
 			<div class="header">Rename</div>
 			<div class="content">
