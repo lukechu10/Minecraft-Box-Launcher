@@ -30,8 +30,8 @@ export default class ConfirmDelete extends LitElement {
 	}
 
 	private handleDelete(): boolean | void {
-		const deleteFolder = document.querySelector<HTMLInputElement>("#modal-confirmDelete input[name='deleteFolder']")?.checked;
-		this.instance!.delete(deleteFolder ?? false);
+		const deleteFolder: boolean = document.querySelector<HTMLInputElement>("#modal-confirmDelete input[name='deleteFolder']")!.checked;
+		this.instance!.delete(deleteFolder);
 	}
 
 	public async showModal(instance: Instance | null): Promise<void> {
