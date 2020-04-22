@@ -30,7 +30,7 @@ export default class Rename extends LitElement {
 
 	private handleRename(): boolean | void {
 		const input = this.querySelector<HTMLInputElement>("#input-rename");
-		const newName = input?.value as string;
+		const newName = input!.value as string;
 		const find = InstanceListStore.findInstanceName(newName); // make sure an instance with this name does not already exist
 		if (find !== null) {
 			this.isError = true;

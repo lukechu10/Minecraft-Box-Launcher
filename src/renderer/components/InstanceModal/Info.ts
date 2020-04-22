@@ -21,28 +21,27 @@ export default class Info extends HTMLDivElement {
 		$(this).modal("show"); // show modal
 		// attach events
 		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement | undefined)?.addEventListener("click", () => {
-			this.instanceItem?.play();
+			this.instanceItem!.play();
 		});
 
 		(this.getElementsByClassName("btn-rename")[0] as HTMLDivElement).addEventListener("click", () => {
-			this.instance?.showModal("rename");
+			this.instance!.showModal("rename");
 		});
 
 		(this.getElementsByClassName("btn-delete")[0] as HTMLDivElement).addEventListener("click", () => {
-			this.instance?.showModal("delete");
+			this.instance!.showModal("delete");
 		});
 
 		(this.getElementsByClassName("btn-saves")[0] as HTMLDivElement).addEventListener("click", () => {
-			this.instance?.showModal("saves");
+			this.instance!.showModal("saves");
 		});
 
 		(this.getElementsByClassName("btn-options")[0] as HTMLDivElement).addEventListener("click", () => {
-			// this.instance ?.options();
-			this.instance?.showModal("options");
+			this.instance!.showModal("options");
 		});
 
 		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement | undefined)?.addEventListener("click", () => {
-			this.instanceItem?.install();
+			this.instanceItem!.install();
 		});
 	}
 }
