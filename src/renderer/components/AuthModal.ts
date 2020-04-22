@@ -84,7 +84,7 @@ export class AuthModal extends HTMLDivElement {
 	/**
 	 * @param message message to be set in the error message box or hide if `null`.
 	 */
-	private setErrorMessage(message: string | null) {
+	private setErrorMessage(message: string | null): void {
 		if (message !== null) {
 			(document.getElementById("login-errors-container") as HTMLDivElement).style.display = "block";
 			(document.getElementById("login-errors") as HTMLDivElement).textContent = message;

@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 import { shell } from "electron";
 
-export function showErrorToast(message: string) {
+export function showErrorToast(message: string): void {
 	// show toast with error message
 	// @ts-ignore
 	$("body").toast({
@@ -12,7 +12,7 @@ export function showErrorToast(message: string) {
 		actions: [{
 			text: "Report issue",
 			class: "yellow",
-			click: () => {
+			click: (): void => {
 				shell.openExternal("https://github.com/lukechu10/Minecraft-Box-Launcher/issues/new/choose");
 			}
 		}, {

@@ -21,7 +21,7 @@ class Account extends HTMLElement {
 	}
 }
 
-const changeCallback = () => {
+const changeCallback = (): void => {
 	console.log("Auth store changed, rendering account modal");
 	document.querySelector<Account>("home-account")?.render();
 };

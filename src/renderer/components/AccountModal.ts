@@ -1,4 +1,4 @@
-import { LitElement, html, customElement, property } from "lit-element";
+import { LitElement, html, customElement, property, TemplateResult } from "lit-element";
 
 import AuthStore, { AuthStoreData } from "../store/AuthStore";
 
@@ -8,7 +8,7 @@ export default class AccountModal extends LitElement {
 
 	@property({ type: Object }) public authData: AuthStoreData | { loggedIn: false } = AuthStore.store;
 
-	protected render() {
+	protected render(): TemplateResult {
 		return html`
 			<div class="header">Account</div>
 			<div class="content">
@@ -49,7 +49,7 @@ $(() => {
 	});
 });
 
-const changeCallback = () => {
+const changeCallback = (): void => {
 	console.log("Auth store changed, rendering account modal");
 	const target = document.getElementsByTagName("modal-account")[0] as AccountModal | null;
 	if (target !== null) {

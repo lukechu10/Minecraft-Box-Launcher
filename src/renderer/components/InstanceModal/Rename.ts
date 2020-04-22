@@ -1,4 +1,4 @@
-import { LitElement, customElement, property, html } from "lit-element";
+import { LitElement, customElement, property, html, TemplateResult } from "lit-element";
 import Instance from "../../Instance";
 import InstanceListStore from "../../store/InstanceListStore";
 
@@ -9,7 +9,7 @@ export default class Rename extends LitElement {
 	@property({ type: Object }) public instance: Instance | null = null;
 	@property({ type: Boolean }) private isError = false;
 
-	protected render() {
+	protected render(): TemplateResult {
 		return html`
 			<div class="header">Rename</div>
 			<div class="content">

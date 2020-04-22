@@ -13,7 +13,7 @@ export default class SavesTabServer extends HTMLDivElement {
 	}
 
 	public connectedCallback(): void {
-		(this.getElementsByClassName("ui basic button")[0] as HTMLButtonElement).onclick = () => { this.render(); };
+		(this.getElementsByClassName("ui basic button")[0] as HTMLButtonElement).onclick = (): void => { this.render(); };
 	}
 
 	public setInstance(instance: Instance): void { this.instance = instance; }

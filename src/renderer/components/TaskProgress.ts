@@ -4,7 +4,7 @@ import taskProgressTemplate from "../templates/TaskProgress.pug";
 import { ResolvedVersion } from "@xmcl/core";
 
 export default class TaskProgress extends HTMLDivElement {
-	private $progress = () => this.getElementsByClassName("ui progress")[0];
+	private $progress = (): Element => this.getElementsByClassName("ui progress")[0];
 
 	/*
 	iterable returns tasks in order of insertion.
@@ -12,7 +12,7 @@ export default class TaskProgress extends HTMLDivElement {
 	*/
 	private tasks: Map<Task<Record<string, any>>, TaskRuntime> = new Map();
 
-	private addTask(task: Task<Record<string, any>>, runtime: TaskRuntime<Task.State>) {
+	private addTask(task: Task<Record<string, any>>, runtime: TaskRuntime<Task.State>): void {
 		this.tasks.set(task, runtime);
 		if (this.tasks.size === 1) {
 			// only 1 task in queue means there were no tasks before
@@ -20,7 +20,7 @@ export default class TaskProgress extends HTMLDivElement {
 		}
 	}
 
-	private removeTask(task: Task<Record<string, any>>) {
+	private removeTask(task: Task<Record<string, any>>): void {
 		this.tasks.delete(task);
 		if (this.tasks.size === 0) {
 			// hide progress bar
@@ -130,7 +130,7 @@ export default class TaskProgress extends HTMLDivElement {
 		}
 	}
 
-	private updateUISuccess(instanceName: string) {
+	private updateUISuccess(instanceName: string): void {
 		// @ts-ignore FIXME: Fomantic UI
 		$(this.$progress()).progress("set success", `Successfully installed instance ${instanceName}`);
 	}

@@ -1,4 +1,4 @@
-import { LitElement, customElement, property, html } from "lit-element";
+import { LitElement, customElement, property, html, TemplateResult } from "lit-element";
 import Instance from "../../Instance";
 
 @customElement("instance-delete-modal")
@@ -7,7 +7,7 @@ export default class ConfirmDelete extends LitElement {
 
 	@property({ type: Object }) private instance: Instance | null = null;
 
-	protected render() {
+	protected render(): TemplateResult {
 		// this.innerHTML = instanceDeleteModalTemplate(instance);
 		return html`
 			<div class="header">Are you sure?</div>
