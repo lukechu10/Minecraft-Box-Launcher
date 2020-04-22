@@ -25,9 +25,14 @@ export default class ConfirmDelete extends LitElement {
 			</div>
 			<div class="actions">
 				<button class="ui button cancel inverted basic blue">Cancel</button>
-				<button class="ui button approve inverted red">Delete it</button>
+				<button class="ui button approve inverted red" @click=${this.handleDelete}>Delete it</button>
 			</div>
 		`;
+	}
+
+	private handleDelete(): boolean | void {
+		const deleteFolder = document.querySelector<HTMLInputElement>("#modal-confirmDelete input[name='deleteFolder']")?.checked;
+		this.instance?.delete(deleteFolder ?? false);
 	}
 
 	public showModal(instance: Instance | null): void {
@@ -37,11 +42,7 @@ export default class ConfirmDelete extends LitElement {
 			this.requestUpdate(); // update template with new data from instance
 
 		$(this).modal({
-			closable: false,
-			onApprove: () => {
-				const deleteFolder = document.querySelector<HTMLInputElement>("#modal-confirmDelete input[name='deleteFolder']")?.checked;
-				this.instance?.delete(deleteFolder ?? false);
-			}
+			closable: false
 		}).modal("show");
 	}
 }
