@@ -23,7 +23,7 @@ export default class Saves extends LitElement {
 				</div>
 				<saves-tab-world class="ui tab segment" data-tab="worlds">
 				</saves-tab-world>
-				<saves-tab-server class="ui tab segment" data-tab="servers">
+				<saves-tab-server class="ui tab segment" data-tab="servers" .instance=${this.instance}>
 				</saves-tab-server>
 			</div>
 			<div class="actions">
@@ -34,9 +34,9 @@ export default class Saves extends LitElement {
 
 	public showModal(instance: Instance): void {
 		this.instance = instance;
+		this.requestUpdate();
 		// this.innerHTML = instanceSavesModalTemplate(instance);
-		this.querySelector<SavesTabWorld>("saves-tab-world")!.setInstance(instance);
-		this.querySelector<SavesTabServer>("saves-tab-server")!.setInstance(instance);
+		// this.querySelector<SavesTabWorld>("saves-tab-world")!.setInstance(instance);
 
 		$(this).modal({
 			closable: false
@@ -44,11 +44,11 @@ export default class Saves extends LitElement {
 
 		$(this).find(".menu .item").tab({
 			onLoad: (tabPath) => {
-				if (tabPath === "worlds")
-					this.querySelector<SavesTabWorld>("saves-tab-world")?.render();
+				if (tabPath === "worlds") { return; }
+				// this.querySelector<SavesTabWorld>("saves-tab-world")?.render();
 				else if (tabPath === "servers")
-					this.querySelector<SavesTabServer>("saves-tab-server")?.render();
+					this.querySelector<SavesTabServer>("saves-tab-server")!.refreshServers();
 			}
-		});
+		}).tab("change tab", "worlds");
 	}
 }
