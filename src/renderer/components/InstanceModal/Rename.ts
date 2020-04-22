@@ -24,9 +24,25 @@ export default class Rename extends LitElement {
 			</div>
 			<div class="actions">
 				<button class="ui button cancel blue">Cancel</button>
-				<button class="ui button approve inverted green">Rename</button>
+				<button class="ui button approve inverted green" @click=${this.handleRename}>Rename</button>
 			</div>
 		`;
+	}
+
+	private handleRename(): boolean | void {
+		const input = this.querySelector<HTMLInputElement>("#input-rename");
+		const newName = input?.value as string;
+		const find = InstanceListStore.findInstanceName(newName); // make sure an instance with this name does not already exist
+		if (find !== null) {
+			this.isError = true;
+			return false;
+		}
+		else {
+			if (this.instance !== null) {
+				this.instance.name = newName;
+				InstanceListStore.syncToStore();
+			}
+		}
 	}
 
 	public showModal(instance: Instance | null): void {
@@ -38,22 +54,7 @@ export default class Rename extends LitElement {
 
 		// setup modal
 		$(this).modal({
-			closable: false,
-			onApprove: () => {
-				const input = this.querySelector<HTMLInputElement>("#input-rename");
-				const newName = input?.value as string;
-				const find = InstanceListStore.findInstanceName(newName); // make sure an instance with this name does not already exist
-				if (find !== null) {
-					this.isError = true;
-					return false;
-				}
-				else {
-					if (this.instance !== null) {
-						this.instance.name = newName;
-						InstanceListStore.syncToStore();
-					}
-				}
-			}
+			closable: false
 		}).modal("show");
 	}
 }
