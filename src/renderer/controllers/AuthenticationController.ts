@@ -46,7 +46,7 @@ export namespace AuthenticationController {
 	 */
 	export async function refreshLogin(): Promise<void> {
 		if (!AuthStore.store.loggedIn) {
-			throw "User is not logged in. Cannot refresh auth.";
+			throw new Error("User is not logged in. Cannot refresh auth.");
 		}
 		else {
 			const authData = AuthStore.store;

@@ -98,7 +98,7 @@ export default class TaskProgress extends HTMLDivElement {
 		return runtime;
 	}
 
-	private updateUIError(err: any): void {
+	private updateUIError(err: Error | string): void {
 		// @ts-ignore FIXME: Fomantic UI
 		$(this.$progress()).progress("set error", err.toString());
 	}
