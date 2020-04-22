@@ -5,7 +5,7 @@ import SavesTabServer from "./SavesTabServer";
 import "./SavesTabServer";
 import SavesTabWorld from "./SavesTabWorld";
 import "./SavesTabWorld";
-import { LitElement, customElement, html, property } from "lit-element";
+import { LitElement, customElement, html, property, TemplateResult } from "lit-element";
 
 @customElement("instance-saves-modal")
 export default class Saves extends LitElement {
@@ -13,7 +13,7 @@ export default class Saves extends LitElement {
 
 	@property({ type: Object }) private instance: Instance | null = null;
 
-	protected render() {
+	protected render(): TemplateResult {
 		return html`
 			<div class="header">Data</div>
 			<div class="content">
