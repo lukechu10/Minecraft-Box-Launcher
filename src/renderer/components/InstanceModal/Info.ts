@@ -15,6 +15,7 @@ export default class Info extends HTMLDivElement {
 	public render(instanceItem: InstanceListItem): void {
 		this.instance = instanceItem.instance; // remove dom element functions
 		this.instanceItem = instanceItem;
+		/* istanbul ignore else */
 		if (this.instance !== null) {
 			this.innerHTML = instanceInfoModalTemplate({ hasSelection: true, ...this.instance, lastPlayedStr: this.instance.lastPlayedStr });
 		}
