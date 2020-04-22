@@ -1,6 +1,8 @@
 import { LitElement, customElement, property, html } from "lit-element";
 import Instance from "../../Instance";
 
+import assert from "assert";
+
 @customElement("instance-delete-modal")
 export default class ConfirmDelete extends LitElement {
 	createRenderRoot(): this { return this; }
@@ -31,7 +33,7 @@ export default class ConfirmDelete extends LitElement {
 
 	private handleDelete(): boolean | void {
 		const deleteFolder = document.querySelector<HTMLInputElement>("#modal-confirmDelete input[name='deleteFolder']")?.checked;
-		this.instance?.delete(deleteFolder ?? false);
+		this.instance!.delete(deleteFolder ?? false);
 	}
 
 	public async showModal(instance: Instance | null): Promise<void> {
