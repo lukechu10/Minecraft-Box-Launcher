@@ -10,6 +10,7 @@ export default class Rename extends LitElement {
 	@property({ type: Boolean }) private isError: boolean = false;
 
 	public render() {
+		console.log("render")
 		return html`
 			<div class="header">Rename</div>
 			<div class="content">
@@ -46,10 +47,9 @@ export default class Rename extends LitElement {
 
 	public async showModal(instance: Instance | null): Promise<void> {
 		this.isError = false;
-		if (this.instance !== instance)
-			this.instance = instance; // set new active instance
-		else
-			await this.requestUpdate(); // update template with new data from instance
+		
+		this.instance = instance;
+		await this.requestUpdate();
 
 		// setup modal
 		$(this).modal({
