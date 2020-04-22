@@ -15,7 +15,7 @@ export namespace AuthenticationController {
 		AuthStore.set({ ...authFromMojang, loggedIn: true });
 
 		// show toast message
-		// @ts-expect-error
+		// @ts-ignore
 		$("body").toast({
 			title: "Success",
 			message: `Logged in as ${authFromMojang.selectedProfile.name}`,

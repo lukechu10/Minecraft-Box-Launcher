@@ -57,6 +57,6 @@ const changeCallback = () => {
 		target.requestUpdate();
 	}
 };
-// @ts-expect-error
+// @ts-ignore
 AuthStore.onDidChange("selectedProfile.name", changeCallback);
 AuthStore.onDidChange("loggedIn", changeCallback);

@@ -99,7 +99,7 @@ export default class TaskProgress extends HTMLDivElement {
 	}
 
 	private updateUIError(err: any): void {
-		// @ts-expect-error FIXME: Fomantic UI
+		// @ts-ignore FIXME: Fomantic UI
 		$(this.$progress()).progress("set error", err.toString());
 	}
 
@@ -131,7 +131,7 @@ export default class TaskProgress extends HTMLDivElement {
 	}
 
 	private updateUISuccess(instanceName: string) {
-		// @ts-expect-error FIXME: Fomantic UI
+		// @ts-ignore FIXME: Fomantic UI
 		$(this.$progress()).progress("set success", `Successfully installed instance ${instanceName}`);
 	}
 }

@@ -3,7 +3,7 @@ import { shell } from "electron";
 
 export function showErrorToast(message: string) {
 	// show toast with error message
-	// @ts-expect-error
+	// @ts-ignore
 	$("body").toast({
 		class: "error",
 		message: `<strong>An unexpected error occured</strong>:<br>${message}`,
