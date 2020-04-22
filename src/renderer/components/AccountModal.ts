@@ -4,7 +4,7 @@ import AuthStore, { AuthStoreData } from "../store/AuthStore";
 
 @customElement("modal-account")
 export default class AccountModal extends LitElement {
-	public createRenderRoot(): this { return this; }
+	protected createRenderRoot(): this { return this; }
 
 	@property({ type: Object }) public authData: AuthStoreData | { loggedIn: false } = AuthStore.store;
 

@@ -168,7 +168,7 @@ export default class Instance implements InstanceData {
 				(document.getElementById("modal-rename") as InstanceModal.Rename).showModal(this);
 				break;
 			case "saves":
-				(document.getElementById("modal-saves") as InstanceModal.Saves).render(this);
+				(document.getElementById("modal-saves") as InstanceModal.Saves).showModal(this);
 				break;
 			case "delete":
 				(document.getElementById("modal-confirmDelete") as InstanceModal.ConfirmDelete).showModal(this);

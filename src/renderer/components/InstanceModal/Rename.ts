@@ -4,7 +4,7 @@ import InstanceListStore from "../../store/InstanceListStore";
 
 @customElement("instance-rename-modal")
 export default class Rename extends LitElement {
-	createRenderRoot(): this { return this; }
+	protectedcreateRenderRoot(): this { return this; }
 
 	@property({ type: Object }) public instance: Instance | null = null;
 	@property({ type: Boolean }) private isError: boolean = false;

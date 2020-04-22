@@ -3,7 +3,7 @@ import Instance from "../../Instance";
 
 @customElement("instance-delete-modal")
 export default class ConfirmDelete extends LitElement {
-	createRenderRoot(): this { return this; }
+	protected createRenderRoot(): this { return this; }
 
 	@property({ type: Object }) private instance: Instance | null = null;
 

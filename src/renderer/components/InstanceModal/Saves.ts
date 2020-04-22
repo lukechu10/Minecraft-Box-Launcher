@@ -1,24 +1,42 @@
 import Instance from "../../Instance";
-import instanceSavesModalTemplate from "../../templates/modals/instances/Saves.pug";
 
 // import components inside modal
 import SavesTabServer from "./SavesTabServer";
 import "./SavesTabServer";
 import SavesTabWorld from "./SavesTabWorld";
 import "./SavesTabWorld";
+import { LitElement, customElement, html, property } from "lit-element";
 
-export default class Saves extends HTMLDivElement {
-	instance: Instance | null = null;
-	public constructor() {
-		super();
+@customElement("instance-saves-modal")
+export default class Saves extends LitElement {
+	protected createRenderRoot(): this { return this; }
+
+	@property({ type: Object }) private instance: Instance | null = null;
+
+	protected render() {
+		return html`
+			<div class="header">Data</div>
+			<div class="content">
+				<div class="ui secondary menu">
+					<a class="item" data-tab="worlds">Worlds</a>
+					<a class="item" data-tab="servers">Servers</a>
+				</div>
+				<saves-tab-world class="ui tab segment" data-tab="worlds">
+				</saves-tab-world>
+				<saves-tab-server class="ui tab segment" data-tab="servers">
+				</saves-tab-server>
+			</div>
+			<div class="actions">
+				<button class="ui primary approve button">Close</button>
+			</div>
+		`;
 	}
-	public connectedCallback(): void { }
-	public render(instance: Instance): void {
-		this.instance = instance;
-		this.innerHTML = instanceSavesModalTemplate(instance);
 
-		this.querySelector<SavesTabServer>(".ui.tab[is='saves-tab-server']")?.setInstance(instance);
-		this.querySelector<SavesTabWorld>(".ui.tab[is='saves-tab-world']")?.setInstance(instance);
+	public showModal(instance: Instance): void {
+		this.instance = instance;
+		// this.innerHTML = instanceSavesModalTemplate(instance);
+		this.querySelector<SavesTabWorld>("saves-tab-world")!.setInstance(instance);
+		this.querySelector<SavesTabServer>("saves-tab-server")!.setInstance(instance);
 
 		$(this).modal({
 			closable: false
@@ -26,11 +44,11 @@ export default class Saves extends HTMLDivElement {
 
 		$(this).find(".menu .item").tab({
 			onLoad: (tabPath) => {
-				if (tabPath === "servers") this.querySelector<SavesTabServer>(".ui.tab[is='saves-tab-server']")?.render();
-				else if (tabPath === "worlds") this.querySelector<SavesTabWorld>(".ui.tab[is='saves-tab-world']")?.render();
+				if (tabPath === "worlds")
+					this.querySelector<SavesTabWorld>("saves-tab-world")?.render();
+				else if (tabPath === "servers")
+					this.querySelector<SavesTabServer>("saves-tab-server")?.render();
 			}
 		});
 	}
 }
-
-customElements.define("instance-saves-modal", Saves, { extends: "div" });
