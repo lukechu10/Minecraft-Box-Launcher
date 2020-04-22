@@ -1,24 +1,49 @@
+import { LitElement, customElement, property, html } from "lit-element";
 import Instance from "../../Instance";
-import instanceDeleteModalTemplate from "../../templates/modals/instances/ConfirmDelete.pug";
+// import instanceDeleteModalTemplate from "../../templates/modals/instances/ConfirmDelete.pug";
 
+@customElement("instance-delete-modal")
+export default class ConfirmDelete extends LitElement {
+	createRenderRoot(): this { return this; }
 
-export default class ConfirmDelete extends HTMLDivElement {
-	instance: Instance | null = null;
-	public constructor() {
-		super();
+	@property({ type: Object }) private instance: Instance | null = null;
+
+	public render() {
+		// this.innerHTML = instanceDeleteModalTemplate(instance);
+		return html`
+			<div class="header">Are you sure?</div>
+			<div class="content">
+				<p>
+					Are you sure you want to delete the instance <strong>${this.instance?.name}</strong>
+				</p>
+				<div class="ui checkbox">
+					<input type="checkbox" name="deleteFolder" checked>
+					<label style="color: white;">
+						Delete the instance folder. <strong>IMPORTANT</strong>: This will delete all your worlds and other resources in this instance.
+					</label>
+				</div>
+			</div>
+			<div class="actions">
+				<button class="ui button cancel inverted basic blue">Cancel</button>
+				<button class="ui button approve inverted red">Delete it</button>
+			</div>
+		`;
 	}
-	public connectedCallback(): void { }
-	public render(instance: Instance): void {
-		this.instance = instance;
-		this.innerHTML = instanceDeleteModalTemplate(instance);
+
+	public showModal(instance: Instance | null): void {
+		if (this.instance !== instance)
+			this.instance = instance; // set new active instance
+		else
+			this.requestUpdate(); // update template with new data from instance
+
 		$(this).modal({
 			closable: false,
 			onApprove: () => {
-				const deleteFolder: boolean = (document.querySelector("#modal-confirmDelete input[name='deleteFolder']") as HTMLInputElement).checked;
-				this.instance?.delete(deleteFolder);
+				const deleteFolder = document.querySelector<HTMLInputElement>("#modal-confirmDelete input[name='deleteFolder']")?.checked;
+				this.instance?.delete(deleteFolder ?? false);
 			}
 		}).modal("show");
 	}
 }
 
-customElements.define("instance-delete-modal", ConfirmDelete, { extends: "div" });
+// customElements.define("instance-delete-modal", ConfirmDelete, { extends: "div" });

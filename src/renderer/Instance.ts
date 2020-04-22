@@ -171,7 +171,7 @@ export default class Instance implements InstanceData {
 				(document.getElementById("modal-saves") as InstanceModal.Saves).render(this);
 				break;
 			case "delete":
-				(document.getElementById("modal-confirmDelete") as InstanceModal.Saves).render(this);
+				(document.getElementById("modal-confirmDelete") as InstanceModal.ConfirmDelete).showModal(this);
 				break;
 			default:
 				throw Error("Not a valid modal");
