@@ -44,12 +44,12 @@ export default class Rename extends LitElement {
 		}
 	}
 
-	public showModal(instance: Instance | null): void {
+	public async showModal(instance: Instance | null): Promise<void> {
 		this.isError = false;
 		if (this.instance !== instance)
 			this.instance = instance; // set new active instance
 		else
-			this.requestUpdate(); // update template with new data from instance
+			await this.requestUpdate(); // update template with new data from instance
 
 		// setup modal
 		$(this).modal({

@@ -38,7 +38,7 @@ export default class AccountModal extends LitElement {
 		`;
 	}
 
-	public showModal(): void {
+	public async showModal(): Promise<void> {
 		$(this).modal("show");
 	}
 }

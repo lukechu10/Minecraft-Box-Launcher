@@ -34,11 +34,11 @@ export default class ConfirmDelete extends LitElement {
 		this.instance?.delete(deleteFolder ?? false);
 	}
 
-	public showModal(instance: Instance | null): void {
+	public async showModal(instance: Instance | null): Promise<void> {
 		if (this.instance !== instance)
 			this.instance = instance; // set new active instance
 		else
-			this.requestUpdate(); // update template with new data from instance
+			await this.requestUpdate(); // update template with new data from instance
 
 		$(this).modal({
 			closable: false
