@@ -1,8 +1,6 @@
 import { LitElement, customElement, property, html } from "lit-element";
 import Instance from "../../Instance";
 
-import assert from "assert";
-
 @customElement("instance-delete-modal")
 export default class ConfirmDelete extends LitElement {
 	createRenderRoot(): this { return this; }
