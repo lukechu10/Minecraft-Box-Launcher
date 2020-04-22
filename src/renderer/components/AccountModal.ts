@@ -38,7 +38,7 @@ export default class AccountModal extends LitElement {
 		`;
 	}
 
-	public async showModal(): Promise<void> {
+	public showModal(): void {
 		$(this).modal("show");
 	}
 }
@@ -57,6 +57,6 @@ const changeCallback = () => {
 		target.requestUpdate();
 	}
 };
-// @ts-ignore
+// @ts-expect-error
 AuthStore.onDidChange("selectedProfile.name", changeCallback);
 AuthStore.onDidChange("loggedIn", changeCallback);

@@ -4,10 +4,10 @@ import InstanceListStore from "../../store/InstanceListStore";
 
 @customElement("instance-rename-modal")
 export default class Rename extends LitElement {
-	protectedcreateRenderRoot(): this { return this; }
+	protected createRenderRoot(): this { return this; }
 
 	@property({ type: Object }) public instance: Instance | null = null;
-	@property({ type: Boolean }) private isError: boolean = false;
+	@property({ type: Boolean }) private isError = false;
 
 	protected render() {
 		return html`
@@ -30,7 +30,7 @@ export default class Rename extends LitElement {
 
 	private handleRename(): boolean | void {
 		const input = this.querySelector<HTMLInputElement>("#input-rename");
-		const newName = input!.value as string;
+		const newName = input!.value;
 		const find = InstanceListStore.findInstanceName(newName); // make sure an instance with this name does not already exist
 		if (find !== null) {
 			this.isError = true;

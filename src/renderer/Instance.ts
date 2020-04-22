@@ -144,7 +144,7 @@ export default class Instance implements InstanceData {
 	 * Deletes the instance. Note: do not call `syncToStore()` after as the store is automatically updated.
 	 * @param deleteFolder deletes the instance folder if value is `true`
 	 */
-	public async delete(deleteFolder: boolean = false): Promise<void> {
+	public async delete(deleteFolder = false): Promise<void> {
 		InstanceListStore.deleteInstance(this.name);
 		if (deleteFolder) {
 			await fs.remove(this.savePath);

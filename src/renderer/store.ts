@@ -3,7 +3,7 @@ import GlobalSettingsStore from "./store/GlobalSettingsStore";
 
 export namespace ApplicationStore {
 	// TODO: rename exports to PascalCase
-	export var installed: Store = new Store({
+	export const installed: Store = new Store({
 		name: "installed",
 		defaults: {
 			installed: []
@@ -13,7 +13,7 @@ export namespace ApplicationStore {
 	/**
 	 * Cached versions meta
 	 */
-	export var versionsMetaCache: Store = new Store({
+	export const versionsMetaCache: Store = new Store({
 		name: "versionsMetaCache",
 		defaults: {
 			versions: []
@@ -23,5 +23,5 @@ export namespace ApplicationStore {
 	/**
 	 * Global settings
 	 */
-	export var GlobalSettings: GlobalSettingsStore = new GlobalSettingsStore();
+	export const GlobalSettings: GlobalSettingsStore = new GlobalSettingsStore();
 }

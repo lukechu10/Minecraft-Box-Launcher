@@ -6,11 +6,6 @@ import instanceInfoModalTemplate from "../../templates/InstanceInfoModal.pug";
 export default class Info extends HTMLDivElement {
 	private instance: Instance | null = null;
 	private instanceItem: InstanceListItem | null = null;
-	public constructor() {
-		super();
-	}
-
-	public connectedCallback(): void { }
 
 	public render(instanceItem: InstanceListItem): void {
 		this.instance = instanceItem.instance; // remove dom element functions

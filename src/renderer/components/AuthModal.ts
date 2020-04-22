@@ -4,10 +4,6 @@ import { AuthenticationController } from "../controllers/AuthenticationControlle
 import AuthStore from "../store/AuthStore";
 
 export class AuthModal extends HTMLDivElement {
-	public constructor() {
-		super();
-	}
-	public connectedCallback(): void { }
 	public render(message?: string): void {
 		this.innerHTML = authModalTemplate();
 		$(this).modal({

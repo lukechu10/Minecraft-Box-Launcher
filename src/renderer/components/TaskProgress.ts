@@ -10,9 +10,9 @@ export default class TaskProgress extends HTMLDivElement {
 	iterable returns tasks in order of insertion.
 	1st task is always the task that is rendered
 	*/
-	private tasks: Map<Task<Object>, TaskRuntime> = new Map();
+	private tasks: Map<Task<Record<string, any>>, TaskRuntime> = new Map();
 
-	private addTask(task: Task<Object>, runtime: TaskRuntime<Task.State>) {
+	private addTask(task: Task<Record<string, any>>, runtime: TaskRuntime<Task.State>) {
 		this.tasks.set(task, runtime);
 		if (this.tasks.size === 1) {
 			// only 1 task in queue means there were no tasks before
@@ -20,7 +20,7 @@ export default class TaskProgress extends HTMLDivElement {
 		}
 	}
 
-	private removeTask(task: Task<Object>) {
+	private removeTask(task: Task<Record<string, any>>) {
 		this.tasks.delete(task);
 		if (this.tasks.size === 0) {
 			// hide progress bar
@@ -99,7 +99,7 @@ export default class TaskProgress extends HTMLDivElement {
 	}
 
 	private updateUIError(err: any): void {
-		// @ts-ignore FIXME: Fomantic UI
+		// @ts-expect-error FIXME: Fomantic UI
 		$(this.$progress()).progress("set error", err.toString());
 	}
 
@@ -131,7 +131,7 @@ export default class TaskProgress extends HTMLDivElement {
 	}
 
 	private updateUISuccess(instanceName: string) {
-		// @ts-ignore FIXME: Fomantic UI
+		// @ts-expect-error FIXME: Fomantic UI
 		$(this.$progress()).progress("set success", `Successfully installed instance ${instanceName}`);
 	}
 }

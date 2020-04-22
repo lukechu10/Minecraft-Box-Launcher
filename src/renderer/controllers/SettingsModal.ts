@@ -12,9 +12,9 @@ export function showSettingsModal() {
 			const settings: GlobalSettings = {
 				java: {
 					externalJavaPath: $form.form("get value", "java-path"),
-					// @ts-ignore
+					// @ts-expect-error
 					maxMemory: $("#slider-java-memory").slider("get thumbValue", "first") as number,
-					// @ts-ignore
+					// @ts-expect-error
 					minMemory: $("#slider-java-memory").slider("get thumbValue", "second") as number
 				}
 			};
@@ -24,7 +24,7 @@ export function showSettingsModal() {
 			// throw away form data
 		}
 	}).modal("show");
-	// @ts-ignore
+	// @ts-expect-error
 	$(".ui.range.slider").slider({
 		min: 256,
 		max: 4096,

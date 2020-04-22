@@ -44,7 +44,10 @@
 		"semi": "off",
 		"@typescript-eslint/semi": "error",
 		"no-unused-vars": "off",
-		"@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+		"@typescript-eslint/consistent-type-definitions": [
+			"error",
+			"interface"
+		],
 		"@typescript-eslint/explicit-member-accessibility": "warn",
 		"@typescript-eslint/no-extra-non-null-assertion": "error",
 		"@typescript-eslint/no-require-imports": "warn",
@@ -54,6 +57,14 @@
 		"@typescript-eslint/prefer-optional-chain": "warn",
 		"@typescript-eslint/prefer-ts-expect-error": "warn",
 		"@typescript-eslint/ban-ts-ignore": "off",
+		"@typescript-eslint/no-namespace": "warn",
+		"@typescript-eslint/unbound-method": "off",
+		"@typescript-eslint/no-misused-promises": [
+			"error",
+			{
+				"checksVoidReturn": false
+			}
+		],
 		"@typescript-eslint/no-unused-vars": [
 			"warn",
 			{

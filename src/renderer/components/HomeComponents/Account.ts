@@ -25,7 +25,7 @@ const changeCallback = () => {
 	console.log("Auth store changed, rendering account modal");
 	document.querySelector<Account>("home-account")?.render();
 };
-// @ts-ignore
+// @ts-expect-error
 AuthStore.onDidChange("selectedProfile.name", changeCallback);
 AuthStore.onDidChange("loggedIn", changeCallback);
 

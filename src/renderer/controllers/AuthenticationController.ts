@@ -15,7 +15,7 @@ export namespace AuthenticationController {
 		AuthStore.set({ ...authFromMojang, loggedIn: true });
 
 		// show toast message
-		// @ts-ignore
+		// @ts-expect-error
 		$("body").toast({
 			title: "Success",
 			message: `Logged in as ${authFromMojang.selectedProfile.name}`,
@@ -33,7 +33,7 @@ export namespace AuthenticationController {
 			const accessToken: string = authData.accessToken;
 			const clientToken: string = authData.clientToken;
 			console.log("Invalidating access/client pair.");
-			invalidate({ accessToken, clientToken });
+			await invalidate({ accessToken, clientToken });
 
 			// clear store
 			AuthStore.set("loggedIn", false);

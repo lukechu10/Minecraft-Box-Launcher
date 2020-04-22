@@ -3,7 +3,7 @@ import { Authentication } from "@xmcl/user";
 import Store from "electron-store";
 
 export interface AuthStoreData extends Authentication {
-	loggedIn: true,
+	loggedIn: true;
 }
 
 class AuthStore extends Store<AuthStoreData | { loggedIn: false }> {

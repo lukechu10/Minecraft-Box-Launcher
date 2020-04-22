@@ -5,10 +5,7 @@ import InstanceListStore from "../../store/InstanceListStore";
 export default class Options extends HTMLDivElement {
 	private instanceRef: Instance | null = null;
 	private instance: Instance | null = null;
-	public constructor() {
-		super();
-	}
-	public connectedCallback(): void { }
+
 	public render(instance: Instance): void {
 		this.instanceRef = instance;
 		this.instance = Object.assign({}, instance); // deep copy
