@@ -14,8 +14,6 @@ export default class SavesTabServer extends LitElement {
 	@property({ type: Object }) public instance: Instance | null = null;
 	@property({ type: Array }) private servers: ServerInfo[] = [];
 
-	public setInstance(instance: Instance): void { this.instance = instance; }
-
 	protected render(): TemplateResult {
 		const serverListElements: TemplateResult[] = [];
 
@@ -51,21 +49,20 @@ export default class SavesTabServer extends LitElement {
 	}
 
 	public async refreshServers(): Promise<void> {
-		if (this.instance !== null) {
-			const serverDatPath = path.join(this.instance.savePath, "servers.dat");
+		const serverDatPath = path.join(this.instance!.savePath, "servers.dat");
 
-			if (await fs.pathExists(serverDatPath)) {
-				const serverDatBuffer: Buffer = await fs.readFile(serverDatPath);
-				const infos: ServerInfo[] = await readInfo(serverDatBuffer);
+		if (await fs.pathExists(serverDatPath)) {
+			const serverDatBuffer: Buffer = await fs.readFile(serverDatPath);
+			const infos: ServerInfo[] = await readInfo(serverDatBuffer);
 
-				this.servers = infos; // update state with new data
-			}
-			else {
-				this.servers = []; // erase all servers and trigger update
-			}
-
-			this.requestUpdate();
+			this.servers = infos; // update state with new data
 		}
+		else {
+			this.servers = []; // erase all servers and trigger update
+		}
+
+		this.requestUpdate();
+
 	}
 
 	private async pingServerResult(host: string): Promise<TemplateResult> {
