@@ -8,7 +8,7 @@ export default class AccountModal extends LitElement {
 
 	@property({ type: Object }) public authData: AuthStoreData | { loggedIn: false } = AuthStore.store;
 
-	public render() {
+	protected render() {
 		return html`
 			<div class="header">Account</div>
 			<div class="content">

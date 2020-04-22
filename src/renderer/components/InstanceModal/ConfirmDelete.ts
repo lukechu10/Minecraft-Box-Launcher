@@ -7,7 +7,7 @@ export default class ConfirmDelete extends LitElement {
 
 	@property({ type: Object }) private instance: Instance | null = null;
 
-	public render() {
+	protected render() {
 		// this.innerHTML = instanceDeleteModalTemplate(instance);
 		return html`
 			<div class="header">Are you sure?</div>
