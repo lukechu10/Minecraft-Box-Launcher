@@ -1,7 +1,6 @@
-import Instance from "../../Instance";
-// import instanceRenameModalTemplate from "../../templates/modals/instances/Rename.pug";
-import InstanceListStore from "../../store/InstanceListStore";
 import { LitElement, customElement, property, html } from "lit-element";
+import Instance from "../../Instance";
+import InstanceListStore from "../../store/InstanceListStore";
 
 @customElement("instance-rename-modal")
 export default class Rename extends LitElement {

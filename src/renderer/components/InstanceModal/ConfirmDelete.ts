@@ -1,6 +1,5 @@
 import { LitElement, customElement, property, html } from "lit-element";
 import Instance from "../../Instance";
-// import instanceDeleteModalTemplate from "../../templates/modals/instances/ConfirmDelete.pug";
 
 @customElement("instance-delete-modal")
 export default class ConfirmDelete extends LitElement {
@@ -46,5 +45,3 @@ export default class ConfirmDelete extends LitElement {
 		}).modal("show");
 	}
 }
-
-// customElements.define("instance-delete-modal", ConfirmDelete, { extends: "div" });
