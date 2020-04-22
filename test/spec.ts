@@ -271,7 +271,7 @@ describe("Application window", function () {
 				const tableCols = tableBody.$("tr").$$("td");
 				expect(await tableCols).to.have.lengthOf(3);
 				// @ts-ignore
-				expect(await (tableCols).getText()).to.equal("Hypixel mc.hypixel.net Pinging..."); // table row
+				expect((await (tableCols).getText() as string).startsWith("Hypixel mc.hypixel.net")).to.true; // table row
 				await app.client.waitUntil(async () => await app.client.$(".server-status-cell").getText() !== "Pinging...", 6000);
 			});
 		});
