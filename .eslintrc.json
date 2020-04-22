@@ -50,6 +50,7 @@
 		],
 		"@typescript-eslint/explicit-member-accessibility": "warn",
 		"@typescript-eslint/no-extra-non-null-assertion": "error",
+		"@typescript-eslint/no-non-null-assertion": "off",
 		"@typescript-eslint/no-require-imports": "warn",
 		"@typescript-eslint/no-throw-literal": "warn",
 		"@typescript-eslint/no-unnecessary-boolean-literal-compare": "warn",
