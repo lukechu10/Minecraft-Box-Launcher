@@ -28,7 +28,9 @@ class Instances extends HTMLElement {
 		if (instance !== undefined) {
 			this.innerHTML = template({ instance, noInstance: false });
 			document.getElementById("last-played-instance")?.addEventListener("click", () => {
-				(document.getElementById("modal-info") as InstanceModal.Info).render(new InstanceListItem(instance));
+				const instanceListItem = new InstanceListItem();
+				instanceListItem.instance = instance!;
+				(document.getElementById("modal-info") as InstanceModal.Info).render(instanceListItem);
 			});
 		}
 		else this.innerHTML = template({ noInstance: true });

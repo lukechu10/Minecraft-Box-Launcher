@@ -14,8 +14,6 @@ export default class InstanceList extends LitElement {
 	public constructor() {
 		super();
 		this.instances = InstanceListStore.instances;
-
-		// this.classList.add("ui", "middle", "aligned", "divided", "selection", "list", "container");
 	}
 
 	protected render(): TemplateResult {
@@ -23,7 +21,7 @@ export default class InstanceList extends LitElement {
 
 		for (const instance of this.instances) {
 			instanceList.push(html`
-				<div is="instance-list-item" class="instance-item item" .instance=${instance}></div>
+				<instance-list-item class="instance-item item" .instance=${instance}></instance-list-item>
 			`);
 		}
 
@@ -39,7 +37,7 @@ export default class InstanceList extends LitElement {
 	}
 
 	protected updated(): void {
-		this.querySelectorAll<InstanceListItem>(".instance-item").forEach(elem => { elem.render(); });
+		this.querySelectorAll<InstanceListItem>(".instance-item").forEach(elem => { elem.requestUpdate(); });
 	}
 }
 

@@ -1,52 +1,70 @@
 import { ChildProcess } from "child_process";
-
+import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
 import Instance from "../Instance";
-
-import * as InstanceModal from "./InstanceModal";
-
+// import instanceItemTemplate from "../templates/InstanceListItem.pug"; // important item template
+import InstanceListStore from "../store/InstanceListStore";
 // import instance modal templates
 import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug";
-import instanceItemTemplate from "../templates/InstanceListItem.pug"; // important item template
-
-import InstanceListStore from "../store/InstanceListStore";
 import { AuthModal } from "./AuthModal";
+import * as InstanceModal from "./InstanceModal";
 
-export default class InstanceListItem extends HTMLDivElement {
-	public instance: Instance;
+@customElement("instance-list-item")
+export default class InstanceListItem extends LitElement {
+	protected createRenderRoot(): this { return this; }
 
-	public constructor(data?: Instance) {
-		super();
-		this.instance = data as Instance;
+	@property({ type: Object }) public instance: Instance | null = null;
+
+	protected render(): TemplateResult {
+		if (this.instance === null) {
+			console.log("LOL");
+			return html``;
+		}
+		return html`
+			<div class="content" @click="${this.showInfoModal}"
+				@mouseenter="${this.showButton}" @mouseleave="${this.hideButton}">
+				<div class="ui grid">
+					<div class="thirteen wide column">
+						<p class="ui header text-instanceName">
+							${this.instance.name}
+							${this.instance.installed ? "" : html`
+								<i class="fas fa-download fa-fw" style="color: #b5cc18"></i>
+							`}
+						</p>
+						<p class="description">
+							${this.instance.clientType || "vanilla"}
+							<strong>${this.instance.id} ${this.instance.type}</strong>
+						</p>
+					</div>
+					<div class="three wide column">
+						<div class="ui right floated buttons btn-instance-actions" style="display: none" @click="${(e: Event): void => e.stopPropagation()}">
+							${this.instance.isInstalling ? html`
+								<button class="ui gray button disabled">Installing...</button>
+							` : this.instance.installed ? html`
+								<button class="ui green button btn-play btn-play-install" @click="${this.play}">Play</button>
+							` : html`
+								<button class="ui olive button btn-install btn-play-install" @click="${this.install}">Install</button>
+							`}
+						</div>
+					</div>
+				</div>
+			</div>
+		`;
 	}
 
-	public render(newData?: Instance): void {
-		if (newData !== undefined) this.instance = newData;
-		this.innerHTML = instanceItemTemplate({ data: { ...this.instance, lastPlayedStr: this.instance.lastPlayedStr } }); // render template
-		(this.getElementsByClassName("btn-instance-actions")[0] as HTMLDivElement).addEventListener("click", e => { e.stopPropagation(); });
-		// show data in instance info segment
-		this.addEventListener("click", () => {
-			(document.getElementById("modal-info") as InstanceModal.Info).render(this);
-		});
+	private showInfoModal(): void {
+		(document.getElementById("modal-info") as InstanceModal.Info).render(this);
+	}
 
-		this.addEventListener("mouseenter", () => {
-			$(this.getElementsByClassName("btn-instance-actions")[0]).stop().fadeIn({
-				duration: 70,
-				queue: false
-			});
+	private showButton(): void {
+		$(this.getElementsByClassName("btn-instance-actions")[0]).stop().fadeIn({
+			duration: 70,
+			queue: false
 		});
-		this.addEventListener("mouseleave", () => {
-			$(this.getElementsByClassName("btn-instance-actions")[0]).stop().fadeOut({
-				duration: 70,
-				queue: false
-			});
-		});
-
-		(this.getElementsByClassName("btn-install")[0] as HTMLDivElement)?.addEventListener("click", () => {
-			this.install();
-		});
-
-		(this.getElementsByClassName("btn-play")[0] as HTMLDivElement)?.addEventListener("click", () => {
-			this.play();
+	}
+	private hideButton(): void {
+		$(this.getElementsByClassName("btn-instance-actions")[0]).stop().fadeOut({
+			duration: 70,
+			queue: false
 		});
 	}
 
@@ -56,7 +74,7 @@ export default class InstanceListItem extends HTMLDivElement {
 	public alertCorrupted(): void {
 		const corruptedModal = document.getElementById("modal-corrupted");
 		if (corruptedModal !== null) {
-			corruptedModal.outerHTML = corruptedModalTemplate({ name: this.instance.name });
+			corruptedModal.outerHTML = corruptedModalTemplate({ name: this.instance!.name });
 			$("#modal-corrupted").modal({
 				closable: false,
 				onApprove: () => {
@@ -74,21 +92,16 @@ export default class InstanceListItem extends HTMLDivElement {
 		btn.classList.remove("olive", "green");
 		btn.classList.add("gray", "disabled");
 		btn.textContent = "Installing...";
-		try {
-			await this.instance.install();
-			InstanceListStore.syncToStore();
-		}
-		finally {
-			this.render();
-		}
+		await this.instance!.install();
+		InstanceListStore.syncToStore();
 	}
 
 	public async play(): Promise<ChildProcess | null> {
 		// launch by name
-		const instance = InstanceListStore.findInstanceName(this.instance.name);
+		const instance = InstanceListStore.findInstanceName(this.instance!.name);
 		if (instance !== undefined) {
 			try {
-				const res = await this.instance.launch();
+				const res = await this.instance!.launch();
 				// last played should be updated, save to store
 				InstanceListStore.syncToStore();
 				return res;
@@ -113,5 +126,3 @@ export default class InstanceListItem extends HTMLDivElement {
 		else throw Error("The instance requested does not exist");
 	}
 }
-
-customElements.define("instance-list-item", InstanceListItem, { extends: "div" });
