@@ -118,7 +118,7 @@ describe("Application window", function () {
 		expect(list).to.have.lengthOf(0);
 	});
 
-	it.only("shows the settings modal", async () => {
+	it("shows the settings modal", async () => {
 		await app.client.waitUntilWindowLoaded();
 		await app.client.$("#content").$("div.ui.right.button").click();
 		const res = await app.client.waitForVisible("#modal-settings:not(.animating)", 2000);
