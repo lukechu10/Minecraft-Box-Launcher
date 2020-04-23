@@ -114,4 +114,4 @@ export default class InstanceListItem extends HTMLDivElement {
 	}
 }
 
-customElements.define("instance-item", InstanceListItem, { extends: "div" });
+customElements.define("instance-list-item", InstanceListItem, { extends: "div" });
