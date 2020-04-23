@@ -82,7 +82,7 @@ describe("Application window", function () {
 			const NYC_OUTPUT_BASE = path.resolve(".nyc_output");
 			await fs.mkdirp(NYC_OUTPUT_BASE);
 			const NYC_OUTPUT_DEST = path.resolve(NYC_OUTPUT_BASE, `${uuidv4()}.json`);
-			fs.writeFileSync(NYC_OUTPUT_DEST, JSON.stringify(coverageReport), {
+			await fs.writeJSON(NYC_OUTPUT_DEST, coverageReport, {
 				encoding: "utf8"
 			});
 		}
@@ -118,7 +118,7 @@ describe("Application window", function () {
 		expect(list).to.have.lengthOf(0);
 	});
 
-	it("shows the settings modal", async () => {
+	it.only("shows the settings modal", async () => {
 		await app.client.waitUntilWindowLoaded();
 		await app.client.$("#content").$("div.ui.right.button").click();
 		const res = await app.client.waitForVisible("#modal-settings:not(.animating)", 2000);
@@ -272,7 +272,8 @@ describe("Application window", function () {
 				expect(await tableCols).to.have.lengthOf(3);
 				// @ts-ignore
 				expect((await (tableCols).getText() as string).startsWith("Hypixel mc.hypixel.net")).to.true; // table row
-				await app.client.waitUntil(async () => await app.client.$(".server-status-cell").getText() !== "Pinging...", 6000);
+				// @ts-ignore
+				await app.client.waitUntil(async () => !(await (tableCols).getText().endsWith("Pinging...")), 6000);
 			});
 		});
 
