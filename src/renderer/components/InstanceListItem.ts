@@ -16,7 +16,6 @@ export default class InstanceListItem extends LitElement {
 
 	protected render(): TemplateResult {
 		if (this.instance === null) {
-			console.log("LOL");
 			return html``;
 		}
 		return html`
