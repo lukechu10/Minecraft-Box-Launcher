@@ -1,7 +1,6 @@
 import { ChildProcess } from "child_process";
 import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
 import Instance from "../Instance";
-// import instanceItemTemplate from "../templates/InstanceListItem.pug"; // important item template
 import InstanceListStore from "../store/InstanceListStore";
 // import instance modal templates
 import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug";
