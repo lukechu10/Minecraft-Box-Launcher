@@ -30,7 +30,7 @@ export default class SavesTabServer extends LitElement {
 		}
 
 		return html`
-			<button class="ui basic button" @click="${this.refreshServers}">Refresh</button>
+			<button class="ui basic button" @click="${this.refresh}">Refresh</button>
 			<table class="ui celled table">
 				<thead>
 					<tr>
@@ -51,11 +51,11 @@ export default class SavesTabServer extends LitElement {
 	protected updated(changedProperties: PropertyValues): void {
 		if(changedProperties.has("instance") && this.instance !== null) {
 			// update server list
-			this.refreshServers();
+			this.refresh();
 		}
 	}
 
-	public async refreshServers(): Promise<void> {
+	public async refresh(): Promise<void> {
 		const serverDatPath = path.join(this.instance!.savePath, "servers.dat");
 
 		if (await fs.pathExists(serverDatPath)) {
