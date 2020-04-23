@@ -1,13 +1,36 @@
-import { deserialize } from "@xmcl/nbt";
+import { deserialize, TagType } from "@xmcl/nbt";
 import fs from "fs-extra";
 import { customElement, html, LitElement, property, TemplateResult, PropertyValues } from "lit-element";
+import Long from "long";
 import moment from "moment";
 import path from "path";
 import Instance from "../../Instance";
 
+class WorldVersion {
+	@TagType(TagType.String)
+	public Name = "";
+	@TagType(TagType.Int)
+	public ID = 0;
+	@TagType(TagType.Int)
+	public Snapshot = 0;
+}
 
-async function readWorlds(savePath: string): Promise<object[]> {
-	const worlds: object[] = [];
+class WorldData {
+	@TagType(TagType.String)
+	public LevelName = "";
+	@TagType(TagType.Double)
+	public LastPlayed: Long = new Long(0);
+	@TagType(WorldVersion)
+	public Version: WorldVersion | undefined;
+}
+
+class World {
+	@TagType(WorldData)
+	public Data: WorldData | undefined;
+}
+
+async function readWorlds(savePath: string): Promise<WorldData[]> {
+	const worlds: WorldData[] = [];
 	// list dir in path
 	if (await fs.pathExists(savePath)) {
 		const dirs: string[] = await fs.readdir(savePath);
@@ -19,12 +42,13 @@ async function readWorlds(savePath: string): Promise<object[]> {
 				if (await fs.pathExists(levelPath)) {
 					// read nbt file
 					const fileBuffer = await fs.readFile(levelPath);
-					const nbtData: any = await deserialize(fileBuffer);
-					worlds.push(nbtData.Data as object);
+					const nbtData: World = await deserialize(fileBuffer);
+					worlds.push(nbtData.Data!);
 				}
 			}
 		}
 	}
+	console.log(worlds);
 	return worlds;
 }
 
@@ -33,19 +57,13 @@ export default class SavesTabWorld extends LitElement {
 	protected createRenderRoot(): this { return this; }
 
 	@property({ type: Object }) public instance: Instance | null = null;
-	@property({ type: Array }) private worlds: any[] = [];
-
-	// public connectedCallback(): void {
-	// 	// (this.getElementsByClassName("ui basic button")[0] as HTMLButtonElement).onclick = (): void => { this.render(); };
-	// }
-
-	// public setInstance(instance: Instance): void { this.instance = instance; }
+	@property({ type: Array }) private worlds: WorldData[] = [];
 
 	protected render(): TemplateResult {
-		const worldListElements: any[] = [];
+		const worldListElements: TemplateResult[] = [];
 
 		for (const world of this.worlds) {
-			const lastPlayed = moment(world.LastPlayed?.toNumber());
+			const lastPlayed = moment(world.LastPlayed.toNumber());
 			worldListElements.push(html`
 				<tr>
 					<td>${world.LevelName}</td>
@@ -74,7 +92,7 @@ export default class SavesTabWorld extends LitElement {
 	}
 
 	protected updated(changedProperties: PropertyValues): void {
-		if(changedProperties.has("instance") && this.instance !== null) {
+		if (changedProperties.has("instance") && this.instance !== null) {
 			// update world list
 			this.refresh();
 		}
@@ -83,7 +101,6 @@ export default class SavesTabWorld extends LitElement {
 	public async refresh(): Promise<void> {
 		const worldPath = path.join(this.instance!.savePath, "saves");
 
-		const worlds: any[] = await readWorlds(worldPath);
-		this.worlds = worlds;
+		this.worlds = await readWorlds(worldPath);
 	}
 }
