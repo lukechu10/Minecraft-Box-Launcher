@@ -70,7 +70,7 @@ export default class InstanceListItem extends LitElement {
 	/**
 	 * Shows a modal that display a warning to the user that the current instance is corrupted
 	 */
-	public alertCorrupted(): void {
+	private alertCorrupted(): void {
 		const corruptedModal = document.getElementById("modal-corrupted");
 		if (corruptedModal !== null) {
 			corruptedModal.outerHTML = corruptedModalTemplate({ name: this.instance!.name });
