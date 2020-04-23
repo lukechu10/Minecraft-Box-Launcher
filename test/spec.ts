@@ -254,7 +254,7 @@ describe("Application window", function () {
 				expect(await app.client.$("#modal-saves").$(".tab.segment[data-tab='servers']").$(".ui.error.message").getText()).to.equal("You have not created any servers yet! Start playing to see your saved servers."); // should show error message
 			});
 
-			it.only("should show saved servers", async () => {
+			it("should show saved servers", async () => {
 				await openInstanceInfoModal();
 				// add mock servers.dat to instance folder
 				const userDataPath = (await app.client.execute(() => window.require("electron").remote.app.getPath("userData"))).value;
