@@ -4,7 +4,7 @@ import path from "path";
 import Instance from "../../Instance";
 
 import { queryStatus, Status, QueryOptions } from "@xmcl/client";
-import { LitElement, customElement, TemplateResult, html, property } from "lit-element";
+import { LitElement, customElement, TemplateResult, html, property, PropertyValues } from "lit-element";
 import { until } from "lit-html/directives/until";
 
 @customElement("saves-tab-server")
@@ -15,8 +15,8 @@ export default class SavesTabServer extends LitElement {
 	@property({ type: Array }) private servers: ServerInfo[] = [];
 
 	protected render(): TemplateResult {
+		// update server list
 		const serverListElements: TemplateResult[] = [];
-
 		for (const server of this.servers) {
 			const pingContext = this.pingServerResult(server.ip);
 
@@ -48,6 +48,13 @@ export default class SavesTabServer extends LitElement {
 		`;
 	}
 
+	protected updated(changedProperties: PropertyValues): void {
+		if(changedProperties.has("instance") && this.instance !== null) {
+			// update server list
+			this.refreshServers();
+		}
+	}
+
 	public async refreshServers(): Promise<void> {
 		const serverDatPath = path.join(this.instance!.savePath, "servers.dat");
 
@@ -61,11 +68,12 @@ export default class SavesTabServer extends LitElement {
 			this.servers = []; // erase all servers and trigger update
 		}
 
-		this.requestUpdate();
+		// this.requestUpdate();
 
 	}
 
 	private async pingServerResult(host: string): Promise<TemplateResult> {
+		console.info("Pinging", host);
 		try {
 			const serverData = { host };
 			const options: QueryOptions = {

@@ -1,9 +1,10 @@
 import { deserialize } from "@xmcl/nbt";
-
 import fs from "fs-extra";
+import { customElement, html, LitElement, property, TemplateResult, PropertyValues } from "lit-element";
+import moment from "moment";
 import path from "path";
 import Instance from "../../Instance";
-import moment from "moment";
+
 
 async function readWorlds(savePath: string): Promise<object[]> {
 	const worlds: object[] = [];
@@ -27,59 +28,62 @@ async function readWorlds(savePath: string): Promise<object[]> {
 	return worlds;
 }
 
-export default class SavesTabWorld extends HTMLDivElement {
-	private instance: Instance | null = null;
-	public constructor() {
-		super();
+@customElement("saves-tab-world")
+export default class SavesTabWorld extends LitElement {
+	protected createRenderRoot(): this { return this; }
+
+	@property({ type: Object }) public instance: Instance | null = null;
+	@property({ type: Array }) private worlds: any[] = [];
+
+	// public connectedCallback(): void {
+	// 	// (this.getElementsByClassName("ui basic button")[0] as HTMLButtonElement).onclick = (): void => { this.render(); };
+	// }
+
+	// public setInstance(instance: Instance): void { this.instance = instance; }
+
+	protected render(): TemplateResult {
+		const worldListElements: any[] = [];
+
+		for (const world of this.worlds) {
+			const lastPlayed = moment(world.LastPlayed?.toNumber());
+			worldListElements.push(html`
+				<tr>
+					<td>${world.LevelName}</td>
+					<td>${lastPlayed.calendar()} (${lastPlayed.fromNow()})</td>
+					<td>${world.Version?.Name ?? "Unknown"}</td>
+				</tr>
+			`);
+		}
+
+		return html`
+			<button class="ui basic button" @click="${this.refresh}">Refresh</button>
+			<table class="ui celled table">
+				<thead>
+					<tr>
+						<th>World Name</th>
+						<th>Last Played</th>
+						<th>Version</th>
+					</tr>
+				</thead>
+				<tbody>${worldListElements}</tbody>
+			</table>
+			${this.worlds.length === 0 ? html`
+				<div class="ui error message bottom attached">You have not created any worlds yet! Start playing to see your saved worlds.</div>
+			` : ""}
+		`;
 	}
 
-	public connectedCallback(): void {
-		(this.getElementsByClassName("ui basic button")[0] as HTMLButtonElement).onclick = () => { this.render(); };
+	protected updated(changedProperties: PropertyValues): void {
+		if(changedProperties.has("instance") && this.instance !== null) {
+			// update world list
+			this.refresh();
+		}
 	}
 
-	public setInstance(instance: Instance): void { this.instance = instance; }
+	public async refresh(): Promise<void> {
+		const worldPath = path.join(this.instance!.savePath, "saves");
 
-	public async render(): Promise<void> {
-		const tbody = this.getElementsByTagName("tbody")[0];
-		// remove all children
-		while (tbody.firstChild) {
-			tbody.firstChild.remove();
-		}
-		// remove all error messages
-		const errMsgs = this.getElementsByClassName("error message");
-		Array.from(errMsgs).forEach(elem => { elem.remove(); });
-
-		if (this.instance !== null) {
-			// this.getElementsByClassName("dimmer")[0].classList.add("active");
-			const worldPath = path.join(this.instance.savePath, "saves");
-			const worlds: any[] = await readWorlds(worldPath);
-			if (worlds.length !== 0) {
-				for (const world of worlds) {
-					// add to table
-					const rowNode: HTMLTableRowElement = document.createElement("tr");
-					const nameNode: HTMLTableCellElement = document.createElement("td");
-					nameNode.textContent = world.LevelName;
-					rowNode.appendChild(nameNode);
-					const lastPlayedNode: HTMLTableCellElement = document.createElement("td");
-					const lastPlayed = moment(world.LastPlayed?.toNumber());
-					lastPlayedNode.textContent = `${lastPlayed.calendar()} (${lastPlayed.fromNow()})`;
-					rowNode.appendChild(lastPlayedNode);
-					const versionNode: HTMLTableCellElement = document.createElement("td");
-					versionNode.textContent = world.Version?.Name ?? "Unknown";
-					rowNode.appendChild(versionNode);
-					tbody.appendChild(rowNode);
-				}
-			}
-			else {
-				// display no servers added message
-				const errorNode: HTMLDivElement = document.createElement("div");
-				errorNode.classList.add("ui", "error", "message", "bottom", "attached");
-				errorNode.textContent = "You have not created any worlds yet! Start playing to see your saved worlds.";
-				this.getElementsByTagName("table")[0].parentNode?.appendChild(errorNode);
-			}
-			// this.getElementsByClassName("dimmer")[0].classList.remove("active");
-		}
+		const worlds: any[] = await readWorlds(worldPath);
+		this.worlds = worlds;
 	}
 }
-
-customElements.define("saves-tab-world", SavesTabWorld, { extends: "div" });
