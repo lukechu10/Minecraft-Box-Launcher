@@ -26,7 +26,7 @@ $(async () => {
 		await AuthenticationController.refreshLogin();
 	}
 	catch (err) {
-		if (err !== "User is not logged in. Cannot refresh auth.")
+		if (err.message !== "User is not logged in. Cannot refresh auth.")
 			// pass on exception
 			throw err;
 		// else ignore
