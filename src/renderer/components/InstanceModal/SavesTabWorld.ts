@@ -48,7 +48,6 @@ async function readWorlds(savePath: string): Promise<WorldData[]> {
 			}
 		}
 	}
-	console.log(worlds);
 	return worlds;
 }
 
