@@ -254,7 +254,7 @@ describe("Application window", function () {
 				expect(await app.client.$("#modal-saves").$(".tab.segment[data-tab='servers']").$(".ui.error.message").getText()).to.equal("You have not created any servers yet! Start playing to see your saved servers."); // should show error message
 			});
 
-			it("should show saved servers", async () => {
+			it.only("should show saved servers", async () => {
 				await openInstanceInfoModal();
 				// add mock servers.dat to instance folder
 				const userDataPath = (await app.client.execute(() => window.require("electron").remote.app.getPath("userData"))).value;
@@ -273,7 +273,7 @@ describe("Application window", function () {
 				// @ts-ignore
 				expect((await (tableCols).getText() as string).startsWith("Hypixel mc.hypixel.net")).to.true; // table row
 				// @ts-ignore
-				await app.client.waitUntil(async () => !(await (tableCols).getText().endsWith("Pinging...")), 6000);
+				await app.client.waitUntil(async () => !(new String(await (tableCols).getText()).endsWith("Pinging...")), 6000);
 			});
 		});
 
