@@ -55,7 +55,7 @@ async function fillOutInstanceForm(name: string = "Test instance", type: string 
 	// wait for modal to close
 	await app.client.$("#modal-newInstance").waitForVisible(2000, true);
 	// check if new item has been added to instance list
-	const instanceList = app.client.$("div[is='instance-list']");
+	const instanceList = app.client.$("instance-list");
 	const items = await instanceList.$$(".instance-item");
 	expect(items).to.have.lengthOf(1); // 1 instance
 	expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.equal(name); // check instance title (set in form)
@@ -63,7 +63,7 @@ async function fillOutInstanceForm(name: string = "Test instance", type: string 
 
 async function openInstanceInfoModal() {
 	await fillOutInstanceForm();
-	await app.client.$("div[is='instance-list']").$(".instance-item .ui.grid .thirteen.wide.column").click();
+	await app.client.$("instance-list").$(".instance-item .ui.grid .thirteen.wide.column").click();
 	await app.client.waitForVisible("#modal-info:not(.animating)", 2000);
 }
 
@@ -114,7 +114,7 @@ describe("Application window", function () {
 
 	it("has no instances in the instance list", async () => {
 		await app.client.waitUntilWindowLoaded();
-		const list = await app.client.$$("div[is='instance-list'] .instance-item");
+		const list = await app.client.$$("instance-list .instance-item");
 		expect(list).to.have.lengthOf(0);
 	});
 
@@ -290,7 +290,7 @@ describe("Application window", function () {
 			await app.client.$("#modal-confirmDelete").$(".ui.button.red").click();
 			await app.client.waitForVisible("#modal-confirmDelete:not(.animating)", 2000, true);
 			// make sure there are no more instances in instance list
-			const list = await app.client.$$("div[is='instance-list'] .instance-item");
+			const list = await app.client.$$("instance-list .instance-item");
 			expect(list).to.have.lengthOf(0);
 		});
 
@@ -302,7 +302,7 @@ describe("Application window", function () {
 			await app.client.$("#modal-confirmDelete").$("input[name='deleteFolder']").click();
 			await app.client.waitForVisible("#modal-confirmDelete:not(.animating)", 2000, true);
 			// make sure there are no more instances in instance list
-			const list = await app.client.$$("div[is='instance-list'] .instance-item");
+			const list = await app.client.$$("instance-list .instance-item");
 			expect(list).to.have.lengthOf(0);
 		});
 
@@ -314,7 +314,7 @@ describe("Application window", function () {
 			await app.client.$("#modal-rename").$(".ui.approve.button").click();
 			await app.client.waitForVisible("#modal-rename:not(.animating)", 2000, true);
 			// check that instance name in instance list changed
-			const instanceList = app.client.$("div[is='instance-list']");
+			const instanceList = app.client.$("instance-list");
 			expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.be.equal("Test instance 2");
 		});
 
@@ -327,7 +327,7 @@ describe("Application window", function () {
 			await app.client.$("div#btn-modalOptionsSave").click();
 			await app.client.waitForVisible("#modal-options:not(.animating)", 2000, true);
 			// check that instance name in instance list changed
-			const instanceList = app.client.$("div[is='instance-list']");
+			const instanceList = app.client.$("instance-list");
 			expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.be.equal("Test instance 2");
 		});
 
