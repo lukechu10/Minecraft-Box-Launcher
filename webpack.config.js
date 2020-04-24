@@ -3,7 +3,7 @@ const _ = require("lodash");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
-const baseChunks = ["runtime", "vendors", "turbolinks", "startupTasks"];
+const baseChunks = ["turbolinks", "startupTasks"];
 
 const baseConfig = {
 	entry: {
@@ -24,9 +24,7 @@ const baseConfig = {
 			template: path.resolve(__dirname, "src", "renderer", "views", "instances.pug"),
 			filename: path.resolve(__dirname, "dist", "views", "instances.html"),
 			inject: "head",
-			chunks: [
-				...baseChunks
-			]
+			chunks: [...baseChunks]
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "news.pug"),
@@ -61,11 +59,14 @@ const baseConfig = {
 			chunks: "all",
 			minChunks: 1,
 			cacheGroups: {
-				vendor: {
-					name: "vendors",
-					test: /node_modules/,
-					chunks: "initial",
-					enforce: true
+				defaultVendors: {
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10
+				},
+				default: {
+					minChunks: 2,
+					priority: -20,
+					reuseExistingChunk: true
 				}
 			}
 		},
