@@ -83,12 +83,12 @@ const baseConfig = {
 };
 
 module.exports = [
-	_.defaults({
+	_.defaultsDeep({
 		name: "development",
 		devtool: "inline-source-map",
 		mode: "development"
 	}, baseConfig),
-	_.defaults({
+	_.defaultsDeep({
 		name: "production",
 		optimization: {
 			flagIncludedChunks: true,
@@ -100,7 +100,7 @@ module.exports = [
 							arrows: true,
 							arguments: true,
 							booleans: true,
-							ecma: "2016",
+							ecma: "2017",
 							inline: true,
 							passes: 3,
 							unsafe_arrows: true,
@@ -140,7 +140,7 @@ module.exports = [
 			]
 		}
 	}, baseConfig),
-	_.defaults({
+	_.defaultsDeep({
 		name: "coverage",
 		devtool: "inline-source-map",
 		mode: "development",
