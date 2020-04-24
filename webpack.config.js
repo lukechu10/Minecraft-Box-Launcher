@@ -140,7 +140,7 @@ module.exports = [
 			]
 		}
 	}, baseConfig),
-	_.defaultsDeep({
+	_.defaults({
 		name: "coverage",
 		devtool: "inline-source-map",
 		mode: "development",
