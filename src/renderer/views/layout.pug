@@ -13,8 +13,8 @@ html(lang="en")
 
 		// css
 		// semantic-ui
-		link(rel="stylesheet" href="../../src/renderer/css/global.css")
-		link(rel="stylesheet" href="../../semantic/dist/semantic.min.css")
+		link(rel="stylesheet" href="../src/renderer/css/global.css")
+		link(rel="stylesheet" href="../semantic/dist/semantic.min.css")
 		block css
 		// js
 		// load modules
@@ -23,10 +23,10 @@ html(lang="en")
 			const jQuery = window.$ = require('jquery');
 			const { shell } = require('electron');
 			
-		script(src='../../semantic/dist/semantic.min.js')
-		script(src='../../src/renderer/assets/icons/regular.min.js' defer)
-		script(src='../../src/renderer/assets/icons/solid.min.js' defer)
-		script(src='../../src/renderer/assets/icons/fontawesome.min.js' defer)
+		script(src='../semantic/dist/semantic.min.js')
+		script(src='../src/renderer/assets/icons/regular.min.js' defer)
+		script(src='../src/renderer/assets/icons/solid.min.js' defer)
+		script(src='../src/renderer/assets/icons/fontawesome.min.js' defer)
 
 		block js
 	body

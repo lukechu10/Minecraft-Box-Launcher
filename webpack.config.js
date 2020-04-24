@@ -22,19 +22,19 @@ const baseConfig = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "instances.pug"),
-			filename: path.resolve(__dirname, "dist", "views", "instances.html"),
+			filename: path.resolve(__dirname, "dist", "instances.html"),
 			inject: "head",
 			chunks: [...baseChunks]
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "news.pug"),
-			filename: path.resolve(__dirname, "dist", "views", "news.html"),
+			filename: path.resolve(__dirname, "dist", "news.html"),
 			inject: "head",
 			chunks: [...baseChunks]
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "home.pug"),
-			filename: path.resolve(__dirname, "dist", "views", "home.html"),
+			filename: path.resolve(__dirname, "dist", "home.html"),
 			inject: "head",
 			chunks: [...baseChunks, "home"]
 		})
@@ -45,7 +45,12 @@ const baseConfig = {
 			{
 				test: /\.tsx?$/,
 				include: path.resolve(__dirname, "src"),
-				loader: "ts-loader"
+				loader: "ts-loader",
+				options: {
+					compilerOptions: {
+						module: "ESNext"
+					}
+				}
 			},
 			{
 				test: /\.pug/,
@@ -73,6 +78,10 @@ const baseConfig = {
 		runtimeChunk: {
 			name: "runtime"
 		}
+	},
+	performance: {
+		hints: process.env.NODE_ENV === "production" ? "warning" : false,
+		maxEntrypointSize: 2048
 	},
 	target: "electron-renderer",
 	externals: {
@@ -130,7 +139,10 @@ module.exports = [
 					include: path.resolve(__dirname, "src"),
 					loader: "ts-loader",
 					options: {
-						transpileOnly: true
+						transpileOnly: true,
+						compilerOptions: {
+							module: "ESNext"
+						}
 					}
 				},
 				{
@@ -159,7 +171,8 @@ module.exports = [
 							loader: "ts-loader",
 							options: {
 								compilerOptions: {
-									removeComments: false
+									removeComments: false,
+									module: "ESNext"
 								}
 							}
 						}

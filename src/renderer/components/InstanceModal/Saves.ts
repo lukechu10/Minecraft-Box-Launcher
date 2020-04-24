@@ -1,8 +1,5 @@
 import Instance from "../../Instance";
 
-// import components inside modal
-import "./SavesTabServer";
-import "./SavesTabWorld";
 import { LitElement, customElement, html, property, TemplateResult } from "lit-element";
 
 @customElement("instance-saves-modal")
@@ -30,10 +27,13 @@ export default class Saves extends LitElement {
 		`;
 	}
 
-	public showModal(instance: Instance): void {
+	public async showModal(instance: Instance): Promise<void> {
+		// import components inside modal
+		await import(/* webpackChunkName: "SavesTabServer" */ "./SavesTabServer");
+		await import(/* webpackChunkName: "SavesTabWorld" */ "./SavesTabWorld");
 		this.instance = instance;
-		this.requestUpdate();
-		
+		await this.requestUpdate();
+
 		$(this).modal({
 			closable: false
 		}).modal("show");

@@ -6,17 +6,16 @@ import AuthStore from "./store/AuthStore";
 import "./components/InstanceModal"; // add elements to custom elements registry
 import * as InstanceModal from "./components/InstanceModal";
 
-import { LaunchOption, Version, ResolvedVersion, launch, MinecraftLocation, MinecraftFolder } from "@xmcl/core";
+import { LaunchOption, Version, ResolvedVersion, MinecraftLocation, MinecraftFolder } from "@xmcl/core";
 import { scanLocalJava } from "@xmcl/installer/java";
 import { lookupByName } from "@xmcl/user";
-import { Installer } from "@xmcl/installer";
-import { Task, TaskRuntime } from "@xmcl/task";
+import type { Task, TaskRuntime } from "@xmcl/task";
 
 import moment from "moment";
 
 import path from "path";
 import { remote } from "electron";
-import { ChildProcess } from "child_process";
+import type { ChildProcess } from "child_process";
 import fs from "fs-extra";
 import TaskProgress from "./components/TaskProgress";
 const app = remote.app;
@@ -85,6 +84,8 @@ export default class Instance implements InstanceData {
 	}
 
 	public async launch(): Promise<ChildProcess> {
+		const { launch } = await import(/* webpackChunkName: "xmcl-core-launch" */ "@xmcl/core");
+
 		console.log(`Launching instance "${this.name}" with version "${this.id}".`);
 		if (!AuthStore.store.loggedIn) {
 			throw new Error("User not logged in");
@@ -114,8 +115,10 @@ export default class Instance implements InstanceData {
 			return proc;
 		}
 	}
-	public install(): Promise<TaskRuntime<Task.State>> {
-		return new Promise((resolve, reject) => {
+	public async install(): Promise<TaskRuntime<Task.State>> {
+		const { Installer } = await import(/* webpackChunkName: "xmcl-installer" */ "@xmcl/installer");
+
+		return await (new Promise((resolve, reject) => {
 			this.isInstalling = true;
 			const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));
 			console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
@@ -138,7 +141,7 @@ export default class Instance implements InstanceData {
 				this.isInstalling = false;
 				reject(err);
 			});
-		});
+		}));
 	}
 	/**
 	 * Deletes the instance. Note: do not call `syncToStore()` after as the store is automatically updated.
