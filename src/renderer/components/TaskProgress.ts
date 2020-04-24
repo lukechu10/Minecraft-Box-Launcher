@@ -1,10 +1,32 @@
 import { Task, TaskRuntime, TaskHandle } from "@xmcl/task";
 
-import taskProgressTemplate from "../templates/TaskProgress.pug";
-import { ResolvedVersion } from "@xmcl/core";
+import type { ResolvedVersion } from "@xmcl/core";
+import { LitElement, customElement, TemplateResult, html, property } from "lit-element";
 
-export default class TaskProgress extends HTMLDivElement {
+@customElement("task-progress")
+export default class TaskProgress extends LitElement {
+	protected createRenderRoot(): this { return this; }
+
 	private $progress = (): Element => this.getElementsByClassName("ui progress")[0];
+
+	@property({ type: String }) private message = "";
+	@property({ type: String }) private rightMessage = "";
+
+	protected render(): TemplateResult {
+		return html`
+			<div class="ui container">
+				<div class="ui segment">
+					<div class="ui olive active progress">
+						<div class="bar">
+							<div class="progress"></div>
+						</div>
+						<label class="label" style="text-align: left">${this.message}</label>
+						<label id="progress-label-right">${this.rightMessage}</label>
+					</div>
+				</div>
+			</div>
+		`;
+	}
 
 	/*
 	iterable returns tasks in order of insertion.
@@ -28,20 +50,8 @@ export default class TaskProgress extends HTMLDivElement {
 		}
 	}
 
-	public constructor() {
-		super();
-	}
-
 	public connectedCallback(): void {
-		if (!this.hasChildNodes())
-			this.render();
-	}
-
-	public render(): void {
-		this.innerHTML = taskProgressTemplate();
-		$(this.$progress()).progress({
-			label: "percent"
-		});
+		super.connectedCallback();
 		this.style.visibility = "hidden";
 	}
 
@@ -111,17 +121,15 @@ export default class TaskProgress extends HTMLDivElement {
 	private updateUIMessage(fileName?: string, percent?: number): void {
 		if (fileName !== undefined) {
 			const msg = `File: ${fileName} `;
-			$(this.$progress()).progress("set label", msg);
+			this.message = msg;
 		}
 		// set right label
-		const rightLabel = document.querySelector<HTMLDivElement>("#progress-label-right");
-		if (rightLabel !== null)
-			if (this.tasks.size > 1)
-				rightLabel.textContent =
-					`(${this.tasks.size - 1} more task${this.tasks.size > 2 ? "s" : ""} in progress) `;
-			else
-				rightLabel.textContent = "";
-		
+		if (this.tasks.size > 1)
+			this.rightMessage =
+				`(${this.tasks.size - 1} more task${this.tasks.size > 2 ? "s" : ""} in progress) `;
+		else
+			this.rightMessage = "";
+
 		if (percent === -1)
 			this.$progress().classList.add("indeterminate");
 		else if (percent !== undefined) {
@@ -135,5 +143,3 @@ export default class TaskProgress extends HTMLDivElement {
 		$(this.$progress()).progress("set success", `Successfully installed instance ${instanceName}`);
 	}
 }
-
-customElements.define("task-progress", TaskProgress, { extends: "div" });
