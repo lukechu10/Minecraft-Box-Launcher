@@ -96,31 +96,29 @@ export default class InstanceListItem extends LitElement {
 
 	public async play(): Promise<ChildProcess | null> {
 		// launch by name
-		const instance = InstanceListStore.findInstanceName(this.instance!.name);
-		if (instance !== undefined) {
-			try {
-				const res = await this.instance!.launch();
-				// last played should be updated, save to store
-				InstanceListStore.syncToStore();
-				return res;
-			}
-			catch (err) {
-				if (err.type === "MissingLibs" || err.error === "CorruptedVersionJson") {
-					// show corrupted modal
-					this.alertCorrupted();
-					return null;
-				}
-				if (err.message === "User not logged in") {
-					const authRes = await (document.getElementById("modal-login") as AuthModal).waitForAuth();
-					if (authRes !== null) {
-						// attempt to launch again
-						return await this.play();
-					}
-					else return null;
-				}
-				else throw err; // pipe error
-			}
+		try {
+			const res = await this.instance!.launch();
+			// last played should be updated, save to store
+			InstanceListStore.syncToStore();
+			return res;
 		}
-		else throw Error("The instance requested does not exist");
+		catch (err) {
+			console.dir(err);
+			if (err.error === "MissingLibraries" || err.error === "CorruptedVersionJson") {
+				// show corrupted modal
+				this.alertCorrupted();
+				return null;
+			}
+			if (err.message === "User not logged in") {
+				const authRes = await (document.getElementById("modal-login") as AuthModal).waitForAuth();
+				if (authRes !== null) {
+					// attempt to launch again
+					return await this.play();
+				}
+				else return null;
+			}
+			else throw err; // pipe error
+		}
 	}
+
 }
