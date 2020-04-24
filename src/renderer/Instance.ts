@@ -6,7 +6,8 @@ import AuthStore from "./store/AuthStore";
 import "./components/InstanceModal"; // add elements to custom elements registry
 import * as InstanceModal from "./components/InstanceModal";
 
-import { LaunchOption, Version, ResolvedVersion, MinecraftLocation, MinecraftFolder } from "@xmcl/core";
+import { LaunchOption, Version, ResolvedVersion, MinecraftLocation, MinecraftFolder, launch } from "@xmcl/core";
+import { Installer } from "@xmcl/installer";
 import { scanLocalJava } from "@xmcl/installer/java";
 import { lookupByName } from "@xmcl/user";
 import type { Task, TaskRuntime } from "@xmcl/task";
@@ -84,8 +85,6 @@ export default class Instance implements InstanceData {
 	}
 
 	public async launch(): Promise<ChildProcess> {
-		const { launch } = await import(/* webpackChunkName: "xmcl-core-launch" */ "@xmcl/core");
-
 		console.log(`Launching instance "${this.name}" with version "${this.id}".`);
 		if (!AuthStore.store.loggedIn) {
 			throw new Error("User not logged in");
@@ -116,8 +115,6 @@ export default class Instance implements InstanceData {
 		}
 	}
 	public async install(): Promise<TaskRuntime<Task.State>> {
-		const { Installer } = await import(/* webpackChunkName: "xmcl-installer" */ "@xmcl/installer");
-
 		return await (new Promise((resolve, reject) => {
 			this.isInstalling = true;
 			const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));
