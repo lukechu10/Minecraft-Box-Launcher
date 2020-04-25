@@ -3,12 +3,11 @@ const _ = require("lodash");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
-const baseChunks = ["turbolinks", "startupTasks"];
+const baseChunks = ["startupTasks"];
 
 const baseConfig = {
 	entry: {
 		startupTasks: "./src/renderer/StartupTasks.ts",
-		turbolinks: "./src/renderer/turbolinks.ts",
 		home: "./src/renderer/HomeEntry.ts"
 	},
 	output: {

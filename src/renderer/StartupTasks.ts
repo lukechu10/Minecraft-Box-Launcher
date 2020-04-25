@@ -16,6 +16,10 @@ window.addEventListener("unhandledrejection", event => {
 	console.error(event.reason);
 });
 
+window.addEventListener("load", () => {
+	import(/* webpackChunkName: "turbolinks" */ "./turbolinks"); // lazy load turbolinks once initial render has finished
+});
+
 // startup tasks (on application start)
 $(async () => {
 	// update versions
