@@ -362,6 +362,17 @@ describe("Application window", function () {
 				await app.client.waitForExist(".btn-play", 1000000);
 			});
 
+			it("can detect user not logged in when launching", async () => {
+				await fillOutInstanceForm();
+				// launch instance
+				await app.client.execute(() => {
+					(window as any).$("instance-list-item")[0].play();
+				});
+
+				// wait until corrupted version json modal appears
+				await app.client.waitForVisible("#modal-login:not(.animating)", 3000);
+			});
+
 			it("can detect missing version json", async () => {
 				await fillOutInstanceForm();
 				// set loggedIn status to true
