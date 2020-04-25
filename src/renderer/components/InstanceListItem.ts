@@ -51,7 +51,7 @@ export default class InstanceListItem extends LitElement {
 	}
 
 	private showInfoModal(): void {
-		(document.getElementById("modal-info") as InstanceModal.Info).render(this);
+		(document.getElementById("modal-info") as InstanceModal.Info).showModal(this);
 	}
 
 	private showButton(): void {

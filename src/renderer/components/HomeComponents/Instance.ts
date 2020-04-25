@@ -44,7 +44,7 @@ class Instances extends LitElement {
 	private showInfoModal(): void {
 		const instanceListItem = new InstanceListItem();
 		instanceListItem.instance = this.instance!;
-		document.querySelector<InstanceModal.Info>("#modal-info")!.render(instanceListItem);
+		document.querySelector<InstanceModal.Info>("#modal-info")!.showModal(instanceListItem);
 	}
 
 	/**

@@ -21,7 +21,7 @@ import fs from "fs-extra";
 import TaskProgress from "./components/TaskProgress";
 const app = remote.app;
 
-type ModalType = "options" | "rename" | "saves" | "delete";
+export type ModalType = "options" | "rename" | "saves" | "delete";
 export default class Instance implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
 	/**
