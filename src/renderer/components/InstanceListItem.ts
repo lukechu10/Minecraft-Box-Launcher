@@ -31,6 +31,7 @@ export default class InstanceListItem extends LitElement {
 						<p class="description">
 							${this.instance.clientType || "vanilla"}
 							<strong>${this.instance.id} ${this.instance.type}</strong>
+							Last played: <i>${this.instance.lastPlayedStr}</i>
 						</p>
 					</div>
 					<div class="three wide column">
