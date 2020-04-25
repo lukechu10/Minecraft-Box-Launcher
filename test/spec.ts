@@ -361,6 +361,16 @@ describe("Application window", function () {
 				// wait for play button
 				await app.client.waitForExist(".btn-play", 1000000);
 			});
+
+			it("can detect missing version json", async () => {
+				await fillOutInstanceForm();
+				await app.client.execute(() => {
+					(window as any).$("instance-list-item")[0].play();
+				});
+
+				// wait until corrupted version json modal appears
+				await app.client.waitForVisible("#modal-corrupted:not(.animating)", 3000);
+			});
 		});
 	});
 
