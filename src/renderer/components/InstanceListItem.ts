@@ -14,31 +14,28 @@ export default class InstanceListItem extends LitElement {
 	@property({ type: Object }) public instance: Instance | null = null;
 
 	protected render(): TemplateResult {
-		if (this.instance === null) {
-			return html``;
-		}
 		return html`
 			<div class="content" @click="${this.showInfoModal}"
 				@mouseenter="${this.showButton}" @mouseleave="${this.hideButton}">
 				<div class="ui grid">
 					<div class="thirteen wide column">
 						<p class="ui header text-instanceName">
-							${this.instance.name}
-							${this.instance.installed ? "" : html`
+							${this.instance!.name}
+							${this.instance!.installed ? "" : html`
 								<i class="fas fa-download fa-fw" style="color: #b5cc18"></i>
 							`}
 						</p>
 						<p class="description">
-							${this.instance.clientType || "vanilla"}
-							<strong>${this.instance.id} ${this.instance.type}</strong>
-							Last played: <i>${this.instance.lastPlayedStr}</i>
+							${this.instance!.clientType || "vanilla"}
+							<strong>${this.instance!.id} ${this.instance!.type}</strong>
+							Last played: <i>${this.instance!.lastPlayedStr}</i>
 						</p>
 					</div>
 					<div class="three wide column">
 						<div class="ui right floated buttons btn-instance-actions" style="display: none" @click="${(e: Event): void => e.stopPropagation()}">
-							${this.instance.isInstalling ? html`
+							${this.instance!.isInstalling ? html`
 								<button class="ui gray button disabled">Installing...</button>
-							` : this.instance.installed ? html`
+							` : this.instance!.installed ? html`
 								<button class="ui green button btn-play btn-play-install" @click="${this.play}">Play</button>
 							` : html`
 								<button class="ui olive button btn-install btn-play-install" @click="${this.install}">Install</button>
