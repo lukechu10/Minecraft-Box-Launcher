@@ -364,6 +364,11 @@ describe("Application window", function () {
 
 			it("can detect missing version json", async () => {
 				await fillOutInstanceForm();
+				// set loggedIn status to true
+				await app.client.execute(() => {
+					(window as any).AuthStore.set("loggedIn", true);
+				});
+				// launch instance
 				await app.client.execute(() => {
 					(window as any).$("instance-list-item")[0].play();
 				});
