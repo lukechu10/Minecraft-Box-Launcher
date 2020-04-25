@@ -101,8 +101,8 @@ export default class InstanceListItem extends LitElement {
 			return res;
 		}
 		catch (err) {
-			console.dir(err);
-			if (err.error === "MissingLibraries" || err.error === "CorruptedVersionJson") {
+			console.warn(err);
+			if (err.error === "MissingLibraries" || err.error === "MissingVersionJson" || err.error === "CorruptedVersionJson") {
 				// show corrupted modal
 				this.alertCorrupted();
 				return null;
