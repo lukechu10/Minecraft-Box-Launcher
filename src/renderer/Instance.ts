@@ -18,7 +18,7 @@ import path from "path";
 import { remote } from "electron";
 import type { ChildProcess } from "child_process";
 import fs from "fs-extra";
-import TaskProgress from "./components/TaskProgress";
+import type TaskProgress from "./components/TaskProgress";
 const app = remote.app;
 
 export type ModalType = "options" | "rename" | "saves" | "delete";
@@ -119,11 +119,10 @@ export default class Instance implements InstanceData {
 			this.isInstalling = true;
 			const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));
 			console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
-			// const res = await Installer.install("client", this, location);
 
 			const installTask: Task<ResolvedVersion> = Installer.installTask("client", this, location);
-			const taskProgress: TaskProgress | null = document.getElementById("task-progress") as TaskProgress;
-			const runtime = taskProgress?.addInstallTask(installTask, this.name);
+			const taskProgress = document.querySelector<TaskProgress>("task-progress");
+			const runtime = taskProgress!.addInstallTask(installTask, this.name);
 
 			runtime.on("finish", (res, state) => {
 				if (state.path === "install") {
