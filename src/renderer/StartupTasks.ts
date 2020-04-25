@@ -30,6 +30,7 @@ $(async () => {
 		await AuthenticationController.refreshLogin();
 	}
 	catch (err) {
+		/* istanbul ignore else */
 		if (err.message !== "User is not logged in. Cannot refresh auth.")
 			// pass on exception
 			throw err;
