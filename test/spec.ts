@@ -312,10 +312,10 @@ describe("Application window", function () {
 			await app.client.waitForVisible("#modal-rename:not(.animating)", 2000);
 
 			await app.client.$("#input-rename").setValue(""); // should not be able to name an instance with empty string
-			expect(await app.client.$("instance-rename-modal").$("ui pointing red basic label").getText()).equals("You must enter a name");
+			expect(await app.client.$("instance-rename-modal").$(".ui.pointing.red.basic.label").getText()).equals("You must enter a name");
 
 			await app.client.$("#input-rename").setValue("Test instance"); // should not be able to name an with a name that is already used
-			expect(await app.client.$("instance-rename-modal").$("ui pointing red basic label").getText()).equals("An instance with that name already exists");
+			expect(await app.client.$("instance-rename-modal").$(".ui.pointing.red.basic.label").getText()).equals("An instance with that name already exists");
 
 			await app.client.$("#input-rename").setValue("Test instance 2"); // rename modal
 			await app.client.$("#modal-rename").$(".ui.approve.button").click();
