@@ -161,7 +161,7 @@ export default class Instance implements InstanceData {
 	public showModal(modal: ModalType): void {
 		switch (modal) {
 			case "options":
-				(document.getElementById("modal-options") as InstanceModal.Options).render(this);
+				(document.getElementById("modal-options") as InstanceModal.Options).showModal(this);
 				break;
 			case "rename":
 				(document.getElementById("modal-rename") as InstanceModal.Rename).showModal(this);
