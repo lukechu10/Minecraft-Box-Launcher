@@ -8,6 +8,7 @@ export default class Rename extends LitElement {
 
 	@property({ type: Object }) public instance: Instance | null = null;
 	@property({ type: Boolean }) private isError = false;
+	@property({ type: String }) private errorMessage = "";
 
 	protected render(): TemplateResult {
 		return html`
@@ -18,7 +19,7 @@ export default class Rename extends LitElement {
 					<input id="input-rename" type="text" name="newName" placeholder="New Name" .value=${this.instance?.name ?? ""}>
 				</div>
 				${this.isError ? html`
-					<div class="ui pointing red basic label">An instance with that name already exists</div>
+					<div class="ui pointing red basic label">${this.errorMessage}</div>
 				` : ""}
 			</div>
 			<div class="actions">
@@ -31,9 +32,15 @@ export default class Rename extends LitElement {
 	private handleRename(): false | void {
 		const input = this.querySelector<HTMLInputElement>("#input-rename");
 		const newName = input!.value;
+		if(newName === "") {
+			this.isError = true;
+			this.errorMessage = "You must enter a name";
+			return false;
+		}
 		const find = InstanceListStore.findInstanceName(newName); // make sure an instance with this name does not already exist
 		if (find !== null) {
 			this.isError = true;
+			this.errorMessage = "An instance with that name already exists";
 			return false;
 		}
 		else {
@@ -46,6 +53,7 @@ export default class Rename extends LitElement {
 
 	public async showModal(instance: Instance | null): Promise<void> {
 		this.isError = false;
+		this.errorMessage = "";
 
 		this.instance = instance;
 		await this.requestUpdate();
