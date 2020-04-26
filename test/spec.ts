@@ -331,8 +331,8 @@ describe("Application window", function () {
 			await app.client.$(".btn-options").click();
 			await app.client.waitForVisible("#modal-options:not(.animating)", 2000);
 			await app.client.$("#modal-options").$("input[name='instance-name']").setValue("Test instance 2"); // options modal
-			await app.client.$("#modal-options").waitForExist("#btn-modalOptionsSave:not(.disabled)", 500); // wait for save button to become clickable
-			await app.client.$("div#btn-modalOptionsSave").click();
+			await app.client.$("#modal-options").waitForExist(".ui.primary.approve.button:not([disabled])", 500); // wait for save button to become clickable
+			await app.client.$("#modal-options").$(".ui.primary.approve.button:not([disabled])").click();
 			await app.client.waitForVisible("#modal-options:not(.animating)", 2000, true);
 			// check that instance name in instance list changed
 			const instanceList = app.client.$("instance-list");
