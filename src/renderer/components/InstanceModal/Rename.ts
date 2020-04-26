@@ -23,12 +23,12 @@ export default class Rename extends LitElement {
 			</div>
 			<div class="actions">
 				<button class="ui button cancel blue">Cancel</button>
-				<button class="ui button approve inverted green" @click=${this.handleRename}>Rename</button>
+				<button class="ui button approve inverted green">Rename</button>
 			</div>
 		`;
 	}
 
-	private handleRename(): boolean | void {
+	private handleRename(): false | void {
 		const input = this.querySelector<HTMLInputElement>("#input-rename");
 		const newName = input!.value;
 		const find = InstanceListStore.findInstanceName(newName); // make sure an instance with this name does not already exist
@@ -52,7 +52,8 @@ export default class Rename extends LitElement {
 
 		// setup modal
 		$(this).modal({
-			closable: false
+			closable: false,
+			onApprove: this.handleRename
 		}).modal("show");
 	}
 }
