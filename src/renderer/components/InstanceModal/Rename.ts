@@ -15,7 +15,7 @@ export default class Rename extends LitElement {
 			<div class="content">
 				<p>Enter a new name for instance <strong>${this.instance?.name}</strong></p>
 				<div class="ui fluid input ${this.isError ? "error" : ""}">
-					<input id="input-rename" type="text" name="newName" placeholder="New Name" value=${this.instance?.name ?? ""}>
+					<input id="input-rename" type="text" name="newName" placeholder="New Name" .value=${this.instance?.name ?? ""}>
 				</div>
 				${this.isError ? html`
 					<div class="ui pointing red basic label">An instance with that name already exists</div>
