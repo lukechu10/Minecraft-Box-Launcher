@@ -115,7 +115,7 @@ export default class Instance implements InstanceData {
 		}
 	}
 	public async install(): Promise<TaskRuntime<Task.State>> {
-		return await (new Promise((resolve, reject) => {
+		return new Promise((resolve, reject) => {
 			this.isInstalling = true;
 			const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));
 			console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
@@ -137,7 +137,7 @@ export default class Instance implements InstanceData {
 				this.isInstalling = false;
 				reject(err);
 			});
-		}));
+		});
 	}
 	/**
 	 * Deletes the instance. Note: do not call `syncToStore()` after as the store is automatically updated.
