@@ -1,39 +1,72 @@
 import { Authentication } from "@xmcl/user";
-import authModalTemplate from "../templates/AuthModal.pug";
+import { remote } from "electron";
+import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
 import { AuthenticationController } from "../controllers/AuthenticationController"; // TODO: temp, remove dep
 import AuthStore from "../store/AuthStore";
 
-export class AuthModal extends HTMLDivElement {
-	public render(message?: string): void {
-		this.innerHTML = authModalTemplate();
-		$(this).modal({
-			closable: false
-		}).modal("show");
-		this.attachEvents();
-		if (message !== undefined) this.setErrorMessage(message);
+const shell = remote.shell;
+
+@customElement("auth-modal")
+export class AuthModal extends LitElement {
+	protected createRenderRoot(): this { return this; }
+
+	@property({ type: String }) protected errorMessage = "";
+
+	protected render(): TemplateResult {
+		return html`
+			<div class="header">Login</div>
+			<div class="content">
+				<div class="ui centered grid">
+					<div class="row">
+						<div class="twelve wide column">
+							<!-- error messages -->
+							${this.errorMessage !== "" ? html`
+								<div class="ui tertiary inverted red segment" id="login-errors-container">
+									<p id="login-errors">${this.errorMessage}</p>
+								</div>
+							` : ""}
+							<!-- login form -->
+							<form class="ui form segment error" id="login-form" @submit="${this.handleSubmit}" onsubmit="return false;">
+								<div class="field">
+									<label>Mojang Email</label>
+									<input id="username-field" type="text" name="username" placeholder="Email">
+								</div>
+								<div class="field">
+									<label tabindex="-1">
+										Password
+										(<a @click="${this.openForgotPasswordLink}">Forgot your password?</a>)
+									</label>
+									<input id="password-field" type="password" name="password" placeholder="Password">
+								</div>
+								<button type="submit" class="ui fluid positive button" id="login-btn">Login</button>
+								<div class="ui horizontal divider">or</div>
+								<div class="actions">
+									<div style="text-align: center">
+										<button class="ui tiny inverted red cancel button">Continue without logging in</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		`;
 	}
+
 	/**
-	 * Returns the auth from user login or `null` if canceled
+	 * Opens the mojang forgot my password link in default browser
 	 */
-	public async waitForAuth(message?: string): Promise<Authentication | null> {
-		if (message !== undefined) this.setErrorMessage(message);
-		return new Promise((resolve) => {
-			this.innerHTML = authModalTemplate();
-			$(this).modal({
-				closable: false,
-				detachable: false,
-				onHidden: () => {
-					if (AuthStore.store.loggedIn) {
-						resolve(AuthStore.store);
-					}
-					else resolve(null);
-				}
-			}).modal("show");
-			this.attachEvents();
-			resolve(null); // error
-		});
+	private openForgotPasswordLink(): void {
+		shell.openExternal("https://my.minecraft.net/en-us/password/forgot/");
 	}
-	private attachEvents(): void {
+
+	/**
+	 * @param message message to be shown in error message area
+	 * @returns the authentication data or `null` if none
+	 */
+	public async showModal(message?: string): Promise<Authentication | null> {
+		this.errorMessage = message ?? "";
+
 		// initiate form
 		$("#login-form").form({
 			fields: {
@@ -46,53 +79,58 @@ export class AuthModal extends HTMLDivElement {
 				},
 				password: {
 					identifier: "password",
-					type: "minLength[1]",
-					prompt: "Please enter your password"
+					rules: [{
+						type: "minLength[1]",
+						prompt: "You must enter your password"
+					}]
 				}
 			}
-		} as any);
+		});
 
-		// login button
-		$("#login-form").on("submit", async (event: JQuery.Event) => {
-			event.preventDefault();
-			event.stopPropagation();
-			$("#login-form").form("validate form");
-			if ($("#login-form").form("is valid")) {
+		return new Promise((resolve) => {
+			$(this).modal({
+				closable: false,
+				detachable: false,
+				onHidden: () => {
+					if (AuthStore.store.loggedIn) {
+						resolve(AuthStore.store);
+					}
+					else resolve(null);
+				}
+			}).modal("show");
+		});
+	}
+
+	private handleSubmit(e: Event): false {
+		e.preventDefault();
+		const $form = $("#login-form");
+		(async (): Promise<void> => {
+			$form.form("validate form");
+			if ($form.form("is valid")) {
 				try {
-					const username = $("#username-field").val() as string;
-					const password = $("#password-field").val() as string;
+					const username = this.querySelector<HTMLInputElement>("#username-field")!.value;
+					const password = this.querySelector<HTMLInputElement>("#password-field")!.value;
+
 					// send request to Yggsdrasil auth server
 					await AuthenticationController.login(username, password);
 					// login successfull
-					$("#modal-login").modal("hide");
-				}
-				catch (e) {
-					if (e.statusCode == 403) { // invalid credentials
-						this.setErrorMessage("Invalid username or password! Please try again.");
+					$(this).modal("hide");
+				} catch (error) {
+					if (error.statusCode == 403) {
+						this.errorMessage = "Invalid username or password! Please try again.";
 					}
 					else {
-						this.setErrorMessage(`An unknown error occured: ${e}`);
-						console.log("An unknown error occured when trying to login user. Caught exception: ", e);
+						this.errorMessage = `An unknown error occured: ${error}`;
+						console.warn("An unknown error occured when trying to log in user:", error);
 					}
 				}
 			}
-			else {
-				this.setErrorMessage("Please fill out the form!");
+			else
+			// form is invalid
+			{
+				this.errorMessage = "Please fill out the form!";
 			}
-		});
-	}
-	/**
-	 * @param message message to be set in the error message box or hide if `null`.
-	 */
-	private setErrorMessage(message: string | null): void {
-		if (message !== null) {
-			(document.getElementById("login-errors-container") as HTMLDivElement).style.display = "block";
-			(document.getElementById("login-errors") as HTMLDivElement).textContent = message;
-		}
-		else {
-			(document.getElementById("login-errors-container") as HTMLDivElement).style.display = "none";
-		}
+		})();
+		return false;
 	}
 }
-
-customElements.define("modal-auth", AuthModal, { extends: "div" });

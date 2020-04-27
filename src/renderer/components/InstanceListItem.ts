@@ -108,7 +108,7 @@ export default class InstanceListItem extends LitElement {
 				return null;
 			}
 			if (err.message === "User not logged in") {
-				const authRes = await (document.getElementById("modal-login") as AuthModal).waitForAuth();
+				const authRes = await document.querySelector<AuthModal>("#modal-login")!.showModal();
 				if (authRes !== null) {
 					// attempt to launch again
 					return await this.play();
