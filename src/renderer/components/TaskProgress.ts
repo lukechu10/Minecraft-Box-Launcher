@@ -32,9 +32,9 @@ export default class TaskProgress extends LitElement {
 	iterable returns tasks in order of insertion.
 	1st task is always the task that is rendered
 	*/
-	private tasks: Map<Task<Record<string, any>>, TaskRuntime> = new Map();
+	private tasks: Map<Task<object>, TaskRuntime> = new Map();
 
-	private addTask(task: Task<Record<string, any>>, runtime: TaskRuntime<Task.State>): void {
+	private addTask(task: Task<object>, runtime: TaskRuntime<Task.State>): void {
 		this.tasks.set(task, runtime);
 		if (this.tasks.size === 1) {
 			// only 1 task in queue means there were no tasks before
@@ -42,7 +42,7 @@ export default class TaskProgress extends LitElement {
 		}
 	}
 
-	private removeTask(task: Task<Record<string, any>>): void {
+	private removeTask(task: Task<object>): void {
 		this.tasks.delete(task);
 		if (this.tasks.size === 0) {
 			// hide progress bar

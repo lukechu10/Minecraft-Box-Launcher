@@ -68,7 +68,6 @@ export default class Instance implements InstanceData {
 	 */
 	public isInstalling: boolean;
 	public time: string;
-	[key: string]: any;
 
 	public constructor(data: InstanceData) {
 		this.name = data.name;
