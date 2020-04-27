@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Lint
-        run: npm run lint
+        run: npx eslint src/ --ext .ts,.tsx --fix
