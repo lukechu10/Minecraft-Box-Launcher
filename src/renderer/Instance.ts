@@ -121,8 +121,8 @@ export default class Instance implements InstanceData {
 			console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
 
 			const installTask: Task<ResolvedVersion> = Installer.installTask("client", this, location);
-			const taskProgress = document.querySelector<TaskProgress>("task-progress");
-			const runtime = taskProgress!.addInstallTask(installTask, this.name);
+			const taskProgress = document.querySelector<TaskProgress>("task-progress")!;
+			const runtime = taskProgress.addInstallTask(installTask, this.name);
 
 			runtime.on("finish", (res, state) => {
 				if (state.path === "install") {
