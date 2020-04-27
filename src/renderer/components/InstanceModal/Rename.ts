@@ -32,7 +32,7 @@ export default class Rename extends LitElement {
 	private handleRename(): false | void {
 		const input = this.querySelector<HTMLInputElement>("#input-rename");
 		const newName = input!.value;
-		if(newName === "") {
+		if (newName === "") {
 			this.isError = true;
 			this.errorMessage = "You must enter a name";
 			return false;
@@ -44,10 +44,8 @@ export default class Rename extends LitElement {
 			return false;
 		}
 		else {
-			if (this.instance !== null) {
-				this.instance.name = newName;
-				InstanceListStore.syncToStore();
-			}
+			this.instance!.name = newName;
+			InstanceListStore.syncToStore();
 		}
 	}
 
