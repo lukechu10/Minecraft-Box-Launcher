@@ -18,7 +18,6 @@
 		"pack:macos": "electron-builder --dir --macos",
 		"pack:windows": "electron-builder --dir --windows",
 		"pack": "electron-builder --dir",
-		"postinstall": "run-p build:*",
 		"preversion": "npm run eslint",
 		"start:gitpod": "electron --no-sandbox .",
 		"start": "electron .",
