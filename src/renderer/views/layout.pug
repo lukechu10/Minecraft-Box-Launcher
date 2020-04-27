@@ -13,8 +13,8 @@ html(lang="en")
 
 		// css
 		// semantic-ui
-		link(rel="stylesheet" href="../../src/renderer/css/global.css")
-		link(rel="stylesheet" href="../../semantic/dist/semantic.min.css")
+		link(rel="stylesheet" href="../src/renderer/css/global.css")
+		link(rel="stylesheet" href="../semantic/dist/semantic.min.css")
 		block css
 		// js
 		// load modules
@@ -23,10 +23,10 @@ html(lang="en")
 			const jQuery = window.$ = require('jquery');
 			const { shell } = require('electron');
 			
-		script(src='../../semantic/dist/semantic.min.js')
-		script(src='../../src/renderer/assets/icons/regular.min.js' defer)
-		script(src='../../src/renderer/assets/icons/solid.min.js' defer)
-		script(src='../../src/renderer/assets/icons/fontawesome.min.js' defer)
+		script(src='../semantic/dist/semantic.min.js')
+		script(src='../src/renderer/assets/icons/regular.min.js' defer)
+		script(src='../src/renderer/assets/icons/solid.min.js' defer)
+		script(src='../src/renderer/assets/icons/fontawesome.min.js' defer)
 
 		block js
 	body
@@ -44,18 +44,18 @@ html(lang="en")
 		block outside
 
 		#task-progress-container(data-turbolinks-permanent=true)
-			#task-progress(is="task-progress")
+			task-progress#task-progress
 
 		//- modals
 		block modals
 		//- These are just placeholders that will be replaced with content when modal is loaded
-		.ui.modal#modal-login(is="modal-auth")
-		.ui.modal#modal-account(is="modal-account")
+		auth-modal.ui.modal#modal-login
+		modal-account.ui.modal#modal-account
 		.ui.modal#modal-newInstance(is="modal-new-instance")
-		.ui.modal#modal-rename(is="instance-rename-modal")
-		.ui.modal#modal-options(is="instance-options-modal")
-		.ui.modal#modal-saves(is="instance-saves-modal")
-		.ui.modal#modal-info(is="instance-info-modal")
+		instance-rename-modal.ui.modal#modal-rename
+		instance-options-modal.ui.modal#modal-options
+		instance-saves-modal.ui.modal#modal-saves
+		instance-info-modal.ui.modal#modal-info
 		.ui.basic.modal#modal-corrupted
-		.ui.basic.modal#modal-confirmDelete(is="instance-delete-modal")
+		instance-delete-modal.ui.basic.modal#modal-confirmDelete
 		.ui.basic.modal#modal-settings

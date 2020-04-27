@@ -1,41 +1,56 @@
 import Instance from "../../Instance";
-import instanceOptionsModalTemplate from "../../templates/modals/instances/Options.pug";
+// import instanceOptionsModalTemplate from "../../templates/modals/instances/Options.pug";
 import InstanceListStore from "../../store/InstanceListStore";
+import { LitElement, customElement, TemplateResult, html, property } from "lit-element";
 
-export default class Options extends HTMLDivElement {
-	private instanceRef: Instance | null = null;
-	private instance: Instance | null = null;
-	public constructor() {
-		super();
-	}
-	public connectedCallback(): void { }
-	public render(instance: Instance): void {
-		this.instanceRef = instance;
-		this.instance = Object.assign({}, instance); // deep copy
-		this.innerHTML = instanceOptionsModalTemplate(this.instance);
-		$(this).modal("show");
-		this.attachEvents();
-	}
+@customElement("instance-options-modal")
+export default class Options extends LitElement {
+	protected createRenderRoot(): this { return this; }
 
-	private attachEvents(): void {
-		$("#modal-options input").on("input", e => {
-			if (this.instance !== null) {
-				// TODO: Update modal
-				$("#btn-modalOptionsSave").removeClass("disabled");
-				switch (e.currentTarget.getAttribute("name")) {
-					case "instance-name":
-						this.instance.name = (e.currentTarget as HTMLInputElement).value;
-				}
-			}
-		});
+	@property({ type: Object }) private instanceRef: Instance | null = null;
+	@property({ type: Object }) private instance: Instance | null = null;
+	@property({ type: Boolean }) private canSave = false;
 
-		if ($.fn.form.settings.rules !== undefined) {
-			$.fn.form.settings.rules.doesNotExist = (param): boolean => {
-				const find = InstanceListStore.findInstanceName(param);
-				return param.length === 0 || find === null;
-			};
+	protected render(): TemplateResult {
+		if (this.instanceRef === null) {
+			return html``;
 		}
+		else {
+			return html`
+				<div class="header">${this.instanceRef.name} | Options</div>
+				<div class="content">
+					<div class="ui center aligned header">Instance</div>
+					<form class="ui form" id="form-options">
+						<div class="field">
+							<label>Name</label>
+							<input class="ui input" name="instance-name" .value="${this.instanceRef.name}" @input="${this.handleInput}">
+						</div>
+					</form>
+				</div>
+				<div class="actions">
+					<button class="ui primary approve button" ?disabled="${!this.canSave}">Save and close</button>
+					<button class="ui deny button">Cancel</button>
+				</div>
+			`;
+		}
+	}
 
+	public async showModal(instance: Instance): Promise<void> {
+		this.instanceRef = instance;
+		this.instance = Object.assign({}, instance); // create a deep copy of instance
+		this.canSave = false;
+		await this.requestUpdate();
+
+		// remove all error fields from form
+		this.querySelectorAll(".error").forEach(elem => elem.classList.remove("error"));
+		this.querySelectorAll(".red.pointing.label").forEach(elem => elem.remove());
+
+		$.fn.form.settings.rules!.doesNotExist = (param): boolean => {
+			const find = InstanceListStore.findInstanceName(param);
+			return param.length === 0 || find === null;
+		};
+
+		// setup form
 		$("#form-options").form({
 			inline: true,
 			fields: {
@@ -53,18 +68,30 @@ export default class Options extends HTMLDivElement {
 		}).submit(event => {
 			event.preventDefault(); // default is page reload
 		});
-		// submit button
-		$("#btn-modalOptionsSave").on("click", (): boolean => {
-			const $form = $("#form-options");
-			$form.form("validate form");
-			if ($form.form("is valid") && this.instance !== null) {
-				Object.assign(this.instanceRef, this.instance); // update store
-				InstanceListStore.syncToStore();
-				return true;
+
+		$(this).modal({
+			onApprove: (): false | void => {
+				const $form = $("#form-options");
+				$form.form("validate form");
+				if ($form.form("is valid")) {
+					Object.assign(this.instanceRef, this.instance); // update store
+					InstanceListStore.syncToStore();
+					return;
+				}
+				else {
+					return false; // prevent close action
+				}
 			}
-			else return false; // prevent close action
-		});
+		}).modal("show");
+	}
+
+	private handleInput(e: InputEvent): void {
+		const target: HTMLInputElement = e.currentTarget! as HTMLInputElement;
+		// $("#btn-modalOptionsSave").removeClass("disabled");
+		this.canSave = true;
+		switch (target.getAttribute("name")) {
+			case "instance-name":
+				this.instance!.name = target.value;
+		}
 	}
 }
-
-customElements.define("instance-options-modal", Options, { extends: "div" });

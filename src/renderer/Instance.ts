@@ -6,22 +6,22 @@ import AuthStore from "./store/AuthStore";
 import "./components/InstanceModal"; // add elements to custom elements registry
 import * as InstanceModal from "./components/InstanceModal";
 
-import { LaunchOption, Version, ResolvedVersion, launch, MinecraftLocation, MinecraftFolder } from "@xmcl/core";
+import { LaunchOption, Version, ResolvedVersion, MinecraftLocation, MinecraftFolder, launch } from "@xmcl/core";
+import { Installer } from "@xmcl/installer";
 import { scanLocalJava } from "@xmcl/installer/java";
 import { lookupByName } from "@xmcl/user";
-import { Installer } from "@xmcl/installer";
-import { Task, TaskRuntime } from "@xmcl/task";
+import type { Task, TaskRuntime } from "@xmcl/task";
 
 import moment from "moment";
 
 import path from "path";
 import { remote } from "electron";
-import { ChildProcess } from "child_process";
+import type { ChildProcess } from "child_process";
 import fs from "fs-extra";
-import TaskProgress from "./components/TaskProgress";
+import type TaskProgress from "./components/TaskProgress";
 const app = remote.app;
 
-type ModalType = "options" | "rename" | "saves" | "delete";
+export type ModalType = "options" | "rename" | "saves" | "delete";
 export default class Instance implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
 	/**
@@ -68,7 +68,6 @@ export default class Instance implements InstanceData {
 	 */
 	public isInstalling: boolean;
 	public time: string;
-	[key: string]: any;
 
 	public constructor(data: InstanceData) {
 		this.name = data.name;
@@ -114,16 +113,15 @@ export default class Instance implements InstanceData {
 			return proc;
 		}
 	}
-	public install(): Promise<TaskRuntime<Task.State>> {
+	public async install(): Promise<TaskRuntime<Task.State>> {
 		return new Promise((resolve, reject) => {
 			this.isInstalling = true;
 			const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));
 			console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
-			// const res = await Installer.install("client", this, location);
 
 			const installTask: Task<ResolvedVersion> = Installer.installTask("client", this, location);
-			const taskProgress: TaskProgress | null = document.getElementById("task-progress") as TaskProgress;
-			const runtime = taskProgress?.addInstallTask(installTask, this.name);
+			const taskProgress = document.querySelector<TaskProgress>("task-progress")!;
+			const runtime = taskProgress.addInstallTask(installTask, this.name);
 
 			runtime.on("finish", (res, state) => {
 				if (state.path === "install") {
@@ -144,7 +142,7 @@ export default class Instance implements InstanceData {
 	 * Deletes the instance. Note: do not call `syncToStore()` after as the store is automatically updated.
 	 * @param deleteFolder deletes the instance folder if value is `true`
 	 */
-	public async delete(deleteFolder: boolean = false): Promise<void> {
+	public async delete(deleteFolder = false): Promise<void> {
 		InstanceListStore.deleteInstance(this.name);
 		if (deleteFolder) {
 			await fs.remove(this.savePath);
@@ -162,16 +160,16 @@ export default class Instance implements InstanceData {
 	public showModal(modal: ModalType): void {
 		switch (modal) {
 			case "options":
-				(document.getElementById("modal-options") as InstanceModal.Options).render(this);
+				(document.getElementById("modal-options") as InstanceModal.Options).showModal(this);
 				break;
 			case "rename":
-				(document.getElementById("modal-rename") as InstanceModal.Rename).render(this);
+				(document.getElementById("modal-rename") as InstanceModal.Rename).showModal(this);
 				break;
 			case "saves":
-				(document.getElementById("modal-saves") as InstanceModal.Saves).render(this);
+				(document.getElementById("modal-saves") as InstanceModal.Saves).showModal(this);
 				break;
 			case "delete":
-				(document.getElementById("modal-confirmDelete") as InstanceModal.Saves).render(this);
+				(document.getElementById("modal-confirmDelete") as InstanceModal.ConfirmDelete).showModal(this);
 				break;
 			default:
 				throw Error("Not a valid modal");

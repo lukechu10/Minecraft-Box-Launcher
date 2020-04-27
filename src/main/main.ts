@@ -26,7 +26,7 @@ function createWindow(): void {
 		},
 		icon: path.join(__dirname, "./build/icon.png")
 	});
-	mainWindow.loadFile(path.join(__dirname, "../../views/", "instances.html"));
+	mainWindow.loadFile(path.join(__dirname, "../../", "instances.html"));
 
 	// Emitted when the window is closed.
 	mainWindow?.on("closed", () => {

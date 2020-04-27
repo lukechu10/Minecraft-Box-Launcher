@@ -18,7 +18,7 @@ class InstanceListStore {
 				}
 			},
 			watch: true,
-			serialize: obj => JSON.stringify(obj, (key, value) => {
+			serialize: (obj): string => JSON.stringify(obj, (key, value) => {
 				// remove isInstalling field
 				if (key === "isInstalling") return undefined;
 				else return value;
@@ -39,7 +39,7 @@ class InstanceListStore {
 	/**
 	 * Save data to store
 	 */
-	public syncToStore() {
+	public syncToStore(): void {
 		this.store.set("instances", this.instances); // Instance prototype should be removed when syncing to store
 	}
 

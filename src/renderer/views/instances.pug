@@ -1,7 +1,7 @@
 extend layout
 
 block css
-	link(rel="stylesheet", href="../../src/renderer/css/instances.css")
+	link(rel="stylesheet", href="../src/renderer/css/instances.css")
 
 block content
 	div
@@ -9,6 +9,6 @@ block content
 		.ui.button.right.floated.green.inverted(onclick="Render.showSettingsModal()") #[i.fas.fa-sliders-h.fa-fw] Settings
 		.ui.primary.button(onclick="Render.newInstance();") #[i.fas.fa-plus.fa-fw] New Instance
 	div#instance-list-container
-		div(is="instance-list")
+		instance-list
 block outside
 	//- #instance-info-segment(is="instance-info-segment")

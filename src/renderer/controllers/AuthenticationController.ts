@@ -33,7 +33,7 @@ export namespace AuthenticationController {
 			const accessToken: string = authData.accessToken;
 			const clientToken: string = authData.clientToken;
 			console.log("Invalidating access/client pair.");
-			invalidate({ accessToken, clientToken });
+			await invalidate({ accessToken, clientToken });
 
 			// clear store
 			AuthStore.set("loggedIn", false);
@@ -46,7 +46,7 @@ export namespace AuthenticationController {
 	 */
 	export async function refreshLogin(): Promise<void> {
 		if (!AuthStore.store.loggedIn) {
-			throw "User is not logged in. Cannot refresh auth.";
+			throw new Error("User is not logged in. Cannot refresh auth.");
 		}
 		else {
 			const authData = AuthStore.store;

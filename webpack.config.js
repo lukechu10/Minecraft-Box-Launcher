@@ -3,12 +3,11 @@ const _ = require("lodash");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
-const baseChunks = ["runtime", "vendors", "turbolinks", "startupTasks"];
+const baseChunks = ["startupTasks"];
 
 const baseConfig = {
 	entry: {
 		startupTasks: "./src/renderer/StartupTasks.ts",
-		turbolinks: "./src/renderer/turbolinks.ts",
 		home: "./src/renderer/HomeEntry.ts"
 	},
 	output: {
@@ -22,21 +21,19 @@ const baseConfig = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "instances.pug"),
-			filename: path.resolve(__dirname, "dist", "views", "instances.html"),
+			filename: path.resolve(__dirname, "dist", "instances.html"),
 			inject: "head",
-			chunks: [
-				...baseChunks
-			]
+			chunks: [...baseChunks]
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "news.pug"),
-			filename: path.resolve(__dirname, "dist", "views", "news.html"),
+			filename: path.resolve(__dirname, "dist", "news.html"),
 			inject: "head",
 			chunks: [...baseChunks]
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "home.pug"),
-			filename: path.resolve(__dirname, "dist", "views", "home.html"),
+			filename: path.resolve(__dirname, "dist", "home.html"),
 			inject: "head",
 			chunks: [...baseChunks, "home"]
 		})
@@ -47,7 +44,12 @@ const baseConfig = {
 			{
 				test: /\.tsx?$/,
 				include: path.resolve(__dirname, "src"),
-				loader: "ts-loader"
+				loader: "ts-loader",
+				options: {
+					compilerOptions: {
+						module: "ESNext"
+					}
+				}
 			},
 			{
 				test: /\.pug/,
@@ -61,17 +63,26 @@ const baseConfig = {
 			chunks: "all",
 			minChunks: 1,
 			cacheGroups: {
-				vendor: {
-					name: "vendors",
-					test: /node_modules/,
-					chunks: "initial",
-					enforce: true
+				defaultVendors: {
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10
+				},
+				default: {
+					minChunks: 2,
+					priority: -20,
+					reuseExistingChunk: true
 				}
 			}
 		},
 		runtimeChunk: {
 			name: "runtime"
-		}
+		},
+		providedExports: true,
+		usedExports: true
+	},
+	performance: {
+		hints: process.env.NODE_ENV === "production" ? "warning" : false,
+		maxEntrypointSize: 2048
 	},
 	target: "electron-renderer",
 	externals: {
@@ -83,12 +94,12 @@ const baseConfig = {
 };
 
 module.exports = [
-	_.defaults({
+	_.defaultsDeep({
 		name: "development",
 		devtool: "inline-source-map",
 		mode: "development"
 	}, baseConfig),
-	_.defaults({
+	_.defaultsDeep({
 		name: "production",
 		optimization: {
 			flagIncludedChunks: true,
@@ -100,7 +111,7 @@ module.exports = [
 							arrows: true,
 							arguments: true,
 							booleans: true,
-							ecma: "2016",
+							ecma: "2017",
 							inline: true,
 							passes: 3,
 							unsafe_arrows: true,
@@ -129,7 +140,10 @@ module.exports = [
 					include: path.resolve(__dirname, "src"),
 					loader: "ts-loader",
 					options: {
-						transpileOnly: true
+						transpileOnly: true,
+						compilerOptions: {
+							module: "ESNext"
+						}
 					}
 				},
 				{
@@ -158,7 +172,8 @@ module.exports = [
 							loader: "ts-loader",
 							options: {
 								compilerOptions: {
-									removeComments: false
+									removeComments: false,
+									module: "ESNext"
 								}
 							}
 						}

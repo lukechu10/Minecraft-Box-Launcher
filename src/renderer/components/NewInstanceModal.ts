@@ -8,10 +8,6 @@ import Instance from "../Instance";
 import { v4 as uuidv4 } from "uuid";
 
 export default class NewInstanceModal extends HTMLDivElement {
-	public constructor() {
-		super();
-	}
-	public connectedCallback(): void { }
 	public render(): void {
 		this.innerHTML = newInstanceModalTemplate();
 		$(this).modal("show");

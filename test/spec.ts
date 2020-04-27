@@ -55,7 +55,7 @@ async function fillOutInstanceForm(name: string = "Test instance", type: string 
 	// wait for modal to close
 	await app.client.$("#modal-newInstance").waitForVisible(2000, true);
 	// check if new item has been added to instance list
-	const instanceList = app.client.$("div[is='instance-list']");
+	const instanceList = app.client.$("instance-list");
 	const items = await instanceList.$$(".instance-item");
 	expect(items).to.have.lengthOf(1); // 1 instance
 	expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.equal(name); // check instance title (set in form)
@@ -63,7 +63,7 @@ async function fillOutInstanceForm(name: string = "Test instance", type: string 
 
 async function openInstanceInfoModal() {
 	await fillOutInstanceForm();
-	await app.client.$("div[is='instance-list']").$(".instance-item .ui.grid .thirteen.wide.column").click();
+	await app.client.$("instance-list").$(".instance-item .ui.grid .thirteen.wide.column").click();
 	await app.client.waitForVisible("#modal-info:not(.animating)", 2000);
 }
 
@@ -82,7 +82,7 @@ describe("Application window", function () {
 			const NYC_OUTPUT_BASE = path.resolve(".nyc_output");
 			await fs.mkdirp(NYC_OUTPUT_BASE);
 			const NYC_OUTPUT_DEST = path.resolve(NYC_OUTPUT_BASE, `${uuidv4()}.json`);
-			fs.writeFileSync(NYC_OUTPUT_DEST, JSON.stringify(coverageReport), {
+			await fs.writeJSON(NYC_OUTPUT_DEST, coverageReport, {
 				encoding: "utf8"
 			});
 		}
@@ -114,7 +114,7 @@ describe("Application window", function () {
 
 	it("has no instances in the instance list", async () => {
 		await app.client.waitUntilWindowLoaded();
-		const list = await app.client.$$("div[is='instance-list'] .instance-item");
+		const list = await app.client.$$("instance-list .instance-item");
 		expect(list).to.have.lengthOf(0);
 	});
 
@@ -271,8 +271,9 @@ describe("Application window", function () {
 				const tableCols = tableBody.$("tr").$$("td");
 				expect(await tableCols).to.have.lengthOf(3);
 				// @ts-ignore
-				expect(await (tableCols).getText()).to.equal("Hypixel mc.hypixel.net Pinging..."); // table row
-				await app.client.waitUntil(async () => await app.client.$(".server-status-cell").getText() !== "Pinging...", 6000);
+				expect((await (tableCols).getText() as string).startsWith("Hypixel mc.hypixel.net")).to.true; // table row
+				// @ts-ignore
+				await app.client.waitUntil(async () => !(new String(await (tableCols).getText()).endsWith("Pinging...")), 6000);
 			});
 		});
 
@@ -289,7 +290,7 @@ describe("Application window", function () {
 			await app.client.$("#modal-confirmDelete").$(".ui.button.red").click();
 			await app.client.waitForVisible("#modal-confirmDelete:not(.animating)", 2000, true);
 			// make sure there are no more instances in instance list
-			const list = await app.client.$$("div[is='instance-list'] .instance-item");
+			const list = await app.client.$$("instance-list .instance-item");
 			expect(list).to.have.lengthOf(0);
 		});
 
@@ -301,7 +302,7 @@ describe("Application window", function () {
 			await app.client.$("#modal-confirmDelete").$("input[name='deleteFolder']").click();
 			await app.client.waitForVisible("#modal-confirmDelete:not(.animating)", 2000, true);
 			// make sure there are no more instances in instance list
-			const list = await app.client.$$("div[is='instance-list'] .instance-item");
+			const list = await app.client.$$("instance-list .instance-item");
 			expect(list).to.have.lengthOf(0);
 		});
 
@@ -309,11 +310,23 @@ describe("Application window", function () {
 			await openInstanceInfoModal();
 			await app.client.$(".btn-rename").click();
 			await app.client.waitForVisible("#modal-rename:not(.animating)", 2000);
+
+			await app.client.$("#input-rename").setValue(""); // should not be able to name an instance with empty string
+			await app.client.$("instance-rename-modal").$(".ui.approve.button").click();
+			await app.client.$("instance-rename-modal").waitForVisible(".ui.pointing.red.basic.label", 1000);
+			expect(await app.client.$("instance-rename-modal").$(".ui.pointing.red.basic.label").getText()).equals("You must enter a name");
+
+			await app.client.$("#input-rename").setValue("Test instance"); // should not be able to name an with a name that is already used
+			await app.client.$("instance-rename-modal").$(".ui.approve.button").click();
+			await app.client.$("instance-rename-modal").waitForVisible(".ui.pointing.red.basic.label", 1000);
+			expect(await app.client.$("instance-rename-modal").$(".ui.pointing.red.basic.label").getText()).equals("An instance with that name already exists");
+
 			await app.client.$("#input-rename").setValue("Test instance 2"); // rename modal
 			await app.client.$("#modal-rename").$(".ui.approve.button").click();
+
 			await app.client.waitForVisible("#modal-rename:not(.animating)", 2000, true);
 			// check that instance name in instance list changed
-			const instanceList = app.client.$("div[is='instance-list']");
+			const instanceList = app.client.$("instance-list");
 			expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.be.equal("Test instance 2");
 		});
 
@@ -322,11 +335,11 @@ describe("Application window", function () {
 			await app.client.$(".btn-options").click();
 			await app.client.waitForVisible("#modal-options:not(.animating)", 2000);
 			await app.client.$("#modal-options").$("input[name='instance-name']").setValue("Test instance 2"); // options modal
-			await app.client.$("#modal-options").waitForExist("#btn-modalOptionsSave:not(.disabled)", 500); // wait for save button to become clickable
-			await app.client.$("div#btn-modalOptionsSave").click();
+			await app.client.$("#modal-options").waitForExist(".ui.primary.approve.button:not([disabled])", 500); // wait for save button to become clickable
+			await app.client.$("#modal-options").$(".ui.primary.approve.button:not([disabled])").click();
 			await app.client.waitForVisible("#modal-options:not(.animating)", 2000, true);
 			// check that instance name in instance list changed
-			const instanceList = app.client.$("div[is='instance-list']");
+			const instanceList = app.client.$("instance-list");
 			expect(await instanceList.$(".instance-item").$(".content .text-instanceName").getText()).to.be.equal("Test instance 2");
 		});
 
@@ -336,11 +349,11 @@ describe("Application window", function () {
 				await app.client.execute(() => {
 					(window as any).$(".instance-item")[0].install();
 				});
-				expect(await app.client.waitForExist("div#task-progress.visible", 2000)).to.be.true;
+				expect(await app.client.waitForExist("task-progress.visible", 2000)).to.be.true;
 				// wait for play button
 				await app.client.waitForExist(".btn-play", 1000000);
-				expect(await app.client.$("div#task-progress").$(".label").getText()).to.equal("Successfully installed instance Test instance"); // make sure task progress shows current message
-				await app.client.waitForExist("div#task-progress.hidden", 10000);
+				expect(await app.client.$("task-progress").$(".label").getText()).to.equal("Successfully installed instance Test instance"); // make sure task progress shows current message
+				await app.client.waitForExist("task-progress.hidden", 10000);
 			});
 
 			it("can install latest snapshot", async () => {
@@ -359,6 +372,32 @@ describe("Application window", function () {
 				});
 				// wait for play button
 				await app.client.waitForExist(".btn-play", 1000000);
+			});
+
+			it("can detect user not logged in when launching", async () => {
+				await fillOutInstanceForm();
+				// launch instance
+				await app.client.execute(() => {
+					(window as any).$("instance-list-item")[0].play();
+				});
+
+				// wait until corrupted version json modal appears
+				await app.client.waitForVisible("#modal-login:not(.animating)", 3000);
+			});
+
+			it("can detect missing version json", async () => {
+				await fillOutInstanceForm();
+				// set loggedIn status to true
+				await app.client.execute(() => {
+					(window as any).AuthStore.set("loggedIn", true);
+				});
+				// launch instance
+				await app.client.execute(() => {
+					(window as any).$("instance-list-item")[0].play();
+				});
+
+				// wait until corrupted version json modal appears
+				await app.client.waitForVisible("#modal-corrupted:not(.animating)", 3000);
 			});
 		});
 	});
@@ -391,6 +430,16 @@ describe("Application window", function () {
 			await app.client.click("#last-played-instance");
 
 			await app.client.waitForVisible("#modal-info:not(.animating)", 2000);
+		});
+
+		it("can show account modal from account widget", async () => {
+			await app.client.waitUntilWindowLoaded();
+			await app.client.$("navbar").$("a.item[href='./home.html']").click();
+			await app.client.waitForExist("#account-modal-link-home");
+			await app.client.click("#account-modal-link-home");
+
+			const res = await app.client.waitForVisible("#modal-account:not(.animating)");
+			expect(res).to.equal(true);
 		});
 	});
 });

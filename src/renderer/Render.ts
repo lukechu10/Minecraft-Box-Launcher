@@ -16,5 +16,5 @@ export function newInstance(): void {
  * Shows modal that appears over page
  */
 export function showLoginModal(): void {
-	(document.getElementById("modal-login") as AuthModal).render();
+	document.querySelector<AuthModal>("#modal-login")!.showModal();
 }

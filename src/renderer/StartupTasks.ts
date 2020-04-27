@@ -1,11 +1,12 @@
-import { ApplicationStore } from "./store";
+import "./components/AuthModal";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 import { VersionsController } from "./controllers/VersionsController";
-import InstanceListStore from "./store/InstanceListStore";
 import * as Render from "./Render";
+import { ApplicationStore } from "./store";
+import AuthStore from "./store/AuthStore";
+import InstanceListStore from "./store/InstanceListStore";
 import { showErrorToast } from "./util";
 
-import "./components/AuthModal";
 
 process.on("uncaughtException", err => {
 	showErrorToast(err.message);
@@ -14,6 +15,10 @@ process.on("uncaughtException", err => {
 window.addEventListener("unhandledrejection", event => {
 	showErrorToast(event.reason);
 	console.error(event.reason);
+});
+
+window.addEventListener("load", () => {
+	import(/* webpackChunkName: "turbolinks" */ "./turbolinks"); // lazy load turbolinks once initial render has finished
 });
 
 // startup tasks (on application start)
@@ -26,7 +31,8 @@ $(async () => {
 		await AuthenticationController.refreshLogin();
 	}
 	catch (err) {
-		if (err !== "User is not logged in. Cannot refresh auth.")
+		/* istanbul ignore else */
+		if (err.message !== "User is not logged in. Cannot refresh auth.")
 			// pass on exception
 			throw err;
 		// else ignore
@@ -34,10 +40,11 @@ $(async () => {
 });
 
 // export modules
-export { Render, ApplicationStore, InstanceListStore };
+export * from "./components/AccountModal";
+export * from "./components/InstanceList";
+export * from "./components/TaskProgress";
+export { Render, ApplicationStore, AuthStore, InstanceListStore };
 // export imported controllers to window
 export { AuthenticationController, VersionsController };
 
-export * from "./components/InstanceList";
-export * from "./components/TaskProgress";
-export * from "./components/AccountModal";
+

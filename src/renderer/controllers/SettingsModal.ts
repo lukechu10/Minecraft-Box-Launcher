@@ -2,7 +2,7 @@ import settingsTemplate from "../templates/modals/settings.pug";
 import { GlobalSettings } from "../store/GlobalSettingsStore";
 import { ApplicationStore } from "../store";
 
-export function showSettingsModal() {
+export function showSettingsModal(): void {
 	$("#modal-settings").replaceWith(settingsTemplate(ApplicationStore.GlobalSettings.store));
 	$("#modal-settings").modal({
 		closable: false,

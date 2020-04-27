@@ -1,36 +1,43 @@
 import Instance from "../../Instance";
-import instanceSavesModalTemplate from "../../templates/modals/instances/Saves.pug";
 
-// import components inside modal
-import SavesTabServer from "./SavesTabServer";
-import "./SavesTabServer";
-import SavesTabWorld from "./SavesTabWorld";
-import "./SavesTabWorld";
+import { LitElement, customElement, html, property, TemplateResult } from "lit-element";
 
-export default class Saves extends HTMLDivElement {
-	instance: Instance | null = null;
-	public constructor() {
-		super();
+@customElement("instance-saves-modal")
+export default class Saves extends LitElement {
+	protected createRenderRoot(): this { return this; }
+
+	@property({ type: Object }) private instance: Instance | null = null;
+
+	protected render(): TemplateResult {
+		return html`
+			<div class="header">Data</div>
+			<div class="content">
+				<div class="ui secondary menu">
+					<a class="item" data-tab="worlds">Worlds</a>
+					<a class="item" data-tab="servers">Servers</a>
+				</div>
+				<saves-tab-world class="ui tab segment" data-tab="worlds" .instance=${this.instance}>
+				</saves-tab-world>
+				<saves-tab-server class="ui tab segment" data-tab="servers" .instance=${this.instance}>
+				</saves-tab-server>
+			</div>
+			<div class="actions">
+				<button class="ui primary approve button">Close</button>
+			</div>
+		`;
 	}
-	public connectedCallback(): void { }
-	public render(instance: Instance): void {
-		this.instance = instance;
-		this.innerHTML = instanceSavesModalTemplate(instance);
 
-		this.querySelector<SavesTabServer>(".ui.tab[is='saves-tab-server']")?.setInstance(instance);
-		this.querySelector<SavesTabWorld>(".ui.tab[is='saves-tab-world']")?.setInstance(instance);
+	public async showModal(instance: Instance): Promise<void> {
+		// import components inside modal
+		await import(/* webpackChunkName: "SavesTabServer" */ "./SavesTabServer");
+		await import(/* webpackChunkName: "SavesTabWorld" */ "./SavesTabWorld");
+		this.instance = instance;
+		await this.requestUpdate();
 
 		$(this).modal({
 			closable: false
 		}).modal("show");
 
-		$(this).find(".menu .item").tab({
-			onLoad: (tabPath) => {
-				if (tabPath === "servers") this.querySelector<SavesTabServer>(".ui.tab[is='saves-tab-server']")?.render();
-				else if (tabPath === "worlds") this.querySelector<SavesTabWorld>(".ui.tab[is='saves-tab-world']")?.render();
-			}
-		});
+		$(this).find(".menu .item").tab("change tab", "worlds");
 	}
 }
-
-customElements.define("instance-saves-modal", Saves, { extends: "div" });
