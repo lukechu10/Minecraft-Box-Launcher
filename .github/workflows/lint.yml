@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Lint
-        run: npx eslint src/ --ext .ts,.tsx --fix
+        run: npx --package eslint --package @typescript-eslint/parser --package @typescript-eslint/eslint-plugin eslint src/ --ext .ts,.tsx --fix
