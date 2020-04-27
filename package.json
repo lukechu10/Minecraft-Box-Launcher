@@ -5,9 +5,6 @@
 	"description": "Open source Minecraft Java Edition launcher build with ElectronJS",
 	"main": "dist/js/main/main.js",
 	"scripts": {
-		"build-watch:ts": "tsc -p tsconfig.json --watch",
-		"build-watch:webpack": "webpack -w --color --config-name=development",
-		"build-watch": "run-p build-watch:*",
 		"build:ts": "tsc -p tsconfig.json",
 		"build:webpack": "webpack --color --config-name=production",
 		"build": "run-p build:*",
@@ -25,7 +22,10 @@
 		"preversion": "npm run eslint",
 		"start:gitpod": "electron --no-sandbox .",
 		"start": "electron .",
-		"test": "ts-mocha ./test/*.ts --color --retries 2 --exit"
+		"test": "ts-mocha ./test/*.ts --color --retries 2 --exit",
+		"watch:ts": "tsc -p tsconfig.json --watch",
+		"watch:webpack": "webpack -w --color --config-name=development",
+		"watch": "run-p watch:*"
 	},
 	"keywords": [
 		"minecraft",

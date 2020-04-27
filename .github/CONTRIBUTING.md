@@ -17,13 +17,13 @@ All the commands are specified in `package.json` if you don't mind working with 
 - `dev`: start app in developer mode (enables dev tools)
 - `dev:gitpod`: start app in developer mode on gitpod
 - `build`: run all build commands (production build by default)
-- `build-watch`: run all watch commands (watches files for changes and build automatically) (development build by default)
+- `watch`: run all watch commands (watches files for changes and build automatically) (development build by default)
 - `eslint`: lint the project
 - `eslint:fix`: lint the project and attempt to fix problems
 - `pack`: package the app using `electron-builder`
 - `dist`: package the app using `electron-builder` and create an installer to distribute
 
-When developing the app, use `npm run build-watch` to watch for file changes.
+When developing the app, use `npm run watch` to watch for file changes.
 
 ## Launching the app
 If you are using Visual Studio Code, just use the keybinding **F5** or **Ctrl+F5** without debugging to launch the app. If you are using Gitpod or any other IDE, just use the command: `npm dev`. (**Note:** There is an issue with `npm dev` on gitpod so use the command `npm run dev:gitpod` instead). Starting the app this way also enables developer tools so use **Ctrl+Shift+I** or the context menu to open dev tools. 
