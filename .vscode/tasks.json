@@ -4,12 +4,11 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"type": "npm",
-			"script": "watch",
+			"type": "shell",
+			"command": "npm run watch",
 			"label": "Build All (Watch)",
 			"problemMatcher": [
-				"$tsc-watch",
-				"$eslint-stylish"
+				"$tsc-watch"
 			]
 		},
 		{
