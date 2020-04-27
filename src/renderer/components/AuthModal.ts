@@ -90,7 +90,6 @@ export class AuthModal extends LitElement {
 		return new Promise((resolve) => {
 			$(this).modal({
 				closable: false,
-				detachable: false,
 				onHidden: () => {
 					if (AuthStore.store.loggedIn) {
 						resolve(AuthStore.store);
