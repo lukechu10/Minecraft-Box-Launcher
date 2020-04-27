@@ -68,7 +68,8 @@ export class AuthModal extends LitElement {
 		this.errorMessage = message ?? "";
 
 		// initiate form
-		$("#login-form").form({
+		// @ts-ignore
+		$("#login-form").form("clear").form({
 			fields: {
 				username: {
 					identifier: "username",
