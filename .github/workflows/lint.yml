@@ -8,5 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: npm install
+        run: npm ci
       - name: Lint
-        run: npx --package eslint --package @typescript-eslint/parser --package @typescript-eslint/eslint-plugin eslint src/ --ext .ts,.tsx --fix
+        run: npm run lint
