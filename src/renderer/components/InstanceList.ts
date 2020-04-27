@@ -26,13 +26,11 @@ export default class InstanceList extends LitElement {
 		}
 
 		return html`
-			${this.instances.length > 0 ? html`
-				<div class="ui middle aligned divided selection list container">
-					${instanceList}
-				</div>
-			` : html`
-				<p>You don't have any instances yet. Create one to start playing. 😆</p>
-			`}
+			<div class="ui middle aligned divided selection list container">
+				${this.instances.length > 0 ? instanceList : html`
+					<p>You don't have any instances yet. Create one to start playing. 😆</p>
+				`}
+			</div>
 		`;
 	}
 
