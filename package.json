@@ -5,9 +5,9 @@
 	"description": "Open source Minecraft Java Edition launcher build with ElectronJS",
 	"main": "dist/js/main/main.js",
 	"scripts": {
-		"build:ts": "tsc -p tsconfig.json",
-		"build:webpack": "webpack --color --config-name=production",
-		"build": "run-p build:*",
+		"prod:ts": "tsc -p tsconfig.json",
+		"prod:webpack": "webpack --color --config-name=production",
+		"prod": "run-p prod:*",
 		"coverage": "nyc --reporter=lcovonly --reporter=text ts-mocha ./test/*.ts --color --retries 2 --exit",
 		"dev:gitpod": "electron . --dev --no-sandbox",
 		"dev": "electron . --dev",
