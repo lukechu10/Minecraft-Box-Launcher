@@ -1,6 +1,6 @@
 import "./components/AuthModal";
 import { AuthenticationController } from "./controllers/AuthenticationController";
-import { VersionsController } from "./controllers/VersionsController";
+import { updateVersionMeta } from "./controllers/VersionsController";
 import * as Render from "./Render";
 import { ApplicationStore } from "./store";
 import AuthStore from "./store/AuthStore";
@@ -24,7 +24,7 @@ window.addEventListener("load", () => {
 // startup tasks (on application start)
 $(async () => {
 	// update versions
-	VersionsController.updateVersionMeta();
+	updateVersionMeta();
 
 	// update auth
 	try {
@@ -45,6 +45,6 @@ export * from "./components/InstanceList";
 export * from "./components/TaskProgress";
 export { Render, ApplicationStore, AuthStore, InstanceListStore };
 // export imported controllers to window
-export { AuthenticationController, VersionsController };
+export { AuthenticationController };
 
 
