@@ -1,22 +1,19 @@
-import { InstanceData } from "./store/InstanceData";
-import { ApplicationStore } from "./store";
-import InstanceListStore from "./store/InstanceListStore";
-import AuthStore from "./store/AuthStore";
-
-import type * as InstanceModal from "./components/InstanceModal";
-
-import { LaunchOption, Version, ResolvedVersion, MinecraftLocation, MinecraftFolder, launch } from "@xmcl/core";
+import { launch, LaunchOption, MinecraftFolder, MinecraftLocation, ResolvedVersion, Version } from "@xmcl/core";
 import { scanLocalJava } from "@xmcl/installer/java";
-import { lookupByName } from "@xmcl/user";
 import type { Task, TaskRuntime } from "@xmcl/task";
-
-import moment from "moment";
-
-import path from "path";
-import { remote } from "electron";
+import { lookupByName } from "@xmcl/user";
 import type { ChildProcess } from "child_process";
+import { remote } from "electron";
 import fs from "fs-extra";
+import moment from "moment";
+import path from "path";
+import type * as InstanceModal from "./components/InstanceModal";
 import type TaskProgress from "./components/TaskProgress";
+import { ApplicationStore } from "./store";
+import AuthStore from "./store/AuthStore";
+import { InstanceData } from "./store/InstanceData";
+import InstanceListStore from "./store/InstanceListStore";
+
 const app = remote.app;
 
 export type ModalType = "options" | "rename" | "saves" | "delete";
@@ -112,7 +109,7 @@ export default class Instance implements InstanceData {
 		}
 	}
 	public async install(): Promise<TaskRuntime<Task.State>> {
-		const { installTask } = await import(/* webpackChunkName: "installer" */ "@xmcl/installer/minecraft");
+		const { installTask } = await import(/* webpackChunkName: "installer" */ "./utils/installer");
 		return new Promise((resolve, reject) => {
 			this.isInstalling = true;
 			const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));

@@ -1,7 +1,7 @@
 import newInstanceModalTemplate from "../templates/NewInstanceModal.pug";
 import { InstanceData } from "../store/InstanceData";
 import { ApplicationStore } from "../store";
-import type { Installer } from "@xmcl/installer";
+import type { Version } from "@xmcl/installer/minecraft";
 import InstanceListStore from "../store/InstanceListStore";
 import Instance from "../Instance";
 
@@ -27,7 +27,7 @@ export default class NewInstanceModal extends HTMLDivElement {
 				// create new instance from input values
 				const tmpInstance: InstanceData = {
 					name: $form.form("get value", "instance-name"),
-					...this.getVersionMeta($form.form("get value", "instance-id")) as Installer.Version,
+					...this.getVersionMeta($form.form("get value", "instance-id")) as Version,
 					lastPlayed: "never",
 					installed: false,
 					clientType: "vanilla",
@@ -78,8 +78,8 @@ export default class NewInstanceModal extends HTMLDivElement {
 			}
 		});
 	}
-	private getVersionMeta(id: string): Installer.Version | undefined {
-		return (ApplicationStore.versionsMetaCache.get("versions") as Installer.Version[]).find(obj => obj.id === id);
+	private getVersionMeta(id: string): Version | undefined {
+		return (ApplicationStore.versionsMetaCache.get("versions") as Version[]).find(obj => obj.id === id);
 	}
 
 	private updateIdDropdown(val?: string): void {
@@ -90,7 +90,7 @@ export default class NewInstanceModal extends HTMLDivElement {
 			// remove disable on #dropdown-id
 			$(".ui.dropdown#dropdown-id").removeClass("disabled");
 			// find list of instances
-			const versions = ApplicationStore.versionsMetaCache.get("versions") as Installer.Version[];
+			const versions = ApplicationStore.versionsMetaCache.get("versions") as Version[];
 			// append to dropdown
 			switch (val) {
 				case "vanilla-release":
@@ -125,7 +125,7 @@ export default class NewInstanceModal extends HTMLDivElement {
 			$(".ui.dropdown#dropdown-id").addClass("disabled");
 	}
 	// TODO: change to pug template
-	private menuItem(version: Installer.Version): string {
+	private menuItem(version: Version): string {
 		return `<div class="item" data-value="${version.id}">
 	<div class="text" style="display:inline-block">${version.id}</div>
 	<div class="description">${version.releaseTime}</div>
