@@ -1,4 +1,3 @@
-import "./components/AuthModal";
 import { AuthenticationController } from "./controllers/AuthenticationController";
 import { updateVersionMeta } from "./controllers/VersionsController";
 import * as Render from "./Render";

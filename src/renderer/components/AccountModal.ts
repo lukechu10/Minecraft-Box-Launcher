@@ -1,12 +1,12 @@
-import { LitElement, html, customElement, property, TemplateResult } from "lit-element";
-
+import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
 import AuthStore, { AuthStoreData } from "../store/AuthStore";
+import type { AuthModal } from "./AuthModal";
 
 @customElement("modal-account")
 export default class AccountModal extends LitElement {
 	protected createRenderRoot(): this { return this; }
 
-	@property({ type: Object }) public authData: AuthStoreData | { loggedIn: false } = AuthStore.store;
+	@property({ type: Object }) public authData: AuthStoreData | { loggedIn: false; } = AuthStore.store;
 
 	protected render(): TemplateResult {
 		return html`
@@ -30,12 +30,17 @@ export default class AccountModal extends LitElement {
 							<div class="header">You have not logged in to your Minecraft account yet.</div>
 							<div class="description">Log in now to start playing and to unlock all the goodies!</div>
 						</div>
-						<div class="right floated content"><button class="ui primary button" onclick="Render.showLoginModal()">Login</button></div>
+						<div class="right floated content"><button class="ui primary button" @click="${this.showLoginModal}">Login</button></div>
 						`}
 					</div>
 				</div>
 			</div>
 		`;
+	}
+
+	private async showLoginModal(): Promise<void> {
+		await import("./AuthModal");
+		document.querySelector<AuthModal>("#modal-login")!.showModal();
 	}
 
 	public showModal(): void {
