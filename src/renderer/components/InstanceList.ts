@@ -9,12 +9,7 @@ import type Instance from "../Instance";
 export default class InstanceList extends LitElement {
 	protected createRenderRoot(): this { return this; }
 
-	@property({ type: Array }) private instances: Instance[] = [];
-
-	public constructor() {
-		super();
-		this.instances = InstanceListStore.instances;
-	}
+	@property({ type: Array }) private instances: Instance[] = InstanceListStore.instances;
 
 	protected render(): TemplateResult {
 		const instanceList: TemplateResult[] = [];
