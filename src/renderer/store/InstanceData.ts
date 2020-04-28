@@ -42,5 +42,4 @@ export interface InstanceData extends Version {
 	 */
 	isInstalling: boolean;
 	time: string;
-	[key: string]: string | boolean;
 }
