@@ -63,11 +63,11 @@ const baseConfig = {
 			chunks: "all",
 			minChunks: 1,
 			cacheGroups: {
-				defaultVendors: {
+				vendors: {
 					test: /[\\/]node_modules[\\/]/,
 					priority: -10
 				},
-				default: {
+				commons: {
 					minChunks: 2,
 					priority: -20,
 					reuseExistingChunk: true
