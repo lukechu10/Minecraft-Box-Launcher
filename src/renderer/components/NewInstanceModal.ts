@@ -1,7 +1,7 @@
 import newInstanceModalTemplate from "../templates/NewInstanceModal.pug";
 import { InstanceData } from "../store/InstanceData";
 import { ApplicationStore } from "../store";
-import { Installer } from "@xmcl/installer";
+import type { Installer } from "@xmcl/installer";
 import InstanceListStore from "../store/InstanceListStore";
 import Instance from "../Instance";
 

@@ -6,7 +6,6 @@ import AuthStore from "./store/AuthStore";
 import type * as InstanceModal from "./components/InstanceModal";
 
 import { LaunchOption, Version, ResolvedVersion, MinecraftLocation, MinecraftFolder, launch } from "@xmcl/core";
-import { Installer } from "@xmcl/installer";
 import { scanLocalJava } from "@xmcl/installer/java";
 import { lookupByName } from "@xmcl/user";
 import type { Task, TaskRuntime } from "@xmcl/task";
@@ -113,14 +112,15 @@ export default class Instance implements InstanceData {
 		}
 	}
 	public async install(): Promise<TaskRuntime<Task.State>> {
+		const { installTask } = await import(/* webpackChunkName: "installer" */"@xmcl/installer/minecraft");
 		return new Promise((resolve, reject) => {
 			this.isInstalling = true;
 			const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));
 			console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
 
-			const installTask: Task<ResolvedVersion> = Installer.installTask("client", this, location);
+			const task: Task<ResolvedVersion> = installTask("client", this, location);
 			const taskProgress = document.querySelector<TaskProgress>("task-progress")!;
-			const runtime = taskProgress.addInstallTask(installTask, this.name);
+			const runtime = taskProgress.addInstallTask(task, this.name);
 
 			runtime.on("finish", (res, state) => {
 				if (state.path === "install") {
