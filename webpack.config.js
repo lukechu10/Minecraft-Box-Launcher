@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const path = require("path");
 const _ = require("lodash");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -36,7 +37,9 @@ const baseConfig = {
 			filename: path.resolve(__dirname, "dist", "home.html"),
 			inject: "head",
 			chunks: [...baseChunks, "home"]
-		})
+		}),
+		// ignore momentjs locales
+		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
 	],
 	module: {
 		rules: [
