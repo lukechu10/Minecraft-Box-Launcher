@@ -42,5 +42,5 @@ export interface InstanceData extends Installer.Version {
 	 */
 	isInstalling: boolean;
 	time: string;
-	[key: string]: any;
+	[key: string]: string | boolean;
 }
