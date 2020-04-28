@@ -112,7 +112,7 @@ export default class Instance implements InstanceData {
 		}
 	}
 	public async install(): Promise<TaskRuntime<Task.State>> {
-		const { installTask } = await import(/* webpackChunkName: "installer" */"@xmcl/installer/minecraft");
+		const { installTask } = await import(/* webpackChunkName: "installer" */ "@xmcl/installer/minecraft");
 		return new Promise((resolve, reject) => {
 			this.isInstalling = true;
 			const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));
