@@ -41,9 +41,10 @@ class Instances extends LitElement {
 		`;
 	}
 
-	private showInfoModal(): void {
+	private async showInfoModal(): Promise<void> {
 		const instanceListItem = new InstanceListItem();
 		instanceListItem.instance = this.instance!;
+		await import("../InstanceModal/Info");
 		document.querySelector<InstanceModal.Info>("#modal-info")!.showModal(instanceListItem);
 	}
 
