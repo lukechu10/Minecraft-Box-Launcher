@@ -6,7 +6,7 @@ import type { AuthModal } from "./AuthModal";
 export default class AccountModal extends LitElement {
 	protected createRenderRoot(): this { return this; }
 
-	@property({ type: Object }) public authData: AuthStoreData | { loggedIn: false; } = AuthStore.store;
+	@property({ type: Object }) public authData: AuthStoreData | { loggedIn: false } = AuthStore.store;
 
 	protected render(): TemplateResult {
 		return html`
