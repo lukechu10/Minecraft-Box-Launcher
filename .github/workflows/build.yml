@@ -25,6 +25,8 @@ jobs:
             ${{ runner.os }}-node-
       - name: npm install
         run: npm ci
+      - name: Build application
+        run: npm run prod
       - name: Package application with electron-builder
         run: npm run pack
       - name: Publish artificats
@@ -50,6 +52,8 @@ jobs:
             ${{ runner.os }}-node-
       - name: npm install
         run: npm ci
+      - name: Build application
+        run: npm run prod
       - name: Package application with electron-builder
         run: npm run pack
       - name: Publish artificats

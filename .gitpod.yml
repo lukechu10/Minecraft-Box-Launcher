@@ -16,7 +16,7 @@ tasks:
   - before: nvm install 12 && nvm alias default 12
   - init: npm install
   - command: npm run dev:gitpod
-  - command: npm run build-watch
+  - command: npm run watch
 
 vscode:
   extensions:

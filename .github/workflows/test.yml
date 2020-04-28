@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   test:
-    name: Test application using Spectron and publish coverage
+    name: Spectron test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -21,7 +21,9 @@ jobs:
           ${{ runner.os }}-node-
     - name: npm install
       run: npm ci
-    - name: Instrument renderer files with webpack
+    - name: Build main process files
+      run: npm run prod:ts
+    - name: Build and renderer process files
       run: npx webpack --color --config-name=coverage
     - name: Run tests and generate coverage with mocha and nyc
       run: xvfb-run --auto-servernum npm run coverage

@@ -4,17 +4,16 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"type": "npm",
-			"script": "build-watch",
+			"type": "shell",
+			"command": "npm run watch",
 			"label": "Build All (Watch)",
 			"problemMatcher": [
-				"$tsc-watch",
-				"$eslint-stylish"
+				"$tsc-watch"
 			]
 		},
 		{
 			"type": "npm",
-			"script": "build-watch:ts",
+			"script": "watch:ts",
 			"label": "Build Typescript (Watch)",
 			"problemMatcher": [
 				"$tsc-watch"
@@ -24,7 +23,7 @@
 		},
 		{
 			"type": "npm",
-			"script": "build-watch:pug",
+			"script": "watch:pug",
 			"label": "Build Pug (Watch)",
 			"problemMatcher": [],
 			"group": "build",
