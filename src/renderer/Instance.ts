@@ -3,8 +3,7 @@ import { ApplicationStore } from "./store";
 import InstanceListStore from "./store/InstanceListStore";
 import AuthStore from "./store/AuthStore";
 
-import "./components/InstanceModal"; // add elements to custom elements registry
-import * as InstanceModal from "./components/InstanceModal";
+import type * as InstanceModal from "./components/InstanceModal";
 
 import { LaunchOption, Version, ResolvedVersion, MinecraftLocation, MinecraftFolder, launch } from "@xmcl/core";
 import { Installer } from "@xmcl/installer";
@@ -157,18 +156,22 @@ export default class Instance implements InstanceData {
 			moment(this.lastPlayed).fromNow();
 	}
 
-	public showModal(modal: ModalType): void {
+	public async showModal(modal: ModalType): Promise<void> {
 		switch (modal) {
 			case "options":
+				await import(/* webpackChunkName: "InstanceModal/Options" */ "./components/InstanceModal/Options");
 				(document.getElementById("modal-options") as InstanceModal.Options).showModal(this);
 				break;
 			case "rename":
+				await import(/* webpackChunkName: "InstanceModal/Rename" */ "./components/InstanceModal/Rename");
 				(document.getElementById("modal-rename") as InstanceModal.Rename).showModal(this);
 				break;
 			case "saves":
+				await import(/* webpackChunkName: "InstanceModal/Saves" */"./components/InstanceModal/Saves");
 				(document.getElementById("modal-saves") as InstanceModal.Saves).showModal(this);
 				break;
 			case "delete":
+				await import(/* webpackChunkName: "InstanceModal/ConfirmDelete" */"./components/InstanceModal/ConfirmDelete");
 				(document.getElementById("modal-confirmDelete") as InstanceModal.ConfirmDelete).showModal(this);
 				break;
 			default:
