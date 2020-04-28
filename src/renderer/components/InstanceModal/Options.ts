@@ -1,5 +1,4 @@
 import Instance from "../../Instance";
-// import instanceOptionsModalTemplate from "../../templates/modals/instances/Options.pug";
 import InstanceListStore from "../../store/InstanceListStore";
 import { LitElement, customElement, TemplateResult, html, property } from "lit-element";
 
@@ -87,7 +86,6 @@ export default class Options extends LitElement {
 
 	private handleInput(e: InputEvent): void {
 		const target: HTMLInputElement = e.currentTarget! as HTMLInputElement;
-		// $("#btn-modalOptionsSave").removeClass("disabled");
 		this.canSave = true;
 		switch (target.getAttribute("name")) {
 			case "instance-name":
