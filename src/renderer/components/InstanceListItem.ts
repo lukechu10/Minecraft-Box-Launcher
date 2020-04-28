@@ -4,8 +4,8 @@ import Instance from "../Instance";
 import InstanceListStore from "../store/InstanceListStore";
 // import instance modal templates
 import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug";
-import { AuthModal } from "./AuthModal";
-import * as InstanceModal from "./InstanceModal";
+import type { AuthModal } from "./AuthModal";
+import type * as InstanceModal from "./InstanceModal";
 
 @customElement("instance-list-item")
 export default class InstanceListItem extends LitElement {
@@ -47,7 +47,8 @@ export default class InstanceListItem extends LitElement {
 		`;
 	}
 
-	private showInfoModal(): void {
+	private async showInfoModal(): Promise<void> {
+		await import(/* webpackChunkName: "InstanceModal/Info" */ "./InstanceModal/Info");
 		(document.getElementById("modal-info") as InstanceModal.Info).showModal(this);
 	}
 
@@ -108,6 +109,7 @@ export default class InstanceListItem extends LitElement {
 				return null;
 			}
 			if (err.message === "User not logged in") {
+				await import("./AuthModal");
 				const authRes = await document.querySelector<AuthModal>("#modal-login")!.showModal();
 				if (authRes !== null) {
 					// attempt to launch again

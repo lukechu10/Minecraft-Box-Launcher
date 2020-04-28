@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const path = require("path");
 const _ = require("lodash");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -36,7 +37,9 @@ const baseConfig = {
 			filename: path.resolve(__dirname, "dist", "home.html"),
 			inject: "head",
 			chunks: [...baseChunks, "home"]
-		})
+		}),
+		// ignore momentjs locales
+		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
 	],
 	module: {
 		rules: [
@@ -63,11 +66,11 @@ const baseConfig = {
 			chunks: "all",
 			minChunks: 1,
 			cacheGroups: {
-				defaultVendors: {
+				vendors: {
 					test: /[\\/]node_modules[\\/]/,
 					priority: -10
 				},
-				default: {
+				commons: {
 					minChunks: 2,
 					priority: -20,
 					reuseExistingChunk: true
@@ -86,10 +89,7 @@ const baseConfig = {
 	},
 	target: "electron-renderer",
 	externals: {
-		"@xmcl/installer": "commonjs2 @xmcl/installer",
-		"@xmcl/client": "commonjs2 @xmcl/client",
-		"got": "commonjs2 got",
-		"uuid": "commonjs2 uuid"
+		"@xmcl/client": "commonjs2 @xmcl/client"
 	}
 };
 

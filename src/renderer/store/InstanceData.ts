@@ -1,9 +1,9 @@
-import { Installer } from "@xmcl/installer";
+import type { Version } from "@xmcl/installer/minecraft";
 
 /**
  * InstanceSave without methods
  */
-export interface InstanceData extends Installer.Version {
+export interface InstanceData extends Version {
 	/**
 	 * Name of instance
 	 */
@@ -42,5 +42,4 @@ export interface InstanceData extends Installer.Version {
 	 */
 	isInstalling: boolean;
 	time: string;
-	[key: string]: any;
 }

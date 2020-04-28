@@ -1,7 +1,7 @@
 import { Authentication, login as uLogin, refresh, validate, invalidate } from "@xmcl/user";
 
-import * as Render from "../Render";
 import AuthStore from "../store/AuthStore";
+import type { AuthModal } from "../components/AuthModal";
 
 export namespace AuthenticationController {
 	/**
@@ -68,7 +68,8 @@ export namespace AuthenticationController {
 					if (err != "TypeError: Failed to fetch") { // not offline
 						console.error(err);
 						logout();
-						Render.showLoginModal();
+						await import("../components/AuthModal");
+						document.querySelector<AuthModal>("#modal-login")!.showModal();
 					}
 				}
 			}
