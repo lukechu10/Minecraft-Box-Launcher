@@ -25,7 +25,14 @@ export default class Logs extends LitElement {
 		}
 
 		return html`
-			<div class="header">Logs</div>
+			<div class="header">
+				Logs
+				${this.processLogs?.isRunning ? html`
+					<label class="ui green label">Running...</label>
+				` : html`
+					<label class="ui red label">Stopped</label>
+				`}
+			</div>
 			<div class="scrolling content">
 				<p>${template}</p>
 			</div>
@@ -42,7 +49,7 @@ export default class Logs extends LitElement {
 			scrolllingContent.scroll(0, scrolllingContent.scrollHeight);
 		};
 
-		this.processLogs?.on("data", changeCallback);
+		this.processLogs?.on("data", changeCallback).on("close", changeCallback);
 
 		$(this).modal({
 			onShow: async () => {
@@ -53,7 +60,7 @@ export default class Logs extends LitElement {
 			},
 			onHidden: () => {
 				// disable event listener
-				this.processLogs?.off("data", changeCallback);
+				this.processLogs?.off("data", changeCallback).off("close", changeCallback);
 			}
 		}).modal("show");
 	}

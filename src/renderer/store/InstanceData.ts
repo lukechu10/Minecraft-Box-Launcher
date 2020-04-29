@@ -38,13 +38,14 @@ export class InstanceProcess extends EventEmitter {
 
 		this.process!.on("close", () => {
 			this.isRunning = false;
+			this.emit("close");
 		}).on("error", err => {
 			this.log.push({ message: err.message, type: "err" });
 			this.emit("data");
 		});
 	}
 
-	public on(event: "data", listener: () => void): this {
+	public on(event: "data" | "close", listener: () => void): this {
 		super.on(event, listener);
 		return this;
 	}
