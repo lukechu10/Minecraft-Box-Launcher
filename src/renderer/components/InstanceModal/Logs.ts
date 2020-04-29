@@ -28,9 +28,9 @@ export default class Logs extends LitElement {
 			<div class="header">
 				Logs
 				${this.processLogs?.isRunning ? html`
-					<label class="ui green label">Running...</label>
+					<label class="ui green label" style="float: right">Running...</label>
 				` : html`
-					<label class="ui red label">Stopped</label>
+					<label class="ui red label" style="float: right">Stopped</label>
 				`}
 			</div>
 			<div class="scrolling content">
