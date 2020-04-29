@@ -1,3 +1,4 @@
+import { EventEmitter } from "events";
 import type { Version } from "@xmcl/installer/minecraft";
 import type { ChildProcess } from "child_process";
 
@@ -13,12 +14,13 @@ export interface ProcessMessage {
  * Manages a running instance.
  * An InstanceProcess attaches event handlers to stdout and stderr and saves the output to logs
  */
-export class InstanceProcess {
+export class InstanceProcess extends EventEmitter {
 	public process: ChildProcess | null;
 	public log: ProcessMessage[] = [];
 	public isRunning = false;
 
 	public constructor(process: ChildProcess) {
+		super();
 		this.process = process;
 		this.isRunning = true;
 		this.attachEventHandlers();
@@ -27,16 +29,24 @@ export class InstanceProcess {
 	private attachEventHandlers(): void {
 		this.process!.stdout.on("data", chunk => {
 			this.log.push({ message: chunk.toString(), type: "out" });
+			this.emit("data");
 		});
 		this.process!.stderr.on("data", chunk => {
 			this.log.push({ message: chunk.toString(), type: "err" });
+			this.emit("data");
 		});
 
 		this.process!.on("close", () => {
 			this.isRunning = false;
 		}).on("error", err => {
 			this.log.push({ message: err.message, type: "err" });
+			this.emit("data");
 		});
+	}
+
+	public on(event: "data", listener: () => void): this {
+		super.on(event, listener);
+		return this;
 	}
 }
 

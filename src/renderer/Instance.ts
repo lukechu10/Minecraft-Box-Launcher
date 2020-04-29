@@ -16,7 +16,7 @@ import InstanceListStore from "./store/InstanceListStore";
 
 const app = remote.app;
 
-export type ModalType = "options" | "rename" | "saves" | "delete";
+export type ModalType = "options" | "rename" | "saves" | "delete" | "logs";
 export default class Instance implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
 	/**
@@ -168,12 +168,16 @@ export default class Instance implements InstanceData {
 				(document.getElementById("modal-rename") as InstanceModal.Rename).showModal(this);
 				break;
 			case "saves":
-				await import(/* webpackChunkName: "InstanceModal/Saves" */"./components/InstanceModal/Saves");
+				await import(/* webpackChunkName: "InstanceModal/Saves" */ "./components/InstanceModal/Saves");
 				(document.getElementById("modal-saves") as InstanceModal.Saves).showModal(this);
 				break;
 			case "delete":
-				await import(/* webpackChunkName: "InstanceModal/ConfirmDelete" */"./components/InstanceModal/ConfirmDelete");
+				await import(/* webpackChunkName: "InstanceModal/ConfirmDelete" */ "./components/InstanceModal/ConfirmDelete");
 				(document.getElementById("modal-confirmDelete") as InstanceModal.ConfirmDelete).showModal(this);
+				break;
+			case "logs":
+				await import(/* webpackChunkName: "InstanceModal/Logs" */ "./components/InstanceModal/Logs");
+				document.querySelector<InstanceModal.Logs>("#modal-logs")!.showModal(this);
 				break;
 			default:
 				throw Error("Not a valid modal");
