@@ -54,7 +54,7 @@
 		"chai": "^4.2.0",
 		"coverage-istanbul-loader": "^3.0.3",
 		"electron": "^8.2.4",
-		"electron-builder": "^22.5.1",
+		"electron-builder": "^22.6.0",
 		"eslint": "^6.8.0",
 		"fomantic-ui": "^2.8.4",
 		"fs-extra": "^9.0.0",
