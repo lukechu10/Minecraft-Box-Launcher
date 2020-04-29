@@ -99,6 +99,17 @@ export default class InstanceListItem extends LitElement {
 			const res = await this.instance!.launch();
 			// last played should be updated, save to store
 			InstanceListStore.syncToStore();
+
+			// pipe process output to console
+			res.stdout.on("data", chunk => {
+				console.log(">", chunk.toString());
+			});
+			res.stderr.on("data", chunk => {
+				console.warn(">", chunk.toString());
+			});
+			res.on("close", () => {
+				console.log("Game quit");
+			});
 			return res;
 		}
 		catch (err) {
