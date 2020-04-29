@@ -102,8 +102,7 @@
 		},
 		"files": [
 			"dist/js/main/**/*.js",
-			"dist/js/universal/**/*.js",
-			"dist/views/**/*",
+			"dist/*.html",
 			"dist/*.js",
 			"src/renderer/css/*.css",
 			"src/renderer/assets/**/*.js",
