@@ -18,7 +18,7 @@
 		"pack:macos": "electron-builder --dir --macos",
 		"pack:windows": "electron-builder --dir --windows",
 		"pack": "electron-builder --dir",
-		"preversion": "npm run eslint",
+		"preversion": "npm run lint",
 		"start:gitpod": "electron --no-sandbox .",
 		"start": "electron .",
 		"test": "ts-mocha ./test/*.ts --color --retries 2 --exit",
