@@ -6,6 +6,7 @@ import InstanceListStore from "../store/InstanceListStore";
 import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug";
 import type { AuthModal } from "./AuthModal";
 import type * as InstanceModal from "./InstanceModal";
+import { InstanceProcess } from "../store/InstanceData";
 
 @customElement("instance-list-item")
 export default class InstanceListItem extends LitElement {
@@ -96,21 +97,12 @@ export default class InstanceListItem extends LitElement {
 	public async play(): Promise<ChildProcess | null> {
 		// launch by name
 		try {
-			const res = await this.instance!.launch();
+			const proc = await this.instance!.launch();
 			// last played should be updated, save to store
 			InstanceListStore.syncToStore();
 
-			// pipe process output to console
-			res.stdout.on("data", chunk => {
-				console.log(">", chunk.toString());
-			});
-			res.stderr.on("data", chunk => {
-				console.warn(">", chunk.toString());
-			});
-			res.on("close", () => {
-				console.log("Game quit");
-			});
-			return res;
+			this.instance!.process = new InstanceProcess(proc);
+			return proc;
 		}
 		catch (err) {
 			console.warn(err);

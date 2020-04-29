@@ -11,7 +11,7 @@ import type * as InstanceModal from "./components/InstanceModal";
 import type TaskProgress from "./components/TaskProgress";
 import { ApplicationStore } from "./store";
 import AuthStore from "./store/AuthStore";
-import { InstanceData } from "./store/InstanceData";
+import { InstanceData, InstanceProcess } from "./store/InstanceData";
 import InstanceListStore from "./store/InstanceListStore";
 
 const app = remote.app;
@@ -62,6 +62,10 @@ export default class Instance implements InstanceData {
 	 * Is instance currently being installed
 	 */
 	public isInstalling: boolean;
+	/**
+	 * Process for running instance
+	 */
+	public process?: InstanceProcess;
 	public time: string;
 
 	public constructor(data: InstanceData) {
