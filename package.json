@@ -103,7 +103,8 @@
 		"files": [
 			"dist/js/main/**/*.js",
 			"dist/*.html",
-			"dist/*.js",
+			"dist/**/*.js",
+			"!dist/js/renderer/**/*",
 			"src/renderer/css/*.css",
 			"src/renderer/assets/**/*.js",
 			"semantic/dist/*.js",
