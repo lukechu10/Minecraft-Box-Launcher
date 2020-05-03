@@ -84,7 +84,7 @@
 		"@xmcl/installer": "^2.8.1",
 		"electron-debug": "^3.0.1",
 		"electron-store": "^5.1.1",
-		"got": "^11.0.3",
+		"got": "^11.1.0",
 		"jquery": "^3.5.0",
 		"lodash": "^4.17.15",
 		"tslib": "^1.11.1",
