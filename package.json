@@ -44,7 +44,7 @@
 		"@types/semantic-ui": "^2.2.7",
 		"@types/uuid": "^7.0.3",
 		"@types/yauzl": "^2.9.1",
-		"@typescript-eslint/eslint-plugin": "^2.30.0",
+		"@typescript-eslint/eslint-plugin": "^2.31.0",
 		"@typescript-eslint/parser": "^2.30.0",
 		"@xmcl/core": "^2.2.0",
 		"@xmcl/nbt": "^2.0.3",
