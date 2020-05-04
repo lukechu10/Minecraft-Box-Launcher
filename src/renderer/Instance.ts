@@ -97,6 +97,7 @@ export default class Instance implements InstanceData {
 				else javaPath = info[0].path;
 			}
 			const resolvedVersion: ResolvedVersion = await Version.parse(Instance.MINECRAFT_PATH, this.id);
+			console.log("Resolved version: ", resolvedVersion);
 			const options: LaunchOption = {
 				gamePath: this.savePath,
 				resourcePath: Instance.MINECRAFT_PATH,
