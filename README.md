@@ -16,7 +16,7 @@ The **Minecraft Box** is a modern Minecraft launcher, designed to provide integr
 ## Features
 Symbol	| Meaning
 -------	| -----------
-✔		| Availible in latest release / pre-release
+✔	       | Availible in latest release / pre-release
 🔨		| Work in Progress
 🦄		| Planned
 - Core
@@ -41,7 +41,7 @@ Symbol	| Meaning
 	- Launch with optifine 🦄
 	- Custom jar 🔨
 	- Launch offline 🔨
-	- View log output 🔨
+	- View log output ✔
 - Java configuration
 	- Custom java executable ✔
 	- Custom java max and min memory ✔
@@ -75,7 +75,8 @@ If for whatever reason non of these two options are availible, you can always us
 All the commands are specified in `package.json` if you don't mind working with the command line.
 
 ### Submitting changes
-Please send a GitHub Pull Request to Minecraft-Box-Launcher with a clear list of what you've done (read more about pull requests). Please follow our coding conventions (below) and make sure all of your commits are atomic (one feature per commit).
+Please send a GitHub Pull Request to Minecraft-Box-Launcher with a clear list of what you've done. 
+Please follow our coding conventions (below) and make sure all of your commits are atomic (one feature per commit).
 
 Always write a clear log message for your commits. One-line messages are fine for small changes, but bigger changes should look like this:
 
