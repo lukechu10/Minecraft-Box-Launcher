@@ -1,4 +1,55 @@
+import { EventEmitter } from "events";
 import type { Version } from "@xmcl/installer/minecraft";
+import type { ChildProcess } from "child_process";
+
+/**
+ * Represents one output or error from the process
+ */
+export interface ProcessMessage {
+	message: string;
+	type: "out" | "err";
+}
+
+/**
+ * Manages a running instance.
+ * An InstanceProcess attaches event handlers to stdout and stderr and saves the output to logs
+ */
+export class InstanceProcess extends EventEmitter {
+	public process: ChildProcess | null;
+	public log: ProcessMessage[] = [];
+	public isRunning = false;
+
+	public constructor(process: ChildProcess) {
+		super();
+		this.process = process;
+		this.isRunning = true;
+		this.attachEventHandlers();
+	}
+
+	private attachEventHandlers(): void {
+		this.process!.stdout.on("data", chunk => {
+			this.log.push({ message: chunk.toString(), type: "out" });
+			this.emit("data");
+		});
+		this.process!.stderr.on("data", chunk => {
+			this.log.push({ message: chunk.toString(), type: "err" });
+			this.emit("data");
+		});
+
+		this.process!.on("close", () => {
+			this.isRunning = false;
+			this.emit("close");
+		}).on("error", err => {
+			this.log.push({ message: err.message, type: "err" });
+			this.emit("data");
+		});
+	}
+
+	public on(event: "data" | "close", listener: () => void): this {
+		super.on(event, listener);
+		return this;
+	}
+}
 
 /**
  * InstanceSave without methods
@@ -41,5 +92,9 @@ export interface InstanceData extends Version {
 	 * Is instance currently being installed
 	 */
 	isInstalling: boolean;
+	/**
+	 * Process for running instance
+	 */
+	process?: InstanceProcess;
 	time: string;
 }

@@ -32,6 +32,7 @@ export default class Info extends LitElement {
 						<button class="ui button btn-options" data-modal="options" @click="${this.instanceShowModal}"><i class="far fa-edit fa-fw"></i> Options</button>
 						<button class="ui button btn-saves" data-modal="saves" @click="${this.instanceShowModal}"><i class="far fa-file-alt fa-fw"></i> Saves / Data</button>
 						<button class="ui red button btn-delete" data-modal="delete" @click="${this.instanceShowModal}"><i class="far fa-trash-alt fa-fw"></i> Delete</button>
+						<button class="ui button btn-logs" data-modal="logs" @click="${this.instanceShowModal}">Logs</button>
 					</div>
 					<div class="ui divider"></div>
 					${this.instance.installed ? html`

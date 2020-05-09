@@ -21,6 +21,7 @@ class InstanceListStore {
 			serialize: (obj): string => JSON.stringify(obj, (key, value) => {
 				// remove isInstalling field
 				if (key === "isInstalling") return undefined;
+				if (key === "process") return undefined;
 				else return value;
 			})
 		});

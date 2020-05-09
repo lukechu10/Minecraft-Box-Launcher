@@ -33,10 +33,10 @@ jobs:
       - name: Package application with electron-builder
         run: npm run pack
       - name: Publish artificats
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v2
         with:
           name: windows-alternative
-          path: dist/win-unpacked
+          path: dist/win-unpacked/
           
   macos_build:
     name: MacOS Latest Build
@@ -61,10 +61,10 @@ jobs:
       - name: Package application with electron-builder
         run: npm run pack
       - name: Publish artificats
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v2
         with:
           name: macos
-          path: dist/mac
+          path: dist/mac/
 
   create_release:
     name: Create Release

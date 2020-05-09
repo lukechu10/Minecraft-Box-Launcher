@@ -11,12 +11,12 @@ import type * as InstanceModal from "./components/InstanceModal";
 import type TaskProgress from "./components/TaskProgress";
 import { ApplicationStore } from "./store";
 import AuthStore from "./store/AuthStore";
-import { InstanceData } from "./store/InstanceData";
+import { InstanceData, InstanceProcess } from "./store/InstanceData";
 import InstanceListStore from "./store/InstanceListStore";
 
 const app = remote.app;
 
-export type ModalType = "options" | "rename" | "saves" | "delete";
+export type ModalType = "options" | "rename" | "saves" | "delete" | "logs";
 export default class Instance implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
 	/**
@@ -62,6 +62,10 @@ export default class Instance implements InstanceData {
 	 * Is instance currently being installed
 	 */
 	public isInstalling: boolean;
+	/**
+	 * Process for running instance
+	 */
+	public process?: InstanceProcess;
 	public time: string;
 
 	public constructor(data: InstanceData) {
@@ -93,6 +97,7 @@ export default class Instance implements InstanceData {
 				else javaPath = info[0].path;
 			}
 			const resolvedVersion: ResolvedVersion = await Version.parse(Instance.MINECRAFT_PATH, this.id);
+			console.log("Resolved version: ", resolvedVersion);
 			const options: LaunchOption = {
 				gamePath: this.savePath,
 				resourcePath: Instance.MINECRAFT_PATH,
@@ -164,12 +169,16 @@ export default class Instance implements InstanceData {
 				(document.getElementById("modal-rename") as InstanceModal.Rename).showModal(this);
 				break;
 			case "saves":
-				await import(/* webpackChunkName: "InstanceModal/Saves" */"./components/InstanceModal/Saves");
+				await import(/* webpackChunkName: "InstanceModal/Saves" */ "./components/InstanceModal/Saves");
 				(document.getElementById("modal-saves") as InstanceModal.Saves).showModal(this);
 				break;
 			case "delete":
-				await import(/* webpackChunkName: "InstanceModal/ConfirmDelete" */"./components/InstanceModal/ConfirmDelete");
+				await import(/* webpackChunkName: "InstanceModal/ConfirmDelete" */ "./components/InstanceModal/ConfirmDelete");
 				(document.getElementById("modal-confirmDelete") as InstanceModal.ConfirmDelete).showModal(this);
+				break;
+			case "logs":
+				await import(/* webpackChunkName: "InstanceModal/Logs" */ "./components/InstanceModal/Logs");
+				document.querySelector<InstanceModal.Logs>("#modal-logs")!.showModal(this);
 				break;
 			default:
 				throw Error("Not a valid modal");

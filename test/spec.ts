@@ -229,6 +229,12 @@ describe("Application window", function () {
 			await app.client.waitForVisible("#modal-options:not(.animating)", 2000);
 		});
 
+		it("can show the instance logs modal", async () => {
+			await openInstanceInfoModal();
+			await app.client.$(".btn-logs").click();
+			await app.client.waitForVisible("#modal-logs:not(.animating)", 2000);
+		});
+
 		describe("Saves modal", async () => {
 			it("can show the instance saves modal", async () => {
 				await openInstanceInfoModal();
