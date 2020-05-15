@@ -68,7 +68,7 @@
 		"pug-cli": "^1.0.0-alpha6",
 		"pug-loader": "^2.4.0",
 		"spectron": "^10.0.1",
-		"ts-loader": "^7.0.3",
+		"ts-loader": "^7.0.4",
 		"ts-mocha": "^7.0.0",
 		"turbolinks": "^5.3.0-beta.1",
 		"typescript": "^3.9.2",
