@@ -39,7 +39,7 @@
 		"@types/fs-extra": "^8.1.0",
 		"@types/got": "^9.6.11",
 		"@types/jquery": "^3.3.38",
-		"@types/lodash": "^4.14.150",
+		"@types/lodash": "^4.14.151",
 		"@types/mocha": "^7.0.2",
 		"@types/semantic-ui": "^2.2.7",
 		"@types/uuid": "^7.0.3",
