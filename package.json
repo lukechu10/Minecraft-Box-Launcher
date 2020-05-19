@@ -36,7 +36,7 @@
 		"@types/bytebuffer": "^5.0.41",
 		"@types/chai": "^4.2.11",
 		"@types/fast-html-parser": "^1.0.0",
-		"@types/fs-extra": "^8.1.0",
+		"@types/fs-extra": "^9.0.1",
 		"@types/got": "^9.6.11",
 		"@types/jquery": "^3.3.38",
 		"@types/lodash": "^4.14.150",
