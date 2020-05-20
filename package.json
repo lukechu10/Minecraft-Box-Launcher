@@ -88,7 +88,7 @@
 		"jquery": "^3.5.1",
 		"lodash": "^4.17.15",
 		"tslib": "^2.0.0",
-		"uuid": "^8.0.0",
+		"uuid": "^8.1.0",
 		"v8-compile-cache": "^2.1.0"
 	},
 	"browser": {
