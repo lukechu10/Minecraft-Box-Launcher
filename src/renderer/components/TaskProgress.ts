@@ -62,19 +62,26 @@ export default class TaskProgress extends LitElement {
 		const handle: TaskHandle<ResolvedVersion, Task.State> = runtime.submit(task);
 
 		runtime.on("execute", (node, parentTask) => {
-			if (!parentTask) {
+			if (parentTask == undefined)
+			// task is root task node
+			{
 				console.log("Install task started");
 				rootNode = node;
 				this.addTask(task, runtime);
+
+				if (task === this.tasks.keys().next().value) {// if task currently being rendered
+					this.updateUIMessage("Starting download...");
+					$(this.$progress).progress("set progress", 0);
+				}
 			}
 		});
 
 		runtime.on("update", ({ progress, total, message }, taskState) => {
 			if (rootNode === taskState) {
-				console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
+				// console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
 			}
 			if (task === this.tasks.keys().next().value) {// if task currently being rendered
-				if (taskState.path === "install.installDependencies.installAssets") {
+				if (taskState.path === "install") {
 					let curPercent: number;
 					if (total !== undefined) {
 						curPercent = Math.floor(progress / total * 100);
@@ -84,7 +91,9 @@ export default class TaskProgress extends LitElement {
 						this.updateUIMessage(message, -1);
 					}
 				}
-				else this.updateUIMessage(message);
+				else {
+					this.updateUIMessage(message);
+				}
 			}
 		});
 
@@ -134,7 +143,7 @@ export default class TaskProgress extends LitElement {
 			this.$progress().classList.add("indeterminate");
 		else if (percent !== undefined) {
 			this.$progress().classList.remove("indeterminate");
-			$(this.$progress()).progress("set percent", percent);
+			$(this.$progress()).progress("set percent", Math.round(percent));
 		}
 	}
 
