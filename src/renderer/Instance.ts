@@ -113,17 +113,32 @@ export default class Instance implements InstanceData {
 			return proc;
 		}
 	}
-	public async install(): Promise<TaskRuntime<Task.State>> {
-		const { installTask } = await import(/* webpackChunkName: "installer" */ "./utils/installer");
+
+	/**
+	 * Installs the instance
+	 * @param dependenciesOnly only downloads version dependencies if true, downloads entire version if false (default)
+	 */
+	public async install(dependenciesOnly = false): Promise<TaskRuntime<Task.State>> {
+		const { installTask, installDependenciesTask } = await import(/* webpackChunkName: "installer" */ "./utils/installer");
+
+		this.isInstalling = true;
+		const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));
+		console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
+
+		let task: Task<ResolvedVersion>;
+		if (dependenciesOnly)
+		// only download dependencies, resolve version
+		{
+			const resolvedVersion: ResolvedVersion = await Version.parse(location, this.id);
+			task = installDependenciesTask(resolvedVersion);
+		}
+		else {
+			task = installTask("client", this, location);
+		}
+		const taskProgress = document.querySelector<TaskProgress>("task-progress")!;
+		const runtime = taskProgress.addInstallTask(task, this.name);
+
 		return new Promise((resolve, reject) => {
-			this.isInstalling = true;
-			const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));
-			console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
-
-			const task: Task<ResolvedVersion> = installTask("client", this, location);
-			const taskProgress = document.querySelector<TaskProgress>("task-progress")!;
-			const runtime = taskProgress.addInstallTask(task, this.name);
-
 			runtime.on("finish", (res, state) => {
 				if (state.path === "install") {
 					this.installed = true;

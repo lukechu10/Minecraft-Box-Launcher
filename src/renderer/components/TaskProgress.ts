@@ -76,23 +76,22 @@ export default class TaskProgress extends LitElement {
 			}
 		});
 
+
 		runtime.on("update", ({ progress, total, message }, taskState) => {
 			if (rootNode === taskState) {
 				// console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
 				if (task === this.tasks.keys().next().value) {// if task currently being rendered
-					if (taskState.path === "install") {
-						let curPercent: number;
-						if (total !== undefined) {
-							curPercent = Math.floor(progress / total * 100);
-							this.updateUIMessage(message, curPercent);
-						}
-						else { // set progress to pulsulating indeterminate effect
-							this.updateUIMessage(message, -1);
-						}
+					let curPercent: number;
+					if (total !== undefined) {
+						curPercent = Math.floor(progress / total * 100);
+						this.updateUIMessage(message, curPercent);
 					}
-					else {
-						this.updateUIMessage(message);
+					else { // set progress to pulsulating indeterminate effect
+						this.updateUIMessage(message, -1);
 					}
+				}
+				else {
+					this.updateUIMessage(message);
 				}
 			}
 		});
@@ -105,12 +104,15 @@ export default class TaskProgress extends LitElement {
 			setTimeout(() => { this.removeTask(task); }, 5000);
 		});
 
-		runtime.on("finish", (res, state) => {
-			if (state.path === "install") {
+		runtime.on("finish", (res, taskState) => {
+			if (taskState === rootNode) {
 				if (task === this.tasks.keys().next().value) // if task currently being rendered
 					this.updateUISuccess(instanceName);
+
 				// show success for 5 seconds or 1.5 second if another task pending
-				setTimeout(() => { this.removeTask(task); }, this.tasks.size > 1 ? 1500 : 5000);
+				setTimeout(() => {
+					this.removeTask(task);
+				}, this.tasks.size > 1 ? 1500 : 5000);
 			}
 		});
 

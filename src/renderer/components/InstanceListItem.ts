@@ -76,7 +76,7 @@ export default class InstanceListItem extends LitElement {
 			$("#modal-corrupted").modal({
 				closable: false,
 				onApprove: () => {
-					this.install();
+					this.installDependencies();
 				}
 			}).modal("show");
 		}
@@ -91,6 +91,18 @@ export default class InstanceListItem extends LitElement {
 		btn.classList.add("gray", "disabled");
 		btn.textContent = "Installing...";
 		await this.instance!.install();
+		InstanceListStore.syncToStore();
+	}
+
+	/**
+	 * Install the dependencies of the instance
+	 */
+	public async installDependencies(): Promise<void> {
+		const btn = (this.getElementsByClassName("btn-play-install")[0] as HTMLButtonElement);
+		btn.classList.remove("olive", "green");
+		btn.classList.add("gray", "disabled");
+		btn.textContent = "Installing...";
+		await this.instance!.install(true);
 		InstanceListStore.syncToStore();
 	}
 

@@ -1,1 +1,1 @@
-export { installTask } from "@xmcl/installer/minecraft";
+export { installTask, installDependenciesTask } from "@xmcl/installer/minecraft";
