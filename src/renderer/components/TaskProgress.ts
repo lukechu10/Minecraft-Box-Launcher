@@ -79,20 +79,20 @@ export default class TaskProgress extends LitElement {
 		runtime.on("update", ({ progress, total, message }, taskState) => {
 			if (rootNode === taskState) {
 				// console.log(`Install task update (${progress}/${total}). Message: ${message}. State:`, taskState);
-			}
-			if (task === this.tasks.keys().next().value) {// if task currently being rendered
-				if (taskState.path === "install") {
-					let curPercent: number;
-					if (total !== undefined) {
-						curPercent = Math.floor(progress / total * 100);
-						this.updateUIMessage(message, curPercent);
+				if (task === this.tasks.keys().next().value) {// if task currently being rendered
+					if (taskState.path === "install") {
+						let curPercent: number;
+						if (total !== undefined) {
+							curPercent = Math.floor(progress / total * 100);
+							this.updateUIMessage(message, curPercent);
+						}
+						else { // set progress to pulsulating indeterminate effect
+							this.updateUIMessage(message, -1);
+						}
 					}
-					else { // set progress to pulsulating indeterminate effect
-						this.updateUIMessage(message, -1);
+					else {
+						this.updateUIMessage(message);
 					}
-				}
-				else {
-					this.updateUIMessage(message);
 				}
 			}
 		});
