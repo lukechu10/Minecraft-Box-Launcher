@@ -59,10 +59,6 @@ export default class Instance implements InstanceData {
 	 */
 	public installed: boolean;
 	/**
-	 * Is instance currently being installed
-	 */
-	public isInstalling: boolean;
-	/**
 	 * Process for running instance
 	 */
 	public process?: InstanceProcess;
@@ -78,7 +74,6 @@ export default class Instance implements InstanceData {
 		this.releaseTime = data.releaseTime;
 		this.url = data.url;
 		this.installed = data.installed;
-		this.isInstalling = data.isInstalling;
 		this.time = data.time;
 	}
 
@@ -121,7 +116,6 @@ export default class Instance implements InstanceData {
 	public async install(dependenciesOnly = false): Promise<TaskRuntime<Task.State>> {
 		const { installTask, installDependenciesTask } = await import(/* webpackChunkName: "installer" */ "./utils/installer");
 
-		this.isInstalling = true;
 		const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));
 		console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
 
@@ -138,18 +132,26 @@ export default class Instance implements InstanceData {
 		const taskProgress = document.querySelector<TaskProgress>("task-progress")!;
 		const runtime = taskProgress.addInstallTask(task, this.name);
 
+		let rootNode: Task.State;
+
 		return new Promise((resolve, reject) => {
+			runtime.on("execute", (node, parentTask) => {
+				if (parentTask == undefined)
+				// task is root task node
+				{
+					rootNode = node;
+				}
+			});
+
 			runtime.on("finish", (res, state) => {
-				if (state.path === "install") {
+				if (state === rootNode) {
 					this.installed = true;
-					this.isInstalling = false;
 					console.log(`Successfully installed instance "${this.name}" with version "${this.id}`);
 					resolve(runtime);
 				}
 			});
 
 			runtime.on("fail", err => {
-				this.isInstalling = false;
 				reject(err);
 			});
 		});

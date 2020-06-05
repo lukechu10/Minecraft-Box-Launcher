@@ -31,8 +31,7 @@ export default class NewInstanceModal extends HTMLDivElement {
 					lastPlayed: "never",
 					installed: false,
 					clientType: "vanilla",
-					uuid: uuidv4(),
-					isInstalling: false
+					uuid: uuidv4()
 				};
 				// save instance to store
 				InstanceListStore.instances.push(new Instance(tmpInstance));

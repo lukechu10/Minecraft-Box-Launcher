@@ -85,13 +85,9 @@ export interface InstanceData extends Version {
 	releaseTime: string;
 	url: string;
 	/**
-	 * Version binaires are completely installed
+	 * Version binaries are completely installed
 	 */
 	installed: boolean;
-	/**
-	 * Is instance currently being installed
-	 */
-	isInstalling: boolean;
 	/**
 	 * Process for running instance
 	 */

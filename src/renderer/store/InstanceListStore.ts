@@ -3,9 +3,9 @@ import { InstanceData } from "./InstanceData";
 import Instance from "../Instance";
 
 class InstanceListStore {
-	public store: Store<{ instances: InstanceData[] }>;
+	public store: Store<{ instances: InstanceData[]; }>;
 	public constructor() {
-		this.store = new Store<{ instances: InstanceData[] }>({
+		this.store = new Store<{ instances: InstanceData[]; }>({
 			name: "instances",
 			accessPropertiesByDotNotation: true,
 			defaults: {
@@ -30,8 +30,7 @@ class InstanceListStore {
 		const instanceDataList: InstanceData[] = this.store.get("instances");
 		// add isInstalling field and add Instance prototype
 		this.instances = instanceDataList.map<Instance>(instance => new Instance({
-			...instance,
-			isInstalling: false
+			...instance
 		}));
 	}
 

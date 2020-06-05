@@ -13,6 +13,7 @@ export default class InstanceListItem extends LitElement {
 	protected createRenderRoot(): this { return this; }
 
 	@property({ type: Object }) public instance: Instance | null = null;
+	@property({ type: Boolean }) public isInstalling = false;
 
 	protected render(): TemplateResult {
 		return html`
@@ -34,7 +35,7 @@ export default class InstanceListItem extends LitElement {
 					</div>
 					<div class="three wide column">
 						<div class="ui right floated buttons btn-instance-actions" style="display: none" @click="${(e: Event): void => e.stopPropagation()}">
-							${this.instance!.isInstalling ? html`
+							${this.isInstalling ? html`
 								<button class="ui gray button disabled">Installing...</button>
 							` : this.instance!.installed ? html`
 								<button class="ui green button btn-play btn-play-install" @click="${this.play}">Play</button>
@@ -86,24 +87,22 @@ export default class InstanceListItem extends LitElement {
 	 * Installs the instance
 	 */
 	public async install(): Promise<void> {
-		const btn = (this.getElementsByClassName("btn-play-install")[0] as HTMLButtonElement);
-		btn.classList.remove("olive", "green");
-		btn.classList.add("gray", "disabled");
-		btn.textContent = "Installing...";
-		await this.instance!.install();
-		InstanceListStore.syncToStore();
+		const installTask = this.instance!.install();
+		this.isInstalling = true; // show installing state
+		await Promise.resolve(installTask); // wait for install task to finish
+		this.isInstalling = false; // show install completed state
+		InstanceListStore.syncToStore(); // update installed state in store
 	}
 
 	/**
 	 * Install the dependencies of the instance
 	 */
 	public async installDependencies(): Promise<void> {
-		const btn = (this.getElementsByClassName("btn-play-install")[0] as HTMLButtonElement);
-		btn.classList.remove("olive", "green");
-		btn.classList.add("gray", "disabled");
-		btn.textContent = "Installing...";
-		await this.instance!.install(true);
-		InstanceListStore.syncToStore();
+		const installTask = this.instance!.install(true); // only install dependencies
+		this.isInstalling = true; // show installing state
+		await Promise.resolve(installTask); // wait for install task to finish
+		this.isInstalling = false; // show install completed state
+		InstanceListStore.syncToStore(); // update installed state in store
 	}
 
 	public async play(): Promise<ChildProcess | null> {
