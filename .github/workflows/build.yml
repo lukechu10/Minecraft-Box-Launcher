@@ -57,7 +57,7 @@ jobs:
       - name: Package application with electron-builder
         run: npm run pack
       - name: Publish artificats
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v1
         with:
           name: macos-build
           path: dist/mac/
