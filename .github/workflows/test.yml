@@ -41,7 +41,7 @@ jobs:
     - name: Clean coverage directory
       run: rm -r ./.nyc_output/ && rm -r ./coverage/
     - name: Run tests with playwright-electron
-      run: xvfb-run --auto-servernum npx ts-mocha ./test/test.ts --color
+      run: xvfb-run --auto-servernum npx nyc --reporter=lcovonly --reporter=text ts-mocha ./test/test.ts --color
     - name: Upload playwright code coverage to Codecov.io
       uses: codecov/codecov-action@v1
       if: always() # upload even if test failed
