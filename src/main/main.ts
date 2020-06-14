@@ -24,7 +24,7 @@ function createWindow(): void {
 			nodeIntegration: true,
 			sandbox: false
 		},
-		icon: path.join(__dirname, "./build/icon.png")
+		// icon: path.join(__dirname, "./build/icon.png")
 	});
 	mainWindow.loadFile(path.join(__dirname, "../../", "instances.html"));
 
@@ -53,9 +53,7 @@ else {
 	// This method will be called when Electron has finished
 	// initialization and is ready to create browser windows.
 	// Some APIs can only be used after this event occurs.
-	app.on("ready", () => {
-		createWindow();
-	});
+	app.whenReady().then(createWindow);
 }
 
 app.allowRendererProcessReuse = false;
