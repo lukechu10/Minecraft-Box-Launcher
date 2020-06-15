@@ -42,6 +42,8 @@ export async function afterSetup(electronApp: ElectronApplication) {
 	// after each test close Electron application
 	await electronApp.close();
 
-	// reset appdata folder in ./test/temp
-	rimraf.sync(path.resolve("./test/temp/"));
+	return new Promise((resolve) => {
+		// reset appdata folder in ./test/temp
+		rimraf(path.resolve("./test/temp/"), resolve);
+	});
 }

@@ -9,7 +9,7 @@ import path from "path";
 debug({
 	showDevTools: false
 });
-let mainWindow: BrowserWindow | null;	
+let mainWindow: BrowserWindow | null;
 
 for (const arg of process.argv) {
 	if (arg === "--dev") Menu.setApplicationMenu(null); // only show menu in dev
