@@ -9,10 +9,15 @@ import path from "path";
 debug({
 	showDevTools: false
 });
-let mainWindow: BrowserWindow | null;
+let mainWindow: BrowserWindow | null;	
 
-if (!process.argv.includes("--dev")) // show application menu only if flag --dev is passed as 3rd argument
-	Menu.setApplicationMenu(null); // only show menu in dev
+for (const arg of process.argv) {
+	if (arg === "--dev") Menu.setApplicationMenu(null); // only show menu in dev
+	else if (arg.startsWith("--setAppDataPath")) {
+		const appDataPath = arg.substring(arg.indexOf("=") + 1); // get string after '=' character
+		app.setPath("userData", path.resolve(appDataPath));
+	}
+}
 
 function createWindow(): void {
 	// Create the browser window.

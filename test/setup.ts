@@ -1,4 +1,5 @@
 import fs from "fs-extra";
+import rimraf from "rimraf";
 import _ from "lodash";
 import path from "path";
 import { electron, ElectronApplication, ElectronPage } from "playwright-electron";
@@ -8,10 +9,14 @@ export async function beforeSetup() {
 	let electronApp: ElectronApplication = null;
 	const electronPath = require("electron");
 
-	// before each test start Electron application.
+	// before each test start Electron application
 	electronApp = await electron.launch(electronPath as unknown as string, {
-		// args: [path.join(__dirname, '..')]  // loads index.js
-		args: [".", "--dev", process.env.GITPOD_HOST === "https://gitpod.io" ? "--no-sandbox" : ""] // run without sandboxing if using gitpod]
+		args: [
+			".",
+			"--dev",
+			"--setAppDataPath=./test/temp/", // set appdata path to ./test/temp/
+			(process.env.GITPOD_HOST === "https://gitpod.io" ? "--no-sandbox" : "") // run without sandboxing if using gitpod
+		]
 	});
 
 	const page = await electronApp.firstWindow(); // wait for window to load
@@ -33,6 +38,10 @@ export async function afterSetup(electronApp: ElectronApplication) {
 			encoding: "utf8"
 		});
 	}
-	// after each test close Electron application.
-	return electronApp.close();
+
+	// after each test close Electron application
+	await electronApp.close();
+
+	// reset appdata folder in ./test/temp
+	rimraf.sync(path.resolve("./test/temp/"));
 }

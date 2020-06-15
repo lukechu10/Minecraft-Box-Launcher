@@ -22,6 +22,8 @@ describe("Instances", function () {
 		return afterSetup(electronApp);
 	});
 
-	it("initially has no instances in instance list", async () => {
+	it("initially has no instances in instance list", async() => {
+		const instanceList = page.$$("#instance-list-container > instance-list > .ui.list.container > instance-list-item");
+		await instanceList.should.eventually.have.lengthOf(0);
 	});
 });

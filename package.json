@@ -72,6 +72,7 @@
 		"playwright-electron": "^0.3.0",
 		"pug-cli": "^1.0.0-alpha6",
 		"pug-loader": "^2.4.0",
+		"rimraf": "^3.0.2",
 		"spectron": "^11.0.0",
 		"ts-loader": "^7.0.5",
 		"ts-mocha": "^7.0.0",
