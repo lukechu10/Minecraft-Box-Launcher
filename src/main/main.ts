@@ -11,8 +11,13 @@ debug({
 });
 let mainWindow: BrowserWindow | null;
 
-if (!process.argv.includes("--dev")) // show application menu only if flag --dev is passed as 3rd argument
-	Menu.setApplicationMenu(null); // only show menu in dev
+for (const arg of process.argv) {
+	if (arg === "--dev") Menu.setApplicationMenu(null); // only show menu in dev
+	else if (arg.startsWith("--setAppDataPath")) {
+		const appDataPath = arg.substring(arg.indexOf("=") + 1); // get string after '=' character
+		app.setPath("userData", path.resolve(appDataPath));
+	}
+}
 
 function createWindow(): void {
 	// Create the browser window.
@@ -23,8 +28,7 @@ function createWindow(): void {
 		webPreferences: {
 			nodeIntegration: true,
 			sandbox: false
-		},
-		icon: path.join(__dirname, "./build/icon.png")
+		}
 	});
 	mainWindow.loadFile(path.join(__dirname, "../../", "instances.html"));
 
@@ -53,9 +57,7 @@ else {
 	// This method will be called when Electron has finished
 	// initialization and is ready to create browser windows.
 	// Some APIs can only be used after this event occurs.
-	app.on("ready", () => {
-		createWindow();
-	});
+	app.whenReady().then(createWindow);
 }
 
 app.allowRendererProcessReuse = false;
