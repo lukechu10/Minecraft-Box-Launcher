@@ -29,21 +29,21 @@ describe("Window", function () {
 
 	it("starts on the instance list page", async () => {
 		const header = await page.$("#content > div > h1");
-		header.textContent().should.eventually.equal("Instances");
+		await header.textContent().should.eventually.equal("Instances");
 	});
 
 	it("can navigate to home page", async () => {
 		await page.click("#app-navbar > .item[href='./home.html']");
 
 		const header = await page.waitForSelector("#content > div > h1 >> text='Home'", { timeout: 1000 });
-		header.textContent().should.eventually.equal("Home");
+		await header.textContent().should.eventually.equal("Home");
 	});
 
 	it("can navigate to news page", async () => {
 		await page.click("#app-navbar > .item[href='./news.html']");
 
 		const header = await page.waitForSelector("#content > div > h1 >> text='News'", { timeout: 1000 });
-		header.textContent().should.eventually.equal("News");
+		await header.textContent().should.eventually.equal("News");
 	});
 
 	it("can open account modal", async () => {
