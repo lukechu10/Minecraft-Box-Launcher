@@ -98,26 +98,6 @@ describe("Application window", function () {
 		expect(n).to.equal(1);
 	});
 
-	it("has the correct title", async () => {
-		await app.client.waitUntilWindowLoaded();
-		const title = await app.browserWindow.getTitle();
-		expect(title).to.be.a("string");
-		expect(title).to.equal("Minecraft Box");
-	});
-
-	it("shows the instance page", async () => {
-		await app.client.waitUntilWindowLoaded();
-		const text = await app.client.getText("#content div h1");
-		expect(text).to.be.a("string");
-		expect(text).to.equal("Instances");
-	});
-
-	it("has no instances in the instance list", async () => {
-		await app.client.waitUntilWindowLoaded();
-		const list = await app.client.$$("instance-list .instance-item");
-		expect(list).to.have.lengthOf(0);
-	});
-
 	it("shows the settings modal", async () => {
 		await app.client.waitUntilWindowLoaded();
 		await app.client.$("#content").$("div.ui.right.button").click();
@@ -127,13 +107,6 @@ describe("Application window", function () {
 
 	describe("Authentication", () => {
 		describe("Authentication modal", () => {
-			it("shows the account modal", async () => {
-				await app.client.waitUntilWindowLoaded();
-				await app.client.$("#account-modal-link").click();
-				const res = await app.client.waitForVisible("#modal-account:not(.animating)");
-				expect(res).to.equal(true);
-			});
-
 			it("can show the login modal", async () => {
 				await app.client.waitUntilWindowLoaded();
 				await app.client.$("#account-modal-link").click();
@@ -183,10 +156,6 @@ describe("Application window", function () {
 	});
 
 	describe("Instance management", () => {
-		it("can create new instances from the instance modal", async () => {
-			await fillOutInstanceForm();
-		});
-
 		it("can not create two instances with same name", async () => {
 			await fillOutInstanceForm("Test 1");
 			// fill out second form
@@ -409,14 +378,6 @@ describe("Application window", function () {
 	});
 
 	describe("Home Dashboard", () => {
-		it("can show home dashboard page", async () => {
-			await app.client.waitUntilWindowLoaded();
-			await app.client.$("navbar").$("a.item[href='./home.html']").click();
-			const text = await app.client.getText("#content div h1");
-			expect(text).to.be.a("string");
-			expect(text).to.equal("Home");
-		});
-
 		it("can show latest instance played", async () => {
 			await fillOutInstanceForm("Test instance home");
 			await app.client.$("navbar").$("a.item[href='./home.html']").click();

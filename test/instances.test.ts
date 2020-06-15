@@ -24,8 +24,7 @@ describe("Instances", function () {
 	});
 
 	it("initially has no instances in instance list", async () => {
-		const instanceList = page.$$("#instance-list-container > instance-list > .ui.list.container > instance-list-item");
-		await instanceList.should.eventually.have.lengthOf(0);
+		await page.$$("#instance-list-container > instance-list > .ui.list.container > instance-list-item").should.eventually.have.lengthOf(0);
 	});
 
 	it("can show the new instance modal", async () => {
