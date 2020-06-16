@@ -7,6 +7,7 @@ import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug"
 import type { AuthModal } from "./AuthModal";
 import type * as InstanceModal from "./InstanceModal";
 import { InstanceProcess } from "../store/InstanceData";
+import type { InstanceModalContainer } from "./instance/InstanceModalContainer";
 
 @customElement("instance-list-item")
 export default class InstanceListItem extends LitElement {
@@ -50,8 +51,9 @@ export default class InstanceListItem extends LitElement {
 	}
 
 	private async showInfoModal(): Promise<void> {
-		await import(/* webpackChunkName: "InstanceModal/Info" */ "./InstanceModal/Info");
-		(document.getElementById("modal-info") as InstanceModal.Info).showModal(this);
+		// await import(/* webpackChunkName: "InstanceModal/Info" */ "./InstanceModal/Info");
+		await import(/* webpackChunkName: "InstanceModalContainer" */ "./instance/InstanceModalContainer");
+		document.querySelector<InstanceModalContainer>("instance-modal-container")!.showModal(this.instance!);
 	}
 
 	private showButton(): void {
