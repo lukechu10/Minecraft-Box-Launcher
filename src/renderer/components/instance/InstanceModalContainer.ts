@@ -35,7 +35,6 @@ export class InstanceModalContainer extends LitElement {
 					content = html`Advanced Options`;
 					break;
 			}
-			console.log(content);
 
 			return html`
 				<h1 class="header">${this.instance.name}</h1>
@@ -48,7 +47,7 @@ export class InstanceModalContainer extends LitElement {
 							<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.AdvancedOptions}>Advanced Options</a>
 						</div>
 					</div>
-					<div class="twelve wide stretched column">
+					<div class="twelve wide stretched column scrolling content">
 						<div class="ui basic segment" id="#InstanceModalContainer-contentArea">${content}</div>
 					</div>
 				</div>
@@ -64,6 +63,7 @@ export class InstanceModalContainer extends LitElement {
 
 	public async showModal(instance: Instance): Promise<void> {
 		this.instance = instance;
+		this.currentPage = InstanceModalPage.QuickInfo; // default page is QuickInfo page
 		await this.requestUpdate();
 		$(this).modal("show");
 	}
