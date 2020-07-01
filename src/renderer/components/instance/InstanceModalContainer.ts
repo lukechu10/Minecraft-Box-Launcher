@@ -1,8 +1,6 @@
 import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
 import type Instance from "../../Instance";
 
-import "./QuickInfoPage";
-
 const enum InstanceModalPage {
 	QuickInfo = 0,
 	Saves,
@@ -26,13 +24,16 @@ export class InstanceModalContainer extends LitElement {
 					content = html`<quick-info-page></quick-info-page>`;
 					break;
 				case InstanceModalPage.Saves:
-					content = html`Saves`;
+					import("./SavesPage");
+					content = html`<saves-page></saves-page>`;
 					break;
 				case InstanceModalPage.Servers:
-					content = html`Servers`;
+					import("./ServersPage");
+					content = html`<servers-page></servers-page>`;
 					break;
 				case InstanceModalPage.AdvancedOptions:
-					content = html`Advanced Options`;
+					import("./AdvancedOptionsPage")
+					content = html`<advanced-options-page></advanced-options-page>`;
 					break;
 			}
 
