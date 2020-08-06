@@ -19,11 +19,12 @@ const app = remote.app;
 export type ModalType = "options" | "rename" | "saves" | "delete" | "logs";
 export default class Instance implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
+	public static readonly SAVE_PATH = path.join(app.getPath("userData"), "./instances/");
 	/**
 	 * Returns the path for minecraft saves/logs/configs for a specific instance
 	 */
 	public get savePath(): string {
-		return path.join(app.getPath("userData"), "./instances/", this.name);
+		return path.join(Instance.SAVE_PATH, this.name);
 	}
 	/**
 	 * Name of instance
@@ -103,6 +104,10 @@ export default class Instance implements InstanceData {
 				gameProfile: await lookupByName(AuthStore.store.selectedProfile.name),
 				accessToken: AuthStore.store.accessToken
 			};
+
+			// make sure save path exists before launching
+			await fs.mkdirp(Instance.SAVE_PATH);
+
 			const proc = launch(options);
 			this.lastPlayed = new Date().toISOString();
 			return proc;
