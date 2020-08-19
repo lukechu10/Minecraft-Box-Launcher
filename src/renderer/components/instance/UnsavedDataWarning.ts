@@ -1,21 +1,34 @@
-import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
-import type Instance from "../../Instance";
+import { css, customElement, html, LitElement, TemplateResult } from "lit-element";
+import "@vaadin/vaadin-button";
 
 @customElement("unsaved-data-warning")
 export class UnsavedDataWarning extends LitElement {
-	protected createRenderRoot(): this { return this; }
+	public static styles = css`
+		:host {
+			background-color: rgb(54, 54, 54);
+			border-radius: 0.25em;
+			padding: 0 10px;
+		}
+
+		span {
+			display: inline-block;
+			color: white;
+		}
+
+		#save-button {
+			margin-left: 10px;
+		}
+	`;
 
 	protected render(): TemplateResult {
 		return html`
-			<div class="ui inverted raised clearing segment">
-				<span class="ui left floated" style="display: inline-block;">You have unsaved changes</span>
-				<button class="ui compact right floated button" @click=${this.handleDiscard}>Discard</button>
-				<button class="ui compact primary right floated button" @click=${this.handleSave}>Save</button>
-			</div>
+			<span>You have unsaved changes</span>
+			<vaadin-button id="save-button" theme="success primary" @click=${this.handleSave}>Save</vaadin-button>
+			<vaadin-button theme="error" @click=${this.handleDiscard}>Discard</vaadin-button>
 		`;
 	}
 
-	private handleSave() {
+	private handleSave(): void {
 		const saveEvent = new CustomEvent("saved", {
 			bubbles: true,
 			composed: true
@@ -23,7 +36,7 @@ export class UnsavedDataWarning extends LitElement {
 		this.dispatchEvent(saveEvent);
 	}
 
-	private handleDiscard() {
+	private handleDiscard(): void {
 		const discardEvent = new CustomEvent("discarded", {
 			bubbles: true,
 			composed: true

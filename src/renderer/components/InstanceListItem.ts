@@ -51,7 +51,6 @@ export default class InstanceListItem extends LitElement {
 	}
 
 	private async showInfoModal(): Promise<void> {
-		// await import(/* webpackChunkName: "InstanceModal/Info" */ "./InstanceModal/Info");
 		await import(/* webpackChunkName: "InstanceModalContainer" */ "./instance/InstanceModalContainer");
 		document.querySelector<InstanceModalContainer>("instance-modal-container")!.showModal(this.instance!);
 	}

@@ -7,7 +7,7 @@ export class ServersPage extends LitElement {
 
 	protected render(): TemplateResult {
 		return html`
-			<div class="ui inverted header">Servers</div>	
+			<div class="ui header">Servers</div>	
 		`;
 	}
 }

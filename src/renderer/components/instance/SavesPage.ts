@@ -7,7 +7,7 @@ export class SavesPages extends LitElement {
 
 	protected render(): TemplateResult {
 		return html`
-			<div class="ui inverted header">Saves</div>	
+			<div class="ui header">Saves</div>	
 		`;
 	}
 }
