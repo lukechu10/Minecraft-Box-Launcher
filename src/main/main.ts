@@ -27,7 +27,9 @@ function createWindow(): void {
 		title: "Minecraft Box",
 		webPreferences: {
 			nodeIntegration: true,
-			sandbox: false
+			sandbox: false,
+			enableRemoteModule: true,
+			worldSafeExecuteJavaScript: true
 		}
 	});
 	mainWindow.loadFile(path.join(__dirname, "../../", "instances.html"));

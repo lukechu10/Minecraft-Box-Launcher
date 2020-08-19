@@ -7,7 +7,7 @@ export class AdvancedOptionsPage extends LitElement {
 
 	protected render(): TemplateResult {
 		return html`
-			<div class="ui header">Advanced Options</div>	
+			<div class="ui header">Advanced Options</div>
 		`;
 	}
 }
