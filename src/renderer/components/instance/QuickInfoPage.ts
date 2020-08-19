@@ -7,7 +7,6 @@ export class QuickInfoPage extends LitElement {
 	protected createRenderRoot(): this { return this; }
 
 	@property({ type: Object }) public instance: Instance | null = null;
-	@property({ attribute: false }) public nameChangeCallback: Function | null = null;
 
 	protected render(): TemplateResult {
 		if (this.instance !== null) {
@@ -23,6 +22,15 @@ export class QuickInfoPage extends LitElement {
 
 	private instanceNameChanged(event: InputEvent): void {
 		this.instance!.name = (event.target as HTMLInputElement).value;
-		this.nameChangeCallback!();
+		this.dispatchChangedEvent();
+	}
+
+	private dispatchChangedEvent() {
+		const instanceChangedEvent = new CustomEvent("instanceChanged", {
+			bubbles: true,
+			composed: true
+		});
+		
+		this.dispatchEvent(instanceChangedEvent);
 	}
 }

@@ -1,4 +1,5 @@
 import { customElement, html, LitElement, property, query, TemplateResult } from "lit-element";
+import { cache } from "lit-html/directives/cache";
 import type Instance from "../../Instance";
 import InstanceListStore from "../../store/InstanceListStore";
 import type { UnsavedDataWarning } from "./UnsavedDataWarning";
@@ -30,7 +31,7 @@ export class InstanceModalContainer extends LitElement {
 			switch (this.currentPage) {
 				case InstanceModalPage.QuickInfo:
 					import("./QuickInfoPage");
-					content = html`<quick-info-page .instance=${this.tempInstance} .nameChangeCallback=${(): void => {
+					content = html`<quick-info-page .instance=${this.tempInstance} @instanceChanged=${(): void => {
 						this.requestUpdate("tempInstance");
 						if (!this.hasUnsavedData) {
 							$(this.unsavedDataWarning).transition("fade in"); // show warning
@@ -76,7 +77,7 @@ export class InstanceModalContainer extends LitElement {
 							</div>
 						</div>
 						<div class="twelve wide stretched column scrolling content">
-							<div class="ui basic segment" id="#InstanceModalContainer-contentArea">${content}</div>
+							<div class="ui basic segment" id="#InstanceModalContainer-contentArea">${cache(content)}</div>
 						</div>
 					</div>
 				</div>
