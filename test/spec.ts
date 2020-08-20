@@ -92,19 +92,6 @@ describe("Application window", function () {
 		}
 	});
 
-	it("shows an initial window", async () => {
-		const n = await app.client.getWindowCount();
-		expect(n).to.be.a("number");
-		expect(n).to.equal(1);
-	});
-
-	it("shows the settings modal", async () => {
-		await app.client.waitUntilWindowLoaded();
-		await app.client.$("#content").$("div.ui.right.button").click();
-		const res = await app.client.waitForVisible("#modal-settings:not(.animating)", 2000);
-		expect(res).to.equal(true);
-	});
-
 	describe("Instance management", () => {
 		it("can not create two instances with same name", async () => {
 			await fillOutInstanceForm("Test 1");

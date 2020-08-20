@@ -32,6 +32,17 @@ describe("Window", function () {
 		await header.textContent().should.eventually.equal("Instances");
 	});
 
+	it("should open the settings modal", async () => {
+		await page.click("#app-navbar > .item[href='./instances.html']");
+
+		await page.click("#content div.ui.right.button");
+		await page.waitForSelector("#modal-settings.ui.modal.visible", { timeout: 2000 });
+	
+		// close settings modal
+		await page.click("#modal-settings .actions .ui.cancel.button");
+		await page.waitForSelector("#modal-settings.ui.modal.hidden", { timeout: 2000, state: "hidden" });
+	});
+
 	it("can navigate to home page", async () => {
 		await page.click("#app-navbar > .item[href='./home.html']");
 
@@ -46,7 +57,7 @@ describe("Window", function () {
 		await header.textContent().should.eventually.equal("News");
 	});
 
-	it("can open account modal", async () => {
+	it("can open the account modal", async () => {
 		await page.click("#app-navbar > #account-modal-link");
 
 		await page.waitForSelector("#modal-account.ui.modal.visible", { timeout: 2000 });
