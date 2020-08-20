@@ -17,6 +17,11 @@ import InstanceListStore from "./store/InstanceListStore";
 const app = remote.app;
 
 export type ModalType = "options" | "rename" | "saves" | "delete" | "logs";
+
+/**
+ * Represents a minecraft launch profile
+ * @implements `InstanceData`
+ */
 export default class Instance implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
 	public static readonly SAVE_PATH = path.join(app.getPath("userData"), "./instances/");
@@ -180,6 +185,10 @@ export default class Instance implements InstanceData {
 			moment(this.lastPlayed).fromNow();
 	}
 
+	/**
+	 * @deprecated will be removed in future release
+	 * @param modal type of modal to open
+	 */
 	public async showModal(modal: ModalType): Promise<void> {
 		switch (modal) {
 			case "options":

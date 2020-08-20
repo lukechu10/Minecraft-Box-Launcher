@@ -1,6 +1,7 @@
 import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
 import type Instance from "../../Instance";
 import "@vaadin/vaadin-text-field";
+import { live } from "lit-html/directives/live";
 
 @customElement("quick-info-page")
 export class QuickInfoPage extends LitElement {
@@ -12,7 +13,7 @@ export class QuickInfoPage extends LitElement {
 		if (this.instance !== null) {
 			return html`
 				<div class="ui header">Quick Info</div>
-				<vaadin-text-field label="Instance Name" .value=${this.instance.name} @input=${this.instanceNameChanged}></vaadin-text-field>
+				<vaadin-text-field label="Instance Name" .value=${live(this.instance.name)} @input=${this.instanceNameChanged}></vaadin-text-field>
 			`;
 		}
 		else {
@@ -25,7 +26,7 @@ export class QuickInfoPage extends LitElement {
 		this.dispatchChangedEvent();
 	}
 
-	private dispatchChangedEvent() {
+	private dispatchChangedEvent(): void {
 		const instanceChangedEvent = new CustomEvent("instanceChanged", {
 			bubbles: true,
 			composed: true

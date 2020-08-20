@@ -1,6 +1,6 @@
 import { customElement, html, LitElement, property, query, TemplateResult } from "lit-element";
 import { cache } from "lit-html/directives/cache";
-import type Instance from "../../Instance";
+import Instance from "../../Instance";
 import InstanceListStore from "../../store/InstanceListStore";
 import type { UnsavedDataWarning } from "./UnsavedDataWarning";
 
@@ -45,7 +45,7 @@ export class InstanceModalContainer extends LitElement {
 					break;
 				case InstanceModalPage.Servers:
 					import("./ServersPage");
-					content = html`<servers-page></servers-page>`;
+					content = html`<servers-page .instance=${this.tempInstance}></servers-page>`;
 					break;
 				case InstanceModalPage.AdvancedOptions:
 					import("./AdvancedOptionsPage");
@@ -105,8 +105,8 @@ export class InstanceModalContainer extends LitElement {
 	}
 
 	private handleDiscard(): void {
-		Object.assign(this.tempInstance, this.instance); // reset tempInstance with instance
-		this.requestUpdate();
+		this.tempInstance = Object.assign(Object.create(Instance.prototype), this.instance); // reset tempInstance with instance
+		this.requestUpdate("tempInstance");
 		$(this.unsavedDataWarning).transition("fade out");
 	}
 
@@ -121,7 +121,7 @@ export class InstanceModalContainer extends LitElement {
 
 	public async showModal(instance: Instance): Promise<void> {
 		this.instance = instance;
-		this.tempInstance = Object.assign({}, instance); // create clone
+		this.tempInstance = Object.assign(Object.create(Instance.prototype), this.instance); // create clone
 
 		this.currentPage = InstanceModalPage.QuickInfo; // default page is QuickInfo page
 		await this.requestUpdate();

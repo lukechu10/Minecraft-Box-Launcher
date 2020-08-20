@@ -1,12 +1,11 @@
 import { ChildProcess } from "child_process";
 import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
 import Instance from "../Instance";
+import { InstanceProcess } from "../store/InstanceData";
 import InstanceListStore from "../store/InstanceListStore";
 // import instance modal templates
 import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug";
 import type { AuthModal } from "./AuthModal";
-import type * as InstanceModal from "./InstanceModal";
-import { InstanceProcess } from "../store/InstanceData";
 import type { InstanceModalContainer } from "./instance/InstanceModalContainer";
 
 @customElement("instance-list-item")
