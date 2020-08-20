@@ -24,7 +24,7 @@ export class UnsavedDataWarning extends LitElement {
 		return html`
 			<span>You have unsaved changes</span>
 			<vaadin-button id="save-button" theme="success primary" @click=${this.handleSave}>Save</vaadin-button>
-			<vaadin-button theme="error" @click=${this.handleDiscard}>Discard</vaadin-button>
+			<vaadin-button id="discard-button" theme="error" @click=${this.handleDiscard}>Discard</vaadin-button>
 		`;
 	}
 

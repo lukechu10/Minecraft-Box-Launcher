@@ -88,6 +88,37 @@ describe("Instances", function () {
 		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Quick Info");
 	});
 
+	it("should sync name textbox with modal header", async () => {
+		await page.fill("instance-modal-container .content quick-info-page vaadin-text-field[label='Instance Name'] input", "1.8.9 Test Rename");
+		await page.textContent("instance-modal-container .header").should.eventually.equal("1.8.9 Test Rename");
+	});
+
+	it("should not be able to navigate to new tab with unsaved changes", async () => {
+		await page.waitForSelector("unsaved-data-warning"); // warning should be visible
+		await page.waitForTimeout(1000); // FIXME
+		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Saves");
+		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Quick Info"); // should still be on Quick Info page
+	});
+
+	it("should be able to save changes", async () => {
+		await page.click("unsaved-data-warning #save-button");
+		await page.waitForSelector("unsaved-data-warning", { state: "hidden" }); // warning should be hidden
+		// TODO: check if name updated in instance-list
+	});
+
+	it("should be able to discard changes", async () => {
+		await page.fill("instance-modal-container .content quick-info-page vaadin-text-field[label='Instance Name'] input", "1.8.9 Test Rename 2"); // change name
+		await page.waitForSelector("unsaved-data-warning"); // warning should be visible
+		await page.waitForTimeout(1000); // FIXME
+		await page.click("unsaved-data-warning #discard-button");
+		await page.waitForSelector("unsaved-data-warning", { state: "hidden" }); // warning should be hidden
+		await page.textContent("instance-modal-container .header").should.eventually.equal("1.8.9 Test Rename");
+
+		// reset name to '1.8.9 Test'
+		await page.fill("instance-modal-container .content quick-info-page vaadin-text-field[label='Instance Name'] input", "1.8.9 Test");
+		await page.click("unsaved-data-warning #save-button");
+	});
+
 	it("should navigate to saves page", async () => {
 		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Saves");
 		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Saves");
