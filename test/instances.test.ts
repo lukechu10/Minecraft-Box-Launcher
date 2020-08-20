@@ -38,7 +38,7 @@ describe("Instances", function () {
 		await page.waitForSelector("#modal-newInstance >> .ui.form.error", { timeout: 2000 });
 	});
 
-	it.skip("can add new 1.8.9 instance via new instance modal", async () => {
+	it("can add new 1.8.9 instance via new instance modal", async () => {
 		(await page.$$("#modal-newInstance.ui.modal.visible")).should.have.lengthOf(1);
 
 		// fill out instance form
@@ -50,9 +50,12 @@ describe("Instances", function () {
 		await page.waitForSelector("#form-newInstance >> #dropdown-type >> .menu:not(.animating)", { timeout: 2000 });
 		await (await form.$("#dropdown-type .menu .item[data-value='vanilla-release']")).click(); // select vanilla release option
 		// instance version
+
+		// make sure latest version meta was fetched
+		await page.waitForTimeout(6000); // TODO: remove timeout
 		await (await form.$("#dropdown-id")).click();
 		await page.waitForSelector("#form-newInstance >> #dropdown-id >> .menu:not(.animating)", { timeout: 2000 });
-		await (await form.$("#dropdown-id .menu .item[data-value='1.8.9']")).click(); // select vanilla release option
+		await page.click("#dropdown-id .menu .item[data-value='1.8.9']", { timeout: 5000 }); // select vanilla release option
 
 		// click on create instance button
 		await page.click("#submit-newInstanceForm");
@@ -64,7 +67,7 @@ describe("Instances", function () {
 		await page.waitForSelector("#modal-newInstance.ui.modal.hidden", { timeout: 2000, state: "hidden" });
 	});
 
-	it.skip("automatically updates instance list after new instance creation", async () => {
+	it("automatically updates instance list after new instance creation", async () => {
 		await page.$$("instance-list >> instance-list-item").should.eventually.have.lengthOf(1);
 	});
 });
