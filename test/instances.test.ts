@@ -1,13 +1,13 @@
+
 import chai, { should } from "chai";
 import chaiAsPromised from "chai-as-promised";
-import type { ElectronApplication, ElectronPage } from "playwright-electron";
-import { afterSetup, beforeSetup } from "./setup";
 import fs from "fs-extra";
 import path from "path";
+import type { ElectronApplication, ElectronPage } from "playwright-electron";
+import { afterSetup, beforeSetup } from "./setup";
 
 should();
 chai.use(chaiAsPromised);
-
 describe("Instances", function () {
 	this.timeout(10000);
 
@@ -82,6 +82,25 @@ describe("Instances", function () {
 
 	it("should have correct instance name in modal", async () => {
 		await page.textContent("instance-modal-container .header").should.eventually.equal("1.8.9 Test");
+	});
+
+	it("should be on quick info page", async () => {
+		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Quick Info");
+	});
+
+	it("should navigate to saves page", async () => {
+		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Saves");
+		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Saves");
+	});
+
+	it("should navigate to servers page", async () => {
+		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Servers");
+		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Servers");
+	});
+
+	it("should navigate to advanced options page", async () => {
+		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Advanced Options");
+		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Advanced Options");
 	});
 
 	it("should close instance modal", async () => {
