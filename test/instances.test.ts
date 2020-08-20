@@ -1,8 +1,9 @@
 import chai, { should } from "chai";
 import chaiAsPromised from "chai-as-promised";
-import { beforeSetup, afterSetup } from "./setup";
-import type { ElectronPage, ElectronApplication } from "playwright-electron";
-import { app } from "electron";
+import type { ElectronApplication, ElectronPage } from "playwright-electron";
+import { afterSetup, beforeSetup } from "./setup";
+import fs from "fs-extra";
+import path from "path";
 
 should();
 chai.use(chaiAsPromised);
@@ -18,6 +19,10 @@ describe("Instances", function () {
 		const setup = (await beforeSetup());
 		page = setup.page;
 		electronApp = setup.electronApp;
+
+		// inject mock versionsMetaCache.json
+		const userDataPath: string = await (await electronApp.firstWindow()).evaluate(() => (window as any).require("electron").remote.app.getPath("userData"));
+		await fs.copyFile(path.resolve("./test/mock/versionsMetaCache.json"), path.join(userDataPath, "versionsMetaCache.json"));
 	});
 	after(async () => {
 		return afterSetup(electronApp);
@@ -76,6 +81,10 @@ describe("Instances", function () {
 	it("should show instance modal for '1.8.9 Test'", async () => {
 		await page.click("instance-list >> instance-list-item");
 		await page.waitForSelector("instance-modal-container.ui.modal.visible");
+	});
+
+	it("should have correct instance name in modal", async () => {
+		await page.textContent("instance-modal-container .header").should.eventually.equal("1.8.9 Test");
 	});
 
 	it("should close instance modal", async () => {
