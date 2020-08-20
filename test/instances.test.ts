@@ -24,7 +24,7 @@ describe("Instances", function () {
 	});
 
 	async function createNewInstanceWithForm(name: string): Promise<void> {
-		(await page.$$("#modal-newInstance.ui.modal.visible")).should.have.lengthOf(1);
+		await page.waitForSelector("#modal-newInstance.ui.modal.visible");
 	
 		// fill out instance form
 		// const form = await page.$("#form-newInstance");

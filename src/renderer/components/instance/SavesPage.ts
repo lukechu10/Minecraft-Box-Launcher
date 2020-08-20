@@ -73,6 +73,7 @@ export class SavesPages extends LitElement {
 		}
 
 		return html`
+			<div class="ui header">Saves</div>
 			<button class="ui basic button" @click="${this.refresh}">Refresh</button>
 			<table class="ui celled table">
 				<thead>

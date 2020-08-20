@@ -2,7 +2,7 @@ import { customElement, html, LitElement, property, TemplateResult } from "lit-e
 import Instance from "../../Instance";
 import InstanceListStore from "../../store/InstanceListStore";
 import InstanceListItem from "../InstanceListItem";
-import type * as InstanceModal from "../InstanceModal";
+import type { InstanceModalContainer } from "../instance/InstanceModalContainer";
 
 @customElement("home-instances")
 class Instances extends LitElement {
@@ -44,8 +44,8 @@ class Instances extends LitElement {
 	private async showInfoModal(): Promise<void> {
 		const instanceListItem = new InstanceListItem();
 		instanceListItem.instance = this.instance!;
-		await import("../InstanceModal/Info");
-		document.querySelector<InstanceModal.Info>("#modal-info")!.showModal(instanceListItem);
+		await import("../instance/InstanceModalContainer");
+		document.querySelector<InstanceModalContainer>("instance-modal-container")!.showModal(this.instance!);
 	}
 
 	/**
