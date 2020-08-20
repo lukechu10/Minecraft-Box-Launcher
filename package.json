@@ -22,7 +22,7 @@
 		"start:gitpod": "electron --no-sandbox .",
 		"start": "electron .",
 		"test": "ts-mocha ./test/spec.ts --color --retries 2 --exit",
-		"test:e2e": "ts-mocha ./test/test.ts --color",
+		"test:e2e": "ts-mocha ./test/*.test.ts --color",
 		"watch:ts": "tsc -p tsconfig.json --watch",
 		"watch:webpack": "webpack -w --color --config-name=development",
 		"watch": "run-p watch:*"

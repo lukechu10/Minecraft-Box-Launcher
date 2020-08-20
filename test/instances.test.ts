@@ -38,7 +38,7 @@ describe("Instances", function () {
 		await page.waitForSelector("#modal-newInstance >> .ui.form.error", { timeout: 2000 });
 	});
 
-	it("can add new 1.8.9 instance via new instance modal", async () => {
+	it.skip("can add new 1.8.9 instance via new instance modal", async () => {
 		(await page.$$("#modal-newInstance.ui.modal.visible")).should.have.lengthOf(1);
 
 		// fill out instance form
@@ -64,7 +64,7 @@ describe("Instances", function () {
 		await page.waitForSelector("#modal-newInstance.ui.modal.hidden", { timeout: 2000, state: "hidden" });
 	});
 
-	it("automatically updates instance list after new instance creation", async () => {
+	it.skip("automatically updates instance list after new instance creation", async () => {
 		await page.$$("instance-list >> instance-list-item").should.eventually.have.lengthOf(1);
 	});
 });
