@@ -30,9 +30,6 @@ describe("Instances", function () {
 
 	async function createNewInstanceWithForm(name: string): Promise<void> {
 		await page.waitForSelector("#modal-newInstance.ui.modal.visible");
-	
-		// fill out instance form
-		// const form = await page.$("#form-newInstance");
 		// instance name
 		await page.fill("#form-newInstance input[name='instance-name']", name);
 		// instance type
@@ -88,13 +85,32 @@ describe("Instances", function () {
 	});
 
 	it("should close instance modal", async () => {
-		await page.click(".ui.page.modals.dimmer");
+		await page.evaluate(() => { $("instance-modal-container").modal("hide"); }); // TODO: change to interaction
 		await page.waitForSelector("instance-modal-container.ui.modal.hidden", { state: "hidden" });
 	});
 
 	it("should not add another instance with same name '1.8.9 Test'", async () => {
 		await page.click("#content >> div.ui.primary.button");
 		await page.waitForSelector("#modal-newInstance.ui.modal.visible", { timeout: 2000 });
-		await createNewInstanceWithForm("1.8.9 Test").should.be.rejected;
+		// instance name
+		await page.fill("#form-newInstance input[name='instance-name']", "1.8.9 Test");
+		// instance type
+		await page.click("#dropdown-type");
+		await page.waitForSelector("#form-newInstance >> #dropdown-type >> .menu:not(.animating)", { timeout: 2000 });
+		await page.click("#dropdown-type .menu .item[data-value='vanilla-release']"); // select vanilla release option
+		// instance version
+	
+		await page.click("#dropdown-id");
+		await page.waitForSelector("#form-newInstance >> #dropdown-id >> .menu:not(.animating)", { timeout: 2000 });
+		await page.click("#dropdown-id .menu .item[data-value='1.8.9']", { timeout: 5000 }); // select vanilla release option
+	
+		// click on create instance button
+		await page.click("#submit-newInstanceForm");
+	
+		// make sure there are no errors
+		await page.$$("#modal-newInstance >> .ui.form.error").should.eventually.have.lengthOf(1, "Error when creating new instance");
+	
+		// check if instance closes when form is submitted
+		await page.waitForSelector("#modal-newInstance.ui.modal.hidden", { timeout: 2000, state: "hidden" });
 	});
 });
