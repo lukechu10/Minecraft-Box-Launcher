@@ -41,7 +41,7 @@ export class InstanceModalContainer extends LitElement {
 					break;
 				case InstanceModalPage.Saves:
 					import("./SavesPage");
-					content = html`<saves-page></saves-page>`;
+					content = html`<saves-page .instance=${this.tempInstance}></saves-page>`;
 					break;
 				case InstanceModalPage.Servers:
 					import("./ServersPage");
