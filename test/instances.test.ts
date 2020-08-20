@@ -73,6 +73,16 @@ describe("Instances", function () {
 		await page.$$("instance-list >> instance-list-item").should.eventually.have.lengthOf(1);
 	});
 
+	it("should show instance modal for '1.8.9 Test'", async () => {
+		await page.click("instance-list >> instance-list-item");
+		await page.waitForSelector("instance-modal-container.ui.modal.visible");
+	});
+
+	it("should close instance modal", async () => {
+		await page.click(".ui.page.modals.dimmer");
+		await page.waitForSelector("instance-modal-container.ui.modal.hidden", { state: "hidden" });
+	});
+
 	it("should not add another instance with same name '1.8.9 Test'", async () => {
 		await page.click("#content >> div.ui.primary.button");
 		await page.waitForSelector("#modal-newInstance.ui.modal.visible", { timeout: 2000 });
