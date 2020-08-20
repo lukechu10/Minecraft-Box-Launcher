@@ -67,7 +67,7 @@ async function openInstanceInfoModal() {
 	await app.client.waitForVisible("#modal-info:not(.animating)", 2000);
 }
 
-describe("Application window", function () {
+describe.skip("Application window", function () {
 	this.timeout(1000000);
 
 	beforeEach(() => {
