@@ -3,6 +3,7 @@ import { cache } from "lit-html/directives/cache";
 import Instance from "../../Instance";
 import InstanceListStore from "../../store/InstanceListStore";
 import type { UnsavedDataWarning } from "./UnsavedDataWarning";
+import "@vaadin/vaadin-button";
 
 const enum InstanceModalPage {
 	QuickInfo = 0,
@@ -74,6 +75,11 @@ export class InstanceModalContainer extends LitElement {
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.Saves}>Saves</a>
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.Servers}>Servers</a>
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.AdvancedOptions}>Advanced Options</a>
+								${this.instance?.installed ? html`
+									<vaadin-button theme="success primary" style="width: 100%;" @click=${(): void => { this.instance?.launch(); }}>Play</vaadin-button>
+								` : html`
+									<vaadin-button theme="success" style="width: 100%;" @click=${(): void => { this.instance?.install(); }}>Install</vaadin-button>
+								`}
 							</div>
 						</div>
 						<div class="twelve wide stretched column scrolling content">
