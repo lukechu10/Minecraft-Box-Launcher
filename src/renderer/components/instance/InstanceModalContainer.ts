@@ -9,6 +9,8 @@ const enum InstanceModalPage {
 	QuickInfo = 0,
 	Saves,
 	Servers,
+	Logs,
+	Mods,
 	AdvancedOptions
 }
 
@@ -48,6 +50,14 @@ export class InstanceModalContainer extends LitElement {
 					import("./ServersPage");
 					content = html`<servers-page .instance=${this.tempInstance}></servers-page>`;
 					break;
+				case InstanceModalPage.Logs:
+					import("./LogsPage");
+					content = html`<logs-page .instance=${this.tempInstance}></logs-page>`;
+					break;
+				case InstanceModalPage.Mods:
+					import("./ModsPage");
+					content = html`<mods-page .instance=${this.tempInstance}></mods-page>`;
+					break;
 				case InstanceModalPage.AdvancedOptions:
 					import("./AdvancedOptionsPage");
 					content = html`<advanced-options-page></advanced-options-page>`;
@@ -74,6 +84,8 @@ export class InstanceModalContainer extends LitElement {
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.QuickInfo}>Quick Info</a>
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.Saves}>Saves</a>
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.Servers}>Servers</a>
+								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.Logs}>Logs</a>
+								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.Mods}>Mods</a>
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.AdvancedOptions}>Advanced Options</a>
 								${this.instance?.installed ? html`
 									<vaadin-button theme="success primary" style="width: 100%;" @click=${(): void => { this.instance?.launch(); }}>Play</vaadin-button>

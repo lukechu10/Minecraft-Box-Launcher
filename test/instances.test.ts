@@ -110,6 +110,16 @@ describe("Instances", function () {
 		await page.textContent("instance-modal-container servers-page table tbody tr").should.eventually.include("Hypixel").and.include("mc.hypixel.net");
 	});
 
+	it("should navigate to logs page", async () => {
+		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Logs");
+		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Logs");
+	});
+
+	it("should navigate to mods page", async () => {
+		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Mods");
+		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Mods");
+	});
+
 	it("should navigate to advanced options page", async () => {
 		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Advanced Options");
 		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Advanced Options");
