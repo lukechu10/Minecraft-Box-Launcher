@@ -93,32 +93,6 @@ describe("Application window", function () {
 	});
 
 	describe("Instance management", () => {
-		it("can not create two instances with same name", async () => {
-			await fillOutInstanceForm("Test 1");
-			// fill out second form
-			await app.client.$("#content").$("div.ui.primary.button").click();
-			await app.client.waitForVisible("#modal-newInstance:not(.animating)", 2000);
-			// fill out form
-			const form = app.client.$("#form-newInstance");
-			await form.$("input[name='instance-name']").setValue("Test 1");
-			// select instance type
-			await form.$("#dropdown-type").click();
-			await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000);
-			await form.$("#dropdown-type .menu .item").click(); // select first option (vanilla release)
-			await form.$("#dropdown-type").waitForVisible(".menu:not(.animating)", 2000, true);
-			// select instance version
-			await form.waitForExist("#dropdown-id:not(.disabled)");
-			await form.$("#dropdown-id").click();
-			await form.$("#dropdown-id").waitForVisible(".menu:not(.animating)", 2000);
-			await form.$("#dropdown-id .menu .item").click(); // select first option (latest vanilla release)
-			await form.$("#dropdown-id").waitForVisible(".menu:not(.animating)", 2000, true);
-			// click on create instance button
-			await form.$("#submit-newInstanceForm").click();
-			// check for no errors
-			const errorForm = await app.client.$("#modal-newInstance").$$(".ui.form.error");
-			expect(errorForm).to.have.lengthOf(1, "Can create multiple instances with same name");
-		});
-
 		it("can show the instance info modal", async () => {
 			await openInstanceInfoModal();
 		});
