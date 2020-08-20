@@ -98,6 +98,18 @@ describe("Instances", function () {
 		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Servers");
 	});
 
+	it("should display availible servers with mock servers.dat", async () => {
+		// copy servers.dat
+		const userDataPath: string = await (await electronApp.firstWindow()).evaluate(() => (window as any).require("electron").remote.app.getPath("userData"));
+		const instanceDir = path.join(userDataPath, "instances", "1.8.9 Test");
+		await fs.mkdirp(instanceDir);
+		await fs.copyFile(path.resolve("./test/mock/servers.dat"), path.join(instanceDir, "servers.dat"));
+
+		// click on refresh button
+		await page.click("instance-modal-container servers-page .ui.basic.button");
+		await page.textContent("instance-modal-container servers-page table tbody tr").should.eventually.include("Hypixel").and.include("mc.hypixel.net");
+	});
+
 	it("should navigate to advanced options page", async () => {
 		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Advanced Options");
 		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Advanced Options");

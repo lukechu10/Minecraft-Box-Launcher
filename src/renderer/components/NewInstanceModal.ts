@@ -82,7 +82,7 @@ export default class NewInstanceModal extends HTMLDivElement {
 		return (ApplicationStore.versionsMetaCache.get("versions") as Version[]).find(obj => obj.id === id);
 	}
 
-	private async updateIdDropdown(val?: string): Promise<void> {
+	private updateIdDropdown(val?: string): void {
 		$("#dropdown-id .menu").empty();
 		$("#dropdown-id").dropdown("set text", "Select Version");
 		// check if version is selected
@@ -90,7 +90,6 @@ export default class NewInstanceModal extends HTMLDivElement {
 			// remove disable on #dropdown-id
 			$(".ui.dropdown#dropdown-id").removeClass("disabled");
 			// find list of instances
-			await updateVersionMeta();
 			const versions = ApplicationStore.versionsMetaCache.get("versions") as Version[];
 			// append to dropdown
 			switch (val) {
