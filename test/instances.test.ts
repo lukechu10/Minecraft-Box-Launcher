@@ -129,7 +129,7 @@ describe("Instances", function () {
 		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Servers");
 	});
 
-	it("should display availible servers with mock servers.dat", async () => {
+	it("should display available servers with mock servers.dat", async () => {
 		// copy servers.dat
 		const userDataPath: string = await (await electronApp.firstWindow()).evaluate(() => (window as any).require("electron").remote.app.getPath("userData"));
 		const instanceDir = path.join(userDataPath, "instances", "1.8.9 Test");

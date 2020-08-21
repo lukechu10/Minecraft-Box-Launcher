@@ -138,7 +138,7 @@ export class InstanceModalContainer extends LitElement {
 	 */
 	private shakeUnsavedDataWarning(): void {
 		$(this.unsavedDataWarning).transition("shake");
-		this.unsavedDataWarning.style.visibility = "visible"; // prevent unsavedDataWarning from disapearing
+		this.unsavedDataWarning.style.visibility = "visible"; // prevent unsavedDataWarning from disappearing
 	}
 	// #endregion
 
