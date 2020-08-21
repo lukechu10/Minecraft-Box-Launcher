@@ -69,3 +69,4 @@ semantic/dist/*
 !/semantic/dist/fonts/
 !/semantic/dist/*.min.js
 !/semantic/dist/*.min.css
+!/semantic/dist/themes/

@@ -5,6 +5,7 @@ import { ApplicationStore } from "./store";
 import AuthStore from "./store/AuthStore";
 import InstanceListStore from "./store/InstanceListStore";
 import { showErrorToast } from "./util";
+import "./components/NewInstanceModal";
 
 window.addEventListener("error", event => {
 	showErrorToast(event.message);

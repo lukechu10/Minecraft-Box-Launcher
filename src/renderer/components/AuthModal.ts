@@ -111,9 +111,9 @@ export class AuthModal extends LitElement {
 					const username = this.querySelector<HTMLInputElement>("#username-field")!.value;
 					const password = this.querySelector<HTMLInputElement>("#password-field")!.value;
 
-					// send request to Yggsdrasil auth server
+					// send request to Yggdrasil auth server
 					await AuthenticationController.login(username, password);
-					// login successfull
+					// login successful
 					$(this).modal("hide");
 				} catch (error) {
 					if (error.statusCode == 403) {

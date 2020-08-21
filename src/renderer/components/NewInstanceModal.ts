@@ -1,135 +1,145 @@
-import type { Version } from "@xmcl/installer/minecraft";
-import { v4 as uuidv4 } from "uuid";
-// import { Instance } from "../Instance"; FIXME
-import { ApplicationStore } from "../store";
-import { InstanceData } from "../store/InstanceData";
+import { LitElement, customElement, TemplateResult, html, css, query, property } from "lit-element";
+import fomantic from "../../../semantic/dist/semantic.min.css";
+import type { Version, VersionList } from "@xmcl/installer/minecraft";
 import InstanceListStore from "../store/InstanceListStore";
-import newInstanceModalTemplate from "../templates/NewInstanceModal.pug";
+import { v4 as uuidv4 } from "uuid";
 
+@customElement("new-instance-modal")
+export class NewInstanceModal extends LitElement {
+	public constructor() {
+		super();
+		document.querySelector("#new-instance-button")!.addEventListener("click", () => { this.showModal(); });
 
-export default class NewInstanceModal extends HTMLDivElement {
-	public render(): void {
-		this.innerHTML = newInstanceModalTemplate();
-		$(this).modal("show");
-		this.attachEvents();
+		// update version list
+		(async (): Promise<void> => {
+			const { getVersionList } = await import("../utils/version");
+			this.versionList = await getVersionList();
+			this.updateVersionTable();
+		})();
 	}
-	public attachEvents(): void {
-		// setup dropdown
-		$(".ui.dropdown#dropdown-type").dropdown();
-		(document.getElementById("dropdown-type") as HTMLInputElement).addEventListener("change", () => {
-			this.updateIdDropdown($("#form-newInstance").form("get value", "instance-type"));
-		});
-		document.getElementById("submit-newInstanceForm")?.addEventListener("click", (e: MouseEvent) => {
-			e.preventDefault();
-			const $form = $("#form-newInstance");
-			$form.form("validate form");
-			if ($form.form("is valid")) {
-				// create new instance from input values
-				const tmpInstance: InstanceData = {
-					name: $form.form("get value", "instance-name"),
-					...this.getVersionMeta($form.form("get value", "instance-id")) as Version,
-					lastPlayed: "never",
-					installed: false,
-					clientType: "vanilla",
-					uuid: uuidv4()
-				};
-				// save instance to store
-				// InstanceListStore.instances.push(new Instance(tmpInstance));
-				InstanceListStore.syncToStore(); // save to store
-				$(this).modal("hide"); // close modal
-			}
-		});
 
-		if ($.fn.form.settings.rules !== undefined) {
-			$.fn.form.settings.rules.doesNotExist = (param): boolean => {
-				const find = InstanceListStore.findInstanceName(param);
-				return param.length !== 0 && find === null;
-			};
-		}
-		// setup form
-		$("#form-newInstance").form({
-			inline: true,
+	@query("#client-dropdown")
+	private clientDropdown!: HTMLSelectElement;
+	@query("form")
+	private form!: HTMLFormElement;
+	
+	@property({ type: Object }) private versionList: VersionList | null = null;
+	@property({ type: Array }) private versionListFiltered: Version[] = [];
+	@property({ type: Object }) private selectedVersion: Version | null = null;
+
+	// @ts-expect-error
+	public static styles = css([fomantic.toString()]);
+
+	protected render(): TemplateResult {
+		return html`
+			<div class="ui longer modal">
+				<div class="header">Create New Instance</div>
+				<div class="scrolling content">
+					<form class="ui form">
+						<div class="field">
+							<label>Instance Name</label>
+							<input id="instance-name" class="ui input" type="text" name="instance-name" placeholder="Instance Name">
+						</div>
+						<div class="field">
+							<label>Minecraft Client Type</label>
+							<select class="ui fluid selection dropdown" id="client-dropdown">
+								<option value="vanilla">Vanilla</option>
+								<option value="optifine" disabled>OptiFine (Coming soon!)</option>
+								<option value="forge" disabled>Forge (Coming soon!)</option>
+								<option value="custom" disabled>Custom (Coming soon!)</option>
+							</select>
+						</div>
+						<div class="inline fields">
+							<label>Minecraft Client Version</label>
+							<div class="field">
+								<div class="ui checkbox">
+									<input id="show-vanilla-releases" type="checkbox" checked @change=${this.updateVersionTable}>
+									<label>Show Vanilla Releases</label>
+								</div>
+							</div>
+							<div class="field">
+								<div class="ui checkbox">
+									<input id="show-vanilla-snapshots" type="checkbox" @change=${this.updateVersionTable}>
+									<label>Show Vanilla Snapshots</label>
+								</div>
+							</div>
+							<div class="field">
+								<div class="ui checkbox">
+									<input id="show-vanilla-historical" type = "checkbox" @change=${ this.updateVersionTable}>
+									<label>Show Vanilla Historical Versions</label>
+								</div>
+							</div>
+						</div>
+						<p><strong>Selected version: </strong>${this.selectedVersion?.id ?? "none"}</p>
+						<table class="ui compact selectable striped table">
+							<thead>
+								<th>Version</th>
+							</thead>
+							<tbody>
+								${this.versionListFiltered.map(version => html`
+									<tr @click=${(e: Event): void => { this.selectedVersion = version; }}>
+										<td>${version.id}</td>
+									</tr>	
+								`)}
+							</tbody>
+						</table>
+					</form>
+					
+				</div>
+				<div class="actions">
+					<button class="ui primary button" @click=${this.createNewInstance}>Create</button>
+					<button class="ui cancel button">Cancel</button>
+				</div>
+			</div>
+		`;
+	}
+
+	protected updated(): void {
+		$(this.clientDropdown).dropdown();
+		$(this.form).form({
 			fields: {
-				name: {
-					identifier: "instance-name",
-					rules: [{
-						type: "doesNotExist",
-						prompt: ((value: string) => {
-							if (value.length === 0) return "Please enter a name for this instance";
-							else return "An instance with this name already exists"; // can only be invalid if not blank
-						}) as unknown as string // FIXME: This is a bug with semantic-ui typings where validating programmatically is not working
-					}]
-				},
-				type: {
-					identifier: "instance-type",
-					rules: [{
-						type: "empty",
-						prompt: "Please select a type for the instance"
-					}]
-				},
-				id: { // minecraft version
-					identifier: "instance-id",
-					rules: [{
-						type: "empty",
-						prompt: "Please select a version for the instance"
-					}]
-				}
+				"instance-name": "empty"
 			}
 		});
 	}
-	private getVersionMeta(id: string): Version | undefined {
-		return (ApplicationStore.versionsMetaCache.get("versions") as Version[]).find(obj => obj.id === id);
+
+	private updateVersionTable(): void {
+		const showVanillaRelease: boolean = this.form.querySelector<HTMLInputElement>("#show-vanilla-releases")!.checked;
+		const showVanillaSnapshots: boolean = this.form.querySelector<HTMLInputElement>("#show-vanilla-snapshots")!.checked;
+		const showVanillaHistorical: boolean = this.form.querySelector<HTMLInputElement>("#show-vanilla-historical")!.checked;
+		
+		this.versionListFiltered = this.versionList!.versions.filter((version) =>
+			(version.type === "release" && showVanillaRelease) ||
+			(version.type === "snapshot" && showVanillaSnapshots) ||
+			(version.type === "old_beta" && showVanillaHistorical) ||
+			(version.type === "old_alpha" && showVanillaHistorical)
+		);
 	}
 
-	private updateIdDropdown(val?: string): void {
-		$("#dropdown-id .menu").empty();
-		$("#dropdown-id").dropdown("set text", "Select Version");
-		// check if version is selected
-		if (val !== undefined) {
-			// remove disable on #dropdown-id
-			$(".ui.dropdown#dropdown-id").removeClass("disabled");
-			// find list of instances
-			const versions = ApplicationStore.versionsMetaCache.get("versions") as Version[];
-			// append to dropdown
-			switch (val) {
-				case "vanilla-release":
-					for (const version of versions) {
-						if (version.type == "release") {
-							// render versions
-							$("#dropdown-id .menu").append(this.menuItem(version));
-						}
-					}
-					break;
-				case "vanilla-snapshot":
-					for (const version of versions) {
-						if (version.type == "snapshot") {
-							// render versions
-							$("#dropdown-id .menu").append(this.menuItem(version));
-						}
-					}
-					break;
-				case "vanilla-historical":
-					for (const version of versions) {
-						if (version.type == "old_alpha" || version.type == "old_beta") {
-							// render versions
-							$("#dropdown-id .menu").append(this.menuItem(version));
-						}
-					}
-					break;
-				case "forge":
-					break;
-			}
+	private async createNewInstance(): Promise<void> {
+		$(this.form).form("validate form");
+		if ($(this.form).form("is valid") && this.selectedVersion !== null) {
+			const { Instance } = await import("../Instance");
+			const instance = new Instance({
+				name: this.form.querySelector<HTMLInputElement>("#instance-name")!.value,
+				lastPlayed: "never",
+				uuid: uuidv4(),
+				clientType: "vanilla",
+				installed: false,
+				...this.selectedVersion
+			});
+			InstanceListStore.instances.push(instance);
+			InstanceListStore.syncToStore();
+
+			// close modal
+			$(this.renderRoot.querySelector(".ui.modal")!).modal("hide");
 		}
-		else
-			$(".ui.dropdown#dropdown-id").addClass("disabled");
 	}
-	// TODO: change to pug template
-	private menuItem(version: Version): string {
-		return `<div class="item" data-value="${version.id}">
-	<div class="text" style="display:inline-block">${version.id}</div>
-	<div class="description">${version.releaseTime}</div>
-	</div>`;
+
+	public showModal(): void {
+		$(this.renderRoot.querySelector(".ui.modal")!).modal({
+			closable: false,
+			detachable: false
+		}).modal("show");
 	}
 }
-
-customElements.define("modal-new-instance", NewInstanceModal, { extends: "div" });

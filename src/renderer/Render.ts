@@ -1,5 +1,5 @@
 import "./components/NewInstanceModal";
-import NewInstanceModal from "./components/NewInstanceModal";
+// import NewInstanceModal from "./components/NewInstanceModal";
 
 export * from "./controllers/SettingsModal";
 
@@ -8,5 +8,5 @@ export * from "./controllers/SettingsModal";
  * @deprecated
  */
 export function newInstance(): void {
-	(document.getElementById("modal-newInstance") as NewInstanceModal).render();
+	// (document.getElementById("modal-newInstance") as NewInstanceModal).render();
 }

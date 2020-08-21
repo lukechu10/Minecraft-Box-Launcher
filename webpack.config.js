@@ -38,7 +38,7 @@ const baseConfig = {
 			inject: "head",
 			chunks: [...baseChunks, "home"]
 		}),
-		// ignore momentjs locales
+		// ignore moment.js locales
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
 	],
 	module: {
@@ -58,6 +58,14 @@ const baseConfig = {
 				test: /\.pug/,
 				include: path.resolve(__dirname, "src", "renderer"),
 				loader: "pug-loader"
+			},
+			{
+				test: /\.css/,
+				loader: "css-loader"
+			},
+			{
+				test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+				loader: "file-loader"
 			}
 		]
 	},
