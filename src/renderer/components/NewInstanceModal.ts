@@ -126,6 +126,9 @@ export class NewInstanceModal extends LitElement {
 		if (instanceName === "") {
 			this.errorMessage = "The instance cannot be unnamed";
 		}
+		else if (InstanceListStore.findInstanceName(instanceName) !== null) {
+			this.errorMessage = `An instance named ${instanceName} already exists`;
+		}
 		else if (this.selectedVersion === null) {
 			this.errorMessage = "You must select a version for this instance";
 		}
