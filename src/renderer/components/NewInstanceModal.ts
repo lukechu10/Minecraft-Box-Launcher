@@ -26,9 +26,18 @@ export class NewInstanceModal extends LitElement {
 	@property({ type: Object }) private versionList: VersionList | null = null;
 	@property({ type: Array }) private versionListFiltered: Version[] = [];
 	@property({ type: Object }) private selectedVersion: Version | null = null;
+	@property({ type: String }) private errorMessage = "";
 
-	// @ts-expect-error
-	public static styles = css([fomantic.toString()]);
+	public static styles = [
+		// @ts-expect-error
+		css([fomantic.toString()]),
+		css`
+			#error-message {
+				font-weight: bold;
+				color: red;
+			}
+		`
+	];
 
 	protected render(): TemplateResult {
 		return html`
@@ -87,6 +96,7 @@ export class NewInstanceModal extends LitElement {
 					
 				</div>
 				<div class="actions">
+					<span id="error-message">${this.errorMessage}</span>
 					<button class="ui primary button" @click=${this.createNewInstance}>Create</button>
 					<button class="ui cancel button">Cancel</button>
 				</div>
@@ -96,11 +106,6 @@ export class NewInstanceModal extends LitElement {
 
 	protected updated(): void {
 		$(this.clientDropdown).dropdown();
-		$(this.form).form({
-			fields: {
-				"instance-name": "empty"
-			}
-		});
 	}
 
 	private updateVersionTable(): void {
@@ -117,11 +122,17 @@ export class NewInstanceModal extends LitElement {
 	}
 
 	private async createNewInstance(): Promise<void> {
-		$(this.form).form("validate form");
-		if ($(this.form).form("is valid") && this.selectedVersion !== null) {
+		const instanceName: string = this.form.querySelector<HTMLInputElement>("#instance-name")!.value;
+		if (instanceName === "") {
+			this.errorMessage = "The instance cannot be unnamed";
+		}
+		else if (this.selectedVersion === null) {
+			this.errorMessage = "You must select a version for this instance";
+		}
+		else {
 			const { Instance } = await import("../Instance");
 			const instance = new Instance({
-				name: this.form.querySelector<HTMLInputElement>("#instance-name")!.value,
+				name: instanceName,
 				lastPlayed: "never",
 				uuid: uuidv4(),
 				clientType: "vanilla",
