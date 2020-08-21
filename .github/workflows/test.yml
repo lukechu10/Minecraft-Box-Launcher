@@ -24,7 +24,7 @@ jobs:
 
     - name: Build main process files
       run: npm run prod:ts
-    - name: Build and renderer process files
+    - name: Build renderer process files
       run: npx webpack --color --config-name=coverage
 
     # - name: Run tests and generate coverage with mocha and nyc

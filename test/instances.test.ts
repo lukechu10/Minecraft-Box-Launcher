@@ -1,4 +1,3 @@
-
 import chai, { should } from "chai";
 import chaiAsPromised from "chai-as-promised";
 import fs from "fs-extra";
@@ -29,45 +28,38 @@ describe("Instances", function () {
 	});
 
 	async function createNewInstanceWithForm(name: string): Promise<void> {
-		await page.waitForSelector("#modal-newInstance.ui.modal.visible");
+		await page.waitForSelector("new-instance-modal .ui.modal.visible");
 		// instance name
-		await page.fill("#form-newInstance input[name='instance-name']", name);
-		// instance type
-		await page.click("#dropdown-type");
-		await page.waitForSelector("#form-newInstance >> #dropdown-type >> .menu:not(.animating)", { timeout: 2000 });
-		await page.click("#dropdown-type .menu .item[data-value='vanilla-release']"); // select vanilla release option
+		await page.fill("new-instance-modal .ui.modal.visible form input#instance-name", name);
 		// instance version
-	
-		await page.click("#dropdown-id");
-		await page.waitForSelector("#form-newInstance >> #dropdown-id >> .menu:not(.animating)", { timeout: 2000 });
-		await page.click("#dropdown-id .menu .item[data-value='1.8.9']", { timeout: 5000 }); // select vanilla release option
+		await page.click("new-instance-modal .ui.modal.visible table tr >> text=1.8.9");
 	
 		// click on create instance button
-		await page.click("#submit-newInstanceForm");
+		await page.click("new-instance-modal .ui.modal.visible .actions button.primary");
 	
 		// make sure there are no errors
-		await page.$$("#modal-newInstance >> .ui.form.error").should.eventually.have.lengthOf(0, "Error when creating new instance");
+		await page.textContent("new-instance-modal .ui.modal.visible #error-message").should.eventually.equal("");
 	
 		// check if instance closes when form is submitted
-		await page.waitForSelector("#modal-newInstance.ui.modal.hidden", { timeout: 2000, state: "hidden" });
+		await page.waitForSelector("new-instance-modal .ui.modal.hidden", { timeout: 2000, state: "hidden" });
 	}
 
 	it("initially has no instances in instance list", async () => {
 		await page.$$("#instance-list-container > instance-list > .ui.list.container > instance-list-item").should.eventually.have.lengthOf(0);
 	});
 
-	it("can show the new instance modal", async () => {
-		await page.click("#content >> div.ui.primary.button");
-		await page.waitForSelector("#modal-newInstance.ui.modal.visible", { timeout: 2000 });
+	it("should show the new instance modal", async () => {
+		await page.click("#new-instance-button");
+		await page.waitForSelector("new-instance-modal .ui.modal.visible", { timeout: 2000 });
 	});
 
-	it("can not submit empty new instance form", async () => {
+	it("should not submit empty new instance form", async () => {
 		// try to submit when empty
-		await page.click("#submit-newInstanceForm");
-		await page.waitForSelector("#modal-newInstance >> .ui.form.error", { timeout: 2000 });
+		await page.click("new-instance-modal .ui.modal.visible .actions button.primary");
+		await page.waitForSelector("new-instance-modal .ui.modal.visible >> #error-message", { timeout: 2000 });
 	});
 
-	it("can add new 1.8.9 instance via new instance modal with name '1.8.9 Test'", async () => {
+	it("should add new 1.8.9 instance via new instance modal with name '1.8.9 Test'", async () => {
 		await createNewInstanceWithForm("1.8.9 Test")
 	});
 
@@ -172,27 +164,17 @@ describe("Instances", function () {
 	});
 
 	it("should not add another instance with same name '1.8.9 Test'", async () => {
-		await page.click("#content >> div.ui.primary.button");
-		await page.waitForSelector("#modal-newInstance.ui.modal.visible", { timeout: 2000 });
+		await page.click("#new-instance-button");
+		await page.waitForSelector("new-instance-modal .ui.modal.visible", { timeout: 2000 });
 		// instance name
-		await page.fill("#form-newInstance input[name='instance-name']", "1.8.9 Test");
-		// instance type
-		await page.click("#dropdown-type");
-		await page.waitForSelector("#form-newInstance >> #dropdown-type >> .menu:not(.animating)", { timeout: 2000 });
-		await page.click("#dropdown-type .menu .item[data-value='vanilla-release']"); // select vanilla release option
-		// instance version
-	
-		await page.click("#dropdown-id");
-		await page.waitForSelector("#form-newInstance >> #dropdown-id >> .menu:not(.animating)", { timeout: 2000 });
-		await page.click("#dropdown-id .menu .item[data-value='1.8.9']", { timeout: 5000 }); // select vanilla release option
+		await page.fill("new-instance-modal .ui.modal.visible form input#instance-name", "1.8.9 Test");
+		// instance version	
+		await page.click("new-instance-modal .ui.modal.visible table tr >> text=1.8.9")
 	
 		// click on create instance button
-		await page.click("#submit-newInstanceForm");
-	
-		// make sure there are no errors
-		await page.$$("#modal-newInstance >> .ui.form.error").should.eventually.have.lengthOf(1, "Error when creating new instance");
-	
-		// check if instance closes when form is submitted
-		await page.waitForSelector("#modal-newInstance.ui.modal.hidden", { timeout: 2000, state: "hidden" });
+		await page.click("new-instance-modal .ui.modal.visible .actions button.primary");
+
+		await page.textContent("new-instance-modal .ui.modal.visible #error-message").should.eventually.equal("An instance named 1.8.9 Test already exists");
+
 	});
 });

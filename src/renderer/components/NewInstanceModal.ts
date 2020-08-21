@@ -3,6 +3,7 @@ import fomantic from "../../../semantic/dist/semantic.min.css";
 import type { Version, VersionList } from "@xmcl/installer/minecraft";
 import InstanceListStore from "../store/InstanceListStore";
 import { v4 as uuidv4 } from "uuid";
+import { ApplicationStore } from "../StartupTasks";
 
 @customElement("new-instance-modal")
 export class NewInstanceModal extends LitElement {
@@ -12,8 +13,9 @@ export class NewInstanceModal extends LitElement {
 
 		// update version list
 		(async (): Promise<void> => {
-			const { getVersionList } = await import("../utils/version");
-			this.versionList = await getVersionList();
+			// const { getVersionList } = await import("../utils/version");
+			// this.versionList = await getVersionList();
+			this.versionList = await (await fetch("https://launchermeta.mojang.com/mc/game/version_manifest.json")).json();
 			this.updateVersionTable();
 		})();
 	}
@@ -133,6 +135,7 @@ export class NewInstanceModal extends LitElement {
 			this.errorMessage = "You must select a version for this instance";
 		}
 		else {
+			this.errorMessage = "";
 			const { Instance } = await import("../Instance");
 			const instance = new Instance({
 				name: instanceName,
