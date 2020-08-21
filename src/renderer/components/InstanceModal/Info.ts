@@ -1,9 +1,9 @@
-import Instance from "../../Instance";
+// import instanceInfoModalTemplate from "../../templates/InstanceInfoModal.pug";
+import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
+import type { Instance } from "../../Instance";
 import type { ModalType } from "../../Instance";
 import type InstanceListItem from "../InstanceListItem";
 
-// import instanceInfoModalTemplate from "../../templates/InstanceInfoModal.pug";
-import { LitElement, customElement, TemplateResult, html, property } from "lit-element";
 
 @customElement("instance-info-modal")
 export default class Info extends LitElement {

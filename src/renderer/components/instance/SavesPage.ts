@@ -1,10 +1,10 @@
 import { deserialize, TagType } from "@xmcl/nbt";
 import fs from "fs-extra";
-import { customElement, html, LitElement, property, TemplateResult, PropertyValues } from "lit-element";
+import { customElement, html, LitElement, property, PropertyValues, TemplateResult } from "lit-element";
 import Long from "long";
 import moment from "moment";
 import path from "path";
-import Instance from "../../Instance";
+import type { Instance } from "../../Instance";
 
 class WorldVersion {
 	@TagType(TagType.String)

@@ -1,9 +1,9 @@
+import { remote } from "electron";
+import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
+import type { Instance } from "../Instance";
+import InstanceListStore from "../store/InstanceListStore";
 import "./InstanceListItem";
 import InstanceListItem from "./InstanceListItem";
-import { remote } from "electron";
-import InstanceListStore from "../store/InstanceListStore";
-import { LitElement, TemplateResult, html, property, customElement } from "lit-element";
-import type Instance from "../Instance";
 
 @customElement("instance-list")
 export default class InstanceList extends LitElement {
@@ -34,14 +34,14 @@ export default class InstanceList extends LitElement {
 	}
 }
 
-// rerender list on interval to update last played
+// update list on interval to update last played
 // do not update if not focused
 setInterval(() => {
 	if (remote.getCurrentWindow().isFocused())
 		document.querySelector<InstanceList>("instance-list")?.requestUpdate();
 }, 60000); // every minute
 
-// rerender when window is focused
+// update when window is focused
 window.addEventListener("focus", () => {
 	document.querySelector<InstanceList>("instance-list")?.requestUpdate();
 });

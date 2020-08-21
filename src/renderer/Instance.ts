@@ -22,7 +22,7 @@ export type ModalType = "options" | "rename" | "saves" | "delete" | "logs";
  * Represents a minecraft launch profile
  * @implements `InstanceData`
  */
-export default class Instance implements InstanceData {
+export class Instance implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
 	public static readonly SAVE_PATH = path.join(app.getPath("userData"), "./instances/");
 	/**
@@ -61,7 +61,7 @@ export default class Instance implements InstanceData {
 	public releaseTime: string;
 	public url: string;
 	/**
-	 * Version binaires are completely installed
+	 * Version binaries are completely installed
 	 */
 	public installed: boolean;
 	/**

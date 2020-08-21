@@ -1,6 +1,6 @@
 import "@vaadin/vaadin-button";
 import { customElement, html, LitElement, property, query, TemplateResult } from "lit-element";
-import Instance from "../../Instance";
+import { Instance } from "../../Instance";
 import InstanceListStore from "../../store/InstanceListStore";
 import type { UnsavedDataWarning } from "./UnsavedDataWarning";
 

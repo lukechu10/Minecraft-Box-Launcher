@@ -1,8 +1,8 @@
 import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
-import Instance from "../../Instance";
+import { Instance } from "../../Instance";
 import InstanceListStore from "../../store/InstanceListStore";
-import InstanceListItem from "../InstanceListItem";
 import type { InstanceModalContainer } from "../instance/InstanceModalContainer";
+import InstanceListItem from "../InstanceListItem";
 
 @customElement("home-instances")
 class Instances extends LitElement {

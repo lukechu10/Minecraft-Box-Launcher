@@ -1,6 +1,6 @@
 import type { Version } from "@xmcl/installer/minecraft";
 import { v4 as uuidv4 } from "uuid";
-import Instance from "../Instance";
+// import { Instance } from "../Instance"; FIXME
 import { ApplicationStore } from "../store";
 import { InstanceData } from "../store/InstanceData";
 import InstanceListStore from "../store/InstanceListStore";
@@ -14,7 +14,7 @@ export default class NewInstanceModal extends HTMLDivElement {
 		this.attachEvents();
 	}
 	public attachEvents(): void {
-		// setup dropdowns
+		// setup dropdown
 		$(".ui.dropdown#dropdown-type").dropdown();
 		(document.getElementById("dropdown-type") as HTMLInputElement).addEventListener("change", () => {
 			this.updateIdDropdown($("#form-newInstance").form("get value", "instance-type"));
@@ -34,7 +34,7 @@ export default class NewInstanceModal extends HTMLDivElement {
 					uuid: uuidv4()
 				};
 				// save instance to store
-				InstanceListStore.instances.push(new Instance(tmpInstance));
+				// InstanceListStore.instances.push(new Instance(tmpInstance));
 				InstanceListStore.syncToStore(); // save to store
 				$(this).modal("hide"); // close modal
 			}

@@ -1,6 +1,6 @@
 import { ChildProcess } from "child_process";
 import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
-import Instance from "../Instance";
+import { Instance } from "../Instance";
 import { InstanceProcess } from "../store/InstanceData";
 import InstanceListStore from "../store/InstanceListStore";
 // import instance modal templates

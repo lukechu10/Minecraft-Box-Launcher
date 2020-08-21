@@ -1,9 +1,10 @@
 import Store from "electron-store";
+import { Instance } from "../Instance";
 import { InstanceData } from "./InstanceData";
-import Instance from "../Instance";
 
 class InstanceListStore {
 	public store: Store<{ instances: InstanceData[] }>;
+	
 	public constructor() {
 		this.store = new Store<{ instances: InstanceData[] }>({
 			name: "instances",

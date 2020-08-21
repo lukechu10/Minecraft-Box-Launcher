@@ -1,6 +1,5 @@
-import Instance from "../../Instance";
-
-import { LitElement, customElement, html, property, TemplateResult } from "lit-element";
+import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
+import type { Instance } from "../../Instance";
 
 @customElement("instance-saves-modal")
 export default class Saves extends LitElement {

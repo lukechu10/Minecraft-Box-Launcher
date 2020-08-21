@@ -2,7 +2,7 @@ import "@vaadin/vaadin-button";
 import "@vaadin/vaadin-checkbox";
 import "@vaadin/vaadin-text-field";
 import { customElement, html, LitElement, property, query, TemplateResult } from "lit-element";
-import type Instance from "../../Instance";
+import type { Instance } from "../../Instance";
 
 @customElement("delete-page")
 export class Delete extends LitElement {

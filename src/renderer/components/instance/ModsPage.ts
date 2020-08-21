@@ -1,5 +1,5 @@
 import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
-import type Instance from "../../Instance";
+import type { Instance } from "../../Instance";
 
 @customElement("mods-page")
 export class ModsPage extends LitElement {

@@ -12,7 +12,7 @@ window.addEventListener("error", event => {
 });
 
 window.addEventListener("load", () => {
-	import(/* webpackChunkName: "turbolinks" */ "./turbolinks"); // lazy load turbolinks once initial render has finished
+	import(/* webpackChunkName: "turbolinks" */ "./TurbolinksController"); // lazy load turbolinks once initial render has finished
 });
 
 // startup tasks (on application start)
@@ -40,5 +40,4 @@ export * from "./components/TaskProgress";
 export { Render, ApplicationStore, AuthStore, InstanceListStore };
 // export imported controllers to window
 export { AuthenticationController };
-
 

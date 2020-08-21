@@ -1,5 +1,5 @@
-import { LitElement, customElement, property, html, TemplateResult } from "lit-element";
-import Instance from "../../Instance";
+import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
+import type { Instance } from "../../Instance";
 import InstanceListStore from "../../store/InstanceListStore";
 
 @customElement("instance-rename-modal")
