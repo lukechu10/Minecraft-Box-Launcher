@@ -1,9 +1,8 @@
+import "@vaadin/vaadin-button";
 import { customElement, html, LitElement, property, query, TemplateResult } from "lit-element";
-import { cache } from "lit-html/directives/cache";
 import Instance from "../../Instance";
 import InstanceListStore from "../../store/InstanceListStore";
 import type { UnsavedDataWarning } from "./UnsavedDataWarning";
-import "@vaadin/vaadin-button";
 
 const enum InstanceModalPage {
 	QuickInfo = 0,
@@ -11,6 +10,7 @@ const enum InstanceModalPage {
 	Servers,
 	Logs,
 	Mods,
+	Delete,
 	AdvancedOptions
 }
 
@@ -58,6 +58,10 @@ export class InstanceModalContainer extends LitElement {
 					import("./ModsPage");
 					content = html`<mods-page .instance=${this.tempInstance}></mods-page>`;
 					break;
+				case InstanceModalPage.Delete:
+					import("./DeletePage");
+					content = html`<delete-page .instance=${this.tempInstance}></delete-page>`;
+					break;
 				case InstanceModalPage.AdvancedOptions:
 					import("./AdvancedOptionsPage");
 					content = html`<advanced-options-page></advanced-options-page>`;
@@ -86,6 +90,7 @@ export class InstanceModalContainer extends LitElement {
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.Servers}>Servers</a>
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.Logs}>Logs</a>
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.Mods}>Mods</a>
+								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.Delete}>Delete</a>
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.AdvancedOptions}>Advanced Options</a>
 								${this.instance?.installed ? html`
 									<vaadin-button theme="success primary" style="width: 100%;" @click=${(): void => { this.instance?.launch(); }}>Play</vaadin-button>
@@ -95,7 +100,7 @@ export class InstanceModalContainer extends LitElement {
 							</div>
 						</div>
 						<div class="twelve wide stretched column scrolling content">
-							<div class="ui basic segment" id="#InstanceModalContainer-contentArea">${cache(content)}</div>
+							<div class="ui basic segment" id="#InstanceModalContainer-contentArea">${content}</div>
 						</div>
 					</div>
 				</div>
@@ -105,7 +110,7 @@ export class InstanceModalContainer extends LitElement {
 	}
 
 	private handlePageLink(event: Event): void {
-		const pageLink: InstanceModalPage = (event.target! as any).pageLink;
+		const pageLink: InstanceModalPage = (event.target! as unknown as { pageLink: InstanceModalPage }).pageLink;
 		if (this.hasUnsavedData) {
 			// do not allow navigate if unsaved data
 			this.shakeUnsavedDataWarning();

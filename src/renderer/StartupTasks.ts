@@ -6,14 +6,9 @@ import AuthStore from "./store/AuthStore";
 import InstanceListStore from "./store/InstanceListStore";
 import { showErrorToast } from "./util";
 
-
-process.on("uncaughtException", err => {
-	showErrorToast(err.message);
-	console.error(err);
-});
-window.addEventListener("unhandledrejection", event => {
-	showErrorToast(event.reason);
-	console.error(event.reason);
+window.addEventListener("error", event => {
+	showErrorToast(event.message);
+	console.error(event.message);
 });
 
 window.addEventListener("load", () => {

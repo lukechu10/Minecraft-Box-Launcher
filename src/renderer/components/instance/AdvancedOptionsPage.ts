@@ -1,5 +1,4 @@
-import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
-import type Instance from "../../Instance";
+import { customElement, html, LitElement, TemplateResult } from "lit-element";
 
 @customElement("advanced-options-page")
 export class AdvancedOptionsPage extends LitElement {
@@ -8,7 +7,7 @@ export class AdvancedOptionsPage extends LitElement {
 	protected render(): TemplateResult {
 		return html`
 			<div class="ui header">Advanced Options</div>
-			<p>Comming soon</p>
+			<p>Coming soon</p>
 		`;
 	}
 }

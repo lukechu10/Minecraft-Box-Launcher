@@ -11,7 +11,7 @@ export class ModsPage extends LitElement {
 		if (this.instance !== null) {
 			return html`
 				<div class="ui header">Mods</div>
-				<p>Comming soon</p>
+				<p>Coming soon</p>
 			`;
 		}
 		else {

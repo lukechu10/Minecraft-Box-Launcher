@@ -1,7 +1,7 @@
-import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
-import type Instance from "../../Instance";
 import "@vaadin/vaadin-text-field";
+import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
 import { live } from "lit-html/directives/live";
+import type Instance from "../../Instance";
 
 @customElement("quick-info-page")
 export class QuickInfoPage extends LitElement {

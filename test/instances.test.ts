@@ -151,6 +151,16 @@ describe("Instances", function () {
 		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Mods");
 	});
 
+	it("should navigate to delete page", async () => {
+		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Delete");
+		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Delete");
+	});
+
+	it("should not delete instance without confirmation", async () => {
+		await page.click("instance-modal-container .content #delete-button");
+		await page.textContent("instance-modal-container .content #confirm-message").should.eventually.equal("You must enter the name of the instance in the text box.");
+	});
+
 	it("should navigate to advanced options page", async () => {
 		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Advanced Options");
 		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Advanced Options");

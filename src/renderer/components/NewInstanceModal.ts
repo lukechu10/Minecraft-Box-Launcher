@@ -1,12 +1,11 @@
-import newInstanceModalTemplate from "../templates/NewInstanceModal.pug";
-import { InstanceData } from "../store/InstanceData";
-import { ApplicationStore } from "../store";
 import type { Version } from "@xmcl/installer/minecraft";
-import InstanceListStore from "../store/InstanceListStore";
-import Instance from "../Instance";
-
 import { v4 as uuidv4 } from "uuid";
-import { updateVersionMeta } from "../controllers/VersionsController";
+import Instance from "../Instance";
+import { ApplicationStore } from "../store";
+import { InstanceData } from "../store/InstanceData";
+import InstanceListStore from "../store/InstanceListStore";
+import newInstanceModalTemplate from "../templates/NewInstanceModal.pug";
+
 
 export default class NewInstanceModal extends HTMLDivElement {
 	public render(): void {
