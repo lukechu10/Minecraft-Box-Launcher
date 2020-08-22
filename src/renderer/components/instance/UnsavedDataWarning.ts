@@ -29,6 +29,9 @@ export class UnsavedDataWarning extends LitElement {
 	}
 
 	private handleSave(): void {
+		$(this).transition("fade out");
+		this.hasUnsavedChanges = false;
+
 		const saveEvent = new CustomEvent("saved", {
 			bubbles: true,
 			composed: true
@@ -37,10 +40,31 @@ export class UnsavedDataWarning extends LitElement {
 	}
 
 	private handleDiscard(): void {
+		$(this).transition("fade out");
+		this.hasUnsavedChanges = false;
+
 		const discardEvent = new CustomEvent("discarded", {
 			bubbles: true,
 			composed: true
 		});
 		this.dispatchEvent(discardEvent);
 	}
+
+	/**
+	 * Makes the warning visible
+	 */
+	public show(): void {
+		$(this).transition("fade in"); // show warning
+		this.hasUnsavedChanges = true;
+	}
+
+	/**
+	 * Shakes the warning to draw attention
+	 */
+	public shake(): void {
+		$(this).transition("shake");
+		this.style.visibility = "visible"; // prevent component from disappearing
+	}
+
+	public hasUnsavedChanges = false;
 }

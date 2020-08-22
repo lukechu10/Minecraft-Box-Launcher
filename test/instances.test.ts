@@ -87,7 +87,6 @@ describe("Instances", function () {
 
 	it("should not be able to navigate to new tab with unsaved changes", async () => {
 		await page.waitForSelector("unsaved-data-warning"); // warning should be visible
-		await page.waitForTimeout(1000); // FIXME
 		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Saves");
 		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Quick Info"); // should still be on Quick Info page
 	});
@@ -101,7 +100,6 @@ describe("Instances", function () {
 	it("should be able to discard changes", async () => {
 		await page.fill("instance-modal-container .content quick-info-page vaadin-text-field[label='Instance Name'] input", "1.8.9 Test Rename 2"); // change name
 		await page.waitForSelector("unsaved-data-warning"); // warning should be visible
-		await page.waitForTimeout(1000); // FIXME
 		await page.click("unsaved-data-warning #discard-button");
 		await page.waitForSelector("unsaved-data-warning", { state: "hidden" }); // warning should be hidden
 		await page.textContent("instance-modal-container .header").should.eventually.equal("1.8.9 Test Rename");

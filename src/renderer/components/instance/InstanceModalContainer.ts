@@ -25,7 +25,7 @@ export class InstanceModalContainer extends LitElement {
 	@query("unsaved-data-warning")
 	private unsavedDataWarning!: UnsavedDataWarning;
 	private get hasUnsavedData(): boolean {
-		return this.unsavedDataWarning.classList.contains("visible");
+		return this.unsavedDataWarning.hasUnsavedChanges;
 	}
 
 	protected render(): TemplateResult {
@@ -37,7 +37,7 @@ export class InstanceModalContainer extends LitElement {
 					content = html`<quick-info-page .instance=${this.tempInstance} @instanceChanged=${(): void => {
 						this.requestUpdate("tempInstance");
 						if (!this.hasUnsavedData) {
-							$(this.unsavedDataWarning).transition("fade in"); // show warning
+							this.unsavedDataWarning.show();
 						}
 					}
 					}></quick-info-page>`;
@@ -113,7 +113,7 @@ export class InstanceModalContainer extends LitElement {
 		const pageLink: InstanceModalPage = (event.target! as unknown as { pageLink: InstanceModalPage }).pageLink;
 		if (this.hasUnsavedData) {
 			// do not allow navigate if unsaved data
-			this.shakeUnsavedDataWarning();
+			this.unsavedDataWarning.shake();
 		}
 		else {
 			this.currentPage = pageLink;
@@ -124,21 +124,11 @@ export class InstanceModalContainer extends LitElement {
 	private handleSave(): void {
 		Object.assign(this.instance, this.tempInstance); // copy tempInstance to instance
 		InstanceListStore.syncToStore(); // update stored version
-		$(this.unsavedDataWarning).transition("fade out");
 	}
 
 	private handleDiscard(): void {
 		this.tempInstance = Object.assign(Object.create(Instance.prototype), this.instance); // reset tempInstance with instance
 		this.requestUpdate("tempInstance");
-		$(this.unsavedDataWarning).transition("fade out");
-	}
-
-	/**
-	 * Applies 'shake' transition to unsavedDataWarning
-	 */
-	private shakeUnsavedDataWarning(): void {
-		$(this.unsavedDataWarning).transition("shake");
-		this.unsavedDataWarning.style.visibility = "visible"; // prevent unsavedDataWarning from disappearing
 	}
 	// #endregion
 
@@ -152,7 +142,7 @@ export class InstanceModalContainer extends LitElement {
 			onHide: () => {
 				// make sure there is no unsaved data
 				if (this.hasUnsavedData) {
-					this.shakeUnsavedDataWarning();
+					this.unsavedDataWarning.shake();
 					return false;
 				}
 			}
