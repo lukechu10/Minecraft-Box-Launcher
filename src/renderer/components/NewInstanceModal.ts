@@ -3,14 +3,11 @@ import fomantic from "../../../semantic/dist/semantic.min.css";
 import type { Version, VersionList } from "@xmcl/installer/minecraft";
 import InstanceListStore from "../store/InstanceListStore";
 import { v4 as uuidv4 } from "uuid";
-import { ApplicationStore } from "../StartupTasks";
 
 @customElement("new-instance-modal")
 export class NewInstanceModal extends LitElement {
 	public constructor() {
 		super();
-		document.querySelector("#new-instance-button")!.addEventListener("click", () => { this.showModal(); });
-
 		// update version list
 		(async (): Promise<void> => {
 			// const { getVersionList } = await import("../utils/version");
@@ -88,7 +85,7 @@ export class NewInstanceModal extends LitElement {
 							</thead>
 							<tbody>
 								${this.versionListFiltered.map(version => html`
-									<tr @click=${(e: Event): void => { this.selectedVersion = version; }}>
+									<tr @click=${(): void => { this.selectedVersion = version; }}>
 										<td>${version.id}</td>
 									</tr>	
 								`)}

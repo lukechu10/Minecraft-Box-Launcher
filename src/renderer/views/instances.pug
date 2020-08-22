@@ -4,11 +4,4 @@ block css
 	link(rel="stylesheet", href="../src/renderer/css/instances.css")
 
 block content
-	div
-		h1 Instances
-		.ui.button.right.floated.green.inverted(onclick="Render.showSettingsModal()") #[i.fas.fa-sliders-h.fa-fw] Settings
-		#new-instance-button.ui.primary.button #[i.fas.fa-plus.fa-fw] New Instance
-	div#instance-list-container
-		instance-list
-block outside
-	//- #instance-info-segment(is="instance-info-segment")
+	instance-view

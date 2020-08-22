@@ -1,11 +1,11 @@
 import { AuthenticationController } from "./controllers/AuthenticationController";
 import { updateVersionMeta } from "./controllers/VersionsController";
-import * as Render from "./Render";
 import { ApplicationStore } from "./store";
 import AuthStore from "./store/AuthStore";
 import InstanceListStore from "./store/InstanceListStore";
 import { showErrorToast } from "./util";
 import "./components/NewInstanceModal";
+import "./controllers/SettingsModal";
 
 window.addEventListener("error", event => {
 	showErrorToast(event.message);
@@ -38,7 +38,7 @@ $(async () => {
 export * from "./components/AccountModal";
 export * from "./components/InstanceList";
 export * from "./components/TaskProgress";
-export { Render, ApplicationStore, AuthStore, InstanceListStore };
+export { ApplicationStore, AuthStore, InstanceListStore };
 // export imported controllers to window
 export { AuthenticationController };
 

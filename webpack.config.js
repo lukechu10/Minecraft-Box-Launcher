@@ -9,7 +9,8 @@ const baseChunks = ["startupTasks"];
 const baseConfig = {
 	entry: {
 		startupTasks: "./src/renderer/StartupTasks.ts",
-		home: "./src/renderer/HomeEntry.ts"
+		home: "./src/renderer/HomeEntry.ts",
+		instances: "./src/renderer/components/views/InstanceView.ts"
 	},
 	output: {
 		filename: "[name].js",
@@ -24,7 +25,7 @@ const baseConfig = {
 			template: path.resolve(__dirname, "src", "renderer", "views", "instances.pug"),
 			filename: path.resolve(__dirname, "dist", "instances.html"),
 			inject: "head",
-			chunks: [...baseChunks]
+			chunks: [...baseChunks, "instances"]
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "news.pug"),

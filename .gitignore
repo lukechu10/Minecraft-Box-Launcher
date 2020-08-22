@@ -70,3 +70,6 @@ semantic/dist/*
 !/semantic/dist/*.min.js
 !/semantic/dist/*.min.css
 !/semantic/dist/themes/
+
+# testing temp dir
+test/temp/
