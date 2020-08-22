@@ -28,7 +28,7 @@ describe("Window", function () {
 	});
 
 	it("starts on the instance list page", async () => {
-		const header = await page.$("#content > div > h1");
+		const header = await page.$("instance-view div h1");
 		await header.textContent().should.eventually.equal("Instances");
 	});
 
