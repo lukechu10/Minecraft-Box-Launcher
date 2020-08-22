@@ -147,8 +147,9 @@ describe("Instances", function () {
 	});
 
 	it("should not delete instance without confirmation", async () => {
-		await page.click("instance-modal-container .content #delete-button");
-		await page.textContent("instance-modal-container .content #confirm-message").should.eventually.equal("You must enter the name of the instance in the text box.");
+		await page.$("instance-modal-container .content #delete-button[disabled]").should.eventually.not.be.null; // make sure delete button is disabled
+		await page.fill("instance-modal-container .content #confirm-text-field >> input", "1.8.9 Test");
+		await page.$eval("instance-modal-container .content #delete-button", el => el.disabled).should.eventually.be.false; // make sure delete button is disabled
 	});
 
 	it("should navigate to advanced options page", async () => {

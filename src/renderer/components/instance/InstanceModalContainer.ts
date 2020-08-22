@@ -60,7 +60,9 @@ export class InstanceModalContainer extends LitElement {
 					break;
 				case InstanceModalPage.Delete:
 					import("./DeletePage");
-					content = html`<delete-page .instance=${this.tempInstance}></delete-page>`;
+					content = html`<delete-page .instance=${this.tempInstance} @deleted=${(): void => {
+						$(this).modal("hide");
+					}}></delete-page>`;
 					break;
 				case InstanceModalPage.AdvancedOptions:
 					import("./AdvancedOptionsPage");
