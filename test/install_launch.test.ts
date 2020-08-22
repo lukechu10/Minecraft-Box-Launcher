@@ -42,7 +42,10 @@ describe("Instances Install and Launch", function () {
 		await page.waitForSelector("task-progress", { timeout: 6000, state: "hidden" }); // task-progress should hide after 5s. Timeout deliberately set to 6s.
 	});
 
-	it.skip("should launch instance", async () => {
+	it("should not launch instance without auth and should show login modal", async () => {
+		await page.hover("instance-list instance-list-item");
+		await page.click("instance-list instance-list-item .btn-play"); // click on play button
 
+		await page.waitForSelector("#modal-login.ui.modal.visible"); // should show login modal
 	});
 });
