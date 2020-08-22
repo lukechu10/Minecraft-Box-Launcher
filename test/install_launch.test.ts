@@ -34,7 +34,6 @@ describe("Instances Install and Launch", function () {
 		await page.hover("instance-list instance-list-item"); // hover over instance-list-item to make install button appear
 		await page.click("instance-list instance-list-item .btn-install");
 		// button should be "Installing"
-		await page.textContent("instance-list instance-list-item .btn-play-install").should.eventually.equal("Installing...");
 		await page.waitForSelector("task-progress", { timeout: 1000 }); // make sure task-progress is visible
 		await page.waitForSelector("task-progress >> text=Successfully installed instance 1.8.9 Test", { timeout: 0 }); // disable timeout
 		// button should be "Play"
