@@ -35,7 +35,7 @@ describe("Window", function () {
 	it("should open the settings modal", async () => {
 		await page.click("#app-navbar > .item[href='./instances.html']");
 
-		await page.click("#content div.ui.right.button");
+		await page.click("instance-view div.ui.right.button");
 		await page.waitForSelector("#modal-settings.ui.modal.visible", { timeout: 2000 });
 	
 		// close settings modal
