@@ -1,0 +1,16 @@
+{
+	"instances": [
+		{
+			"name": "1.8.9 Test",
+			"uuid": "9bde0a7f-1ed2-4961-9376-d0191920224b",
+			"id": "1.8.9",
+			"type": "release",
+			"clientType": "vanilla",
+			"lastPlayed": "never",
+			"releaseTime": "2015-12-03T09:24:39+00:00",
+			"url": "https://launchermeta.mojang.com/v1/packages/856d9bec08b0d567de39f46efaf4b76066b53059/1.8.9.json",
+			"installed": false,
+			"time": "2019-06-28T09:30:03+00:00"
+		}
+	]
+}
