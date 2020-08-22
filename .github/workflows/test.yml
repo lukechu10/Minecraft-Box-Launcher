@@ -22,10 +22,8 @@ jobs:
     - name: npm install
       run: npm ci
 
-    - name: Build main process files
-      run: npm run prod:ts
-    - name: Build renderer process files
-      run: npx webpack --color --config-name=coverage
+    - name: Build
+      run: npm run prod:ts & npx webpack --color --config-name=coverage
 
     # - name: Run tests and generate coverage with mocha and nyc
     #   run: xvfb-run --auto-servernum npm run coverage

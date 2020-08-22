@@ -7,7 +7,7 @@ import { afterSetup, beforeSetup } from "./setup";
 
 should();
 chai.use(chaiAsPromised);
-describe("Instances", function () {
+describe("Instances Install", function () {
 	this.timeout("600s"); // 10 min max
 
 	let page: ElectronPage;
