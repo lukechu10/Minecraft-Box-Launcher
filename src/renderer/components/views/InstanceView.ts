@@ -1,5 +1,4 @@
-import { html, LitElement, TemplateResult, customElement, css } from "lit-element";
-import "../InstanceList";
+import { css, customElement, html, LitElement, TemplateResult } from "lit-element";
 import fomantic from "../../../../semantic/dist/semantic.min.css";
 import type { NewInstanceModal } from "../NewInstanceModal";
 
