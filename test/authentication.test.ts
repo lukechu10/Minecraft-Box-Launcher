@@ -50,6 +50,6 @@ describe("Authentication", function () {
 		await page.fill("#username-field", "test@test.com");
 		await page.fill("#password-field", "test");
 		await page.click("#login-btn");
-		await page.waitForSelector("#login-errors-container >> text=Invalid username or password! Please try again.", { timeout: 2000 });
+		await page.waitForSelector("#login-errors-container >> text=Invalid username or password! Please try again.", { timeout: 5000 });
 	});
 });
