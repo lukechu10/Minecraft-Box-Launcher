@@ -24,7 +24,17 @@ class InstanceListStore {
 				if (key === "isInstalling") return undefined;
 				if (key === "process") return undefined;
 				else return value;
-			})
+			}),
+			deserialize: (str): { instances: InstanceData[] } => {
+				const parsed = JSON.parse(str);
+				return {
+					instances: parsed.instances.map((i: InstanceData) => ({
+						...i,
+						isInstalling: false,
+						process: undefined
+					}))
+				};
+			}
 		});
 
 		// get initial data from store

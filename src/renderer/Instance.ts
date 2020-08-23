@@ -65,6 +65,10 @@ export class Instance implements InstanceData {
 	 */
 	public installed: boolean;
 	/**
+	 * True if current instance is being installed
+	 */
+	public isInstalling: boolean;
+	/**
 	 * Process for running instance
 	 */
 	public process?: InstanceProcess;
@@ -80,6 +84,7 @@ export class Instance implements InstanceData {
 		this.releaseTime = data.releaseTime;
 		this.url = data.url;
 		this.installed = data.installed;
+		this.isInstalling = data.isInstalling;
 		this.time = data.time;
 	}
 
@@ -128,6 +133,7 @@ export class Instance implements InstanceData {
 
 		const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));
 		console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
+		this.isInstalling = true;
 
 		let task: Task<ResolvedVersion>;
 		if (dependenciesOnly)
@@ -157,11 +163,13 @@ export class Instance implements InstanceData {
 				if (state === rootNode) {
 					this.installed = true;
 					console.log(`Successfully installed instance "${this.name}" with version "${this.id}`);
+					this.isInstalling = false;
 					resolve(runtime);
 				}
 			});
 
 			runtime.on("fail", err => {
+				this.isInstalling = false;
 				reject(err);
 			});
 		});

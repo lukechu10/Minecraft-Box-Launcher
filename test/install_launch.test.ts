@@ -2,7 +2,7 @@ import chai, { should } from "chai";
 import chaiAsPromised from "chai-as-promised";
 import fs from "fs-extra";
 import path from "path";
-import type { ElectronApplication, ElectronPage } from "playwright-electron";
+import type { ElectronApplication, Page } from "playwright-electron";
 import { afterSetup, beforeSetup } from "./setup";
 
 should();
@@ -10,7 +10,7 @@ chai.use(chaiAsPromised);
 describe("Instances Install and Launch", function () {
 	this.timeout("600s"); // 10 min max
 
-	let page: ElectronPage;
+	let page: Page;
 	let electronApp: ElectronApplication;
 
 	before(async () => {

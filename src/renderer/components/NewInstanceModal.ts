@@ -140,6 +140,7 @@ export class NewInstanceModal extends LitElement {
 				uuid: uuidv4(),
 				clientType: "vanilla",
 				installed: false,
+				isInstalling: false,
 				...this.selectedVersion
 			});
 			InstanceListStore.instances.push(instance);

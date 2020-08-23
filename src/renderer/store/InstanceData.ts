@@ -89,6 +89,10 @@ export interface InstanceData extends Version {
 	 */
 	installed: boolean;
 	/**
+	 * True if current instance is being installed
+	 */
+	isInstalling: boolean;
+	/**
 	 * Process for running instance
 	 */
 	process?: InstanceProcess;

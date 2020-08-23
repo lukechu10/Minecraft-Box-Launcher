@@ -13,7 +13,6 @@ export default class InstanceListItem extends LitElement {
 	protected createRenderRoot(): this { return this; }
 
 	@property({ type: Object }) public instance: Instance | null = null;
-	@property({ type: Boolean }) public isInstalling = false;
 
 	protected render(): TemplateResult {
 		return html`
@@ -35,7 +34,7 @@ export default class InstanceListItem extends LitElement {
 					</div>
 					<div class="three wide column">
 						<div class="ui right floated buttons btn-instance-actions" style="display: none" @click="${(e: Event): void => e.stopPropagation()}">
-							${this.isInstalling ? html`
+							${this.instance!.isInstalling ? html`
 								<button class="ui gray button disabled">Installing...</button>
 							` : this.instance!.installed ? html`
 								<button class="ui green button btn-play btn-play-install" @click="${this.play}">Play</button>
@@ -88,9 +87,9 @@ export default class InstanceListItem extends LitElement {
 	 */
 	public async install(): Promise<void> {
 		const installTask = this.instance!.install();
-		this.isInstalling = true; // show installing state
+		this.requestUpdate();
 		await Promise.resolve(installTask); // wait for install task to finish
-		this.isInstalling = false; // show install completed state
+		this.requestUpdate();
 		InstanceListStore.syncToStore(); // update installed state in store
 	}
 
@@ -99,9 +98,9 @@ export default class InstanceListItem extends LitElement {
 	 */
 	public async installDependencies(): Promise<void> {
 		const installTask = this.instance!.install(true); // only install dependencies
-		this.isInstalling = true; // show installing state
+		this.requestUpdate();
 		await Promise.resolve(installTask); // wait for install task to finish
-		this.isInstalling = false; // show install completed state
+		this.requestUpdate();
 		InstanceListStore.syncToStore(); // update installed state in store
 	}
 

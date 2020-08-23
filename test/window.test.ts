@@ -1,7 +1,7 @@
 import chai, { should } from "chai";
 import chaiAsPromised from "chai-as-promised";
-import { beforeSetup, afterSetup } from "./setup";
-import type { ElectronPage, ElectronApplication } from "playwright-electron";
+import type { ElectronApplication, Page } from "playwright-electron";
+import { afterSetup, beforeSetup } from "./setup";
 
 should();
 chai.use(chaiAsPromised);
@@ -9,7 +9,7 @@ chai.use(chaiAsPromised);
 describe("Window", function () {
 	this.timeout(10000);
 
-	let page: ElectronPage;
+	let page: Page;
 	let electronApp: ElectronApplication;
 
 	before(async () => {
