@@ -42,8 +42,6 @@ export class InstanceList extends LitElement {
 			`);
 		}
 
-		console.log(Math.random());
-
 		return html`
 			<div class="ui middle aligned divided selection list container">
 				${this.instances.length > 0 ? instanceList : html`

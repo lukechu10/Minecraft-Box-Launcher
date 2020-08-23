@@ -1,16 +1,15 @@
 import chai, { should } from "chai";
 import chaiAsPromised from "chai-as-promised";
-import { beforeSetup, afterSetup } from "./setup";
-import type { ElectronPage, ElectronApplication } from "playwright-electron";
-import { app } from "electron";
+import type { ElectronApplication, Page } from "playwright-electron";
+import { afterSetup, beforeSetup } from "./setup";
 
 should();
 chai.use(chaiAsPromised);
 
 describe("Authentication", function () {
-	this.timeout(10000);
+	this.timeout(0);
 
-	let page: ElectronPage;
+	let page: Page;
 	let electronApp: ElectronApplication;
 
 	before(async () => {
@@ -49,7 +48,50 @@ describe("Authentication", function () {
 	it("should display invalid email / password error on invalid credentials", async () => {
 		await page.fill("#username-field", "test@test.com");
 		await page.fill("#password-field", "test");
+		await page.route("https://authserver.mojang.com/authenticate", route => route.fulfill({
+			status: 403,
+			body: JSON.stringify({
+				error: "ForbiddenOperationException",
+				errorMessage: "Invalid credentials. Invalid username or password."
+			})
+		}));
+
 		await page.click("#login-btn");
 		await page.waitForSelector("#login-errors-container >> text=Invalid username or password! Please try again.", { timeout: 5000 });
+		await page.unroute("https://authserver.mojang.com/authenticate");
+	});
+
+	it("should successfully login", async () => {
+		await page.route("https://authserver.mojang.com/authenticate", route =>
+			route.fulfill({
+				status: 200,
+				body: JSON.stringify({
+					user: {
+						properties: [{
+							"name": "preferredLanguage", "value": "en-us"
+						}],
+						id: "6b6b6172aaa643628898e1667907f1e3",
+						username: "correct@email.com"
+					},
+					accessToken: "9RbCbLS897fmBHnS1s6B.sgbgvi9e8ubJIk92gaGd2i3aL3ateyLfGgsfeJfh8SkadaHurL9H92yHhojgsbEyf0dW3vY8fSifsaWULhevDSg4bdj7h78gguudfbhbfb9auohLH7KKb8GbYDubaUfgjfshjfba7sfsalAh03uyses8khHYB4EUFqhf8b7HgU4uHoudeIvS9uDe2yD8e72aiJuAdfyafUbbdufss4svV3b3D6YfGdBg7o.4iGOshUjdhD1bUYsEo8ohuIfiadIud2hb9UFe7Y33HY",
+					clientToken: "UY6O897D8wGd2327gisA2043a880o3Sf",
+					availableProfiles: [{
+						name: "BloodyTurtles",
+						id: "6b6b6172aaa643628898e1667907f1e3"
+					}],
+					selectedProfile: {
+						name: "BloodyTurtles",
+						id: "6b6b6172aaa643628898e1667907f1e3"
+					}
+				})
+			})
+		);
+
+		await page.fill("#username-field", "correct@email.com");
+		await page.fill("#password-field", "CorrectPassword");
+		await page.click("#login-btn");
+
+		await page.waitForSelector("#modal-login.ui.modal.hidden", { timeout: 3000, state: "hidden" });
+		await page.unroute("https://authserver.mojang.com/authenticate");
 	});
 });
