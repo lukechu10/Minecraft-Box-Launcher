@@ -113,6 +113,16 @@ export class InstanceModalContainer extends LitElement {
 		else return html``;
 	}
 
+	// arrow function to prevent binding to this
+	private updateCallback = (): void => { this.requestUpdate(); };
+
+	public disconnectedCallback(): void {
+		super.disconnectedCallback();
+		if (this.instance !== null) {
+			this.instance.off("changed", this.updateCallback); // remove event handler for current instance
+		}
+	}
+
 	private handlePageLink(event: Event): void {
 		const pageLink: InstanceModalPage = (event.target! as unknown as { pageLink: InstanceModalPage }).pageLink;
 		if (this.hasUnsavedData) {
@@ -137,8 +147,14 @@ export class InstanceModalContainer extends LitElement {
 	// #endregion
 
 	public async showModal(instance: Instance): Promise<void> {
+		if (this.instance !== null) {
+			this.instance.off("changed", this.updateCallback); // remove event handler for previous instance
+		}
+
 		this.instance = instance;
 		this.tempInstance = Object.assign(Object.create(Instance.prototype), this.instance); // create clone
+
+		this.instance.on("changed", this.updateCallback); // add new event handler
 
 		this.currentPage = InstanceModalPage.QuickInfo; // default page is QuickInfo page
 		await this.requestUpdate();
