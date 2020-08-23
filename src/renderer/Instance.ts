@@ -7,12 +7,12 @@ import { remote } from "electron";
 import fs from "fs-extra";
 import moment from "moment";
 import path from "path";
-import type * as InstanceModal from "./components/InstanceModal";
 import type TaskProgress from "./components/TaskProgress";
 import { ApplicationStore } from "./store";
 import AuthStore from "./store/AuthStore";
 import { InstanceData, InstanceProcess } from "./store/InstanceData";
 import InstanceListStore from "./store/InstanceListStore";
+import EventEmitter from "events";
 
 const app = remote.app;
 
@@ -21,8 +21,10 @@ export type ModalType = "options" | "rename" | "saves" | "delete" | "logs";
 /**
  * Represents a minecraft launch profile
  * @implements `InstanceData`
+ * @extends EventEmitter
+ * @event Instance#changed fired when Instance is modified
  */
-export class Instance implements InstanceData {
+export class Instance extends EventEmitter implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
 	public static readonly SAVE_PATH = path.join(app.getPath("userData"), "./instances/");
 	/**
@@ -75,6 +77,7 @@ export class Instance implements InstanceData {
 	public time: string;
 
 	public constructor(data: InstanceData) {
+		super();
 		this.name = data.name;
 		this.uuid = data.uuid;
 		this.id = data.id;
@@ -88,6 +91,10 @@ export class Instance implements InstanceData {
 		this.time = data.time;
 	}
 
+	/**
+	 * Launches the instance
+	 * @fires Instance#changed when lastPlayed is modified
+	 */
 	public async launch(): Promise<ChildProcess> {
 		console.log(`Launching instance "${this.name}" with version "${this.id}".`);
 		if (!AuthStore.store.loggedIn) {
@@ -120,6 +127,7 @@ export class Instance implements InstanceData {
 
 			const proc = launch(options);
 			this.lastPlayed = new Date().toISOString();
+			this.emit("changed");
 			return proc;
 		}
 	}
@@ -127,6 +135,7 @@ export class Instance implements InstanceData {
 	/**
 	 * Installs the instance
 	 * @param dependenciesOnly only downloads version dependencies if true, downloads entire version if false (default)
+	 * @fires Instance#changed when installed and isInstalling state is changed
 	 */
 	public async install(dependenciesOnly = false): Promise<TaskRuntime<Task.State>> {
 		const { installTask, installDependenciesTask } = await import(/* webpackChunkName: "installer" */ "./utils/installer");
@@ -134,6 +143,7 @@ export class Instance implements InstanceData {
 		const location: MinecraftLocation = MinecraftFolder.from(path.join(app.getPath("userData"), "./game/"));
 		console.log(`Starting installation of instance "${this.name}" with version "${this.id}" into dir "${location.root}"`);
 		this.isInstalling = true;
+		this.emit("changed");
 
 		let task: Task<ResolvedVersion>;
 		if (dependenciesOnly)
@@ -161,15 +171,17 @@ export class Instance implements InstanceData {
 
 			runtime.on("finish", (res, state) => {
 				if (state === rootNode) {
-					this.installed = true;
 					console.log(`Successfully installed instance "${this.name}" with version "${this.id}`);
+					this.installed = true;
 					this.isInstalling = false;
+					this.emit("changed");
 					resolve(runtime);
 				}
 			});
 
 			runtime.on("fail", err => {
 				this.isInstalling = false;
+				this.emit("changed");
 				reject(err);
 			});
 		});
@@ -191,36 +203,5 @@ export class Instance implements InstanceData {
 	public get lastPlayedStr(): string {
 		return this.lastPlayed === "never" ? "never" :
 			moment(this.lastPlayed).fromNow();
-	}
-
-	/**
-	 * @deprecated will be removed in future release
-	 * @param modal type of modal to open
-	 */
-	public async showModal(modal: ModalType): Promise<void> {
-		switch (modal) {
-			case "options":
-				await import(/* webpackChunkName: "InstanceModal/Options" */ "./components/InstanceModal/Options");
-				(document.getElementById("modal-options") as InstanceModal.Options).showModal(this);
-				break;
-			case "rename":
-				await import(/* webpackChunkName: "InstanceModal/Rename" */ "./components/InstanceModal/Rename");
-				(document.getElementById("modal-rename") as InstanceModal.Rename).showModal(this);
-				break;
-			case "saves":
-				await import(/* webpackChunkName: "InstanceModal/Saves" */ "./components/InstanceModal/Saves");
-				(document.getElementById("modal-saves") as InstanceModal.Saves).showModal(this);
-				break;
-			case "delete":
-				await import(/* webpackChunkName: "InstanceModal/ConfirmDelete" */ "./components/InstanceModal/ConfirmDelete");
-				(document.getElementById("modal-confirmDelete") as InstanceModal.ConfirmDelete).showModal(this);
-				break;
-			case "logs":
-				await import(/* webpackChunkName: "InstanceModal/Logs" */ "./components/InstanceModal/Logs");
-				document.querySelector<InstanceModal.Logs>("#modal-logs")!.showModal(this);
-				break;
-			default:
-				throw Error("Not a valid modal");
-		}
 	}
 }

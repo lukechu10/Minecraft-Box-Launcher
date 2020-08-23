@@ -48,6 +48,24 @@ export default class InstanceListItem extends LitElement {
 		`;
 	}
 
+	// arrow function to prevent binding to this
+	private updateCallback = (): void => { this.requestUpdate(); };
+
+	protected firstUpdated(): void {
+		/* istanbul ignore next */
+		if (this.instance === null) throw new Error("Property instance must be set");
+
+		this.instance.on("changed", this.updateCallback);
+	}
+
+	public disconnectedCallback(): void {
+		super.disconnectedCallback();
+		/* istanbul ignore next */
+		if (this.instance === null) throw new Error("Property instance must be set");
+		
+		this.instance.off("changed", this.updateCallback);
+	}
+
 	private async showInfoModal(): Promise<void> {
 		await import(/* webpackChunkName: "InstanceModalContainer" */ "./instance/InstanceModalContainer");
 		document.querySelector<InstanceModalContainer>("instance-modal-container")!.showModal(this.instance!);
@@ -87,9 +105,7 @@ export default class InstanceListItem extends LitElement {
 	 */
 	public async install(): Promise<void> {
 		const installTask = this.instance!.install();
-		this.requestUpdate();
 		await Promise.resolve(installTask); // wait for install task to finish
-		this.requestUpdate();
 		InstanceListStore.syncToStore(); // update installed state in store
 	}
 
@@ -98,9 +114,7 @@ export default class InstanceListItem extends LitElement {
 	 */
 	public async installDependencies(): Promise<void> {
 		const installTask = this.instance!.install(true); // only install dependencies
-		this.requestUpdate();
 		await Promise.resolve(installTask); // wait for install task to finish
-		this.requestUpdate();
 		InstanceListStore.syncToStore(); // update installed state in store
 	}
 
