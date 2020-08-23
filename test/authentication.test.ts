@@ -94,4 +94,20 @@ describe("Authentication", function () {
 		await page.waitForSelector("#modal-login.ui.modal.hidden", { timeout: 3000, state: "hidden" });
 		await page.unroute("https://authserver.mojang.com/authenticate");
 	});
+
+	it("should update login status in account modal", async () => {
+		await page.click("#account-modal-link");
+		await page.waitForSelector("#modal-account.ui.modal.visible");
+
+		await page.textContent("modal-account .content .item .header").should.eventually.equal("BloodyTurtles");
+	});
+
+	it("should sign out of account", async () => {
+		await page.route("https://authserver.mojang.com/invalidate", route => route.fulfill({
+			status: 204 // no content
+		}));
+		await page.click("modal-account .content .item .right.red.button");
+		await page.waitForSelector("modal-account .content .item .ui.primary.button");
+		await page.unroute("https://authserver.mojang.com/invalidate");
+	});
 });
