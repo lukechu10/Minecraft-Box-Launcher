@@ -114,6 +114,18 @@ describe("Instances", function () {
 		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Saves");
 	});
 
+	it("should display created worlds with mock data", async () => {
+		// copy MCBL Test
+		const userDataPath: string = await (await electronApp.firstWindow()).evaluate(() => (window as any).require("electron").remote.app.getPath("userData"));
+		const instanceDir = path.join(userDataPath, "instances", "1.8.9 Test");
+		await fs.mkdirp(instanceDir);
+		await fs.copy(path.resolve("./test/mock/MCBL Test/"), path.join(instanceDir, "saves/MCBL Test/"));
+
+		// click on refresh button
+		await page.click("instance-modal-container saves-page .ui.basic.button");
+		await page.textContent("instance-modal-container saves-page table tbody tr").should.eventually.include("MCBL Test");
+	});
+
 	it("should navigate to servers page", async () => {
 		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Servers");
 		await page.textContent("instance-modal-container .content .ui.header").should.eventually.equal("Servers");
@@ -149,7 +161,7 @@ describe("Instances", function () {
 	it("should not delete instance without confirmation", async () => {
 		await page.$("instance-modal-container .content #delete-button[disabled]").should.eventually.not.be.null; // make sure delete button is disabled
 		await page.fill("instance-modal-container .content #confirm-text-field >> input", "1.8.9 Test");
-		await page.$eval("instance-modal-container .content #delete-button", el => el.disabled).should.eventually.be.false; // make sure delete button is disabled
+		await page.$eval("instance-modal-container .content #delete-button", (el: HTMLButtonElement) => el.disabled).should.eventually.be.false; // make sure delete button is disabled
 	});
 
 	it("should navigate to advanced options page", async () => {
@@ -175,5 +187,19 @@ describe("Instances", function () {
 
 		await page.textContent("new-instance-modal .ui.modal.visible #error-message").should.eventually.equal("An instance named 1.8.9 Test already exists");
 
+		// close modal
+		await page.click("new-instance-modal .ui.modal .actions button.ui.cancel");
+		await page.waitForSelector("new-instance-modal .ui.modal.hidden", { state: "hidden" });
+	});
+
+	it("should delete instance '1.8.9 Test' from instance modal", async () => {
+		await page.click("instance-list >> instance-list-item");
+		await page.waitForSelector("instance-modal-container.ui.modal.visible");
+
+		await page.click("instance-modal-container .content .ui.vertical.menu .item >> text=Delete");
+		await page.fill("instance-modal-container .content #confirm-text-field input", "1.8.9 Test");
+		await page.click("instance-modal-container .content #delete-button");
+
+		await page.waitForSelector("instance-modal-container.ui.modal.hidden", { state: "hidden" }); // wait for modal to close automatically
 	});
 });
