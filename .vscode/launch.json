@@ -18,7 +18,7 @@
         },
         {
             "name": "Electron: Renderer",
-            "type": "chrome",
+            "type": "msedge",
             "request": "attach",
             "port": 9222,
             "webRoot": "${workspaceFolder}",

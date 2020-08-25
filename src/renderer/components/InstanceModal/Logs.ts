@@ -1,6 +1,6 @@
-import { LitElement, customElement, property, TemplateResult, html } from "lit-element";
+import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
+import type { Instance } from "../../Instance";
 import { InstanceProcess } from "../../store/InstanceData";
-import Instance from "../../Instance";
 
 @customElement("instance-logs-modal")
 export default class Logs extends LitElement {
@@ -45,8 +45,8 @@ export default class Logs extends LitElement {
 		const changeCallback = async (): Promise<void> => {
 			await this.requestUpdate();
 			// scroll to bottom of log
-			const scrolllingContent = this.querySelector(".scrolling.content")!;
-			scrolllingContent.scroll(0, scrolllingContent.scrollHeight);
+			const scrollingContent = this.querySelector(".scrolling.content")!;
+			scrollingContent.scroll(0, scrollingContent.scrollHeight);
 		};
 
 		this.processLogs?.on("data", changeCallback).on("close", changeCallback);
@@ -55,8 +55,8 @@ export default class Logs extends LitElement {
 			onShow: async () => {
 				await this.requestUpdate();
 				// scroll to bottom of log
-				const scrolllingContent = this.querySelector(".scrolling.content")!;
-				scrolllingContent.scroll(0, scrolllingContent.scrollHeight);
+				const scrollingContent = this.querySelector(".scrolling.content")!;
+				scrollingContent.scroll(0, scrollingContent.scrollHeight);
 			},
 			onHidden: () => {
 				// disable event listener

@@ -1,5 +1,5 @@
-import { LitElement, customElement, property, html, TemplateResult } from "lit-element";
-import Instance from "../../Instance";
+import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
+import type { Instance } from "../../Instance";
 
 @customElement("instance-delete-modal")
 export default class ConfirmDelete extends LitElement {

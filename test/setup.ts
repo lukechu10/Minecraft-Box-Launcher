@@ -2,7 +2,7 @@ import fs from "fs-extra";
 import rimraf from "rimraf";
 import _ from "lodash";
 import path from "path";
-import { electron, ElectronApplication, ElectronPage } from "playwright-electron";
+import { electron, ElectronApplication, Page } from "playwright-electron";
 import { v4 as uuidv4 } from "uuid";
 
 export async function beforeSetup() {
@@ -19,7 +19,7 @@ export async function beforeSetup() {
 		]
 	});
 
-	const page = await electronApp.firstWindow(); // wait for window to load
+	const page: Page = await electronApp.firstWindow(); // wait for window to load
 	return { electronApp, page };
 }
 

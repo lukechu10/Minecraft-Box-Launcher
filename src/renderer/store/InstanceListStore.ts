@@ -1,9 +1,10 @@
 import Store from "electron-store";
+import { Instance } from "../Instance";
 import { InstanceData } from "./InstanceData";
-import Instance from "../Instance";
 
 class InstanceListStore {
 	public store: Store<{ instances: InstanceData[] }>;
+	
 	public constructor() {
 		this.store = new Store<{ instances: InstanceData[] }>({
 			name: "instances",
@@ -23,7 +24,17 @@ class InstanceListStore {
 				if (key === "isInstalling") return undefined;
 				if (key === "process") return undefined;
 				else return value;
-			})
+			}),
+			deserialize: (str): { instances: InstanceData[] } => {
+				const parsed = JSON.parse(str);
+				return {
+					instances: parsed.instances.map((i: InstanceData) => ({
+						...i,
+						isInstalling: false,
+						process: undefined
+					}))
+				};
+			}
 		});
 
 		// get initial data from store

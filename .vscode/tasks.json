@@ -9,7 +9,8 @@
 			"label": "Build All (Watch)",
 			"problemMatcher": [
 				"$tsc-watch"
-			]
+			],
+			"group": "build"
 		},
 		{
 			"type": "npm",

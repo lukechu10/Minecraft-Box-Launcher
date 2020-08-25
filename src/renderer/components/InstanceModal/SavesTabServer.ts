@@ -1,11 +1,10 @@
+import { QueryOptions, queryStatus, Status } from "@xmcl/client";
 import { readInfo, ServerInfo } from "@xmcl/server-info";
 import fs from "fs-extra";
-import path from "path";
-import Instance from "../../Instance";
-
-import { queryStatus, Status, QueryOptions } from "@xmcl/client";
-import { LitElement, customElement, TemplateResult, html, property, PropertyValues } from "lit-element";
+import { customElement, html, LitElement, property, PropertyValues, TemplateResult } from "lit-element";
 import { until } from "lit-html/directives/until";
+import path from "path";
+import type { Instance } from "../../Instance";
 
 @customElement("saves-tab-server")
 export default class SavesTabServer extends LitElement {

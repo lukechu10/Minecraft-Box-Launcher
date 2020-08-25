@@ -1,19 +1,18 @@
 import { ChildProcess } from "child_process";
 import { customElement, html, LitElement, property, TemplateResult } from "lit-element";
-import Instance from "../Instance";
+import { Instance } from "../Instance";
+import { InstanceProcess } from "../store/InstanceData";
 import InstanceListStore from "../store/InstanceListStore";
 // import instance modal templates
 import corruptedModalTemplate from "../templates/modals/instances/corrupted.pug";
 import type { AuthModal } from "./AuthModal";
-import type * as InstanceModal from "./InstanceModal";
-import { InstanceProcess } from "../store/InstanceData";
+import type { InstanceModalContainer } from "./instance/InstanceModalContainer";
 
 @customElement("instance-list-item")
 export default class InstanceListItem extends LitElement {
 	protected createRenderRoot(): this { return this; }
 
 	@property({ type: Object }) public instance: Instance | null = null;
-	@property({ type: Boolean }) public isInstalling = false;
 
 	protected render(): TemplateResult {
 		return html`
@@ -35,7 +34,7 @@ export default class InstanceListItem extends LitElement {
 					</div>
 					<div class="three wide column">
 						<div class="ui right floated buttons btn-instance-actions" style="display: none" @click="${(e: Event): void => e.stopPropagation()}">
-							${this.isInstalling ? html`
+							${this.instance!.isInstalling ? html`
 								<button class="ui gray button disabled">Installing...</button>
 							` : this.instance!.installed ? html`
 								<button class="ui green button btn-play btn-play-install" @click="${this.play}">Play</button>
@@ -49,9 +48,27 @@ export default class InstanceListItem extends LitElement {
 		`;
 	}
 
+	// arrow function to prevent binding to this
+	private updateCallback = (): void => { this.requestUpdate(); };
+
+	protected firstUpdated(): void {
+		/* istanbul ignore next */
+		if (this.instance === null) throw new Error("Property instance must be set");
+
+		this.instance.on("changed", this.updateCallback);
+	}
+
+	public disconnectedCallback(): void {
+		super.disconnectedCallback();
+		/* istanbul ignore next */
+		if (this.instance === null) throw new Error("Property instance must be set");
+		
+		this.instance.off("changed", this.updateCallback);
+	}
+
 	private async showInfoModal(): Promise<void> {
-		await import(/* webpackChunkName: "InstanceModal/Info" */ "./InstanceModal/Info");
-		(document.getElementById("modal-info") as InstanceModal.Info).showModal(this);
+		await import(/* webpackChunkName: "InstanceModalContainer" */ "./instance/InstanceModalContainer");
+		document.querySelector<InstanceModalContainer>("instance-modal-container")!.showModal(this.instance!);
 	}
 
 	private showButton(): void {
@@ -88,9 +105,7 @@ export default class InstanceListItem extends LitElement {
 	 */
 	public async install(): Promise<void> {
 		const installTask = this.instance!.install();
-		this.isInstalling = true; // show installing state
 		await Promise.resolve(installTask); // wait for install task to finish
-		this.isInstalling = false; // show install completed state
 		InstanceListStore.syncToStore(); // update installed state in store
 	}
 
@@ -99,9 +114,7 @@ export default class InstanceListItem extends LitElement {
 	 */
 	public async installDependencies(): Promise<void> {
 		const installTask = this.instance!.install(true); // only install dependencies
-		this.isInstalling = true; // show installing state
 		await Promise.resolve(installTask); // wait for install task to finish
-		this.isInstalling = false; // show install completed state
 		InstanceListStore.syncToStore(); // update installed state in store
 	}
 

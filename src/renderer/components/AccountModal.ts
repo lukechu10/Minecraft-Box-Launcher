@@ -50,17 +50,15 @@ export default class AccountModal extends LitElement {
 
 $(() => {
 	document.getElementById("account-modal-link")?.addEventListener("click", () => {
-		(document.getElementsByTagName("modal-account")[0] as AccountModal | null)?.showModal();
+		document.querySelector<AccountModal>("modal-account")!.showModal();
 	});
 });
 
 const changeCallback = (): void => {
 	console.log("Auth store changed, rendering account modal");
-	const target = document.getElementsByTagName("modal-account")[0] as AccountModal | null;
-	if (target !== null) {
-		target.authData = AuthStore.store;
-		target.requestUpdate();
-	}
+	const target = document.querySelector<AccountModal>("modal-account")!;
+	target.authData = AuthStore.store;
+	target.requestUpdate();
 };
 // @ts-ignore
 AuthStore.onDidChange("selectedProfile.name", changeCallback);

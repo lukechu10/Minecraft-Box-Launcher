@@ -1,23 +1,19 @@
 import { AuthenticationController } from "./controllers/AuthenticationController";
 import { updateVersionMeta } from "./controllers/VersionsController";
-import * as Render from "./Render";
 import { ApplicationStore } from "./store";
 import AuthStore from "./store/AuthStore";
 import InstanceListStore from "./store/InstanceListStore";
 import { showErrorToast } from "./util";
+import "./components/NewInstanceModal";
+import "./controllers/SettingsModal";
 
-
-process.on("uncaughtException", err => {
-	showErrorToast(err.message);
-	console.error(err);
-});
-window.addEventListener("unhandledrejection", event => {
-	showErrorToast(event.reason);
-	console.error(event.reason);
+window.addEventListener("error", event => {
+	showErrorToast(event.message);
+	console.error(event.message);
 });
 
 window.addEventListener("load", () => {
-	import(/* webpackChunkName: "turbolinks" */ "./turbolinks"); // lazy load turbolinks once initial render has finished
+	import(/* webpackChunkName: "turbolinks" */ "./TurbolinksController"); // lazy load turbolinks once initial render has finished
 });
 
 // startup tasks (on application start)
@@ -42,8 +38,7 @@ $(async () => {
 export * from "./components/AccountModal";
 export * from "./components/InstanceList";
 export * from "./components/TaskProgress";
-export { Render, ApplicationStore, AuthStore, InstanceListStore };
+export { ApplicationStore, AuthStore, InstanceListStore };
 // export imported controllers to window
 export { AuthenticationController };
-
 

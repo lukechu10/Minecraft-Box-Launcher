@@ -9,7 +9,8 @@ const baseChunks = ["startupTasks"];
 const baseConfig = {
 	entry: {
 		startupTasks: "./src/renderer/StartupTasks.ts",
-		home: "./src/renderer/HomeEntry.ts"
+		home: "./src/renderer/HomeEntry.ts",
+		instances: "./src/renderer/components/views/InstanceView.ts"
 	},
 	output: {
 		filename: "[name].js",
@@ -24,7 +25,7 @@ const baseConfig = {
 			template: path.resolve(__dirname, "src", "renderer", "views", "instances.pug"),
 			filename: path.resolve(__dirname, "dist", "instances.html"),
 			inject: "head",
-			chunks: [...baseChunks]
+			chunks: [...baseChunks, "instances"]
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "renderer", "views", "news.pug"),
@@ -38,7 +39,7 @@ const baseConfig = {
 			inject: "head",
 			chunks: [...baseChunks, "home"]
 		}),
-		// ignore momentjs locales
+		// ignore moment.js locales
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
 	],
 	module: {
@@ -58,6 +59,14 @@ const baseConfig = {
 				test: /\.pug/,
 				include: path.resolve(__dirname, "src", "renderer"),
 				loader: "pug-loader"
+			},
+			{
+				test: /\.css/,
+				loader: "css-loader"
+			},
+			{
+				test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+				loader: "file-loader"
 			}
 		]
 	},
@@ -150,6 +159,14 @@ module.exports = [
 					test: /\.pug/,
 					include: path.resolve(__dirname, "src", "renderer"),
 					loader: "pug-loader"
+				},
+				{
+					test: /\.css/,
+					loader: "css-loader"
+				},
+				{
+					test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+					loader: "file-loader"
 				}
 			]
 		}
@@ -183,6 +200,14 @@ module.exports = [
 					test: /\.pug/,
 					include: path.resolve(__dirname, "src", "renderer"),
 					loader: "pug-loader"
+				},
+				{
+					test: /\.css/,
+					loader: "css-loader"
+				},
+				{
+					test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+					loader: "file-loader"
 				}
 			]
 		}
