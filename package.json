@@ -65,7 +65,7 @@
 		"file-loader": "^6.0.0",
 		"fomantic-ui": "^2.8.6",
 		"fs-extra": "^9.0.1",
-		"html-webpack-plugin": "^4.3.0",
+		"html-webpack-plugin": "^4.4.0",
 		"lit-element": "^2.4.0",
 		"madge": "^3.9.2",
 		"mocha": "^7.2.0",
