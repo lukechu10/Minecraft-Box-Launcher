@@ -34,7 +34,9 @@ export default class InstanceListItem extends LitElement {
 					</div>
 					<div class="three wide column">
 						<div class="ui right floated buttons btn-instance-actions" style="display: none" @click="${(e: Event): void => e.stopPropagation()}">
-							${this.instance!.isInstalling ? html`
+							${this.instance!.process?.isRunning ? html`
+								<button class="ui green button disabled">Running</button>
+							` : this.instance!.isInstalling ? html`
 								<button class="ui gray button disabled">Installing...</button>
 							` : this.instance!.installed ? html`
 								<button class="ui green button btn-play btn-play-install" @click="${this.play}">Play</button>
@@ -124,8 +126,6 @@ export default class InstanceListItem extends LitElement {
 			const proc = await this.instance!.launch();
 			// last played should be updated, save to store
 			InstanceListStore.syncToStore();
-
-			this.instance!.process = new InstanceProcess(proc);
 			return proc;
 		}
 		catch (err) {

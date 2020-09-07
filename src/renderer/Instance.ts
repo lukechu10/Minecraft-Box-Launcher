@@ -125,7 +125,12 @@ export class Instance extends EventEmitter implements InstanceData {
 			// make sure save path exists before launching
 			await fs.mkdirp(Instance.SAVE_PATH);
 
-			const proc = launch(options);
+			const proc = await launch(options);
+			this.process = new InstanceProcess(proc);
+			this.process.once("close", () => {
+				this.emit("changed");
+			});
+
 			this.lastPlayed = new Date().toISOString();
 			this.emit("changed");
 			return proc;

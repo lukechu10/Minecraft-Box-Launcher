@@ -94,7 +94,9 @@ export class InstanceModalContainer extends LitElement {
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.Mods}>Mods</a>
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.Delete}>Delete</a>
 								<a class="item" @click=${this.handlePageLink} .pageLink=${InstanceModalPage.AdvancedOptions}>Advanced Options</a>
-								${this.instance!.isInstalling ? html`
+								${this.instance!.process?.isRunning ? html`
+									<vaadin-button theme="success" disabled style="width: 100%;">Running</vaadin-button>
+								` : this.instance!.isInstalling ? html`
 									<vaadin-button theme="success" disabled style="width: 100%;">Installing</vaadin-button>
 								` : this.instance!.installed ? html`
 									<vaadin-button theme="success primary" style="width: 100%;" @click=${(): void => { this.instance?.launch(); }}>Play</vaadin-button>
