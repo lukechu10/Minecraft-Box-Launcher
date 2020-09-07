@@ -48,12 +48,16 @@ const baseConfig = {
 			{
 				test: /\.tsx?$/,
 				include: path.resolve(__dirname, "src"),
-				loader: "ts-loader",
-				options: {
-					compilerOptions: {
-						module: "ESNext"
-					}
-				}
+				use: [
+					{
+						loader: "ts-loader",
+						options: {
+							compilerOptions: {
+								module: "ESNext"
+							}
+						}
+					},
+				],
 			},
 			{
 				test: /\.pug/,
@@ -147,13 +151,17 @@ module.exports = [
 				{
 					test: /\.tsx?$/,
 					include: path.resolve(__dirname, "src"),
-					loader: "ts-loader",
-					options: {
-						transpileOnly: true,
-						compilerOptions: {
-							module: "ESNext"
+					use: [
+						{
+							loader: "ts-loader",
+							options: {
+								transpileOnly: true,
+								compilerOptions: {
+									module: "ESNext"
+								}
+							}
 						}
-					}
+					]
 				},
 				{
 					test: /\.pug/,
