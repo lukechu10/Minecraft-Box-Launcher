@@ -201,5 +201,8 @@ describe("Instances", function () {
 		await page.click("instance-modal-container .content #delete-button");
 
 		await page.waitForSelector("instance-modal-container.ui.modal.hidden", { state: "hidden" }); // wait for modal to close automatically
+		
+		// FIXME: remove waitForTimeout once a new test has been added after this one.
+		await page.waitForTimeout(500); // make sure remove callback is called on InstanceListItem.
 	});
 });
