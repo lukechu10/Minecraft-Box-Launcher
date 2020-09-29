@@ -50,7 +50,7 @@
 		"@typescript-eslint/parser": "^2.34.0",
 		"@vaadin/vaadin": "^15.0.6",
 		"@xmcl/core": "^2.4.0",
-		"@xmcl/installer": "^2.9.7",
+		"@xmcl/installer": "^2.9.8",
 		"@xmcl/nbt": "^2.0.3",
 		"@xmcl/server-info": "^2.0.3",
 		"@xmcl/task": "^2.2.0",
