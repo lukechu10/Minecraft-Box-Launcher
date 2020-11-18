@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "target": "ES2019",
+        "moduleResolution": "node",
+        "jsx": "preserve",
+        "baseUrl": "./",
+        "removeComments": true,
+        /* paths - If you configure Snowpack import aliases, add them here. */
+        "paths": {},
+        /* Additional Options */
+        "strict": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "useDefineForClassFields": true,
+        "importsNotUsedAsValues": "error",
+        "esModuleInterop": true,
+        "outDir": "build/main/"
+    },
+    "include": ["src/main", "types"]
+}

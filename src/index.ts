@@ -1,16 +1,16 @@
 import App from "./App.svelte";
 
 var app = new App({
-  target: document.body,
+    target: document.body,
 });
 
 export default app;
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
 // Learn more: https://www.snowpack.dev/#hot-module-replacement
-if (import.meta.hot) {
-  import.meta.hot.accept();
-  import.meta.hot.dispose(() => {
-    app.$destroy();
-  });
+if ((import.meta as any).hot) {
+    (import.meta as any).hot.accept();
+    (import.meta as any).hot.dispose(() => {
+        app.$destroy();
+    });
 }
