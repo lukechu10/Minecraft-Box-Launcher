@@ -6499,6 +6499,11 @@ svelte-preprocess@^4.0.8, svelte-preprocess@^4.5.2:
     detect-indent "^6.0.0"
     strip-indent "^3.0.0"
 
+svelte-reduxify@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/svelte-reduxify/-/svelte-reduxify-1.2.0.tgz#96b6f0ac67581050001c00507f286fcade0d816b"
+  integrity sha512-htyNY9bkZ4tAYjlV+nVwkPOngy9CUblB0NvwivAJ3Jjxj+NXdB0GsRxTdegMNI1rqh/4sDat7JI/D5d2BGNVHw==
+
 svelte@^3.24.0:
   version "3.29.7"
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.29.7.tgz#e254eb2d0d609ce0fd60f052d444ac4a66d90f7d"

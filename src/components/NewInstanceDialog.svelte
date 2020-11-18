@@ -1,5 +1,6 @@
 <script lang="ts">
     import { Installer } from "../util";
+    import { instanceState } from "../store/instancesState";
 
     import {
         Button,

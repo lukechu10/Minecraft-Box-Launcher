@@ -1,5 +1,3 @@
-import type { Installer } from "@xmcl/installer";
-
 /* CSS MODULES */
 declare module "*.module.css" {
     const classes: { [key: string]: string };
@@ -62,4 +60,8 @@ declare global {
             Store: import("electron-store")
         }
     }
+}
+
+declare module "svelte-reduxify" {
+    function reduxify<T>(store: T): T;
 }
