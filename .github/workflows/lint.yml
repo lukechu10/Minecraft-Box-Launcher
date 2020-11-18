@@ -8,11 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Use Node.js 12
+      - name: Use NodeJS 12
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: npm install
-        run: npm ci
-      - name: Lint
-        run: npm run lint
+      - name: yarn install
+      - name: yarn lint

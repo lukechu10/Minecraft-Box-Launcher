@@ -1,4 +1,4 @@
-name: Build and publish artifacts to release
+name: Build Release
 
 on:
   push:
@@ -11,27 +11,13 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 12
+      - name: Use NodeJS 12
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Get npm cache directory
-        id: npm-cache
-        run: |
-          echo "::set-output name=dir::$(npm config get cache)"
-      - name: "Restore npm cache"
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: npm install
-        run: npm ci
-      - name: Build application
-        run: npm run prod
-      - name: Package application with electron-builder
-        run: npm run pack
+      - run: yarn install
+      - run: yarn prod
+      - run: yarn pack
       - name: Publish artificats
         uses: actions/upload-artifact@v2
         with:
@@ -47,19 +33,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Restore npm cache
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - name: npm install
-        run: npm install
-      - name: Build application
-        run: npm run prod
-      - name: Package application with electron-builder
-        run: npm run pack
+      - run: yarn install
+      - run: yarn prod
+      - run: yarn pack
       - name: Publish artificats
         uses: actions/upload-artifact@v1
         with:
