@@ -1,7 +1,0 @@
-#last-played-instance {
-	transition-duration: 100ms;
-}
-
-#last-played-instance:hover {
-	background-color: rgba(0,0,0,.03);
-}
