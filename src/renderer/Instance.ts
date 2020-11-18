@@ -24,6 +24,7 @@ export type ModalType = "options" | "rename" | "saves" | "delete" | "logs";
  * @extends EventEmitter
  * @event Instance#changed fired when Instance is modified
  */
+// @ts-expect-error typings bug
 export class Instance extends EventEmitter implements InstanceData {
 	public static readonly MINECRAFT_PATH = path.join(app.getPath("userData"), "./game/");
 	public static readonly SAVE_PATH = path.join(app.getPath("userData"), "./instances/");
