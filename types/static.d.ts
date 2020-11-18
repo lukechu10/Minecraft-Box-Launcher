@@ -1,5 +1,4 @@
-/* Use this file to declare any custom file extensions for importing */
-/* Use this folder to also add/extend a package d.ts file, if needed. */
+import type { Installer } from "@xmcl/installer";
 
 /* CSS MODULES */
 declare module "*.module.css" {
@@ -54,4 +53,13 @@ declare module "*.jpeg" {
 declare module "*.png" {
     const ref: string;
     export default ref;
+}
+
+declare global {
+    interface Window {
+        __preload: {
+            Installer: import("@xmcl/installer").Installer,
+            Store: import("electron-store")
+        }
+    }
 }

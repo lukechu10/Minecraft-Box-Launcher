@@ -14,8 +14,10 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: true,
+            nodeIntegration: false,
+            contextIsolation: false,
+            preload: path.join(__dirname, "preload.js"),
+            enableRemoteModule: true,
         },
         backgroundColor: "#FFF",
         title: "Minecraft Box Launcher",

@@ -25,22 +25,34 @@ module.exports = {
         ],
         "@snowpack/plugin-svelte",
         "@snowpack/plugin-dotenv",
-        "@snowpack/plugin-webpack",
+        ["@snowpack/plugin-webpack", {
+            extendConfig: (config) => {
+                config.target = "electron-renderer";
+                return config;
+            }
+        }],
     ],
     install: [
         /* ... */
     ],
     installOptions: {
         externalPackage: [
+            "electron",
             // nodejs
             "assert",
-            "electron",
+            "buffer",
+            "child_process",
+            "crypto",
             "events",
             "fs",
+            "http",
             "https",
+            "os",
             "path",
             "stream",
             "util",
+            "url",
+            "zlib",
         ],
     },
     devOptions: {
@@ -56,4 +68,10 @@ module.exports = {
     alias: {
         /* ... */
     },
+    exclude: [
+        "**/node_modules/**/*",
+        "**/__tests__/*",
+        "**/*.@(spec|test).@(js|mjs)",
+        "**/src/main/**/*"
+    ],
 };
