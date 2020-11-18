@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { Installer } from "../util";
-    import { instanceState } from "../store/instancesState";
+    import { instanceListState } from "../store/instanceListState";
+    import { v4 as uuidv4 } from "uuid";
 
     import {
         Button,
@@ -12,7 +12,25 @@
     } from "svelte-materialify";
 
     export let active = false;
-    console.log(Installer);
+
+    function saveNewInstance() {
+        // close dialog
+        active = false;
+
+        instanceListState.addInstance({
+            clientType: "vanilla",
+            id: "1.8.9",
+            installed: false,
+            isInstalling: false,
+            lastPlayed: "never",
+            name: "1.8.9 Test",
+            releaseTime: "test",
+            time: "test",
+            type: "release",
+            url: "test",
+            uuid: uuidv4(),
+        });
+    }
 </script>
 
 <Dialog fullscreen bind:active>
@@ -21,7 +39,7 @@
         <CardText>Work in Progress...</CardText>
         <CardActions class="justify-end">
             <Button on:click={() => (active = false)} text>Cancel</Button>
-            <Button on:click={() => (active = false)} text class="red-text">
+            <Button on:click={saveNewInstance} text class="red-text">
                 Save
             </Button>
         </CardActions>
