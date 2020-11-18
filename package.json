@@ -43,6 +43,7 @@
 		"@types/jquery": "^3.5.4",
 		"@types/lodash": "^4.14.165",
 		"@types/mocha": "^8.0.3",
+		"@types/node": "^14.14.8",
 		"@types/semantic-ui": "^2.2.7",
 		"@types/uuid": "^8.3.0",
 		"@types/yauzl": "^2.9.1",

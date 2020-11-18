@@ -19,7 +19,7 @@ jobs:
 
     - name: Run tests with playwright-electron
       run: xvfb-run --auto-servernum yarn nyc --reporter=lcovonly --reporter=text ts-mocha ./test/*.test.ts --color
-      # if: always() # run tests even if previous test failed
+      if: always() # try to run tests even if build failed
     - name: Upload playwright code coverage to Codecov.io
       uses: codecov/codecov-action@v1
       if: always() # upload even if test failed
