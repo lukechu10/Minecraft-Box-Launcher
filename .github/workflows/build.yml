@@ -1,0 +1,39 @@
+name: Build CI
+
+on: [push, pull_request]
+
+jobs:
+  windows_build:
+    name: Windows Latest Build
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use NodeJS 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: yarn install
+      - run: yarn prod
+      - run: yarn pack
+      - name: Publish artificats
+        uses: actions/upload-artifact@v2
+        with:
+          name: windows-build
+          path: dist/win-unpacked/
+  macos_build:
+    name: MacOS Latest Build
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: yarn install
+      - run: yarn prod
+      - run: yarn pack
+      - name: Publish artificats
+        uses: actions/upload-artifact@v1
+        with:
+          name: macos-build
+          path: dist/mac/

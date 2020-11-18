@@ -1,0 +1,8 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+@font-face  {
+    font-family: 'Lato';
+    src:url('fonts/lato-regular.woff2') format('woff2');
+}

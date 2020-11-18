@@ -1,0 +1,25 @@
+image:
+  file: .gitpod.Dockerfile
+
+# List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/43_config_ports/
+ports:
+  - port: 5900
+    onOpen: ignore
+  - port: 6080
+    onOpen: notify
+  - port: 35900
+    onOpen: ignore
+  - port: 9515 # spectron
+    onOpen: ignore
+
+tasks:
+  - before: nvm install 12 && nvm alias default 12
+  - init: npm install
+  - command: npm run dev:gitpod
+  - command: npm run watch
+
+vscode:
+  extensions:
+    - wayou.vscode-todo-highlight@1.0.4:8IqxuxCVol2WnScJc5xVzg==
+    - msjsdiag.debugger-for-chrome@4.12.2:OgS8bhPr0xhAeewS3vg4Qw==
+    - runem.lit-plugin@1.1.10:/yk3Arh4MIQ3RwIcHwbX3Q==

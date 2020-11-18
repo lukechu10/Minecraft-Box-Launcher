@@ -1,0 +1,94 @@
+name: Build Release
+
+on:
+  push:
+    tags: 
+      - 'v*'
+
+jobs:
+  windows_alternative:
+    name: Windows Latest Build
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use NodeJS 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: yarn install
+      - run: yarn prod
+      - run: yarn pack
+      - name: Publish artificats
+        uses: actions/upload-artifact@v2
+        with:
+          name: windows-alternative
+          path: dist/win-unpacked/
+          
+  macos_build:
+    name: MacOS Latest Build
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: yarn install
+      - run: yarn prod
+      - run: yarn pack
+      - name: Publish artificats
+        uses: actions/upload-artifact@v1
+        with:
+          name: macos
+          path: dist/mac/
+
+  create_release:
+    name: Create Release
+    needs: [windows_alternative, macos_build] # wait for artifacts to be created
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts (Windows Alternative)
+        uses: actions/download-artifact@v1.0.0
+        with:
+          # Artifact name
+          name: windows-alternative
+      - name: Zip artifact (Windows Alternative)
+        run: zip -r windows-alternative.zip windows-alternative
+      - name: Download artifacts (MacOS)
+        uses: actions/download-artifact@v1.0.0
+        with:
+          # Artifact name
+          name: macos
+      - name: Zip artifact (MacOS)
+        run: zip -r macos.zip macos
+        # Create a new release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: true
+          prerelease: false
+        # upload windows alternative
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: windows-alternative.zip
+          asset_name: "Minecraft Box (WinAlternative) ${{ github.ref }}.zip"
+          asset_content_type: application/zip
+      # upload macos
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: macos.zip
+          asset_name: "Minecraft Box (MacOS) ${{ github.ref }}.zip"
+          asset_content_type: application/zip

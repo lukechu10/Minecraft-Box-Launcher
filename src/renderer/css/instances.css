@@ -1,0 +1,15 @@
+.text-instanceName {
+	text-overflow: ellipsis;
+	margin-bottom: 0 !important;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#instance-list-container {
+	bottom: 0;
+	left: 0;
+	top: 150px;
+	position: fixed;
+	width: 100%;
+	overflow-y: scroll;
+}

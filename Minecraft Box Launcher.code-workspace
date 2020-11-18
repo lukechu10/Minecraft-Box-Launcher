@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"typescript.tsdk": "node_modules\\typescript\\lib",
+		"javascript.format.semicolons": "insert",
+		"typescript.format.semicolons": "insert"
+	}
+}
