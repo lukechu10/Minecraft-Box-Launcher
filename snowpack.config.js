@@ -25,12 +25,16 @@ module.exports = {
         ],
         "@snowpack/plugin-svelte",
         "@snowpack/plugin-dotenv",
-        ["@snowpack/plugin-webpack", {
-            extendConfig: (config) => {
-                config.target = "electron-renderer";
-                return config;
-            }
-        }],
+        "@snowpack/plugin-postcss",
+        [
+            "@snowpack/plugin-webpack",
+            {
+                extendConfig: (config) => {
+                    config.target = "electron-renderer";
+                    return config;
+                },
+            },
+        ],
     ],
     install: [
         /* ... */
@@ -72,6 +76,6 @@ module.exports = {
         "**/node_modules/**/*",
         "**/__tests__/*",
         "**/*.@(spec|test).@(js|mjs)",
-        "**/src/main/**/*"
+        "**/src/main/**/*",
     ],
 };

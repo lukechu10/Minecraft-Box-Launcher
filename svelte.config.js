@@ -5,5 +5,12 @@ module.exports = {
         scss: {
             includePaths: ["src/theme"],
         },
+        postcss: {
+            plugins: [
+                require("tailwindcss"),
+                require("autoprefixer"),
+                require("postcss-nesting"),
+            ],
+        },
     }),
 };
