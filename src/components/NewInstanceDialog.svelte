@@ -4,6 +4,7 @@
     import { v4 as uuidv4 } from "uuid";
     import { instanceListState } from "../store/instanceListState";
     import Modal from "./Modal.svelte";
+    import { ToastType, visibleToastsState } from "./ToastDisplay.svelte";
     import VersionSelector from "./VersionSelector.svelte";
 
     export let active = false;
@@ -12,9 +13,27 @@
         version: undefined,
         name: "",
     };
-    $: console.log(data);
 
     function saveNewInstance(): false | void {
+        if (data.version === undefined) {
+            visibleToastsState.addToast({
+                header: "Cannot create instance",
+                body: "You must select a version.",
+                timeoutMs: 5000,
+                type: ToastType.Error,
+            });
+            return false;
+        }
+        if (data.name === "") {
+            visibleToastsState.addToast({
+                header: "Cannot create instance",
+                body: "You must give the instance a name.",
+                timeoutMs: 5000,
+                type: ToastType.Error,
+            });
+            return false;
+        }
+
         instanceListState.addInstance({
             clientType: "vanilla",
             id: data.version.id,
@@ -27,6 +46,13 @@
             type: data.version.type,
             url: data.version.url,
             uuid: uuidv4(),
+        });
+
+        visibleToastsState.addToast({
+            header: "Success",
+            body: `Created instance ${data.name}`,
+            timeoutMs: 5000,
+            type: ToastType.Success,
         });
     }
 </script>

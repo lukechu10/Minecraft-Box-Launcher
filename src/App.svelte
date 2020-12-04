@@ -1,5 +1,6 @@
 <script lang="ts">
     import Nav, { Page } from "./components/Nav.svelte";
+    import ToastDisplay from "./components/ToastDisplay.svelte";
     import Home from "./views/Home.svelte";
 
     let currentPage: Page;
@@ -24,3 +25,5 @@
 <main class="mt-10">
     <svelte:component this={viewComponent} />
 </main>
+
+<ToastDisplay />

@@ -49,8 +49,7 @@ export interface InstanceListState {
 
 function createInstanceListState() {
     // persist data with electron-store
-    // @ts-expect-error
-    let store = new Store({
+    let store = new Store<InstanceListState>({
         name: "instances",
         defaults: {
             instances: [],
