@@ -56,9 +56,9 @@ declare module "*.png" {
 declare global {
     interface Window {
         __preload: {
-            Installer: import("@xmcl/installer").Installer,
-            Store: import("electron-store")
-        }
+            Installer: typeof import("@xmcl/installer").Installer;
+            Store: import("electron-store");
+        };
     }
 }
 

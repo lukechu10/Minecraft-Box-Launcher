@@ -1,6 +1,6 @@
 import { reduxify } from "svelte-reduxify";
 import { writable } from "svelte/store";
-import { Store } from "../util";
+import Store from "electron-store";
 
 export interface InstanceData {
     /**

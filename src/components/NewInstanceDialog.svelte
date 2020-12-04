@@ -1,47 +1,56 @@
 <script lang="ts">
-    import { instanceListState } from "../store/instanceListState";
-    import { v4 as uuidv4 } from "uuid";
+    import type { Installer } from "@xmcl/installer";
 
-    import {
-        Button,
-        Card,
-        CardActions,
-        CardText,
-        CardTitle,
-        Dialog,
-    } from "svelte-materialify";
+    import { v4 as uuidv4 } from "uuid";
+    import { instanceListState } from "../store/instanceListState";
+    import Modal from "./Modal.svelte";
+    import VersionSelector from "./VersionSelector.svelte";
 
     export let active = false;
 
-    function saveNewInstance() {
-        // close dialog
-        active = false;
+    let data: { version?: Installer.Version; name: string } = {
+        version: undefined,
+        name: "",
+    };
+    $: console.log(data);
 
+    function saveNewInstance(): false | void {
         instanceListState.addInstance({
             clientType: "vanilla",
-            id: "1.8.9",
+            id: data.version.id,
             installed: false,
             isInstalling: false,
             lastPlayed: "never",
-            name: "1.8.9 Test",
-            releaseTime: "test",
-            time: "test",
-            type: "release",
-            url: "test",
+            name: data.name,
+            releaseTime: data.version.releaseTime,
+            time: data.version.time,
+            type: data.version.type,
+            url: data.version.url,
             uuid: uuidv4(),
         });
     }
 </script>
 
-<Dialog fullscreen bind:active>
-    <Card>
-        <CardTitle>Create New Instance</CardTitle>
-        <CardText>Work in Progress...</CardText>
-        <CardActions class="justify-end">
-            <Button on:click={() => (active = false)} text>Cancel</Button>
-            <Button on:click={saveNewInstance} text class="red-text">
-                Save
-            </Button>
-        </CardActions>
-    </Card>
-</Dialog>
+<Modal
+    bind:active
+    denyText="Cancel"
+    acceptText="Create"
+    onAccept={saveNewInstance}
+>
+    <span slot="title">Create new instance</span>
+    <!-- New instance form -->
+    <div class="my-2 space-y-2">
+        <div>
+            <label for="instance-name" class="font-semibold">Name:</label>
+            <input
+                placeholder="Unnamed instance"
+                name="instance-name"
+                bind:value={data.name}
+            />
+        </div>
+        <div>
+            <label for="instance-version" class="font-semibold">Version:</label>
+            <VersionSelector bind:version={data.version} />
+        </div>
+    </div>
+</Modal>

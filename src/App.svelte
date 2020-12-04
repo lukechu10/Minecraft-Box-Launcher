@@ -1,50 +1,26 @@
 <script lang="ts">
-    import {
-        MaterialApp,
-        Tab,
-        Tabs,
-        Window,
-        WindowItem,
-    } from "svelte-materialify";
-    import Accounts from "./views/Accounts.svelte";
+    import Nav, { Page } from "./components/Nav.svelte";
     import Home from "./views/Home.svelte";
-    import Instances from "./views/Instances.svelte";
 
-    let theme: "light" | "dark" = "light";
-    let value = 0;
+    let currentPage: Page;
+    let viewComponent = Home;
+    $: (async () => {
+        switch (currentPage) {
+            case Page.Home:
+                viewComponent = Home;
+                break;
+            case Page.Instances:
+                viewComponent = (await import("./views/Instances.svelte"))
+                    .default;
+                break;
+            case Page.Accounts:
+                viewComponent = (await import("./views/Accounts.svelte"))
+                    .default;
+        }
+    })();
 </script>
 
-<style>
-    main {
-        height: 100vh;
-    }
-</style>
-
-<MaterialApp {theme}>
-    <main class="d-flex flex-column">
-        <nav class="flex-shrink-0">
-            <Tabs fixedTabs class="green darken-4 theme--dark" bind:value>
-                <div slot="tabs">
-                    <Tab>Home</Tab>
-                    <Tab>Instances</Tab>
-                    <Tab>Accounts</Tab>
-                    <Tab>News</Tab>
-                    <Tab>Settings</Tab>
-                </div>
-            </Tabs>
-        </nav>
-        <Window {value} class="flex-grow-1">
-            <WindowItem>
-                <Home />
-            </WindowItem>
-            <WindowItem>
-                <Instances />
-            </WindowItem>
-            <WindowItem>
-                <Accounts />
-            </WindowItem>
-            <WindowItem>News</WindowItem>
-            <WindowItem>Settings</WindowItem>
-        </Window>
-    </main>
-</MaterialApp>
+<Nav bind:currentPage />
+<main class="mt-10">
+    <svelte:component this={viewComponent} />
+</main>

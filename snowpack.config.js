@@ -78,4 +78,8 @@ module.exports = {
         "**/*.@(spec|test).@(js|mjs)",
         "**/src/main/**/*",
     ],
+    alias: {
+        "@xmcl/installer": "./src/alias/xmcl__installer",
+        "electron-store": "./src/alias/electron-store",
+    },
 };
