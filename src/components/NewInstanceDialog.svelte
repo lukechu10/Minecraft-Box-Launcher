@@ -9,10 +9,11 @@
 
     export let active = false;
 
-    let data: { version?: Installer.Version; name: string } = {
+    const initialData = {
         version: undefined,
         name: "",
     };
+    let data: { version?: Installer.Version; name: string } = initialData;
 
     function saveNewInstance(): false | void {
         if (data.version === undefined) {

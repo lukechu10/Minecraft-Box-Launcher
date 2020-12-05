@@ -62,14 +62,12 @@ module.exports = {
     devOptions: {
         open: "none",
         port: 8080,
+        output: "stream",
     },
     buildOptions: {
         baseUrl: "./",
     },
     proxy: {
-        /* ... */
-    },
-    alias: {
         /* ... */
     },
     exclude: [

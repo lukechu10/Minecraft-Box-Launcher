@@ -2,7 +2,10 @@
     import { scale, fade } from "svelte/transition";
     import { quintOut } from "svelte/easing";
     import Button from "./Button.svelte";
-    import { createEventDispatcher } from "svelte";
+    import { createEventDispatcher, onDestroy } from "svelte";
+
+    let klass = "";
+    export { klass as class };
 
     export let active = false;
     export let transitionDuration = 350;
@@ -33,6 +36,11 @@
         dispatch("deny");
         if (onDeny === undefined || onDeny() !== false) active = false;
     };
+
+    onDestroy(() => {
+        // if active when getting destroyed, close modal.
+        if (active) active = false;
+    });
 </script>
 
 <style>
@@ -56,7 +64,7 @@
         transition:scale={{ duration: transitionDuration, easing: quintOut }}
         class="modal items-center bg-transparent flex h-full left-0 top-0 justify-center mx-auto fixed w-full"
     >
-        <div class="modal-container bg-white rounded-md z-50">
+        <div class="modal-container bg-white rounded-md z-50 {klass}">
             <!-- Modal title -->
             <div class="modal-content border-b px-6 py-2 text-left">
                 <p class="text-lg font-bold">
@@ -91,4 +99,3 @@
         </div>
     </dialog>
 {/if}
-<svelte:body />
