@@ -12,18 +12,20 @@
 
 <style>
     .selected {
-        @apply bg-white border-black border-b-2 text-gray-800;
+        @apply bg-white text-gray-800 rounded-md;
     }
 </style>
 
 <nav class="bg-green-700 flex h-10 top-0 justify-around fixed w-full">
     {#each Object.values(Page) as page}
-        <button
-            class="flex-grow font-semibold text-gray-100 transition-all"
-            class:selected={page === currentPage}
-            on:click={() => (currentPage = page)}
-        >
-            {page}
-        </button>
+        <div class="flex-grow text-center p-1">
+            <button
+                class="transition-all w-full h-full font-semibold text-gray-100"
+                class:selected={page === currentPage}
+                on:click={() => (currentPage = page)}
+            >
+                {page}
+            </button>
+        </div>
     {/each}
 </nav>

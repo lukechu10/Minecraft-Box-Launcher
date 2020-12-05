@@ -39,7 +39,7 @@
                 const id = uuidv4();
                 update((state) => [...state, { ...data, id }]);
                 // remove toast after specified timeout
-                setTimeout(() => removeToast, data.timeoutMs);
+                setTimeout(() => removeToast(id), data.timeoutMs);
             },
             removeToast,
         };
