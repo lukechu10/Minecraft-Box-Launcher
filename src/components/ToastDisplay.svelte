@@ -70,7 +70,7 @@
             transition:fade={{ duration: 200 }}
             animate:flip={{ delay: 200, duration: 400, easing: cubicInOut }}
             on:click={() => visibleToastsState.removeToast(toast.id)}
-            class="toast cursor-pointer rounded-md mx-3 my-2 px-3 py-2 {toast.type === ToastType.Normal ? 'bg-white' : toast.type === ToastType.Error ? 'bg-red-500 text-white' : toast.type === ToastType.Success ? 'bg-green-400 text-white' : ''}"
+            class="toast rounded-md cursor-pointer mx-3 my-2 px-3 py-2 {toast.type === ToastType.Normal ? 'bg-white' : toast.type === ToastType.Error ? 'bg-red-500 text-white' : toast.type === ToastType.Success ? 'bg-green-400 text-white' : ''}"
         >
             <p class="text-base font-bold">{toast.header}</p>
             <p class="text-sm">{toast.body}</p>

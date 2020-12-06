@@ -1,6 +1,8 @@
 <script lang="ts">
     import type { InstanceData } from "../store/instanceListState";
     import InstanceModal from "./InstanceModal.svelte";
+    import { fade } from "svelte/transition";
+
     export let instance: InstanceData;
 
     let modalActive = false;
@@ -14,10 +16,10 @@
     }
 </style>
 
-<div>
+<div transition:fade={{ duration: 200 }}>
     <div
         on:click={openInstanceModal}
-        class="item py-3 pl-3 hover:bg-gray-200 transition-colors cursor-pointer rounded-md"
+        class="item hover:bg-gray-200 rounded-md cursor-pointer pl-3 py-3 transition-colors"
     >
         <div class="item-inner transition-transform">
             <span class="font-semibold">{instance.name}</span>

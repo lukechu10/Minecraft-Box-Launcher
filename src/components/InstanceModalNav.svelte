@@ -14,19 +14,19 @@
 
 <style>
     .selected {
-        @apply font-semibold;
+        @apply bg-gray-100 font-semibold;
     }
 
     .instance-modal-nav {
-        width: 100px;
+        width: 110px;
     }
 </style>
 
 <div class="instance-modal-nav flex-initial font-light text-right">
-    <ul class="space-y-1">
+    <ul class="mt-2 space-y-1">
         {#each Object.values(InstanceModalPage) as page}
             <li
-                class="transition-all"
+                class="hover:bg-gray-200 rounded-md cursor-pointer p-1 transition-all"
                 class:selected={page === currentPage}
                 on:click={() => (currentPage = page)}
             >

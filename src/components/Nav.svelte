@@ -12,15 +12,15 @@
 
 <style>
     .selected {
-        @apply bg-white text-gray-800 rounded-md;
+        @apply bg-white rounded-md text-gray-800;
     }
 </style>
 
 <nav class="bg-green-700 flex h-10 top-0 justify-around fixed w-full">
     {#each Object.values(Page) as page}
-        <div class="flex-grow text-center p-1">
+        <div class="flex-grow p-1 text-center">
             <button
-                class="transition-all w-full h-full font-semibold text-gray-100"
+                class="font-semibold h-full text-gray-100 transition-all w-full"
                 class:selected={page === currentPage}
                 on:click={() => (currentPage = page)}
             >

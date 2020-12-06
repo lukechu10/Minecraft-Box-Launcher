@@ -12,7 +12,7 @@ export interface InstanceData {
      */
     uuid: string;
     /**
-     * Instance version
+     * Instance version (not to be confused with field `uuid` which is an UUID v4)
      */
     id: string;
     /**
@@ -60,18 +60,30 @@ function createInstanceListState() {
 
     subscribe((state) => store.set(state));
 
-    const addInstance = (data: InstanceData) => {
+    const addInstance = (data: InstanceData) =>
         update((state) => ({
             ...state,
             instances: [...state.instances, data],
         }));
-    };
+
+    const deleteInstance = (uuid: string) =>
+        update((state) => ({
+            ...state,
+            instances: state.instances.filter((instance) => instance.uuid !== uuid),
+        }));
 
     return {
         set,
         subscribe,
         update,
+        /**
+         * Adds an new instance to the store with the given `data`.
+         */
         addInstance,
+        /**
+         * Deletes an instance with a given `uuid` from the store.
+         */
+        deleteInstance,
     };
 }
 
