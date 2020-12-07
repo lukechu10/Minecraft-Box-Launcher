@@ -16,7 +16,7 @@
     }
 </style>
 
-<div transition:fade={{ duration: 200 }}>
+<div transition:fade|local={{ duration: 200 }}>
     <div
         on:click={openInstanceModal}
         class="item hover:bg-gray-200 rounded-md cursor-pointer pl-3 py-3 transition-colors"

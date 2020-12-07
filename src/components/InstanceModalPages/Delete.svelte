@@ -1,7 +1,8 @@
 <script lang="ts">
-    import { instanceListState } from "../../store/instanceListState";
     import type { InstanceData } from "../../store/instanceListState";
+    import { instanceListState } from "../../store/instanceListState";
     import Button from "../Button.svelte";
+    import { ToastType, visibleToastsState } from "../ToastDisplay.svelte";
 
     export let instance: InstanceData;
 
@@ -13,6 +14,12 @@
     const deleteInstance = () => {
         // NOTE: Modal closing does not need to be handled. The instance should be removed from the DOM and so is the Modal.
         instanceListState.deleteInstance(instance.uuid);
+
+        visibleToastsState.addToast({
+            header: "Success",
+            body: `Deleted instance ${instance.name}`,
+            type: ToastType.Success,
+        });
     };
 </script>
 
