@@ -73,6 +73,7 @@ export interface InstanceData {
      * @see InstanceState
      */
     state: InstanceState;
+    processLogs: { type: "stdout" | "stderr"; message: string }[];
 }
 
 /**
@@ -88,16 +89,13 @@ export interface InstanceListState {
 function instanceListStateStoreFilter(name: string, val: any) {
     // The only valid `state` field when saved to the disk are `InstanceState.CanInstall` and `InstanceState.CanLaunch`.
     if (name === "state") {
-        if (
-            [InstanceState.CanInstall, InstanceState.Installing].includes(val)
-        ) {
+        if ([InstanceState.CanInstall, InstanceState.Installing].includes(val))
             return InstanceState.CanInstall;
-        } else {
-            return InstanceState.CanLaunch;
-        }
-    } else {
-        return val;
+        else return InstanceState.CanLaunch;
     }
+    // Do not serialize processLogs.
+    else if (name === "processLogs") return [];
+    else return val;
 }
 
 function createInstanceListState() {
@@ -129,7 +127,7 @@ function createInstanceListState() {
             ),
         }));
 
-    const updateState = (uuid: string, instanceState: InstanceState) => {
+    const updateState = (uuid: string, instanceState: InstanceState) =>
         update((state) => {
             for (let instance of state.instances) {
                 if (instance.uuid === uuid) {
@@ -139,7 +137,32 @@ function createInstanceListState() {
             }
             return state;
         });
+
+    const addProcessLog = (
+        uuid: string,
+        message: { type: "stdout" | "stderr"; message: string }
+    ) => {
+        update((state) => {
+            for (let instance of state.instances) {
+                if (instance.uuid === uuid) {
+                    instance.processLogs.push(message);
+                    break;
+                }
+            }
+            return state;
+        });
     };
+
+    const resetProcessLog = (uuid: string) =>
+        update((state) => {
+            for (let instance of state.instances) {
+                if (instance.uuid === uuid) {
+                    instance.processLogs = [];
+                    break;
+                }
+            }
+            return state;
+        });
 
     return {
         set,
@@ -170,9 +193,12 @@ function createInstanceListState() {
          */
         launchInstance: async (instance: InstanceData) => {
             updateState(instance.uuid, InstanceState.Launching);
+            resetProcessLog(instance.uuid);
+            
             const process = await launchInstance(instance);
             updateState(instance.uuid, InstanceState.Launched);
 
+            // reset InstanceState when game exits
             let handledClose: (() => void) | undefined = () => {
                 updateState(instance.uuid, InstanceState.CanLaunch);
                 handledClose = undefined;
@@ -193,6 +219,20 @@ function createInstanceListState() {
                         handledClose();
                     }
                 });
+
+            // add stdout and stderr to processLogs
+            process.stdout?.on("data", (data) => {
+                addProcessLog(instance.uuid, {
+                    type: "stdout",
+                    message: data.toString(),
+                });
+            });
+            process.stderr?.on("data", (data) => {
+                addProcessLog(instance.uuid, {
+                    type: "stderr",
+                    message: data.toString(),
+                });
+            });
         },
     };
 }

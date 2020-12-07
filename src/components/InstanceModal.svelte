@@ -38,6 +38,11 @@
                     await import("./InstanceModalPages/Mods.svelte")
                 ).default;
                 break;
+            case InstanceModalPage.Logs:
+                viewComponent = (
+                    await import("./InstanceModalPages/Logs.svelte")
+                ).default;
+                break;
             case InstanceModalPage.Delete:
                 viewComponent = (
                     await import("./InstanceModalPages/Delete.svelte")
@@ -59,6 +64,17 @@
         instanceListState.launchInstance(instance);
     };
 </script>
+
+<style>
+    .page-container {
+        display: block;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overflow-wrap: anywhere;
+
+        height: min(67vh, 500px);
+    }
+</style>
 
 <Modal bind:active class="max-w-3xl w-11/12">
     <span slot="title">{instance.name}</span>
@@ -107,7 +123,7 @@
                 </Button>
             {/if}
         </div>
-        <div class="flex-1 pl-2 pt-2">
+        <div class="page-container flex-1 pl-2 pt-2 auto">
             <svelte:component this={viewComponent} {instance} />
         </div>
     </div>

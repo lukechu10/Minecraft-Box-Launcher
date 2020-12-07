@@ -49,6 +49,7 @@
             url: data.version.url,
             uuid: uuidv4().split("-").join(""), // remove `-` characters
             state: InstanceState.CanInstall,
+            processLogs: [],
         });
 
         visibleToastsState.addToast({

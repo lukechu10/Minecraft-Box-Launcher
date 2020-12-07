@@ -4,6 +4,7 @@
         Saves = "Saves",
         Servers = "Servers",
         Mods = "Mods",
+        Logs = "Logs",
         Delete = "Delete",
     }
 </script>
