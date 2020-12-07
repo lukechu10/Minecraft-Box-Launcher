@@ -1,6 +1,7 @@
 import { reduxify } from "svelte-reduxify";
 import { writable } from "svelte/store";
 import Store from "electron-store";
+import { installInstance } from "./instanceActions/install";
 
 /**
  * The current state of the instance.
@@ -100,6 +101,18 @@ function createInstanceListState() {
             ),
         }));
 
+    const updateState = (uuid: string, instanceState: InstanceState) => {
+        update((state) => {
+            for (let instance of state.instances) {
+                if (instance.uuid === uuid) {
+                    instance.state = instanceState;
+                    break;
+                }
+            }
+            return state;
+        });
+    };
+
     return {
         set,
         subscribe,
@@ -112,6 +125,18 @@ function createInstanceListState() {
          * Deletes an instance with a given `uuid` from the store.
          */
         deleteInstance,
+        /**
+         * Updates the `InstanceState` of an instance with a given `uuid`.
+         */
+        updateState,
+        /**
+         * Installs an instance using `@xmcl/installer`.
+         */
+        installInstance: async (instance: InstanceData) => {
+            updateState(instance.uuid, InstanceState.Installing);
+            await installInstance(instance);
+            updateState(instance.uuid, InstanceState.CanLaunch);
+        },
     };
 }
 

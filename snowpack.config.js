@@ -41,7 +41,6 @@ module.exports = {
     ],
     installOptions: {
         externalPackage: [
-            "electron",
             // nodejs
             "assert",
             "buffer",
@@ -52,7 +51,6 @@ module.exports = {
             "http",
             "https",
             "os",
-            "path",
             "stream",
             "util",
             "url",
@@ -77,7 +75,9 @@ module.exports = {
         "**/src/main/**/*",
     ],
     alias: {
-        "@xmcl/installer": "./src/alias/xmcl__installer",
+        "@xmcl/installer": "./src/alias/@xmcl/installer",
+        electron: "./src/alias/electron",
         "electron-store": "./src/alias/electron-store",
+        path: "./src/alias/path",
     },
 };

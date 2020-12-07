@@ -1,5 +1,8 @@
 <script lang="ts">
-    import { InstanceState } from "../store/instanceListState";
+    import {
+        instanceListState,
+        InstanceState,
+    } from "../store/instanceListState";
     import type { InstanceData } from "../store/instanceListState";
     import Button from "./Button.svelte";
     import InstanceModalNav, {
@@ -47,6 +50,10 @@
     $: if (active === true) {
         currentPage = InstanceModalPage.QuickActions;
     }
+
+    const handleInstall = () => {
+        instanceListState.installInstance(instance);
+    };
 </script>
 
 <Modal bind:active class="max-w-3xl w-11/12">
@@ -63,6 +70,7 @@
                 <Button
                     class="hover:bg-yellow-400 bg-yellow-500 my-3 text-white w-full"
                     height="h-7"
+                    on:click={handleInstall}
                 >
                     Install
                 </Button>
