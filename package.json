@@ -29,6 +29,7 @@
         "@types/uuid": "^8.3.0",
         "@xmcl/core": "^2.4.0",
         "@xmcl/installer": "^2.9.8",
+        "@xmcl/user": "^2.1.3",
         "autoprefixer": "^10.0.4",
         "chai": "^4.2.0",
         "cssnano": "^4.1.10",

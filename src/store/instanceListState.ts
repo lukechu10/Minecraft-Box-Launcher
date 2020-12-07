@@ -1,6 +1,6 @@
+import Store from "electron-store";
 import { reduxify } from "svelte-reduxify";
 import { writable } from "svelte/store";
-import Store from "electron-store";
 import { installInstance } from "./instanceActions/install";
 import { launchInstance } from "./instanceActions/launch";
 
@@ -194,7 +194,7 @@ function createInstanceListState() {
         launchInstance: async (instance: InstanceData) => {
             updateState(instance.uuid, InstanceState.Launching);
             resetProcessLog(instance.uuid);
-            
+
             const process = await launchInstance(instance);
             updateState(instance.uuid, InstanceState.Launched);
 

@@ -12,7 +12,7 @@
         <div class="mt-3">
             <h4 class="inline-block text-2xl font-semibold">Instances</h4>
             <Button on:click={openNewInstanceDialog}>
-                Create new Instance
+                Create new instance
             </Button>
         </div>
     </div>
