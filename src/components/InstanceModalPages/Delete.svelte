@@ -18,6 +18,7 @@
         visibleToastsState.addToast({
             header: "Success",
             body: `Deleted instance ${instance.name}`,
+            timeoutMs: 5000,
             type: ToastType.Success,
         });
     };

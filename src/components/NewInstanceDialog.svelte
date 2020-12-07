@@ -2,7 +2,10 @@
     import type { Installer } from "@xmcl/installer";
 
     import { v4 as uuidv4 } from "uuid";
-    import { instanceListState } from "../store/instanceListState";
+    import {
+        instanceListState,
+        InstanceState,
+    } from "../store/instanceListState";
     import Modal from "./Modal.svelte";
     import { ToastType, visibleToastsState } from "./ToastDisplay.svelte";
     import VersionSelector from "./VersionSelector.svelte";
@@ -38,8 +41,6 @@
         instanceListState.addInstance({
             clientType: "vanilla",
             id: data.version.id,
-            installed: false,
-            isInstalling: false,
             lastPlayed: "never",
             name: data.name,
             releaseTime: data.version.releaseTime,
@@ -47,6 +48,7 @@
             type: data.version.type,
             url: data.version.url,
             uuid: uuidv4(),
+            state: InstanceState.CanInstall,
         });
 
         visibleToastsState.addToast({

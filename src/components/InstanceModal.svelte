@@ -1,5 +1,6 @@
 <script lang="ts">
-    import type { InstanceData } from "src/store/instanceListState";
+    import { InstanceState } from "../store/instanceListState";
+    import type { InstanceData } from "../store/instanceListState";
     import Button from "./Button.svelte";
     import InstanceModalNav, {
         InstanceModalPage,
@@ -58,12 +59,36 @@
     <div class="flex divide-x flex-row space-x-2">
         <div>
             <InstanceModalNav bind:currentPage />
-            <Button
-                class="hover:bg-green-400 bg-green-500 my-3 text-white w-full"
-                height="h-7"
-            >
-                Play
-            </Button>
+            {#if instance.state === InstanceState.CanInstall}
+                <Button
+                    class="hover:bg-yellow-400 bg-yellow-500 my-3 text-white w-full"
+                    height="h-7"
+                >
+                    Install
+                </Button>
+            {:else if instance.state === InstanceState.CanLaunch}
+                <Button
+                    class="hover:bg-green-400 bg-green-500 my-3 text-white w-full"
+                    height="h-7"
+                >
+                    Launch
+                </Button>
+            {:else if instance.state === InstanceState.Installing}
+                <Button disabled class="my-3 text-white w-full" height="h-7">
+                    Installing
+                </Button>
+            {:else if instance.state === InstanceState.Launched}
+                <Button disabled class="my-3 text-white w-full" height="h-7">
+                    Launched
+                </Button>
+            {:else if instance.state === InstanceState.Crashed}
+                <Button
+                    class="hover:bg-red-500 bg-red-700 my-3 text-white w-full"
+                    height="h-7"
+                >
+                    Crashed
+                </Button>
+            {/if}
         </div>
         <div class="flex-1 pl-2 pt-2">
             <svelte:component this={viewComponent} {instance} />

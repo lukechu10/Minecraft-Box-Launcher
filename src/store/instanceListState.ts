@@ -2,45 +2,71 @@ import { reduxify } from "svelte-reduxify";
 import { writable } from "svelte/store";
 import Store from "electron-store";
 
+/**
+ * The current state of the instance.
+ */
+export enum InstanceState {
+    /**
+     * Default state. Instance is not yet installed.
+     */
+    CanInstall,
+    /**
+     * Instance is installed.
+     */
+    CanLaunch,
+    /**
+     * Currently being installed.
+     */
+    Installing,
+    /**
+     * Currently running.
+     */
+    Launched,
+    /**
+     * Running but crashed.
+     */
+    Crashed,
+}
+
+/**
+ * Metadata associated with an instance.
+ */
 export interface InstanceData {
     /**
-     * Name of instance
+     * Name of instance.
      */
     name: string;
     /**
-     * UUID v4 to identify the instance
+     * UUID v4 to identify the instance.
      */
     uuid: string;
     /**
-     * Instance version (not to be confused with field `uuid` which is an UUID v4)
+     * Instance version (not to be confused with field `uuid` which is an UUID v4).
      */
     id: string;
     /**
-     * Mojang release or snapshot (vanilla only)
+     * Mojang release or snapshot (vanilla only).
      */
     type: string;
     /**
-     * Type of client
+     * Type of client.
      */
     clientType: "vanilla" | "forge";
     /**
-     * Format: `new Date().toISOString()` or `"never"` if never played
+     * Format: `new Date().toISOString()` or `"never"` if never played.
      */
     lastPlayed: string | "never";
     /**
-     * Date version was released
+     * Date version was released.
      */
     releaseTime: string;
     url: string;
-    /**
-     * Version binaries are completely installed
-     */
-    installed: boolean;
-    /**
-     * True if current instance is being installed
-     */
-    isInstalling: boolean;
     time: string;
+    /**
+     * The current state of the instance.
+     * @see InstanceState
+     */
+    state: InstanceState;
 }
 
 export interface InstanceListState {
@@ -69,7 +95,9 @@ function createInstanceListState() {
     const deleteInstance = (uuid: string) =>
         update((state) => ({
             ...state,
-            instances: state.instances.filter((instance) => instance.uuid !== uuid),
+            instances: state.instances.filter(
+                (instance) => instance.uuid !== uuid
+            ),
         }));
 
     return {
