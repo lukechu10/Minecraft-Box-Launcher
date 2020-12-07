@@ -1,5 +1,5 @@
 /**
- * @file Alias in Snowpack for `path` to retrieve the package from `window.__preload`.
+ * @file Alias in Snowpack for `path`.
  */
 
 export default require("path");

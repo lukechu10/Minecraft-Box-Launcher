@@ -43,7 +43,7 @@ export interface InstanceData {
      */
     name: string;
     /**
-     * UUID v4 to identify the instance.
+     * UUID v4 to identify the instance. Should *NOT* contain `-` character.
      */
     uuid: string;
     /**

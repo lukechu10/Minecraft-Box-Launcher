@@ -47,7 +47,7 @@
             time: data.version.time,
             type: data.version.type,
             url: data.version.url,
-            uuid: uuidv4(),
+            uuid: uuidv4().split("-").join(""), // remove `-` characters
             state: InstanceState.CanInstall,
         });
 

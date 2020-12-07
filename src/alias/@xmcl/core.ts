@@ -1,5 +1,5 @@
 /**
- * @file Alias in Snowpack for `@xmcl/installer` to retrieve the package from `window.__preload`.
+ * @file Alias in Snowpack for `@xmcl/installer`.
  */
 
 const { Version, launch } = require("@xmcl/core");

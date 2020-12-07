@@ -79,6 +79,7 @@ module.exports = {
         "@xmcl/installer": "./src/alias/@xmcl/installer",
         electron: "./src/alias/electron",
         "electron-store": "./src/alias/electron-store",
+        mkdirp: "./src/alias/mkdirp",
         path: "./src/alias/path",
     },
 };

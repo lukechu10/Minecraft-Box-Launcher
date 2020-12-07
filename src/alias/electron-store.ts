@@ -1,4 +1,4 @@
 /**
- * @file Alias in Snowpack for `electron-store` to retrieve the package from `window.__preload`.
+ * @file Alias in Snowpack for `electron-store`.
  */
 export default require("electron-store");

@@ -1,5 +1,5 @@
 /**
- * @file Alias in Snowpack for `electron` to retrieve the package from `window.__preload`.
+ * @file Alias in Snowpack for `electron`.
  */
 
 const { remote } = require("electron");
