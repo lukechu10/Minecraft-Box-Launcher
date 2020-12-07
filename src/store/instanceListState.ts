@@ -2,6 +2,7 @@ import { reduxify } from "svelte-reduxify";
 import { writable } from "svelte/store";
 import Store from "electron-store";
 import { installInstance } from "./instanceActions/install";
+import { launchInstance } from "./instanceActions/launch";
 
 /**
  * The current state of the instance.
@@ -19,6 +20,10 @@ export enum InstanceState {
      * Currently being installed.
      */
     Installing,
+    /**
+     * Currently being launched.
+     */
+    Launching,
     /**
      * Currently running.
      */
@@ -70,8 +75,29 @@ export interface InstanceData {
     state: InstanceState;
 }
 
+/**
+ * Schema for `instanceListState`.
+ */
 export interface InstanceListState {
     instances: InstanceData[];
+}
+
+/**
+ * Filter for `electron-store` serializer backing `instanceListState`.
+ */
+function instanceListStateStoreFilter(name: string, val: any) {
+    // The only valid `state` field when saved to the disk are `InstanceState.CanInstall` and `InstanceState.CanLaunch`.
+    if (name === "state") {
+        if (
+            [InstanceState.CanInstall, InstanceState.Installing].includes(val)
+        ) {
+            return InstanceState.CanInstall;
+        } else {
+            return InstanceState.CanLaunch;
+        }
+    } else {
+        return val;
+    }
 }
 
 function createInstanceListState() {
@@ -81,6 +107,8 @@ function createInstanceListState() {
         defaults: {
             instances: [],
         },
+        serialize: (value) =>
+            JSON.stringify(value, instanceListStateStoreFilter),
     });
 
     const { set, subscribe, update } = writable<InstanceListState>(store.store);
@@ -136,6 +164,13 @@ function createInstanceListState() {
             updateState(instance.uuid, InstanceState.Installing);
             await installInstance(instance);
             updateState(instance.uuid, InstanceState.CanLaunch);
+        },
+        /**
+         * Launches an instance using `@xmcl/launch`.
+         */
+        launchInstance: async (instance: InstanceData) => {
+            await launchInstance(instance);
+            updateState(instance.uuid, InstanceState.Launched);
         },
     };
 }

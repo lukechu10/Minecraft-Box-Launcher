@@ -75,6 +75,7 @@ module.exports = {
         "**/src/main/**/*",
     ],
     alias: {
+        "@xmcl/core": "./src/alias/@xmcl/core",
         "@xmcl/installer": "./src/alias/@xmcl/installer",
         electron: "./src/alias/electron",
         "electron-store": "./src/alias/electron-store",

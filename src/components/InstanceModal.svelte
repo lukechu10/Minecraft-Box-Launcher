@@ -54,6 +54,10 @@
     const handleInstall = () => {
         instanceListState.installInstance(instance);
     };
+
+    const handleLaunch = () => {
+        instanceListState.launchInstance(instance);
+    };
 </script>
 
 <Modal bind:active class="max-w-3xl w-11/12">
@@ -78,12 +82,17 @@
                 <Button
                     class="hover:bg-green-400 bg-green-500 my-3 text-white w-full"
                     height="h-7"
+                    on:click={handleLaunch}
                 >
                     Launch
                 </Button>
             {:else if instance.state === InstanceState.Installing}
                 <Button disabled class="my-3 text-white w-full" height="h-7">
                     Installing
+                </Button>
+            {:else if instance.state === InstanceState.Launching}
+                <Button disabled class="my-3 text-white w-full" height="h-7">
+                    Launching
                 </Button>
             {:else if instance.state === InstanceState.Launched}
                 <Button disabled class="my-3 text-white w-full" height="h-7">
