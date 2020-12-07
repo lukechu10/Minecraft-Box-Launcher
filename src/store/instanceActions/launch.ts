@@ -19,7 +19,7 @@ export async function launchInstance(instance: InstanceData) {
     // make sure gamePath exists
     mkdirp(gamePath);
 
-    launch({
+    return await launch({
         gamePath,
         resourcePath: GAME_INSTALL_PATH,
         javaPath: "java", // use java from path

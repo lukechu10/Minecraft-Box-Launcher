@@ -169,8 +169,30 @@ function createInstanceListState() {
          * Launches an instance using `@xmcl/launch`.
          */
         launchInstance: async (instance: InstanceData) => {
-            await launchInstance(instance);
+            updateState(instance.uuid, InstanceState.Launching);
+            const process = await launchInstance(instance);
             updateState(instance.uuid, InstanceState.Launched);
+
+            let handledClose: (() => void) | undefined = () => {
+                updateState(instance.uuid, InstanceState.CanLaunch);
+                handledClose = undefined;
+            };
+
+            process
+                .on("close", (code) => {
+                    console.log(
+                        `child process close all stdio with code ${code}`
+                    );
+                    if (handledClose !== undefined) {
+                        handledClose();
+                    }
+                })
+                .on("exit", (code) => {
+                    console.log(`child process exited with code ${code}`);
+                    if (handledClose !== undefined) {
+                        handledClose();
+                    }
+                });
         },
     };
 }
