@@ -62,6 +62,13 @@
             }
         }
     };
+
+    // handle enter key in input
+    const handleKeyUp = (event: KeyboardEvent) => {
+        if (event.key === "Enter") {
+            handleSubmit();
+        }
+    };
 </script>
 
 <Modal bind:active class="max-w-3xl w-11/12">
@@ -83,6 +90,7 @@
                 placeholder="Username / Email"
                 name="email"
                 bind:value={data.email}
+                on:keyup={handleKeyUp}
             />
         </div>
         <div class="flex flex-col">
@@ -93,6 +101,7 @@
                 name="password"
                 type="password"
                 bind:value={data.password}
+                on:keyup={handleKeyUp}
             />
         </div>
     </div>
