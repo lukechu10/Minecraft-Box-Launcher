@@ -19,9 +19,9 @@
 <div transition:fade|local={{ duration: 200 }}>
     <div
         on:click={openInstanceModal}
-        class="item hover:bg-gray-200 rounded-md cursor-pointer pl-3 py-3 transition-colors"
+        class="item hover:bg-gray-200 rounded-md cursor-pointer transition-colors"
     >
-        <div class="item-inner transition-transform">
+        <div class="item-inner transition-transform w-full h-full pl-3 py-3">
             <span class="font-semibold">{instance.name}</span>
             -
             <i>{instance.id}</i>
