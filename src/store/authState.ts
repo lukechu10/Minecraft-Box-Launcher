@@ -13,7 +13,7 @@ export interface AuthState {
 function createAuthState() {
     // persist data with electron-store
     let store = new Store<AuthState>({
-        name: "instances",
+        name: "auth",
         defaults: {
             accounts: [],
         },

@@ -15,9 +15,23 @@
         </div>
     </div>
 
-    {#each $authState.accounts as account}
-        <p>{account?.user?.username}</p>
-    {/each}
+    <div class="divide-y mt-3 overflow-x-hidden">
+        {#each $authState.accounts as account}
+            <div>
+                <img
+                    class="rounded-sm inline-block h-7 w-7"
+                    src="https://minotar.net/avatar/{account.selectedProfile.id}"
+                    alt="skin head"
+                />
+
+                <span>
+                    {account?.selectedProfile.name}
+                    -
+                    <i>{account?.user?.username}</i>
+                </span>
+            </div>
+        {/each}
+    </div>
 </div>
 
 <LoginModal bind:active={loginModalActive} />
