@@ -12,7 +12,7 @@
     </p>
 {/if}
 
-<div class="divide-y mt-3">
+<div class="divide-y mt-3 overflow-x-hidden">
     {#each $instanceListState.instances as instance (instance.uuid)}
         <div animate:flip>
             <InstanceListItem {instance} />
