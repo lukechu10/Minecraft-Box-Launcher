@@ -40,7 +40,7 @@
 		"@types/fast-html-parser": "^1.0.0",
 		"@types/fs-extra": "^9.0.3",
 		"@types/got": "^9.6.11",
-		"@types/jquery": "^3.5.4",
+		"@types/jquery": "^3.5.5",
 		"@types/lodash": "^4.14.165",
 		"@types/mocha": "^8.0.3",
 		"@types/semantic-ui": "^2.2.7",
